@@ -26,19 +26,7 @@ const authConfig: NextAuthConfig = {
     error: "/auth/login",
     verifyRequest: "/auth/verify-email",
   },
-  cookies: {
-    sessionToken: {
-      name: process.env.NODE_ENV === "production" 
-        ? "__Secure-next-auth.session-token"
-        : "next-auth.session-token",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
-  },
+  useSecureCookies: process.env.NODE_ENV === "production",
   providers: [
     CredentialsProvider({
       name: "Credentials",
