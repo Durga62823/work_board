@@ -13,6 +13,42 @@ enum UserStatus {
   SUSPENDED
 }
 
+enum UserRole {
+  ADMIN
+  MANAGER
+  EMPLOYEE
+}
+
+enum ProjectStatus {
+  ON_TRACK
+  AT_RISK
+  DELAYED
+  COMPLETED
+  ON_HOLD
+}
+
+enum AppraisalStatus {
+  DRAFT
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum AuditAction {
+  USER_CREATED
+  USER_UPDATED
+  USER_DELETED
+  USER_DEACTIVATED
+  ROLE_CHANGED
+  APPRAISAL_CREATED
+  APPRAISAL_UPDATED
+  APPRAISAL_COMPLETED
+  DATA_EXPORTED
+  INTEGRATION_ENABLED
+  INTEGRATION_DISABLED
+  SETTINGS_UPDATED
+}
+
 model User {
   id                  String               @id @default(cuid())
   email               String               @unique
@@ -22,6 +58,12 @@ model User {
   name                String?
   image               String?
   emailVerified       DateTime?
+  role                UserRole             @default(EMPLOYEE)
+  departmentId        String?
+  teamId              String?
+  managerId           String?
+  position            String?
+  phoneNumber         String?
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
   lastLogin           DateTime?
@@ -31,6 +73,16 @@ model User {
 
   accounts            Account[]
   sessions            Session[]
+  department          Department?          @relation(fields: [departmentId], references: [id])
+  team                Team?                @relation(fields: [teamId], references: [id])
+  manager             User?                @relation("ManagerEmployee", fields: [managerId], references: [id])
+  employees           User[]               @relation("ManagerEmployee")
+  ownedProjects       Project[]            @relation("ProjectOwner")
+  projectMembers      ProjectMember[]
+  appraisalReviews    AppraisalReview[]
+  performanceMetrics  PerformanceMetric[]
+  auditLogs           AuditLog[]
+  customRoles         UserCustomRole[]
 
   @@map("users")
 }
@@ -84,4 +136,192 @@ model PasswordResetToken {
   createdAt DateTime @default(now())
 
   @@map("password_reset_tokens")
+}
+
+model Department {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  headId      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       User[]
+  teams       Team[]
+
+  @@map("departments")
+}
+
+model Team {
+  id           String     @id @default(cuid())
+  name         String
+  description  String?
+  departmentId String
+  leadId       String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  users        User[]
+  projects     Project[]
+
+  @@map("teams")
+}
+
+model Project {
+  id               String        @id @default(cuid())
+  name             String
+  description      String?
+  status           ProjectStatus @default(ON_TRACK)
+  ownerId          String
+  teamId           String?
+  startDate        DateTime?
+  endDate          DateTime?
+  completionRate   Float         @default(0)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  owner            User          @relation("ProjectOwner", fields: [ownerId], references: [id])
+  team             Team?         @relation(fields: [teamId], references: [id])
+  members          ProjectMember[]
+  performanceMetrics PerformanceMetric[]
+
+  @@map("projects")
+}
+
+model ProjectMember {
+  id        String   @id @default(cuid())
+  projectId String
+  userId    String
+  role      String?
+  joinedAt  DateTime @default(now())
+
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, userId])
+  @@map("project_members")
+}
+
+model PerformanceMetric {
+  id              String   @id @default(cuid())
+  userId          String
+  projectId       String?
+  metric          String
+  value           Float
+  period          String
+  recordedAt      DateTime @default(now())
+
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project         Project? @relation(fields: [projectId], references: [id])
+
+  @@map("performance_metrics")
+}
+
+model AppraisalCycle {
+  id          String          @id @default(cuid())
+  name        String
+  description String?
+  startDate   DateTime
+  endDate     DateTime
+  status      AppraisalStatus @default(DRAFT)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  reviews     AppraisalReview[]
+
+  @@map("appraisal_cycles")
+}
+
+model AppraisalReview {
+  id              String          @id @default(cuid())
+  cycleId         String
+  userId          String
+  selfReview      String?
+  managerReview   String?
+  rating          Float?
+  finalRating     Float?
+  status          AppraisalStatus @default(DRAFT)
+  submittedAt     DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  cycle           AppraisalCycle  @relation(fields: [cycleId], references: [id], onDelete: Cascade)
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([cycleId, userId])
+  @@map("appraisal_reviews")
+}
+
+model AuditLog {
+  id          String      @id @default(cuid())
+  userId      String?
+  action      AuditAction
+  entity      String
+  entityId    String?
+  details     String?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime    @default(now())
+
+  user        User?       @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([action])
+  @@index([entity])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model Integration {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  type        String
+  enabled     Boolean  @default(false)
+  config      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("integrations")
+}
+
+model CustomRole {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  permissions String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       UserCustomRole[]
+
+  @@map("custom_roles")
+}
+
+model UserCustomRole {
+  id           String     @id @default(cuid())
+  userId       String
+  customRoleId String
+  assignedAt   DateTime   @default(now())
+
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  customRole   CustomRole @relation(fields: [customRoleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, customRoleId])
+  @@map("user_custom_roles")
+}
+
+model OrganizationSettings {
+  id              String   @id @default(cuid())
+  timeZone        String   @default("UTC")
+  workWeek        String   @default("Mon-Fri")
+  workHoursStart  String   @default("09:00")
+  workHoursEnd    String   @default("17:00")
+  holidays        String?
+  aiEnabled       Boolean  @default(true)
+  aiThreshold     Float    @default(0.7)
+  updatedAt       DateTime @updatedAt
+
+  @@map("organization_settings")
 }

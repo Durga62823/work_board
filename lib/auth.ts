@@ -82,6 +82,61 @@ const authConfig: NextAuthConfig = {
     }),
   ],
   callbacks: {
+    async signIn({ user, account, profile }) {
+      // Allow OAuth sign-in to link accounts automatically
+      if (account?.provider !== "credentials") {
+        const email = user.email || profile?.email;
+        if (!email) return false;
+
+        // Check if user exists with this email
+        const existingUser = await prisma.user.findUnique({
+          where: { email },
+          include: { accounts: true },
+        });
+
+        if (existingUser) {
+          // Check if this OAuth provider is already linked
+          const isLinked = existingUser.accounts.some(
+            (acc) => acc.provider === account.provider && acc.providerAccountId === account.providerAccountId
+          );
+
+          // If not linked, link this OAuth account to existing user
+          if (!isLinked) {
+            await prisma.account.create({
+              data: {
+                userId: existingUser.id,
+                type: account.type,
+                provider: account.provider,
+                providerAccountId: account.providerAccountId,
+                access_token: account.access_token,
+                refresh_token: account.refresh_token,
+                expires_at: account.expires_at,
+                token_type: account.token_type,
+                scope: account.scope,
+                id_token: account.id_token,
+                session_state: account.session_state,
+              },
+            });
+          }
+
+          // Update user info from OAuth if needed
+          if (!existingUser.emailVerified) {
+            await prisma.user.update({
+              where: { id: existingUser.id },
+              data: {
+                emailVerified: new Date(),
+                image: user.image || existingUser.image,
+                name: user.name || existingUser.name,
+              },
+            });
+          }
+
+          return true;
+        }
+      }
+
+      return true;
+    },
     async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id as string;
