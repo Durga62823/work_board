@@ -15,6 +15,7 @@ const REMEMBERED_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
 const DEFAULT_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
 const authConfig: NextAuthConfig = {
+  trustHost: true,
   adapter: {
     ...PrismaAdapter(prisma),
     // Override linkAccount to handle email account linking
