@@ -14,6 +14,8 @@ enum UserStatus {
   SUSPENDED
 }
 
+
+
 enum UserRole {
   ADMIN
   MANAGER
