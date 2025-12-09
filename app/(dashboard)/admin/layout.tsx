@@ -8,6 +8,7 @@ import {
   Shield,
   Settings,
   LayoutDashboard,
+  Sparkles,
 } from "lucide-react";
 
 import { auth } from "@/lib/auth";
@@ -19,6 +20,7 @@ const adminNavigation = [
   { name: "Departments", href: "/admin/departments", icon: Building2 },
   { name: "Projects", href: "/admin/projects", icon: FolderKanban },
   { name: "Analytics", href: "/admin/analytics", icon: TrendingUp },
+  { name: "AI Features", href: "/admin/ai-features", icon: Sparkles },
   { name: "Audit Logs", href: "/admin/audit", icon: Shield },
   { name: "Settings", href: "/admin/settings", icon: Settings },
 ];
@@ -34,10 +36,10 @@ export default async function AdminLayout({
     redirect("/auth/login");
   }
 
-  // TODO: Check if user has admin role once migrations are run
-  // if (session.user.role !== "ADMIN") {
-  //   redirect("/dashboard");
-  // }
+  // Enforce admin role access
+  if (session.user.role !== "ADMIN") {
+    redirect("/dashboard");
+  }
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50">
