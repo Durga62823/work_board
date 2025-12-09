@@ -20,8 +20,9 @@ export default auth((req) => {
       return NextResponse.redirect(new URL("/manager", req.url));
     } else if (role === "LEAD") {
       return NextResponse.redirect(new URL("/lead", req.url));
+    } else if (role === "EMPLOYEE") {
+      return NextResponse.redirect(new URL("/employee", req.url));
     }
-    // EMPLOYEE stays on /dashboard
     return NextResponse.next();
   }
 
@@ -31,7 +32,11 @@ export default auth((req) => {
   }
 
   // Prevent non-managers from accessing manager pages
-  if (pathname.startsWith("/manager") && role !== "MANAGER" && role !== "ADMIN") {
+  if (
+    pathname.startsWith("/manager") &&
+    role !== "MANAGER" &&
+    role !== "ADMIN"
+  ) {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
@@ -48,6 +53,7 @@ export const config = {
     "/admin/:path*",
     "/manager/:path*",
     "/lead/:path*",
+    "/employee/:path*",
     "/projects/:path*",
     "/settings/:path*",
   ],
