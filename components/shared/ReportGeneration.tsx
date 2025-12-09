@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
-import { FileText, Download } from 'lucide-react';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Spinner } from "@/components/ui/spinner";
+import { FileText, Download } from "lucide-react";
 
 interface FormData {
   reportType: string;
@@ -34,14 +34,14 @@ export function ReportGeneration() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ReportResult | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [formData, setFormData] = useState<FormData>({
-    reportType: 'project-status',
-    projectName: '',
-    timeframe: '',
-    metrics: '',
-    teamMembers: '',
-    additionalContext: ''
+    reportType: "project-status",
+    projectName: "",
+    timeframe: "",
+    metrics: "",
+    teamMembers: "",
+    additionalContext: "",
   });
 
   const handleGenerate = async () => {
@@ -50,21 +50,21 @@ export function ReportGeneration() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/shared/report-generation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/shared/report-generation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to generate report');
+        throw new Error(data.error || "Failed to generate report");
       }
 
       setResult(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -73,17 +73,19 @@ export function ReportGeneration() {
   const handleDownload = () => {
     if (!result) return;
 
-    let reportText = `${result.title}\n${'='.repeat(result.title.length)}\n\n`;
+    let reportText = `${result.title}\n${"=".repeat(result.title.length)}\n\n`;
     reportText += `${result.summary}\n\n`;
-    
+
     reportText += `Key Metrics:\n`;
-    result.keyMetrics.forEach(metric => {
+    result.keyMetrics.forEach((metric) => {
       reportText += `- ${metric.name}: ${metric.value}\n`;
     });
     reportText += `\n`;
 
-    result.sections.forEach(section => {
-      reportText += `${section.heading}\n${'-'.repeat(section.heading.length)}\n`;
+    result.sections.forEach((section) => {
+      reportText += `${section.heading}\n${"-".repeat(
+        section.heading.length
+      )}\n`;
       reportText += `${section.content}\n\n`;
     });
 
@@ -92,11 +94,11 @@ export function ReportGeneration() {
       reportText += `${index + 1}. ${rec}\n`;
     });
 
-    const blob = new Blob([reportText], { type: 'text/plain' });
+    const blob = new Blob([reportText], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = `${result.title.replace(/\s+/g, '_')}.txt`;
+    a.download = `${result.title.replace(/\s+/g, "_")}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -119,7 +121,9 @@ export function ReportGeneration() {
           <select
             id="reportType"
             value={formData.reportType}
-            onChange={(e) => setFormData({ ...formData, reportType: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, reportType: e.target.value })
+            }
             className="w-full p-2 border rounded-md"
           >
             <option value="project-status">Project Status Report</option>
@@ -134,7 +138,9 @@ export function ReportGeneration() {
           <Input
             id="projectName"
             value={formData.projectName}
-            onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, projectName: e.target.value })
+            }
             placeholder="Enter project or team name"
           />
         </div>
@@ -144,7 +150,9 @@ export function ReportGeneration() {
           <Input
             id="timeframe"
             value={formData.timeframe}
-            onChange={(e) => setFormData({ ...formData, timeframe: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, timeframe: e.target.value })
+            }
             placeholder="e.g., Q4 2024, Sprint 23, November 2024"
           />
         </div>
@@ -154,7 +162,9 @@ export function ReportGeneration() {
           <textarea
             id="metrics"
             value={formData.metrics}
-            onChange={(e) => setFormData({ ...formData, metrics: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, metrics: e.target.value })
+            }
             placeholder="e.g., 45 tasks completed, 90% on-time delivery, 3 bugs resolved"
             className="w-full p-2 border rounded-md min-h-24"
           />
@@ -165,7 +175,9 @@ export function ReportGeneration() {
           <textarea
             id="teamMembers"
             value={formData.teamMembers}
-            onChange={(e) => setFormData({ ...formData, teamMembers: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, teamMembers: e.target.value })
+            }
             placeholder="e.g., John: 12 features, Sarah: 8 bugs fixed, Mike: Code reviews"
             className="w-full p-2 border rounded-md min-h-20"
           />
@@ -176,7 +188,9 @@ export function ReportGeneration() {
           <textarea
             id="additionalContext"
             value={formData.additionalContext}
-            onChange={(e) => setFormData({ ...formData, additionalContext: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, additionalContext: e.target.value })
+            }
             placeholder="Any challenges, blockers, achievements, or noteworthy events"
             className="w-full p-2 border rounded-md min-h-20"
           />
@@ -232,7 +246,9 @@ export function ReportGeneration() {
               {result.keyMetrics.map((metric, index) => (
                 <div key={index} className="p-4 bg-white border rounded-lg">
                   <p className="text-sm text-gray-600 mb-1">{metric.name}</p>
-                  <p className="text-2xl font-bold text-blue-900">{metric.value}</p>
+                  <p className="text-2xl font-bold text-blue-900">
+                    {metric.value}
+                  </p>
                 </div>
               ))}
             </div>
@@ -242,7 +258,9 @@ export function ReportGeneration() {
           {result.sections.map((section, index) => (
             <div key={index} className="p-5 bg-gray-50 rounded-lg">
               <h4 className="font-semibold mb-3 text-lg">{section.heading}</h4>
-              <div className="text-gray-700 whitespace-pre-line">{section.content}</div>
+              <div className="text-gray-700 whitespace-pre-line">
+                {section.content}
+              </div>
             </div>
           ))}
 
@@ -251,8 +269,13 @@ export function ReportGeneration() {
             <h4 className="font-semibold mb-3">Recommendations</h4>
             <ul className="space-y-2">
               {result.recommendations.map((rec, index) => (
-                <li key={index} className="flex items-start gap-2 p-3 bg-green-50 rounded-lg">
-                  <span className="text-green-600 font-bold mt-0.5">{index + 1}.</span>
+                <li
+                  key={index}
+                  className="flex items-start gap-2 p-3 bg-green-50 rounded-lg"
+                >
+                  <span className="text-green-600 font-bold mt-0.5">
+                    {index + 1}.
+                  </span>
                   <span className="text-sm text-gray-700">{rec}</span>
                 </li>
               ))}

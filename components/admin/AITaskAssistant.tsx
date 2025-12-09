@@ -1,41 +1,43 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
-import { Bot, Sparkles, CheckCircle2 } from 'lucide-react';
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+import { Bot, Sparkles, CheckCircle2 } from "lucide-react";
 
 interface AITaskAssistantProps {
   onClose?: () => void;
 }
 
 export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [activeFeature, setActiveFeature] = useState<'breakdown' | 'timeline' | 'testcases' | null>(null);
+  const [activeFeature, setActiveFeature] = useState<
+    "breakdown" | "timeline" | "testcases" | null
+  >(null);
   const [result, setResult] = useState<any>(null);
 
   const handleBreakdown = async () => {
     if (!input.trim()) return;
-    
+
     setLoading(true);
-    setActiveFeature('breakdown');
+    setActiveFeature("breakdown");
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/task-breakdown', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/task-breakdown", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ taskDescription: input }),
       });
 
-      if (!response.ok) throw new Error('Failed to breakdown task');
-      
+      if (!response.ok) throw new Error("Failed to breakdown task");
+
       const data = await response.json();
       setResult(data);
     } catch (error: any) {
-      alert(error.message || 'Failed to breakdown task');
+      alert(error.message || "Failed to breakdown task");
     } finally {
       setLoading(false);
     }
@@ -43,24 +45,24 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
 
   const handleTimeline = async () => {
     if (!input.trim()) return;
-    
+
     setLoading(true);
-    setActiveFeature('timeline');
+    setActiveFeature("timeline");
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/timeline-estimate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/timeline-estimate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ taskDescription: input }),
       });
 
-      if (!response.ok) throw new Error('Failed to estimate timeline');
-      
+      if (!response.ok) throw new Error("Failed to estimate timeline");
+
       const data = await response.json();
       setResult(data);
     } catch (error: any) {
-      alert(error.message || 'Failed to estimate timeline');
+      alert(error.message || "Failed to estimate timeline");
     } finally {
       setLoading(false);
     }
@@ -68,24 +70,24 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
 
   const handleTestCases = async () => {
     if (!input.trim()) return;
-    
+
     setLoading(true);
-    setActiveFeature('testcases');
+    setActiveFeature("testcases");
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/test-cases', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/test-cases", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ taskDescription: input }),
       });
 
-      if (!response.ok) throw new Error('Failed to generate test cases');
-      
+      if (!response.ok) throw new Error("Failed to generate test cases");
+
       const data = await response.json();
       setResult(data);
     } catch (error: any) {
-      alert(error.message || 'Failed to generate test cases');
+      alert(error.message || "Failed to generate test cases");
     } finally {
       setLoading(false);
     }
@@ -114,7 +116,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
             disabled={loading || !input.trim()}
             className="flex items-center gap-2"
           >
-            {loading && activeFeature === 'breakdown' && <Spinner size="sm" />}
+            {loading && activeFeature === "breakdown" && <Spinner size="sm" />}
             Break into Subtasks
           </Button>
           <Button
@@ -123,7 +125,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
             variant="outline"
             className="flex items-center gap-2"
           >
-            {loading && activeFeature === 'timeline' && <Spinner size="sm" />}
+            {loading && activeFeature === "timeline" && <Spinner size="sm" />}
             Estimate Timeline
           </Button>
           <Button
@@ -132,13 +134,13 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
             variant="outline"
             className="flex items-center gap-2"
           >
-            {loading && activeFeature === 'testcases' && <Spinner size="sm" />}
+            {loading && activeFeature === "testcases" && <Spinner size="sm" />}
             Generate Test Cases
           </Button>
         </div>
       </div>
 
-      {result && activeFeature === 'breakdown' && (
+      {result && activeFeature === "breakdown" && (
         <Card className="p-4 bg-purple-50">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
             <CheckCircle2 className="h-5 w-5 text-green-600" />
@@ -148,24 +150,34 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
             {result.subtasks?.map((subtask: any, idx: number) => (
               <div key={idx} className="bg-white p-3 rounded border">
                 <div className="flex justify-between items-start mb-1">
-                  <h5 className="font-medium">{idx + 1}. {subtask.title}</h5>
-                  <span className={`text-xs px-2 py-1 rounded ${
-                    subtask.priority === 'high' ? 'bg-red-100 text-red-700' :
-                    subtask.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                    'bg-blue-100 text-blue-700'
-                  }`}>
+                  <h5 className="font-medium">
+                    {idx + 1}. {subtask.title}
+                  </h5>
+                  <span
+                    className={`text-xs px-2 py-1 rounded ${
+                      subtask.priority === "high"
+                        ? "bg-red-100 text-red-700"
+                        : subtask.priority === "medium"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-blue-100 text-blue-700"
+                    }`}
+                  >
                     {subtask.priority}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600 mb-2">{subtask.description}</p>
-                <p className="text-xs text-gray-500">Est: {subtask.estimatedHours}h</p>
+                <p className="text-sm text-gray-600 mb-2">
+                  {subtask.description}
+                </p>
+                <p className="text-xs text-gray-500">
+                  Est: {subtask.estimatedHours}h
+                </p>
               </div>
             ))}
           </div>
         </Card>
       )}
 
-      {result && activeFeature === 'timeline' && (
+      {result && activeFeature === "timeline" && (
         <Card className="p-4 bg-blue-50">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
             <CheckCircle2 className="h-5 w-5 text-green-600" />
@@ -174,14 +186,21 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
           <div className="space-y-3">
             <div className="bg-white p-3 rounded">
               <p className="text-sm text-gray-600">Estimated Duration</p>
-              <p className="text-2xl font-bold text-blue-600">{result.estimatedDays} days</p>
-              <p className="text-sm text-gray-500 mt-1">Complexity: <span className="font-medium">{result.complexity}</span></p>
+              <p className="text-2xl font-bold text-blue-600">
+                {result.estimatedDays} days
+              </p>
+              <p className="text-sm text-gray-500 mt-1">
+                Complexity:{" "}
+                <span className="font-medium">{result.complexity}</span>
+              </p>
             </div>
             <div className="bg-white p-3 rounded">
               <h5 className="font-medium mb-2">Key Factors:</h5>
               <ul className="list-disc list-inside text-sm space-y-1">
                 {result.factors?.map((factor: string, idx: number) => (
-                  <li key={idx} className="text-gray-600">{factor}</li>
+                  <li key={idx} className="text-gray-600">
+                    {factor}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -192,7 +211,9 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
                   {result.milestones.map((milestone: any, idx: number) => (
                     <div key={idx} className="flex justify-between text-sm">
                       <span className="text-gray-700">{milestone.title}</span>
-                      <span className="text-gray-500">Day {milestone.daysFromStart}</span>
+                      <span className="text-gray-500">
+                        Day {milestone.daysFromStart}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -202,7 +223,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
         </Card>
       )}
 
-      {result && activeFeature === 'testcases' && (
+      {result && activeFeature === "testcases" && (
         <Card className="p-4 bg-green-50">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
             <CheckCircle2 className="h-5 w-5 text-green-600" />
@@ -212,7 +233,9 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
             {result.testCases?.map((testCase: any, idx: number) => (
               <div key={idx} className="bg-white p-3 rounded border">
                 <div className="flex justify-between items-start mb-2">
-                  <h5 className="font-medium">{idx + 1}. {testCase.scenario}</h5>
+                  <h5 className="font-medium">
+                    {idx + 1}. {testCase.scenario}
+                  </h5>
                   <span className="text-xs px-2 py-1 rounded bg-gray-100 text-gray-700">
                     {testCase.type}
                   </span>
@@ -227,7 +250,9 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
                     </ol>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-700">Expected Result:</p>
+                    <p className="font-medium text-gray-700">
+                      Expected Result:
+                    </p>
                     <p className="text-gray-600">{testCase.expectedResult}</p>
                   </div>
                 </div>

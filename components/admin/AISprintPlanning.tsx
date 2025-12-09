@@ -1,36 +1,41 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
-import { Calendar, Users, Target, AlertCircle } from 'lucide-react';
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+import { Calendar, Users, Target, AlertCircle } from "lucide-react";
 
 export function AISprintPlanning() {
-  const [sprintDuration, setSprintDuration] = useState('14');
-  const [teamMembers, setTeamMembers] = useState<Array<{name: string; capacity: number}>>([
-    { name: '', capacity: 40 }
-  ]);
-  const [tasks, setTasks] = useState<Array<{name: string; estimatedHours: number; priority: number}>>([
-    { name: '', estimatedHours: 0, priority: 1 }
-  ]);
+  const [sprintDuration, setSprintDuration] = useState("14");
+  const [teamMembers, setTeamMembers] = useState<
+    Array<{ name: string; capacity: number }>
+  >([{ name: "", capacity: 40 }]);
+  const [tasks, setTasks] = useState<
+    Array<{ name: string; estimatedHours: number; priority: number }>
+  >([{ name: "", estimatedHours: 0, priority: 1 }]);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
 
   const addTeamMember = () => {
-    setTeamMembers([...teamMembers, { name: '', capacity: 40 }]);
+    setTeamMembers([...teamMembers, { name: "", capacity: 40 }]);
   };
 
   const addTask = () => {
-    setTasks([...tasks, { name: '', estimatedHours: 0, priority: tasks.length + 1 }]);
+    setTasks([
+      ...tasks,
+      { name: "", estimatedHours: 0, priority: tasks.length + 1 },
+    ]);
   };
 
   const handlePlan = async () => {
-    const validTeamMembers = teamMembers.filter(m => m.name.trim());
-    const validTasks = tasks.filter(t => t.name.trim() && t.estimatedHours > 0);
+    const validTeamMembers = teamMembers.filter((m) => m.name.trim());
+    const validTasks = tasks.filter(
+      (t) => t.name.trim() && t.estimatedHours > 0
+    );
 
     if (validTeamMembers.length === 0 || validTasks.length === 0) {
-      alert('Please add at least one team member and one task');
+      alert("Please add at least one team member and one task");
       return;
     }
 
@@ -38,9 +43,9 @@ export function AISprintPlanning() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/sprint-planning', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/sprint-planning", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           sprintDuration: parseInt(sprintDuration),
           teamMembers: validTeamMembers,
@@ -48,12 +53,12 @@ export function AISprintPlanning() {
         }),
       });
 
-      if (!response.ok) throw new Error('Failed to plan sprint');
-      
+      if (!response.ok) throw new Error("Failed to plan sprint");
+
       const data = await response.json();
       setResult(data);
     } catch (error: any) {
-      alert(error.message || 'Failed to plan sprint');
+      alert(error.message || "Failed to plan sprint");
     } finally {
       setLoading(false);
     }
@@ -67,7 +72,9 @@ export function AISprintPlanning() {
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-1">Sprint Duration (days)</label>
+        <label className="block text-sm font-medium mb-1">
+          Sprint Duration (days)
+        </label>
         <input
           type="number"
           value={sprintDuration}
@@ -85,7 +92,12 @@ export function AISprintPlanning() {
             <Users className="h-4 w-4" />
             Team Members
           </h5>
-          <Button size="sm" onClick={addTeamMember} disabled={loading} variant="outline">
+          <Button
+            size="sm"
+            onClick={addTeamMember}
+            disabled={loading}
+            variant="outline"
+          >
             + Add Member
           </Button>
         </div>
@@ -125,7 +137,12 @@ export function AISprintPlanning() {
       <Card className="p-4">
         <div className="flex items-center justify-between mb-3">
           <h5 className="font-semibold">Tasks</h5>
-          <Button size="sm" onClick={addTask} disabled={loading} variant="outline">
+          <Button
+            size="sm"
+            onClick={addTask}
+            disabled={loading}
+            variant="outline"
+          >
             + Add Task
           </Button>
         </div>
@@ -195,15 +212,21 @@ export function AISprintPlanning() {
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <p className="text-sm text-gray-600">Total Capacity</p>
-                <p className="text-2xl font-bold text-blue-600">{result.capacity?.totalHours}h</p>
+                <p className="text-2xl font-bold text-blue-600">
+                  {result.capacity?.totalHours}h
+                </p>
               </div>
               <div className="text-center">
                 <p className="text-sm text-gray-600">Allocated</p>
-                <p className="text-2xl font-bold text-green-600">{result.capacity?.allocatedHours}h</p>
+                <p className="text-2xl font-bold text-green-600">
+                  {result.capacity?.allocatedHours}h
+                </p>
               </div>
               <div className="text-center">
                 <p className="text-sm text-gray-600">Buffer</p>
-                <p className="text-2xl font-bold text-orange-600">{result.capacity?.bufferHours}h</p>
+                <p className="text-2xl font-bold text-orange-600">
+                  {result.capacity?.bufferHours}h
+                </p>
               </div>
             </div>
           </Card>
@@ -216,11 +239,17 @@ export function AISprintPlanning() {
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="font-medium">{allocation.taskName}</p>
-                      <p className="text-sm text-gray-600">Assignee: {allocation.assignee}</p>
+                      <p className="text-sm text-gray-600">
+                        Assignee: {allocation.assignee}
+                      </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold">{allocation.estimatedHours}h</p>
-                      <p className="text-xs text-gray-500">P{allocation.priority}</p>
+                      <p className="text-sm font-semibold">
+                        {allocation.estimatedHours}h
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        P{allocation.priority}
+                      </p>
                     </div>
                   </div>
                 </div>

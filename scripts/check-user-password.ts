@@ -22,7 +22,10 @@ async function checkUser(email: string) {
   console.log("Has password:", !!user?.password);
   console.log("Password length:", user?.password?.length);
   console.log("Email verified:", user?.emailVerified);
-  console.log("Password hash (first 20 chars):", user?.password?.substring(0, 20));
+  console.log(
+    "Password hash (first 20 chars):",
+    user?.password?.substring(0, 20)
+  );
 
   await prisma.$disconnect();
 }

@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
-import { AlertTriangle, Shield, CheckCircle2 } from 'lucide-react';
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+import { AlertTriangle, Shield, CheckCircle2 } from "lucide-react";
 
 export function AIRiskAssessment() {
-  const [projectName, setProjectName] = useState('');
-  const [deadline, setDeadline] = useState('');
-  const [teamSize, setTeamSize] = useState('');
-  const [tasksCompleted, setTasksCompleted] = useState('');
-  const [totalTasks, setTotalTasks] = useState('');
+  const [projectName, setProjectName] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [teamSize, setTeamSize] = useState("");
+  const [tasksCompleted, setTasksCompleted] = useState("");
+  const [totalTasks, setTotalTasks] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
 
   const handleAssess = async () => {
     if (!projectName.trim() || !teamSize || !tasksCompleted || !totalTasks) {
-      alert('Please fill in all required fields');
+      alert("Please fill in all required fields");
       return;
     }
 
@@ -25,9 +25,9 @@ export function AIRiskAssessment() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/risk-assessment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/risk-assessment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: projectName,
           deadline: deadline || undefined,
@@ -37,12 +37,12 @@ export function AIRiskAssessment() {
         }),
       });
 
-      if (!response.ok) throw new Error('Failed to assess risk');
-      
+      if (!response.ok) throw new Error("Failed to assess risk");
+
       const data = await response.json();
       setResult(data);
     } catch (error: any) {
-      alert(error.message || 'Failed to assess risk');
+      alert(error.message || "Failed to assess risk");
     } finally {
       setLoading(false);
     }
@@ -50,11 +50,16 @@ export function AIRiskAssessment() {
 
   const getRiskColor = (level: string) => {
     switch (level) {
-      case 'critical': return 'text-red-600 bg-red-100';
-      case 'high': return 'text-orange-600 bg-orange-100';
-      case 'medium': return 'text-yellow-600 bg-yellow-100';
-      case 'low': return 'text-green-600 bg-green-100';
-      default: return 'text-gray-600 bg-gray-100';
+      case "critical":
+        return "text-red-600 bg-red-100";
+      case "high":
+        return "text-orange-600 bg-orange-100";
+      case "medium":
+        return "text-yellow-600 bg-yellow-100";
+      case "low":
+        return "text-green-600 bg-green-100";
+      default:
+        return "text-gray-600 bg-gray-100";
     }
   };
 
@@ -67,7 +72,9 @@ export function AIRiskAssessment() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium mb-1">Project Name *</label>
+          <label className="block text-sm font-medium mb-1">
+            Project Name *
+          </label>
           <input
             type="text"
             value={projectName}
@@ -100,7 +107,9 @@ export function AIRiskAssessment() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Tasks Progress *</label>
+          <label className="block text-sm font-medium mb-1">
+            Tasks Progress *
+          </label>
           <div className="flex gap-2">
             <input
               type="number"
@@ -144,11 +153,17 @@ export function AIRiskAssessment() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-white p-4 rounded">
                 <p className="text-sm text-gray-600 mb-1">Risk Score</p>
-                <p className="text-3xl font-bold text-blue-600">{result.riskScore}/10</p>
+                <p className="text-3xl font-bold text-blue-600">
+                  {result.riskScore}/10
+                </p>
               </div>
               <div className="bg-white p-4 rounded">
                 <p className="text-sm text-gray-600 mb-1">Risk Level</p>
-                <span className={`inline-block px-3 py-1 rounded font-semibold ${getRiskColor(result.riskLevel)}`}>
+                <span
+                  className={`inline-block px-3 py-1 rounded font-semibold ${getRiskColor(
+                    result.riskLevel
+                  )}`}
+                >
                   {result.riskLevel.toUpperCase()}
                 </span>
               </div>
@@ -160,40 +175,59 @@ export function AIRiskAssessment() {
               <h4 className="font-semibold mb-3">Identified Bottlenecks</h4>
               <div className="space-y-3">
                 {result.bottlenecks.map((bottleneck: any, idx: number) => (
-                  <div key={idx} className="border-l-4 border-orange-400 bg-orange-50 p-3 rounded">
+                  <div
+                    key={idx}
+                    className="border-l-4 border-orange-400 bg-orange-50 p-3 rounded"
+                  >
                     <div className="flex justify-between items-start mb-2">
                       <h5 className="font-medium">{bottleneck.area}</h5>
                       <span className="text-xs px-2 py-1 bg-orange-200 text-orange-800 rounded">
                         {bottleneck.severity}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-700 mb-2"><strong>Impact:</strong> {bottleneck.impact}</p>
-                    <p className="text-sm text-gray-700"><strong>Mitigation:</strong> {bottleneck.mitigation}</p>
+                    <p className="text-sm text-gray-700 mb-2">
+                      <strong>Impact:</strong> {bottleneck.impact}
+                    </p>
+                    <p className="text-sm text-gray-700">
+                      <strong>Mitigation:</strong> {bottleneck.mitigation}
+                    </p>
                   </div>
                 ))}
               </div>
             </Card>
           )}
 
-          {result.resourceSuggestions && result.resourceSuggestions.length > 0 && (
-            <Card className="p-4">
-              <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-green-600" />
-                Resource Allocation Suggestions
-              </h4>
-              <div className="space-y-3">
-                {result.resourceSuggestions.map((suggestion: any, idx: number) => (
-                  <div key={idx} className="bg-green-50 p-3 rounded border border-green-200">
-                    <div className="flex justify-between items-start mb-1">
-                      <h5 className="font-medium text-green-900">{suggestion.role}</h5>
-                      <span className="text-sm font-semibold text-green-700">{suggestion.hours}h</span>
-                    </div>
-                    <p className="text-sm text-gray-700">{suggestion.reasoning}</p>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          )}
+          {result.resourceSuggestions &&
+            result.resourceSuggestions.length > 0 && (
+              <Card className="p-4">
+                <h4 className="font-semibold mb-3 flex items-center gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600" />
+                  Resource Allocation Suggestions
+                </h4>
+                <div className="space-y-3">
+                  {result.resourceSuggestions.map(
+                    (suggestion: any, idx: number) => (
+                      <div
+                        key={idx}
+                        className="bg-green-50 p-3 rounded border border-green-200"
+                      >
+                        <div className="flex justify-between items-start mb-1">
+                          <h5 className="font-medium text-green-900">
+                            {suggestion.role}
+                          </h5>
+                          <span className="text-sm font-semibold text-green-700">
+                            {suggestion.hours}h
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-700">
+                          {suggestion.reasoning}
+                        </p>
+                      </div>
+                    )
+                  )}
+                </div>
+              </Card>
+            )}
         </div>
       )}
     </div>

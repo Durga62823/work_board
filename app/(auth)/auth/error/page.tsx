@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AlertCircle } from "lucide-react";
 
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Authentication Error | Make It Possible",
@@ -16,11 +21,13 @@ export default function AuthErrorPage({
   const error = searchParams.error;
 
   let errorMessage = "An error occurred during authentication.";
-  let errorDetails = "Please try again or contact support if the problem persists.";
+  let errorDetails =
+    "Please try again or contact support if the problem persists.";
 
   if (error === "OAuthAccountNotLinked") {
     errorMessage = "Account Already Exists";
-    errorDetails = "An account with this email already exists. Please sign in with your email and password instead of using social login, or use a different email address for social authentication.";
+    errorDetails =
+      "An account with this email already exists. Please sign in with your email and password instead of using social login, or use a different email address for social authentication.";
   }
 
   return (
@@ -30,7 +37,9 @@ export default function AuthErrorPage({
           <AlertCircle className="h-6 w-6 text-red-600 dark:text-red-400" />
         </div>
         <CardTitle className="text-center">{errorMessage}</CardTitle>
-        <CardDescription className="text-center">{errorDetails}</CardDescription>
+        <CardDescription className="text-center">
+          {errorDetails}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -42,7 +51,10 @@ export default function AuthErrorPage({
           </Link>
           <p className="text-center text-sm text-muted-foreground">
             Need help?{" "}
-            <Link href="/auth/signup" className="font-medium text-brand-primary">
+            <Link
+              href="/auth/signup"
+              className="font-medium text-brand-primary"
+            >
               Create a new account
             </Link>
           </p>

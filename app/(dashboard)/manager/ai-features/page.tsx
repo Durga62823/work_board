@@ -1,59 +1,66 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Users, TrendingUp, CheckCircle, Sparkles } from 'lucide-react';
-import { TeamPerformanceAnalytics } from '@/components/manager/TeamPerformanceAnalytics';
-import { ResourceOptimization } from '@/components/manager/ResourceOptimization';
-import { ApprovalAssistant } from '@/components/manager/ApprovalAssistant';
-import { ReportGeneration } from '@/components/shared/ReportGeneration';
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Users, TrendingUp, CheckCircle, Sparkles } from "lucide-react";
+import { TeamPerformanceAnalytics } from "@/components/manager/TeamPerformanceAnalytics";
+import { ResourceOptimization } from "@/components/manager/ResourceOptimization";
+import { ApprovalAssistant } from "@/components/manager/ApprovalAssistant";
+import { ReportGeneration } from "@/components/shared/ReportGeneration";
 
-type AIFeature = 'team-performance' | 'resource-optimization' | 'approval-assistant' | 'report-generation' | null;
+type AIFeature =
+  | "team-performance"
+  | "resource-optimization"
+  | "approval-assistant"
+  | "report-generation"
+  | null;
 
 export default function ManagerAIFeaturesPage() {
   const [activeFeature, setActiveFeature] = useState<AIFeature>(null);
 
   const features = [
     {
-      id: 'team-performance' as const,
-      title: 'Team Performance Analytics',
-      description: 'Analyze team productivity, identify trends, and detect burnout risks',
+      id: "team-performance" as const,
+      title: "Team Performance Analytics",
+      description:
+        "Analyze team productivity, identify trends, and detect burnout risks",
       icon: Users,
-      color: 'blue',
+      color: "blue",
     },
     {
-      id: 'resource-optimization' as const,
-      title: 'Resource Optimization',
-      description: 'Optimize team allocation, identify conflicts, and predict hiring needs',
+      id: "resource-optimization" as const,
+      title: "Resource Optimization",
+      description:
+        "Optimize team allocation, identify conflicts, and predict hiring needs",
       icon: TrendingUp,
-      color: 'green',
+      color: "green",
     },
     {
-      id: 'approval-assistant' as const,
-      title: 'Approval Assistant',
-      description: 'Get AI recommendations for timesheet and PTO approvals',
+      id: "approval-assistant" as const,
+      title: "Approval Assistant",
+      description: "Get AI recommendations for timesheet and PTO approvals",
       icon: CheckCircle,
-      color: 'purple',
+      color: "purple",
     },
     {
-      id: 'report-generation' as const,
-      title: 'Smart Report Generator',
-      description: 'Generate comprehensive project reports with insights',
+      id: "report-generation" as const,
+      title: "Smart Report Generator",
+      description: "Generate comprehensive project reports with insights",
       icon: Sparkles,
-      color: 'orange',
+      color: "orange",
     },
   ];
 
   const renderFeature = () => {
     switch (activeFeature) {
-      case 'team-performance':
+      case "team-performance":
         return <TeamPerformanceAnalytics />;
-      case 'resource-optimization':
+      case "resource-optimization":
         return <ResourceOptimization />;
-      case 'approval-assistant':
+      case "approval-assistant":
         return <ApprovalAssistant />;
-      case 'report-generation':
+      case "report-generation":
         return <ReportGeneration />;
       default:
         return null;
@@ -83,11 +90,17 @@ export default function ManagerAIFeaturesPage() {
                 onClick={() => setActiveFeature(feature.id)}
               >
                 <div className="flex flex-col">
-                  <div className={`p-4 rounded-full bg-${feature.color}-100 w-fit mb-4`}>
+                  <div
+                    className={`p-4 rounded-full bg-${feature.color}-100 w-fit mb-4`}
+                  >
                     <Icon className={`h-8 w-8 text-${feature.color}-600`} />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                  <p className="text-sm text-gray-600 mb-4">{feature.description}</p>
+                  <h3 className="font-semibold text-lg mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-4">
+                    {feature.description}
+                  </p>
                   <Button className="w-full" variant="outline">
                     Open Feature
                   </Button>
@@ -105,9 +118,7 @@ export default function ManagerAIFeaturesPage() {
           >
             ← Back to Features
           </Button>
-          <Card className="p-6">
-            {renderFeature()}
-          </Card>
+          <Card className="p-6">{renderFeature()}</Card>
         </div>
       )}
     </div>

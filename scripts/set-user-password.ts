@@ -10,7 +10,7 @@ async function hashPassword(password: string) {
 async function setUserPassword(email: string, password: string) {
   try {
     console.log(`\n🔍 Looking for user: ${email}`);
-    
+
     const user = await prisma.user.findUnique({
       where: { email },
       select: {
@@ -29,7 +29,9 @@ async function setUserPassword(email: string, password: string) {
       return;
     }
 
-    console.log(`✅ Found user: ${user.firstName} ${user.lastName} (${user.email})`);
+    console.log(
+      `✅ Found user: ${user.firstName} ${user.lastName} (${user.email})`
+    );
     console.log(`   Current role: ${user.role}`);
     console.log(`   Has password: ${user.password ? "Yes" : "No"}`);
 
@@ -59,7 +61,9 @@ const password = process.argv[3];
 
 if (!email || !password) {
   console.log("Usage: npx tsx scripts/set-user-password.ts <email> <password>");
-  console.log("Example: npx tsx scripts/set-user-password.ts vamsi14roll@gmail.com mypassword123");
+  console.log(
+    "Example: npx tsx scripts/set-user-password.ts vamsi14roll@gmail.com mypassword123"
+  );
   process.exit(1);
 }
 

@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
-import { MessageSquare, ClipboardList, CheckSquare2 } from 'lucide-react';
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+import { MessageSquare, ClipboardList, CheckSquare2 } from "lucide-react";
 
 export function AIMeetingSummary() {
-  const [transcript, setTranscript] = useState('');
+  const [transcript, setTranscript] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
 
   const handleSummarize = async () => {
     if (!transcript.trim()) {
-      alert('Please enter meeting transcript');
+      alert("Please enter meeting transcript");
       return;
     }
 
@@ -21,18 +21,18 @@ export function AIMeetingSummary() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/meeting-summary', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/meeting-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ meetingTranscript: transcript }),
       });
 
-      if (!response.ok) throw new Error('Failed to summarize meeting');
-      
+      if (!response.ok) throw new Error("Failed to summarize meeting");
+
       const data = await response.json();
       setResult(data);
     } catch (error: any) {
-      alert(error.message || 'Failed to summarize meeting');
+      alert(error.message || "Failed to summarize meeting");
     } finally {
       setLoading(false);
     }
@@ -46,7 +46,9 @@ export function AIMeetingSummary() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">Meeting Transcript or Notes</label>
+        <label className="block text-sm font-medium mb-1">
+          Meeting Transcript or Notes
+        </label>
         <textarea
           value={transcript}
           onChange={(e) => setTranscript(e.target.value)}
@@ -56,7 +58,10 @@ export function AIMeetingSummary() {
         />
       </div>
 
-      <Button onClick={handleSummarize} disabled={loading || !transcript.trim()}>
+      <Button
+        onClick={handleSummarize}
+        disabled={loading || !transcript.trim()}
+      >
         {loading && <Spinner size="sm" className="mr-2" />}
         Generate Summary
       </Button>
@@ -68,7 +73,9 @@ export function AIMeetingSummary() {
               <ClipboardList className="h-5 w-5 text-teal-600" />
               Meeting Summary
             </h4>
-            <p className="text-sm text-gray-700 bg-white p-3 rounded">{result.summary}</p>
+            <p className="text-sm text-gray-700 bg-white p-3 rounded">
+              {result.summary}
+            </p>
           </Card>
 
           <Card className="p-4">
@@ -91,11 +98,22 @@ export function AIMeetingSummary() {
               </h5>
               <div className="space-y-2">
                 {result.actionItems.map((item: any, idx: number) => (
-                  <div key={idx} className="bg-white p-3 rounded border border-amber-200">
+                  <div
+                    key={idx}
+                    className="bg-white p-3 rounded border border-amber-200"
+                  >
                     <p className="font-medium text-sm">{item.task}</p>
                     <div className="flex gap-4 mt-1 text-xs text-gray-600">
-                      {item.assignee && <span>Assignee: <strong>{item.assignee}</strong></span>}
-                      {item.deadline && <span>Deadline: <strong>{item.deadline}</strong></span>}
+                      {item.assignee && (
+                        <span>
+                          Assignee: <strong>{item.assignee}</strong>
+                        </span>
+                      )}
+                      {item.deadline && (
+                        <span>
+                          Deadline: <strong>{item.deadline}</strong>
+                        </span>
+                      )}
                     </div>
                   </div>
                 ))}
