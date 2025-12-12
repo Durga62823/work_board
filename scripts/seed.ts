@@ -197,7 +197,7 @@ async function main() {
         name: "Backend Team",
         description: "API and Database development",
         departmentId: departments[0].id,
-        leadId: users[1].id, // Sarah Johnson
+        leadId: users[1].id, 
       },
     }),
     prisma.team.create({
