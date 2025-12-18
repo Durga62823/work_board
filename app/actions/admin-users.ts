@@ -12,7 +12,7 @@ interface CreateUserData {
   firstName: string;
   lastName: string;
   password: string;
-  role: "ADMIN" | "MANAGER" | "EMPLOYEE";
+  role: "ADMIN" | "MANAGER" | "LEAD" | "EMPLOYEE";
   departmentId?: string;
   teamId?: string;
   managerId?: string;
@@ -24,7 +24,7 @@ interface UpdateUserData {
   id: string;
   firstName?: string;
   lastName?: string;
-  role?: "ADMIN" | "MANAGER" | "EMPLOYEE";
+  role?: "ADMIN" | "MANAGER" | "LEAD" | "EMPLOYEE";
   departmentId?: string | null;
   teamId?: string | null;
   managerId?: string | null;

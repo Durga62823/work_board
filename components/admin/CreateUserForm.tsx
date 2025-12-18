@@ -43,7 +43,7 @@ export function CreateUserForm() {
       firstName: formData.get("firstName") as string,
       lastName: formData.get("lastName") as string,
       password: formData.get("password") as string,
-      role: role as "ADMIN" | "MANAGER" | "EMPLOYEE",
+      role: role as "ADMIN" | "MANAGER" | "LEAD" | "EMPLOYEE",
       position: formData.get("position") as string,
       phoneNumber: formData.get("phoneNumber") as string,
     });

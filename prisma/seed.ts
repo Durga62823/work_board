@@ -89,6 +89,7 @@ async function seed() {
         role: "ADMIN",
         position: "Chief Technology Officer",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -105,6 +106,7 @@ async function seed() {
         teamId: frontendTeam.id,
         position: "Engineering Manager",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -120,6 +122,7 @@ async function seed() {
         teamId: backendTeam.id,
         position: "Engineering Manager",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -137,6 +140,7 @@ async function seed() {
         managerId: manager1.id,
         position: "Tech Lead - Frontend",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -153,6 +157,7 @@ async function seed() {
         managerId: manager2.id,
         position: "Tech Lead - Backend",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -170,6 +175,7 @@ async function seed() {
         managerId: manager1.id,
         position: "Senior Frontend Developer",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -186,6 +192,7 @@ async function seed() {
         managerId: manager1.id,
         position: "Frontend Developer",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -202,6 +209,7 @@ async function seed() {
         managerId: manager1.id,
         position: "Junior Frontend Developer",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -219,6 +227,7 @@ async function seed() {
         managerId: manager2.id,
         position: "Senior Backend Developer",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -235,6 +244,7 @@ async function seed() {
         managerId: manager2.id,
         position: "Backend Developer",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
     });
 
@@ -248,6 +258,7 @@ async function seed() {
         managerId: manager1.id,
         position: "Full Stack Developer",
         status: "ACTIVE",
+        emailVerified: new Date(),
       },
       create: {
         email: "psivadurgaprasad88@gmail.com",
@@ -260,6 +271,8 @@ async function seed() {
         managerId: manager1.id,
         position: "Full Stack Developer",
         status: "ACTIVE",
+        emailVerified: new Date(),
+        password: hashedPassword,
       },
     });
 
