@@ -1,4 +1,4 @@
-import { requireManager } from "@/lib/guards";
+import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { UserMenu, LogoutButton } from "@/components/common";
@@ -8,7 +8,11 @@ export default async function ManagerLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await requireManager();
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/auth/login");
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">

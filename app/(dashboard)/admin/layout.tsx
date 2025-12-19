@@ -36,11 +36,6 @@ export default async function AdminLayout({
     redirect("/auth/login");
   }
 
-  // Enforce admin role access
-  if (session.user.role !== "ADMIN") {
-    redirect("/dashboard");
-  }
-
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50">
       {/* Sidebar */}

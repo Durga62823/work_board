@@ -1,4 +1,5 @@
-import { requireLead } from "@/lib/guards";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import {
   getTeamTasks,
@@ -10,7 +11,11 @@ import {
 import Link from "next/link";
 
 export default async function LeadOverviewPage() {
-  const session = await requireLead();
+  const session = await auth();
+  
+  if (!session?.user) {
+    redirect("/auth/login");
+  }
 
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },

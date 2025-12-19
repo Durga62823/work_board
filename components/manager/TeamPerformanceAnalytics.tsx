@@ -198,17 +198,19 @@ export function TeamPerformanceAnalytics() {
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-white p-4 rounded-lg">
                 <p className="text-sm text-gray-600">Overall Score</p>
-                <p className="text-3xl font-bold text-blue-600">{result.overallScore}/100</p>
+                <p className="text-3xl font-bold text-blue-600">{result.overallScore ?? 'N/A'}/100</p>
               </div>
-              <div className="bg-white p-4 rounded-lg">
-                <p className="text-sm text-gray-600">Productivity Trend</p>
-                <div className="flex items-center gap-2 mt-1">
-                  {result.trends.productivity === 'increasing' && <TrendingUp className="h-6 w-6 text-green-600" />}
-                  {result.trends.productivity === 'decreasing' && <TrendingDown className="h-6 w-6 text-red-600" />}
-                  {result.trends.productivity === 'stable' && <Minus className="h-6 w-6 text-gray-600" />}
-                  <p className="text-xl font-semibold capitalize">{result.trends.productivity}</p>
+              {result.trends?.productivity && (
+                <div className="bg-white p-4 rounded-lg">
+                  <p className="text-sm text-gray-600">Productivity Trend</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    {result.trends.productivity === 'increasing' && <TrendingUp className="h-6 w-6 text-green-600" />}
+                    {result.trends.productivity === 'decreasing' && <TrendingDown className="h-6 w-6 text-red-600" />}
+                    {result.trends.productivity === 'stable' && <Minus className="h-6 w-6 text-gray-600" />}
+                    <p className="text-xl font-semibold capitalize">{result.trends.productivity}</p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {result.teamMembers && result.teamMembers.length > 0 && (
@@ -228,22 +230,26 @@ export function TeamPerformanceAnalytics() {
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div>
-                          <p className="font-medium text-green-700 mb-1">Strengths:</p>
-                          <ul className="list-disc list-inside text-gray-700">
-                            {member.strengths.map((s: string, i: number) => (
-                              <li key={i}>{s}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <p className="font-medium text-orange-700 mb-1">Concerns:</p>
-                          <ul className="list-disc list-inside text-gray-700">
-                            {member.concerns.map((c: string, i: number) => (
-                              <li key={i}>{c}</li>
-                            ))}
-                          </ul>
-                        </div>
+                        {member.strengths && member.strengths.length > 0 && (
+                          <div>
+                            <p className="font-medium text-green-700 mb-1">Strengths:</p>
+                            <ul className="list-disc list-inside text-gray-700">
+                              {member.strengths.map((s: string, i: number) => (
+                                <li key={i}>{s}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {member.concerns && member.concerns.length > 0 && (
+                          <div>
+                            <p className="font-medium text-orange-700 mb-1">Concerns:</p>
+                            <ul className="list-disc list-inside text-gray-700">
+                              {member.concerns.map((c: string, i: number) => (
+                                <li key={i}>{c}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
                     </Card>
                   ))}
@@ -267,11 +273,13 @@ export function TeamPerformanceAnalytics() {
                           {risk.riskLevel.toUpperCase()} RISK
                         </span>
                       </div>
-                      <ul className="list-disc list-inside text-sm text-gray-700">
-                        {risk.indicators.map((indicator: string, i: number) => (
-                          <li key={i}>{indicator}</li>
-                        ))}
-                      </ul>
+                      {risk.indicators && risk.indicators.length > 0 && (
+                        <ul className="list-disc list-inside text-sm text-gray-700">
+                          {risk.indicators.map((indicator: string, i: number) => (
+                            <li key={i}>{indicator}</li>
+                          ))}
+                        </ul>
+                      )}
                     </Card>
                   ))}
                 </div>

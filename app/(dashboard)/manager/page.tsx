@@ -1,4 +1,5 @@
-import { requireManager } from "@/lib/guards";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 import {
   getDirectReports,
   getTeamCapacity,
@@ -12,7 +13,11 @@ export const metadata = {
 };
 
 export default async function ManagerPage() {
-  const session = await requireManager();
+  const session = await auth();
+  
+  if (!session?.user) {
+    redirect("/auth/login");
+  }
   
   const [directReports, pendingPTO, pendingTimesheets, teamCapacity] = await Promise.all([
     getDirectReports(session.user.id),
