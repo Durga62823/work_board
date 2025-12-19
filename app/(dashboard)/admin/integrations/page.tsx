@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { Github, Slack, Mail, Key, Zap } from "lucide-react";
+import { Github, Slack, Mail, Key, Zap, Shield } from "lucide-react";
 
 import { auth } from "@/lib/auth";
 import { getAllIntegrations } from "@/app/actions/admin-settings";
@@ -44,41 +44,60 @@ export default async function IntegrationsPage() {
     : defaultIntegrations;
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Integrations</h2>
-        <p className="text-muted-foreground">
-          Connect external services and configure integrations
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50">
+      <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
+        {/* Header with gradient badge */}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
+            <Shield className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+              Admin - Integrations
+            </h2>
+            <p className="text-slate-600 mt-1">
+              Connect external services and configure integrations
+            </p>
+          </div>
+        </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {displayIntegrations.map((integration) => {
-          const Icon = integrationIcons[integration.type] || Zap;
-          
-          return (
-            <Card key={integration.name}>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <Icon className="h-8 w-8" />
-                  <Badge variant={integration.enabled ? "default" : "secondary"}>
-                    {integration.enabled ? "Enabled" : "Disabled"}
-                  </Badge>
-                </div>
-                <CardTitle className="mt-2">{integration.name}</CardTitle>
-                <CardDescription>{integration.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button 
-                  variant={integration.enabled ? "outline" : "default"} 
-                  className="w-full"
-                >
-                  {integration.enabled ? "Configure" : "Enable"}
-                </Button>
-              </CardContent>
-            </Card>
-          );
-        })}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {displayIntegrations.map((integration) => {
+            const Icon = integrationIcons[integration.type] || Zap;
+            
+            return (
+              <Card 
+                key={integration.name}
+                className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <Icon className="h-8 w-8 text-red-500" />
+                    <Badge 
+                      variant={integration.enabled ? "default" : "secondary"}
+                      className={integration.enabled ? "bg-gradient-to-r from-red-500 to-orange-500 text-white" : ""}
+                    >
+                      {integration.enabled ? "Enabled" : "Disabled"}
+                    </Badge>
+                  </div>
+                  <CardTitle className="mt-2">{integration.name}</CardTitle>
+                  <CardDescription>{integration.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button 
+                    variant={integration.enabled ? "outline" : "default"} 
+                    className={integration.enabled 
+                      ? "w-full border-red-200 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 hover:text-red-700 transition-all"
+                      : "w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white"
+                    }
+                  >
+                    {integration.enabled ? "Configure" : "Enable"}
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

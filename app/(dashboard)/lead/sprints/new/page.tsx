@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { Sparkles, ArrowLeft, Calendar } from "lucide-react";
 
 const sprintSchema = z.object({
   name: z.string().min(1, "Sprint name is required"),
@@ -59,22 +60,30 @@ export default function NewSprintPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="mb-6">
-        <div className="flex items-center gap-2 mb-2">
-          <Link
-            href="/lead/sprints"
-            className="text-gray-600 hover:text-gray-900"
-          >
-            ← Back to Sprints
-          </Link>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
+      <div className="max-w-2xl mx-auto">
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <Link
+              href="/lead/sprints"
+              className="flex items-center gap-2 text-purple-600 hover:text-indigo-600 font-medium transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Sprints
+            </Link>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full shadow-lg w-fit mb-3">
+            <Sparkles className="h-4 w-4" />
+            <span className="text-sm font-semibold">New Sprint</span>
+          </div>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            Create New Sprint
+          </h1>
+          <p className="text-gray-600 mt-2">Set up a new sprint for your team</p>
         </div>
-        <h1 className="text-3xl font-bold text-gray-900">Create New Sprint</h1>
-        <p className="text-gray-600 mt-1">Set up a new sprint for your team</p>
-      </div>
 
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <div className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl transition-all duration-300">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Sprint Name */}
           <div className="space-y-2">
             <Label htmlFor="name">Sprint Name *</Label>
@@ -148,36 +157,57 @@ export default function NewSprintPage() {
             </p>
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-3 pt-4 border-t">
-            <Button
-              type="submit"
-              disabled={isPending}
-              className="bg-purple-600 hover:bg-purple-700"
-            >
-              {isPending ? "Creating..." : "Create Sprint"}
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => router.push("/lead/sprints")}
-              disabled={isPending}
-            >
-              Cancel
-            </Button>
-          </div>
-        </form>
-      </div>
+            {/* Actions */}
+            <div className="flex items-center gap-3 pt-4 border-t border-purple-100">
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:shadow-lg hover:scale-105 transition-all duration-300"
+              >
+                {isPending ? "Creating..." : "Create Sprint"}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => router.push("/lead/sprints")}
+                disabled={isPending}
+                className="border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 transition-all duration-300"
+              >
+                Cancel
+              </Button>
+            </div>
+          </form>
+        </div>
 
-      {/* Tips */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h3 className="font-semibold text-blue-900 mb-2">Sprint Planning Tips</h3>
-        <ul className="text-sm text-blue-800 space-y-1">
-          <li>• Keep sprints between 1-4 weeks (2 weeks is most common)</li>
-          <li>• Set a clear, achievable goal that the team can rally around</li>
-          <li>• Account for holidays, meetings, and buffer time in capacity</li>
-          <li>• Review velocity from past sprints to guide planning</li>
-        </ul>
+        {/* Tips */}
+        <div className="mt-6 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl p-5 border-2 border-purple-200 hover:shadow-xl transition-all duration-300">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="p-2 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-full">
+              <Calendar className="h-5 w-5 text-purple-600" />
+            </div>
+            <h3 className="font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              Sprint Planning Tips
+            </h3>
+          </div>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li className="flex items-start gap-2">
+              <span className="text-purple-600 font-bold">•</span>
+              <span>Keep sprints between 1-4 weeks (2 weeks is most common)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-purple-600 font-bold">•</span>
+              <span>Set a clear, achievable goal that the team can rally around</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-purple-600 font-bold">•</span>
+              <span>Account for holidays, meetings, and buffer time in capacity</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-purple-600 font-bold">•</span>
+              <span>Review velocity from past sprints to guide planning</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

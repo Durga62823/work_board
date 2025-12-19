@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, Plus, Edit2, Trash2, Target, TrendingUp } from "lucide-react";
+import { Loader2, Plus, Edit2, Trash2, Target, TrendingUp, Sparkles } from "lucide-react";
 import {
   getMyGoals,
   createGoal,
@@ -181,53 +181,61 @@ export default function MyGoalsPage() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold">My Goals</h1>
-          <p className="text-muted-foreground mt-1">
-            Track and manage your professional goals
-          </p>
-        </div>
-        <Button onClick={() => setShowCreateDialog(true)}>
-          <Plus className="mr-2 h-4 w-4" />
-          New Goal
-        </Button>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div className="container mx-auto p-6 space-y-6">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg">
+              <Sparkles className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                My Goals
+              </h1>
+              <p className="text-gray-600 mt-1">
+                Track and manage your professional goals
+              </p>
+            </div>
+          </div>
+          <Button onClick={() => setShowCreateDialog(true)} className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Plus className="mr-2 h-4 w-4" />
+            New Goal
+          </Button>
       </div>
 
-      {/* Stats Overview */}
-      {stats && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Total Goals</CardDescription>
-              <CardTitle className="text-3xl">{stats.total}</CardTitle>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Active Goals</CardDescription>
-              <CardTitle className="text-3xl">{stats.active}</CardTitle>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Completed</CardDescription>
-              <CardTitle className="text-3xl">{stats.completed}</CardTitle>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Average Progress</CardDescription>
-              <CardTitle className="text-3xl">{stats.avgProgress}%</CardTitle>
-            </CardHeader>
-          </Card>
-        </div>
-      )}
+        {/* Stats Overview */}
+        {stats && (
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <CardHeader className="pb-2">
+                <CardDescription className="font-medium">Total Goals</CardDescription>
+                <CardTitle className="text-3xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{stats.total}</CardTitle>
+              </CardHeader>
+            </Card>
+            <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <CardHeader className="pb-2">
+                <CardDescription className="font-medium">Active Goals</CardDescription>
+                <CardTitle className="text-3xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{stats.active}</CardTitle>
+              </CardHeader>
+            </Card>
+            <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <CardHeader className="pb-2">
+                <CardDescription className="font-medium">Completed</CardDescription>
+                <CardTitle className="text-3xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{stats.completed}</CardTitle>
+              </CardHeader>
+            </Card>
+            <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <CardHeader className="pb-2">
+                <CardDescription className="font-medium">Average Progress</CardDescription>
+                <CardTitle className="text-3xl bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{stats.avgProgress}%</CardTitle>
+              </CardHeader>
+            </Card>
+          </div>
+        )}
 
-      {/* Create/Edit Goal Dialog */}
-      {(showCreateDialog || editingGoal) && (
-        <Card className="border-2 border-blue-200">
+        {/* Create/Edit Goal Dialog */}
+        {(showCreateDialog || editingGoal) && (
+          <Card className="border-2 border-blue-400 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 backdrop-blur-sm shadow-xl">
           <CardHeader>
             <CardTitle>
               {editingGoal ? "Edit Goal" : "Create New Goal"}
@@ -324,20 +332,20 @@ export default function MyGoalsPage() {
         </Card>
       )}
 
-      {/* Goals List */}
-      <div className="space-y-4">
-        {goals.length === 0 ? (
-          <Card>
-            <CardContent className="flex flex-col items-center justify-center py-12">
+        {/* Goals List */}
+        <div className="space-y-4">
+          {goals.length === 0 ? (
+            <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
+              <CardContent className="flex flex-col items-center justify-center py-12">
               <Target className="h-12 w-12 text-gray-400 mb-4" />
               <p className="text-gray-500 text-center">
                 No goals yet. Create your first goal to get started!
               </p>
             </CardContent>
           </Card>
-        ) : (
-          goals.map((goal) => (
-            <Card key={goal.id}>
+          ) : (
+            goals.map((goal) => (
+              <Card key={goal.id} className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
@@ -436,8 +444,9 @@ export default function MyGoalsPage() {
                 </div>
               </CardContent>
             </Card>
-          ))
-        )}
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

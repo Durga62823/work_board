@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { Award, Calendar, Plus } from "lucide-react";
+import { Award, Calendar, Plus, Shield } from "lucide-react";
 
 import { auth } from "@/lib/auth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,90 +14,99 @@ export default async function AppraisalsPage() {
   }
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight">Appraisal Management</h2>
-          <p className="text-muted-foreground">
-            Create and manage performance appraisal cycles
-          </p>
-        </div>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          New Appraisal Cycle
-        </Button>
-      </div>
-
-      {/* Appraisal Stats */}
-      <div className="grid gap-4 md:grid-cols-3">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Cycles</CardTitle>
-            <Calendar className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">0</div>
-            <p className="text-xs text-muted-foreground">currently running</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Reviews</CardTitle>
-            <Award className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">0</div>
-            <p className="text-xs text-muted-foreground">awaiting completion</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
-            <Award className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">0%</div>
-            <p className="text-xs text-muted-foreground">reviews completed</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Appraisal Cycles */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Appraisal Cycles</CardTitle>
-          <CardDescription>
-            All performance review cycles
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <Award className="h-12 w-12 text-muted-foreground mb-4" />
-            <h3 className="text-lg font-semibold mb-2">No appraisal cycles yet</h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Create your first appraisal cycle to start tracking performance
-            </p>
-            <Button>
-              <Plus className="mr-2 h-4 w-4" />
-              Create Appraisal Cycle
-            </Button>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50">
+      <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
+        {/* Header with gradient badge */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
+              <Shield className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                Admin - Appraisal Management
+              </h2>
+              <p className="text-slate-600 mt-1">
+                Create and manage performance appraisal cycles
+              </p>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+          <Button className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+            <Plus className="mr-2 h-4 w-4" />
+            New Appraisal Cycle
+          </Button>
+        </div>
 
-      {/* Recent Appraisals */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Appraisals</CardTitle>
-          <CardDescription>
-            Latest completed performance reviews
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground text-center py-8">
-            No completed appraisals yet
+        {/* Appraisal Stats */}
+        <div className="grid gap-4 md:grid-cols-3">
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Active Cycles</CardTitle>
+              <Calendar className="h-4 w-4 text-red-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">0</div>
+              <p className="text-xs text-slate-500">currently running</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Pending Reviews</CardTitle>
+              <Award className="h-4 w-4 text-orange-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">0</div>
+              <p className="text-xs text-slate-500">awaiting completion</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
+              <Award className="h-4 w-4 text-red-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">0%</div>
+              <p className="text-xs text-slate-500">reviews completed</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Appraisal Cycles */}
+        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+          <CardHeader>
+            <CardTitle className="text-2xl">Appraisal Cycles</CardTitle>
+            <CardDescription className="text-base">
+              All performance review cycles
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <Award className="h-12 w-12 text-red-400 mb-4" />
+              <h3 className="text-lg font-semibold mb-2">No appraisal cycles yet</h3>
+              <p className="text-sm text-slate-600 mb-4">
+                Create your first appraisal cycle to start tracking performance
+              </p>
+              <Button className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white">
+                <Plus className="mr-2 h-4 w-4" />
+                Create Appraisal Cycle
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Recent Appraisals */}
+        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+          <CardHeader>
+            <CardTitle className="text-2xl">Recent Appraisals</CardTitle>
+            <CardDescription className="text-base">
+              Latest completed performance reviews
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-slate-600 text-center py-8">
+              No completed appraisals yet
           </p>
         </CardContent>
       </Card>

@@ -14,6 +14,7 @@ import {
   X,
   Loader2,
   Plus,
+  Sparkles,
 } from "lucide-react";
 import {
   getMyTasks,
@@ -244,20 +245,30 @@ export default function MyWorkPage() {
   });
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">My Tasks</h1>
-          <p className="text-gray-600">
-            Manage your assigned tasks and track progress
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div className="p-6 max-w-7xl mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg">
+                <Sparkles className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                  My Tasks
+                </h1>
+                <p className="text-gray-600">
+                  Manage your assigned tasks and track progress
+                </p>
+              </div>
+            </div>
+          </div>
+          <Button onClick={() => setCreateTaskDialog(true)} className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Plus className="h-4 w-4 mr-2" />
+            Create Task
+          </Button>
         </div>
-        <Button onClick={() => setCreateTaskDialog(true)}>
-          <Plus className="h-4 w-4 mr-2" />
-          Create Task
-        </Button>
-      </div>
 
       {/* Filters */}
       <div className="flex items-center gap-4">
@@ -287,77 +298,85 @@ export default function MyWorkPage() {
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-full bg-blue-100">
-              <CheckCircle className="h-5 w-5 text-blue-600" />
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg">
+                <CheckCircle className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">In Progress</p>
+                <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  {stats?.inProgress || 0}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-600">In Progress</p>
-              <p className="text-2xl font-bold">{stats?.inProgress || 0}</p>
-            </div>
-          </div>
-        </Card>
+          </Card>
 
-        <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-full bg-gray-100">
-              <Clock className="h-5 w-5 text-gray-600" />
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 shadow-lg">
+                <Clock className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Total Tasks</p>
+                <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  {stats?.total || 0}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Total Tasks</p>
-              <p className="text-2xl font-bold">{stats?.total || 0}</p>
-            </div>
-          </div>
-        </Card>
+          </Card>
 
-        <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-full bg-red-100">
-              <AlertCircle className="h-5 w-5 text-red-600" />
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-red-500 to-red-600 shadow-lg">
+                <AlertCircle className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Overdue</p>
+                <p className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                  {stats?.overdue || 0}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Overdue</p>
-              <p className="text-2xl font-bold">{stats?.overdue || 0}</p>
-            </div>
-          </div>
-        </Card>
+          </Card>
 
-        <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-full bg-green-100">
-              <CheckCircle className="h-5 w-5 text-green-600" />
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-green-500 to-green-600 shadow-lg">
+                <CheckCircle className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Completed</p>
+                <p className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  {stats?.completed || 0}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Completed</p>
-              <p className="text-2xl font-bold">{stats?.completed || 0}</p>
-            </div>
-          </div>
-        </Card>
-      </div>
+          </Card>
+        </div>
 
-      {/* Tasks List */}
-      <Card className="p-6">
-        {loading ? (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
-          </div>
-        ) : filteredTasks.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
-            <p className="text-lg font-medium">No tasks found</p>
-            <p className="text-sm">
-              Try adjusting your filters or search query
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {filteredTasks.map((task) => (
-              <div
-                key={task.id}
-                className="p-4 border rounded-lg hover:shadow-md transition-shadow"
-              >
+        {/* Tasks List */}
+        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg p-6">
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+            </div>
+          ) : filteredTasks.length === 0 ? (
+            <div className="text-center py-12 text-gray-500">
+              <p className="text-lg font-medium">No tasks found</p>
+              <p className="text-sm">
+                Try adjusting your filters or search query
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {filteredTasks.map((task) => (
+                <div
+                  key={task.id}
+                  className="p-4 border border-slate-200/60 rounded-xl bg-white/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
@@ -425,16 +444,16 @@ export default function MyWorkPage() {
                     <option value="DONE">Done</option>
                   </select>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </Card>
+                </div>
+              ))}
+            </div>
+          )}
+        </Card>
 
-      {/* Log Time Dialog */}
-      {logTimeDialog.open && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <Card className="w-full max-w-md p-6">
+        {/* Log Time Dialog */}
+        {logTimeDialog.open && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+            <Card className="w-full max-w-md p-6 border-slate-200/60 bg-white shadow-2xl animate-in fade-in duration-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Log Time</h3>
               <Button
@@ -488,14 +507,14 @@ export default function MyWorkPage() {
                 </Button>
               </div>
             </div>
-          </Card>
-        </div>
-      )}
+            </Card>
+          </div>
+        )}
 
-      {/* Create Task Dialog */}
-      {createTaskDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <Card className="w-full max-w-2xl p-6 max-h-[90vh] overflow-y-auto">
+        {/* Create Task Dialog */}
+        {createTaskDialog && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+            <Card className="w-full max-w-2xl p-6 max-h-[90vh] overflow-y-auto border-slate-200/60 bg-white shadow-2xl animate-in fade-in duration-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Create New Task</h3>
               <Button
@@ -644,10 +663,11 @@ export default function MyWorkPage() {
                   Cancel
                 </Button>
               </div>
-            </div>
-          </Card>
-        </div>
-      )}
+              </div>
+            </Card>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

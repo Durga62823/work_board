@@ -12,6 +12,7 @@ import {
   AlertCircle,
   Loader2,
   Save,
+  Sparkles,
 } from "lucide-react";
 import {
   getMyAppraisals,
@@ -152,75 +153,85 @@ export default function AppraisalPage() {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">Performance Appraisals</h1>
-          <p className="text-gray-600">
-            Manage your performance reviews and development plans
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div className="p-6 max-w-7xl mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg">
+            <Sparkles className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              Performance Appraisals
+            </h1>
+            <p className="text-gray-600">
+              Manage your performance reviews and development plans
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="p-6">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-full bg-blue-100">
-              <FileText className="h-6 w-6 text-blue-600" />
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg">
+                <FileText className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Total Reviews</p>
-              <p className="text-3xl font-bold">{stats.total}</p>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Total Reviews</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  {stats.total}
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
 
-        <Card className="p-6">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-full bg-orange-100">
-              <Clock className="h-6 w-6 text-orange-600" />
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg">
+                <Clock className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Pending</p>
-              <p className="text-3xl font-bold">
-                {stats.draft + stats.inProgress}
-              </p>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Pending</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                  {stats.draft + stats.inProgress}
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
 
-        <Card className="p-6">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-full bg-green-100">
-              <CheckCircle className="h-6 w-6 text-green-600" />
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-green-500 to-green-600 shadow-lg">
+                <CheckCircle className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Completed</p>
-              <p className="text-3xl font-bold">{stats.completed}</p>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Completed</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  {stats.completed}
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
 
-        <Card className="p-6">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-full bg-purple-100">
-              <FileText className="h-6 w-6 text-purple-600" />
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 shadow-lg">
+                <FileText className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Avg Rating</p>
-              <p className="text-3xl font-bold">
-                {stats.avgRating > 0 ? stats.avgRating.toFixed(1) : "N/A"}
-              </p>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Avg Rating</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  {stats.avgRating > 0 ? stats.avgRating.toFixed(1) : "N/A"}
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
-      </div>
+          </Card>
+        </div>
 
-      {/* Current Appraisal */}
-      {currentAppraisal && (
-        <Card className="p-6">
+        {/* Current Appraisal */}
+        {currentAppraisal && (
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-semibold text-xl">
               Current Appraisal - {currentAppraisal.cycle?.name}
@@ -342,8 +353,8 @@ export default function AppraisalPage() {
         </Card>
       )}
 
-      {!currentAppraisal && (
-        <Card className="p-6">
+        {!currentAppraisal && (
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg p-6">
           <div className="text-center py-12">
             <FileText className="h-16 w-16 text-gray-400 mx-auto mb-4" />
             <h3 className="font-semibold text-lg mb-2">
@@ -357,18 +368,18 @@ export default function AppraisalPage() {
         </Card>
       )}
 
-      {/* Past Appraisals */}
-      <Card className="p-6">
-        <h3 className="font-semibold text-lg mb-4">Appraisal History</h3>
-        {pastAppraisals.length > 0 ? (
-          <div className="space-y-3">
-            {pastAppraisals.map((appraisal) => {
-              const StatusIcon = getStatusBadge(appraisal.status).icon;
-              return (
-                <div
-                  key={appraisal.id}
-                  className="p-4 border rounded-lg hover:shadow-md transition-shadow"
-                >
+        {/* Past Appraisals */}
+        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg p-6">
+          <h3 className="font-semibold text-lg mb-4">Appraisal History</h3>
+          {pastAppraisals.length > 0 ? (
+            <div className="space-y-3">
+              {pastAppraisals.map((appraisal) => {
+                const StatusIcon = getStatusBadge(appraisal.status).icon;
+                return (
+                  <div
+                    key={appraisal.id}
+                    className="p-4 border border-slate-200/60 rounded-xl bg-white/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                  >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
@@ -422,15 +433,16 @@ export default function AppraisalPage() {
                     </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="text-center py-8 text-gray-500">
-            No appraisal history found
-          </div>
-        )}
-      </Card>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-gray-500">
+              No appraisal history found
+            </div>
+          )}
+        </Card>
+      </div>
     </div>
   );
 }

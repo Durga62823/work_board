@@ -15,6 +15,7 @@ import {
   Edit,
   Trash2,
   Send,
+  Sparkles,
 } from "lucide-react";
 import {
   getCurrentTimesheet,
@@ -268,13 +269,21 @@ export default function TimesheetPage() {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">Timesheet</h1>
-          <p className="text-gray-600">Log and track your work hours</p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div className="p-6 max-w-7xl mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg">
+              <Sparkles className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                Timesheet
+              </h1>
+              <p className="text-gray-600">Log and track your work hours</p>
+            </div>
+          </div>
         <div className="flex gap-2">
           {timesheet && (
             <Badge
@@ -287,6 +296,7 @@ export default function TimesheetPage() {
           <Button
             onClick={() => setShowAddDialog(true)}
             disabled={timesheet && timesheet.status !== "DRAFT"}
+            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <Plus className="h-4 w-4 mr-2" />
             Add Entry
@@ -294,48 +304,54 @@ export default function TimesheetPage() {
         </div>
       </div>
 
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="p-6">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-full bg-blue-100">
-              <Clock className="h-6 w-6 text-blue-600" />
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg">
+                <Clock className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Total Hours</p>
-              <p className="text-3xl font-bold">{stats.totalHours}h</p>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Total Hours</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  {stats.totalHours}h
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
 
-        <Card className="p-6">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-full bg-green-100">
-              <Clock className="h-6 w-6 text-green-600" />
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-green-500 to-green-600 shadow-lg">
+                <Clock className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Submitted Hours</p>
-              <p className="text-3xl font-bold">{stats.submittedHours}h</p>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Submitted Hours</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  {stats.submittedHours}h
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
 
-        <Card className="p-6">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-full bg-purple-100">
-              <Clock className="h-6 w-6 text-purple-600" />
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 shadow-lg">
+                <Clock className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Approved Hours</p>
-              <p className="text-3xl font-bold">{stats.approvedHours}h</p>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Approved Hours</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  {stats.approvedHours}h
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
-      </div>
+          </Card>
+        </div>
 
-      {/* Current Week Info */}
-      {timesheet && (
-        <Card className="p-6">
+        {/* Current Week Info */}
+        {timesheet && (
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg p-6">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="font-semibold text-lg mb-1">
@@ -363,9 +379,9 @@ export default function TimesheetPage() {
         </Card>
       )}
 
-      {/* Add/Edit Entry Dialog */}
-      {showAddDialog && (
-        <Card className="p-6 border-2 border-blue-500">
+        {/* Add/Edit Entry Dialog */}
+        {showAddDialog && (
+          <Card className="p-6 border-2 border-blue-400 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 backdrop-blur-sm shadow-xl">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-lg">
               {editingEntry ? "Edit Time Entry" : "Add Time Entry"}
@@ -492,15 +508,15 @@ export default function TimesheetPage() {
         </Card>
       )}
 
-      {/* Time Entries List */}
-      <Card className="p-6">
+        {/* Time Entries List */}
+        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg p-6">
         <h3 className="font-semibold text-lg mb-4">Time Entries</h3>
         {timesheet?.entries && timesheet.entries.length > 0 ? (
           <div className="space-y-3">
             {timesheet.entries.map((entry: any) => (
               <div
                 key={entry.id}
-                className="p-4 border rounded-lg flex items-center justify-between hover:shadow-md transition-shadow"
+                className="p-4 border border-slate-200/60 rounded-xl bg-white/50 backdrop-blur-sm flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
@@ -620,8 +636,9 @@ export default function TimesheetPage() {
               )}
             </div>
           </div>
-        )}
-      </Card>
+          )}
+        </Card>
+      </div>
     </div>
   );
 }

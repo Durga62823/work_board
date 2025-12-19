@@ -37,39 +37,70 @@ export default async function SettingsPage() {
   };
 
   return (
-    <div className="flex-1 p-4 md:p-8 pt-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-          Settings
-        </h1>
-        <p className="text-gray-600 mt-2">
-          Manage your preferences, notifications, and account settings
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
+      {/* Gradient Hero Header */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 px-4 py-16 md:px-8">
+        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="flex items-center gap-4">
+            <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl border border-white/30 shadow-2xl">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                Settings
+              </h1>
+              <p className="text-blue-100 text-lg">
+                Manage your preferences, notifications, and account settings
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-3">
-        {/* Left Column - Preferences & Notifications (wider) */}
-        <div className="lg:col-span-2">
-          <SettingsClient
-            initialPreferences={preferences}
-            initialNotifications={notifications}
-          />
-        </div>
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {/* Left Column - Preferences & Notifications (wider) - Glassmorphism */}
+          <div className="lg:col-span-2">
+            <div className="bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl rounded-2xl overflow-hidden">
+              <SettingsClient
+                initialPreferences={preferences}
+                initialNotifications={notifications}
+              />
+            </div>
+          </div>
 
-        {/* Right Column - Account Settings */}
-        <div className="p-6 bg-white border border-gray-200 rounded-lg h-fit">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">Account</h2>
+          {/* Right Column - Account Settings - Glassmorphism */}
+          <div className="bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl rounded-2xl overflow-hidden h-fit">
+            <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 px-6 py-5 border-b border-white/20">
+              <h2 className="text-xl font-bold text-gray-900">Account</h2>
+              <p className="text-sm text-gray-600 mt-1">Manage your account settings</p>
+            </div>
 
-          <div className="space-y-3">
-            <button className="w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all">
-              Change Password
-            </button>
-            <button className="w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all">
-              Download My Data
-            </button>
-            <button className="w-full px-4 py-3 text-sm font-medium text-red-600 bg-white border border-red-300 rounded-lg hover:bg-red-50 hover:border-red-400 transition-all">
-              Delete Account
-            </button>
+            <div className="p-6 space-y-3">
+              <button className="group w-full px-4 py-3 text-sm font-medium text-gray-700 bg-gradient-to-r from-white to-blue-50 hover:from-blue-100 hover:to-cyan-100 border border-blue-200 hover:border-blue-300 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Change Password
+              </button>
+              <button className="group w-full px-4 py-3 text-sm font-medium text-gray-700 bg-gradient-to-r from-white to-cyan-50 hover:from-cyan-100 hover:to-teal-100 border border-cyan-200 hover:border-cyan-300 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 text-cyan-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download My Data
+              </button>
+              <button className="group w-full px-4 py-3 text-sm font-medium text-red-600 bg-gradient-to-r from-white to-red-50 hover:from-red-100 hover:to-rose-100 border border-red-300 hover:border-red-400 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 text-red-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                Delete Account
+              </button>
+            </div>
           </div>
         </div>
       </div>

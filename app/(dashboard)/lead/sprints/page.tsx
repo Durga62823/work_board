@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getTeamSprints, getSprintBurndown } from "@/lib/lead-helpers";
 import { format } from "date-fns";
 import Link from "next/link";
+import { Sparkles, Plus } from "lucide-react";
 
 export default async function LeadSprintsPage() {
   const session = await requireLead();
@@ -18,9 +19,13 @@ export default async function LeadSprintsPage() {
 
   if (!user?.team) {
     return (
-      <div className="text-center py-12">
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">No Team Assigned</h2>
-        <p className="text-gray-600">Please contact your administrator to assign you to a team.</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
+        <div className="text-center py-12">
+          <div className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">No Team Assigned</h2>
+            <p className="text-gray-600">Please contact your administrator to assign you to a team.</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -36,63 +41,72 @@ export default async function LeadSprintsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Sprint Planning</h1>
-          <p className="text-gray-600 mt-1">Manage sprints and track team velocity</p>
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full shadow-lg w-fit mb-3">
+            <Sparkles className="h-4 w-4" />
+            <span className="text-sm font-semibold">Sprint Management</span>
+          </div>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            Sprint Planning
+          </h1>
+          <p className="text-gray-600 mt-2">Manage sprints and track team velocity</p>
         </div>
         <Link
           href="/lead/sprints/new"
-          className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
         >
+          <Plus className="h-4 w-4" />
           Create Sprint
         </Link>
       </div>
 
       {/* Active Sprint */}
       {activeSprint && (
-        <div className="bg-white rounded-lg shadow-md border-2 border-purple-200">
+        <div className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl border-2 border-purple-200 hover:shadow-xl transition-all duration-300">
           <div className="p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded">
+                  <span className="px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-semibold rounded-full shadow-md">
                     ACTIVE
                   </span>
-                  <h2 className="text-2xl font-bold text-gray-900">{activeSprint.name}</h2>
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    {activeSprint.name}
+                  </h2>
                 </div>
                 <p className="text-gray-600">{activeSprint.goal}</p>
               </div>
               <Link
                 href={`/lead/sprints/${activeSprint.id}`}
-                className="text-purple-600 hover:text-purple-700 font-medium"
+                className="text-purple-600 hover:text-indigo-600 font-medium hover:scale-105 transition-transform"
               >
                 View Details →
               </Link>
             </div>
 
             <div className="grid grid-cols-4 gap-4 mt-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-4 border border-purple-100 hover:shadow-md transition-shadow">
                 <p className="text-sm text-gray-600 mb-1">Duration</p>
                 <p className="text-lg font-semibold text-gray-900">
                   {format(new Date(activeSprint.startDate), "MMM d")} -{" "}
                   {format(new Date(activeSprint.endDate), "MMM d")}
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-4 border border-purple-100 hover:shadow-md transition-shadow">
                 <p className="text-sm text-gray-600 mb-1">Story Points</p>
                 <p className="text-lg font-semibold text-gray-900">
                   {activeSprint._count?.tasks || 0} tasks
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-4 border border-purple-100 hover:shadow-md transition-shadow">
                 <p className="text-sm text-gray-600 mb-1">Capacity</p>
                 <p className="text-lg font-semibold text-gray-900">
                   {activeSprint.capacityHours}h
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-4 border border-purple-100 hover:shadow-md transition-shadow">
                 <p className="text-sm text-gray-600 mb-1">Velocity</p>
                 <p className="text-lg font-semibold text-gray-900">
                   {activeSprint.velocity || "-"} pts
@@ -102,9 +116,9 @@ export default async function LeadSprintsPage() {
 
             {/* Burndown Chart Placeholder */}
             {burndownData && burndownData.ideal && burndownData.actual && (
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+              <div className="mt-6 p-4 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg border border-purple-100">
                 <h3 className="text-sm font-semibold text-gray-700 mb-3">Sprint Burndown</h3>
-                <div className="h-48 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg">
+                <div className="h-48 flex items-center justify-center border-2 border-dashed border-purple-300 rounded-lg bg-white/50">
                   <div className="text-center text-gray-500">
                     <p className="text-sm">Ideal: {burndownData.ideal.join(", ")}</p>
                     <p className="text-sm mt-1">Actual: {burndownData.actual.join(", ")}</p>
@@ -119,40 +133,42 @@ export default async function LeadSprintsPage() {
 
       {/* Planning Sprint */}
       {planningSprint && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200">
+        <div className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
           <div className="p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded">
+                  <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-semibold rounded-full shadow-md">
                     PLANNING
                   </span>
-                  <h2 className="text-xl font-bold text-gray-900">{planningSprint.name}</h2>
+                  <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    {planningSprint.name}
+                  </h2>
                 </div>
                 <p className="text-gray-600">{planningSprint.goal}</p>
               </div>
               <Link
                 href={`/lead/sprints/${planningSprint.id}`}
-                className="text-purple-600 hover:text-purple-700 font-medium"
+                className="text-purple-600 hover:text-indigo-600 font-medium hover:scale-105 transition-transform"
               >
                 Plan Sprint →
               </Link>
             </div>
 
             <div className="flex gap-4 mt-4">
-              <div className="bg-gray-50 rounded-lg p-3 flex-1">
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-3 flex-1 border border-purple-100 hover:shadow-md transition-shadow">
                 <p className="text-sm text-gray-600 mb-1">Start Date</p>
                 <p className="font-semibold text-gray-900">
                   {format(new Date(planningSprint.startDate), "MMM d, yyyy")}
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-3 flex-1">
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-3 flex-1 border border-purple-100 hover:shadow-md transition-shadow">
                 <p className="text-sm text-gray-600 mb-1">End Date</p>
                 <p className="font-semibold text-gray-900">
                   {format(new Date(planningSprint.endDate), "MMM d, yyyy")}
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-3 flex-1">
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-3 flex-1 border border-purple-100 hover:shadow-md transition-shadow">
                 <p className="text-sm text-gray-600 mb-1">Capacity</p>
                 <p className="font-semibold text-gray-900">{planningSprint.capacityHours}h</p>
               </div>
@@ -163,18 +179,20 @@ export default async function LeadSprintsPage() {
 
       {/* Completed Sprints */}
       {completedSprints.length > 0 && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200">
+        <div className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
           <div className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Recent Sprints</h2>
+            <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
+              Recent Sprints
+            </h2>
             <div className="space-y-3">
               {completedSprints.map((sprint) => (
                 <div
                   key={sprint.id}
-                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="flex items-center justify-between p-4 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg border border-purple-100 hover:shadow-md hover:scale-[1.01] transition-all duration-300"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="px-2 py-1 bg-gray-200 text-gray-700 text-xs font-semibold rounded">
+                      <span className="px-3 py-1 bg-gradient-to-r from-gray-500 to-slate-500 text-white text-xs font-semibold rounded-full shadow-md">
                         COMPLETED
                       </span>
                       <h3 className="font-semibold text-gray-900">{sprint.name}</h3>
@@ -184,15 +202,15 @@ export default async function LeadSprintsPage() {
                   <div className="flex items-center gap-6 ml-4">
                     <div className="text-right">
                       <p className="text-xs text-gray-500">Velocity</p>
-                      <p className="text-lg font-bold text-gray-900">{sprint.velocity || "-"}</p>
+                      <p className="text-lg font-bold text-purple-600">{sprint.velocity || "-"}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-xs text-gray-500">Tasks</p>
-                      <p className="text-lg font-bold text-gray-900">{sprint._count?.tasks || 0}</p>
+                      <p className="text-lg font-bold text-indigo-600">{sprint._count?.tasks || 0}</p>
                     </div>
                     <Link
                       href={`/lead/sprints/${sprint.id}`}
-                      className="text-purple-600 hover:text-purple-700 font-medium text-sm"
+                      className="text-purple-600 hover:text-indigo-600 font-medium text-sm hover:scale-105 transition-transform"
                     >
                       View →
                     </Link>
@@ -206,9 +224,9 @@ export default async function LeadSprintsPage() {
 
       {/* Empty State */}
       {!activeSprint && !planningSprint && completedSprints.length === 0 && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-12 text-center">
+        <div className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl p-12 text-center hover:shadow-xl transition-all duration-300">
           <div className="max-w-md mx-auto">
-            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
               <svg
                 className="w-8 h-8 text-purple-600"
                 fill="none"
@@ -223,14 +241,17 @@ export default async function LeadSprintsPage() {
                 />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">No Sprints Yet</h2>
+            <h2 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+              No Sprints Yet
+            </h2>
             <p className="text-gray-600 mb-6">
               Create your first sprint to start planning and tracking team work.
             </p>
             <Link
               href="/lead/sprints/new"
-              className="inline-flex px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
             >
+              <Plus className="h-4 w-4" />
               Create First Sprint
             </Link>
           </div>

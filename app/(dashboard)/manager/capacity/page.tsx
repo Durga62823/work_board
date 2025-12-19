@@ -1,5 +1,6 @@
 import { requireManager } from "@/lib/guards";
 import { getTeamCapacity, getTeamCalendar } from "@/lib/manager-helpers";
+import { Sparkles } from "lucide-react";
 
 export const metadata = {
   title: "Team Capacity | Manager Dashboard",
@@ -25,54 +26,63 @@ export default async function ManagerCapacityPage() {
   const underUtilized = capacity.filter(m => m.utilization < 0.7).length;
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-semibold text-slate-900">Team Capacity</h2>
-        <p className="mt-1 text-slate-500">
-          Monitor workload and resource allocation across your team
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 p-6">
+      <div className="mx-auto max-w-7xl space-y-6">
+        {/* Header */}
+        <div className="flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-lg">
+            <Sparkles className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              Manager - Capacity
+            </h1>
+            <p className="mt-1 text-slate-600">
+              Monitor workload and resource allocation across your team
+            </p>
+          </div>
+        </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
-        <div className="rounded-xl border border-slate-200 bg-white p-6">
-          <div className="text-sm font-medium text-slate-500">Avg Utilization</div>
-          <div className="mt-2 text-3xl font-semibold text-slate-900">
-            {(avgUtilization * 100).toFixed(0)}%
+        {/* Stats */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
+          <div className="rounded-2xl border border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+            <div className="text-sm font-medium text-slate-500">Avg Utilization</div>
+            <div className="mt-2 text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              {(avgUtilization * 100).toFixed(0)}%
+            </div>
+          </div>
+          <div className="rounded-2xl border border-green-200/60 bg-gradient-to-br from-green-50 to-emerald-50 backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+            <div className="text-sm font-medium text-green-700">Team Size</div>
+            <div className="mt-2 text-3xl font-bold text-green-600">
+              {capacity.length}
+            </div>
+          </div>
+          <div className="rounded-2xl border border-red-200/60 bg-gradient-to-br from-red-50 to-rose-50 backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+            <div className="text-sm font-medium text-red-700">Over-utilized</div>
+            <div className="mt-2 text-3xl font-bold text-red-600">
+              {overUtilized}
+            </div>
+          </div>
+          <div className="rounded-2xl border border-yellow-200/60 bg-gradient-to-br from-yellow-50 to-amber-50 backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+            <div className="text-sm font-medium text-yellow-700">Under-utilized</div>
+            <div className="mt-2 text-3xl font-bold text-yellow-600">
+              {underUtilized}
+            </div>
           </div>
         </div>
-        <div className="rounded-xl border border-slate-200 bg-white p-6">
-          <div className="text-sm font-medium text-slate-500">Team Size</div>
-          <div className="mt-2 text-3xl font-semibold text-slate-900">
-            {capacity.length}
-          </div>
-        </div>
-        <div className="rounded-xl border border-slate-200 bg-white p-6">
-          <div className="text-sm font-medium text-slate-500">Over-utilized</div>
-          <div className="mt-2 text-3xl font-semibold text-red-600">
-            {overUtilized}
-          </div>
-        </div>
-        <div className="rounded-xl border border-slate-200 bg-white p-6">
-          <div className="text-sm font-medium text-slate-500">Under-utilized</div>
-          <div className="mt-2 text-3xl font-semibold text-yellow-600">
-            {underUtilized}
-          </div>
-        </div>
-      </div>
 
-      {/* Team Capacity Details */}
-      <div className="rounded-xl border border-slate-200 bg-white">
-        <div className="border-b border-slate-200 px-6 py-4">
-          <h3 className="text-lg font-semibold text-slate-900">Team Workload</h3>
-        </div>
-        <div className="divide-y divide-slate-100">
-          {capacity.map((member) => (
-            <div key={member.user.id} className="px-6 py-4">
-              <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-600">
-                  {member.user.firstName?.[0]}{member.user.lastName?.[0]}
-                </div>
+        {/* Team Capacity Details */}
+        <div className="rounded-2xl border border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="border-b border-slate-200/60 bg-gradient-to-r from-green-50 to-emerald-50 px-6 py-4">
+            <h3 className="text-lg font-semibold text-slate-900">Team Workload</h3>
+          </div>
+          <div className="divide-y divide-slate-100">
+            {capacity.map((member) => (
+              <div key={member.user.id} className="px-6 py-4 transition-all hover:bg-green-50/50">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-emerald-100 text-sm font-semibold text-green-700">
+                    {member.user.firstName?.[0]}{member.user.lastName?.[0]}
+                  </div>
                 <div className="flex-1">
                   <div className="font-medium text-slate-900">
                     {member.user.firstName} {member.user.lastName}
@@ -121,24 +131,23 @@ export default async function ManagerCapacityPage() {
               )}
             </div>
           ))}
-          {capacity.length === 0 && (
-            <div className="px-6 py-12 text-center text-slate-500">
-              No team capacity data available
-            </div>
-          )}
+            {capacity.length === 0 && (
+              <div className="px-6 py-12 text-center text-slate-500">
+                No team capacity data available
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-
-      {/* Upcoming PTO */}
-      <div className="rounded-xl border border-slate-200 bg-white">
-        <div className="border-b border-slate-200 px-6 py-4">
-          <h3 className="text-lg font-semibold text-slate-900">
-            Upcoming Time Off (Next 30 Days)
-          </h3>
-        </div>
-        <div className="divide-y divide-slate-100">
-          {calendar.ptoRequests.map((pto) => (
-            <div key={pto.id} className="px-6 py-4">
+        {/* Upcoming PTO */}
+        <div className="rounded-2xl border border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="border-b border-slate-200/60 bg-gradient-to-r from-blue-50 to-cyan-50 px-6 py-4">
+            <h3 className="text-lg font-semibold text-slate-900">
+              Upcoming Time Off (Next 30 Days)
+            </h3>
+          </div>
+          <div className="divide-y divide-slate-100">
+            {calendar.ptoRequests.map((pto) => (
+              <div key={pto.id} className="px-6 py-4 transition-all hover:bg-blue-50/50">
               <div className="flex items-center justify-between">
                 <div>
                   <div className="font-medium text-slate-900">
@@ -159,12 +168,13 @@ export default async function ManagerCapacityPage() {
                 </div>
               </div>
             </div>
-          ))}
-          {calendar.ptoRequests.length === 0 && (
-            <div className="px-6 py-12 text-center text-slate-500">
-              No upcoming time off scheduled
-            </div>
-          )}
+            ))}
+            {calendar.ptoRequests.length === 0 && (
+              <div className="px-6 py-12 text-center text-slate-500">
+                No upcoming time off scheduled
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

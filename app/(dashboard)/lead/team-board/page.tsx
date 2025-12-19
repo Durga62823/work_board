@@ -2,6 +2,7 @@ import { requireLead } from "@/lib/guards";
 import { prisma } from "@/lib/prisma";
 import { getTeamTasks, getTeamMembers } from "@/lib/lead-helpers";
 import { TaskBoard } from "@/components/lead/TaskBoard";
+import { Sparkles } from "lucide-react";
 
 export default async function TeamBoardPage() {
   const session = await requireLead();
@@ -20,9 +21,13 @@ export default async function TeamBoardPage() {
 
   if (!user?.team) {
     return (
-      <div className="text-center py-12">
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">No Team Assigned</h2>
-        <p className="text-gray-600">Please contact your administrator to assign you to a team.</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
+        <div className="text-center py-12">
+          <div className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">No Team Assigned</h2>
+            <p className="text-gray-600">Please contact your administrator to assign you to a team.</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -56,18 +61,28 @@ export default async function TeamBoardPage() {
   });
 
   return (
-    <div>
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">{user.team.name} - Task Board</h2>
-        <p className="text-gray-600 mt-1">Manage and coordinate team tasks</p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
+      <div className="mb-8">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full shadow-lg">
+            <Sparkles className="h-4 w-4" />
+            <span className="text-sm font-semibold">Tech Lead</span>
+          </div>
+        </div>
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          {user.team.name} - Task Board
+        </h2>
+        <p className="text-gray-600 mt-2">Manage and coordinate team tasks with intelligent tracking</p>
       </div>
 
-      <TaskBoard
-        tasks={tasks}
-        teamMembers={teamMembers}
-        sprints={sprints}
-        projects={projects}
-      />
+      <div className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300">
+        <TaskBoard
+          tasks={tasks}
+          teamMembers={teamMembers}
+          sprints={sprints}
+          projects={projects}
+        />
+      </div>
     </div>
   );
 }

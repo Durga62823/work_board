@@ -27,6 +27,8 @@ export default function ManagerAIFeaturesPage() {
         "Analyze team productivity, identify trends, and detect burnout risks",
       icon: Users,
       color: "blue",
+      gradient: "from-blue-500 to-cyan-500",
+      bgGradient: "from-blue-50 to-cyan-50",
     },
     {
       id: "resource-optimization" as const,
@@ -35,6 +37,8 @@ export default function ManagerAIFeaturesPage() {
         "Optimize team allocation, identify conflicts, and predict hiring needs",
       icon: TrendingUp,
       color: "green",
+      gradient: "from-green-500 to-emerald-500",
+      bgGradient: "from-green-50 to-emerald-50",
     },
     {
       id: "approval-assistant" as const,
@@ -42,6 +46,8 @@ export default function ManagerAIFeaturesPage() {
       description: "Get AI recommendations for timesheet and PTO approvals",
       icon: CheckCircle,
       color: "purple",
+      gradient: "from-purple-500 to-pink-500",
+      bgGradient: "from-purple-50 to-pink-50",
     },
     {
       id: "report-generation" as const,
@@ -49,6 +55,8 @@ export default function ManagerAIFeaturesPage() {
       description: "Generate comprehensive project reports with insights",
       icon: Sparkles,
       color: "orange",
+      gradient: "from-orange-500 to-amber-500",
+      bgGradient: "from-orange-50 to-amber-50",
     },
   ];
 
@@ -68,59 +76,70 @@ export default function ManagerAIFeaturesPage() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <Sparkles className="h-8 w-8 text-blue-500" />
-          <h1 className="text-3xl font-bold">Manager AI Features</h1>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 p-6">
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="mb-8 flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-lg">
+            <Sparkles className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              Manager - AI Features
+            </h1>
+            <p className="mt-1 text-slate-600">
+              AI-powered tools to enhance team management and decision-making
+            </p>
+          </div>
         </div>
-        <p className="text-gray-600">
-          AI-powered tools to enhance team management and decision-making
-        </p>
-      </div>
 
-      {!activeFeature ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <Card
-                key={feature.id}
-                className="p-6 cursor-pointer hover:shadow-lg transition-shadow border-2 hover:border-blue-300"
-                onClick={() => setActiveFeature(feature.id)}
-              >
-                <div className="flex flex-col">
-                  <div
-                    className={`p-4 rounded-full bg-${feature.color}-100 w-fit mb-4`}
-                  >
-                    <Icon className={`h-8 w-8 text-${feature.color}-600`} />
+        {!activeFeature ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={feature.id}
+                  className="group rounded-2xl border border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg p-6 cursor-pointer transition-all hover:shadow-2xl hover:scale-105 hover:border-green-300"
+                  onClick={() => setActiveFeature(feature.id)}
+                >
+                  <div className="flex flex-col">
+                    <div
+                      className={`p-4 rounded-xl bg-gradient-to-br ${feature.bgGradient} w-fit mb-4 group-hover:shadow-md transition-all`}
+                    >
+                      <Icon className={`h-8 w-8 bg-gradient-to-br ${feature.gradient} bg-clip-text text-transparent`} style={{WebkitTextFillColor: 'transparent', backgroundClip: 'text'}} />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2 text-slate-900">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 mb-4 flex-1">
+                      {feature.description}
+                    </p>
+                    <Button 
+                      className={`w-full bg-gradient-to-r ${feature.gradient} text-white hover:opacity-90 shadow-md hover:shadow-lg transition-all`}
+                    >
+                      Open Feature
+                    </Button>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {feature.description}
-                  </p>
-                  <Button className="w-full" variant="outline">
-                    Open Feature
-                  </Button>
                 </div>
-              </Card>
-            );
-          })}
-        </div>
-      ) : (
-        <div>
-          <Button
-            onClick={() => setActiveFeature(null)}
-            variant="outline"
-            className="mb-4"
-          >
-            ← Back to Features
-          </Button>
-          <Card className="p-6">{renderFeature()}</Card>
-        </div>
-      )}
+              );
+            })}
+          </div>
+        ) : (
+          <div>
+            <Button
+              onClick={() => setActiveFeature(null)}
+              variant="outline"
+              className="mb-4 border-slate-200 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:border-green-300"
+            >
+              ← Back to Features
+            </Button>
+            <div className="rounded-2xl border border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg p-6">
+              {renderFeature()}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

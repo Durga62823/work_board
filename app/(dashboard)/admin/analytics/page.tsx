@@ -135,12 +135,12 @@ export default function AnalyticsPage() {
       : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-8 overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50 p-8 overflow-hidden relative">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 right-10 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-red-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
         <div
-          className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"
+          className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"
           style={{ animationDelay: "2s" }}
         ></div>
       </div>
@@ -152,17 +152,14 @@ export default function AnalyticsPage() {
           style={{ animationDelay: "0s" }}
         >
           <div className="flex items-center gap-4 mb-4">
-            <div
-              className="text-5xl animate-bounce"
-              style={{ animationDelay: "0s" }}
-            >
-              📊
+            <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
+              <span className="text-3xl">📊</span>
             </div>
-            <h1 className="text-5xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Analytics Dashboard
+            <h1 className="text-5xl font-black bg-gradient-to-r from-red-600 via-orange-600 to-red-600 bg-clip-text text-transparent">
+              Admin - Analytics Dashboard
             </h1>
           </div>
-          <p className="text-gray-300 text-lg font-light ml-20">
+          <p className="text-slate-600 text-lg font-light ml-20">
             Real-time organization performance metrics
           </p>
         </div>
@@ -174,7 +171,7 @@ export default function AnalyticsPage() {
             className="group animate-slide-in-up hover-lift"
             style={{ animationDelay: "0.1s" }}
           >
-            <Card className="p-6 bg-gradient-to-br from-blue-600 to-blue-800 border-0 text-white shadow-2xl hover-glow">
+            <Card className="p-6 bg-gradient-to-br from-red-500 to-red-700 border-0 text-white shadow-2xl hover-glow">
               <div className="flex items-start justify-between mb-4">
                 <div
                   className="text-5xl animate-bounce"
@@ -182,11 +179,11 @@ export default function AnalyticsPage() {
                 >
                   👥
                 </div>
-                <div className="text-xs font-bold bg-blue-500 bg-opacity-50 px-3 py-1 rounded-full">
+                <div className="text-xs font-bold bg-red-600 bg-opacity-50 px-3 py-1 rounded-full">
                   Users
                 </div>
               </div>
-              <p className="text-blue-100 text-sm font-semibold mb-2">
+              <p className="text-red-100 text-sm font-semibold mb-2">
                 Total Users
               </p>
               <p className="text-4xl font-black">
@@ -195,7 +192,7 @@ export default function AnalyticsPage() {
                   duration={1200}
                 />
               </p>
-              <p className="text-xs text-blue-200 mt-2">
+              <p className="text-xs text-red-200 mt-2">
                 Active: {analytics.summary.activeUsers}
               </p>
             </Card>
@@ -206,7 +203,7 @@ export default function AnalyticsPage() {
             className="group animate-slide-in-up hover-lift"
             style={{ animationDelay: "0.2s" }}
           >
-            <Card className="p-6 bg-gradient-to-br from-emerald-600 to-emerald-800 border-0 text-white shadow-2xl hover-glow">
+            <Card className="p-6 bg-gradient-to-br from-orange-500 to-orange-700 border-0 text-white shadow-2xl hover-glow">
               <div className="flex items-start justify-between mb-4">
                 <div
                   className="text-5xl animate-bounce"
@@ -214,11 +211,11 @@ export default function AnalyticsPage() {
                 >
                   📁
                 </div>
-                <div className="text-xs font-bold bg-emerald-500 bg-opacity-50 px-3 py-1 rounded-full">
+                <div className="text-xs font-bold bg-orange-600 bg-opacity-50 px-3 py-1 rounded-full">
                   Projects
                 </div>
               </div>
-              <p className="text-emerald-100 text-sm font-semibold mb-2">
+              <p className="text-orange-100 text-sm font-semibold mb-2">
                 Total Projects
               </p>
               <p className="text-4xl font-black">
@@ -227,7 +224,7 @@ export default function AnalyticsPage() {
                   duration={1200}
                 />
               </p>
-              <p className="text-xs text-emerald-200 mt-2">
+              <p className="text-xs text-orange-200 mt-2">
                 Completed: {analytics.summary.completedProjects}
               </p>
             </Card>
@@ -238,7 +235,7 @@ export default function AnalyticsPage() {
             className="group animate-slide-in-up hover-lift"
             style={{ animationDelay: "0.3s" }}
           >
-            <Card className="p-6 bg-gradient-to-br from-amber-600 to-amber-800 border-0 text-white shadow-2xl hover-glow">
+            <Card className="p-6 bg-gradient-to-br from-red-600 to-orange-600 border-0 text-white shadow-2xl hover-glow">
               <div className="flex items-start justify-between mb-4">
                 <div
                   className="text-5xl animate-bounce"
@@ -246,11 +243,11 @@ export default function AnalyticsPage() {
                 >
                   ⭐
                 </div>
-                <div className="text-xs font-bold bg-amber-500 bg-opacity-50 px-3 py-1 rounded-full">
+                <div className="text-xs font-bold bg-red-700 bg-opacity-50 px-3 py-1 rounded-full">
                   Reviews
                 </div>
               </div>
-              <p className="text-amber-100 text-sm font-semibold mb-2">
+              <p className="text-red-100 text-sm font-semibold mb-2">
                 Appraisals
               </p>
               <p className="text-4xl font-black">
@@ -259,7 +256,7 @@ export default function AnalyticsPage() {
                   duration={1200}
                 />
               </p>
-              <p className="text-xs text-amber-200 mt-2">
+              <p className="text-xs text-red-200 mt-2">
                 Avg Rating: {analytics.summary.averageRating.toFixed(1)}
               </p>
             </Card>
@@ -270,7 +267,7 @@ export default function AnalyticsPage() {
             className="group animate-slide-in-up hover-lift"
             style={{ animationDelay: "0.4s" }}
           >
-            <Card className="p-6 bg-gradient-to-br from-pink-600 to-pink-800 border-0 text-white shadow-2xl hover-glow">
+            <Card className="p-6 bg-gradient-to-br from-orange-600 to-red-600 border-0 text-white shadow-2xl hover-glow">
               <div className="flex items-start justify-between mb-4">
                 <div
                   className="text-5xl animate-bounce"
@@ -278,11 +275,11 @@ export default function AnalyticsPage() {
                 >
                   📈
                 </div>
-                <div className="text-xs font-bold bg-pink-500 bg-opacity-50 px-3 py-1 rounded-full">
+                <div className="text-xs font-bold bg-orange-700 bg-opacity-50 px-3 py-1 rounded-full">
                   Metric
                 </div>
               </div>
-              <p className="text-pink-100 text-sm font-semibold mb-2">
+              <p className="text-orange-100 text-sm font-semibold mb-2">
                 Engagement
               </p>
               <p className="text-4xl font-black">
@@ -296,7 +293,7 @@ export default function AnalyticsPage() {
                 />
                 %
               </p>
-              <p className="text-xs text-pink-200 mt-2">Active participation</p>
+              <p className="text-xs text-orange-200 mt-2">Active participation</p>
             </Card>
           </div>
         </div>
@@ -308,10 +305,10 @@ export default function AnalyticsPage() {
             className="group animate-slide-in-left"
             style={{ animationDelay: "0.5s" }}
           >
-            <Card className="p-8 bg-gradient-to-br from-gray-800 to-gray-900 border-0 text-white shadow-2xl hover-glow h-full">
+            <Card className="p-8 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-2xl hover-glow h-full">
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-4xl animate-float">👤</span>
-                <h3 className="text-2xl font-bold">Users by Role</h3>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">Users by Role</h3>
               </div>
               <div className="space-y-6">
                 {analytics.usersByRole.map((item, idx) => (
@@ -321,10 +318,10 @@ export default function AnalyticsPage() {
                     style={{ animationDelay: `${0.6 + idx * 0.1}s` }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-bold text-gray-300 uppercase tracking-wide">
+                      <span className="text-sm font-bold text-slate-600 uppercase tracking-wide">
                         {item.role}
                       </span>
-                      <span className="text-sm font-black text-blue-400">
+                      <span className="text-sm font-black text-red-600">
                         {item.count} users
                       </span>
                     </div>
@@ -334,7 +331,7 @@ export default function AnalyticsPage() {
                           ? (item.count / analytics.summary.totalUsers) * 100
                           : 0
                       }
-                      color="bg-blue-600"
+                      color="bg-gradient-to-r from-red-500 to-orange-500"
                     />
                   </div>
                 ))}
@@ -347,7 +344,7 @@ export default function AnalyticsPage() {
             className="group animate-slide-in-right"
             style={{ animationDelay: "0.5s" }}
           >
-            <Card className="p-8 bg-gradient-to-br from-gray-800 to-gray-900 border-0 text-white shadow-2xl hover-glow h-full">
+            <Card className="p-8 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-2xl hover-glow h-full">
               <div className="flex items-center gap-3 mb-6">
                 <span
                   className="text-4xl animate-float"
@@ -355,7 +352,7 @@ export default function AnalyticsPage() {
                 >
                   📊
                 </span>
-                <h3 className="text-2xl font-bold">Projects by Status</h3>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">Projects by Status</h3>
               </div>
               <div className="space-y-6">
                 {analytics.projectsByStatus.map((item, idx) => (
@@ -365,10 +362,10 @@ export default function AnalyticsPage() {
                     style={{ animationDelay: `${0.6 + idx * 0.1}s` }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-bold text-gray-300 uppercase tracking-wide">
+                      <span className="text-sm font-bold text-slate-600 uppercase tracking-wide">
                         {item.status}
                       </span>
-                      <span className="text-sm font-black text-emerald-400">
+                      <span className="text-sm font-black text-orange-600">
                         {item.count} projects
                       </span>
                     </div>
@@ -378,7 +375,7 @@ export default function AnalyticsPage() {
                           ? (item.count / analytics.summary.totalProjects) * 100
                           : 0
                       }
-                      color="bg-emerald-600"
+                      color="bg-gradient-to-r from-orange-500 to-red-500"
                     />
                   </div>
                 ))}
@@ -392,7 +389,7 @@ export default function AnalyticsPage() {
           className="mb-12 animate-slide-in-up"
           style={{ animationDelay: "0.9s" }}
         >
-          <Card className="p-8 bg-gradient-to-br from-gray-800 to-gray-900 border-0 text-white shadow-2xl hover-glow">
+          <Card className="p-8 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-2xl hover-glow">
             <div className="flex items-center gap-3 mb-8">
               <span
                 className="text-4xl animate-float"
@@ -400,13 +397,13 @@ export default function AnalyticsPage() {
               >
                 🏖️
               </span>
-              <h3 className="text-2xl font-bold">PTO Requests</h3>
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">PTO Requests</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {analytics.ptoStats.map((item, idx) => (
                 <div
                   key={item.status}
-                  className="p-6 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-scale-in cursor-pointer group/pto"
+                  className="p-6 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 text-white transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-scale-in cursor-pointer group/pto"
                   style={{ animationDelay: `${1.0 + idx * 0.1}s` }}
                 >
                   <div className="flex items-center justify-between mb-3">
@@ -416,14 +413,14 @@ export default function AnalyticsPage() {
                     >
                       ✈️
                     </span>
-                    <span className="text-xs font-bold bg-blue-600 px-2 py-1 rounded-full">
+                    <span className="text-xs font-bold bg-red-600 px-2 py-1 rounded-full">
                       {item.status}
                     </span>
                   </div>
                   <p className="text-4xl font-black mb-1">
                     <AnimatedCounter value={item.count} duration={1200} />
                   </p>
-                  <p className="text-xs text-blue-100 font-semibold">
+                  <p className="text-xs text-red-100 font-semibold">
                     requests
                   </p>
                 </div>
@@ -434,7 +431,7 @@ export default function AnalyticsPage() {
 
         {/* Timesheet Statistics */}
         <div className="animate-slide-in-up" style={{ animationDelay: "1.2s" }}>
-          <Card className="p-8 bg-gradient-to-br from-gray-800 to-gray-900 border-0 text-white shadow-2xl hover-glow">
+          <Card className="p-8 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-2xl hover-glow">
             <div className="flex items-center gap-3 mb-8">
               <span
                 className="text-4xl animate-float"
@@ -442,13 +439,13 @@ export default function AnalyticsPage() {
               >
                 ⏱️
               </span>
-              <h3 className="text-2xl font-bold">Timesheet Status</h3>
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">Timesheet Status</h3>
             </div>
             <div className="space-y-4">
               {analytics.timesheetStats.map((item, idx) => (
                 <div
                   key={item.status}
-                  className="p-4 rounded-lg bg-gradient-to-r from-gray-700 to-gray-800 flex items-center justify-between transition-all duration-300 hover:from-gray-600 hover:to-gray-700 hover:shadow-lg hover:translate-x-2 animate-fade-in group/ts cursor-pointer"
+                  className="p-4 rounded-lg bg-gradient-to-r from-red-100 to-orange-100 flex items-center justify-between transition-all duration-300 hover:from-red-200 hover:to-orange-200 hover:shadow-lg hover:translate-x-2 animate-fade-in group/ts cursor-pointer border border-red-200"
                   style={{ animationDelay: `${1.3 + idx * 0.1}s` }}
                 >
                   <div className="flex items-center gap-4">
@@ -459,9 +456,9 @@ export default function AnalyticsPage() {
                       📋
                     </span>
                     <div>
-                      <p className="font-bold text-gray-100">{item.status}</p>
-                      <p className="text-sm text-gray-400 font-semibold">
-                        <span className="text-emerald-400 font-black">
+                      <p className="font-bold text-red-900">{item.status}</p>
+                      <p className="text-sm text-red-700 font-semibold">
+                        <span className="text-orange-700 font-black">
                           <AnimatedCounter value={item.count} duration={1200} />
                         </span>{" "}
                         submitted
@@ -469,8 +466,8 @@ export default function AnalyticsPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-gray-400">Total Hours</p>
-                    <p className="text-2xl font-black text-purple-400">
+                    <p className="text-xs text-red-600">Total Hours</p>
+                    <p className="text-2xl font-black text-orange-600">
                       {item.totalHours}h
                     </p>
                   </div>

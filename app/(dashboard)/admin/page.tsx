@@ -1,9 +1,8 @@
 import { redirect } from "next/navigation";
-import { Users, Building2, FolderKanban, TrendingUp, Shield, Settings } from "lucide-react";
+import { Users, Building2, FolderKanban, TrendingUp, Shield, Settings, Sparkles, ArrowUpRight, BarChart3, UserPlus } from "lucide-react";
 
 import { auth } from "@/lib/auth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default async function AdminDashboardPage() {
@@ -19,191 +18,215 @@ export default async function AdminDashboardPage() {
   // }
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Admin Dashboard</h2>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50 p-6">
+      <div className="max-w-7xl mx-auto space-y-8">
+        {/* Header */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-red-600 via-orange-600 to-pink-700 p-8 md:p-12 shadow-2xl shadow-red-500/20">
+          <div className="absolute inset-0 bg-grid-white/5" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-red-400/20 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-pink-400/20 rounded-full blur-3xl" />
+          
+          <div className="relative">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-4">
+              <Sparkles className="h-4 w-4 text-yellow-300" />
+              <span className="text-sm font-medium text-white">Admin Dashboard</span>
+            </div>
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
+              System Administration
+            </h1>
+            <p className="text-lg text-red-100">
+              Manage organization, users, and platform settings
+            </p>
+          </div>
+        </div>
 
-      {/* Overview Stats */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">0</div>
-            <p className="text-xs text-muted-foreground">Active across organization</p>
-          </CardContent>
-        </Card>
+        {/* Overview Stats */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Card className="relative overflow-hidden border-slate-200/60 bg-white/70 backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-semibold text-slate-600">Total Users</CardTitle>
+              <div className="p-2 rounded-lg bg-blue-100">
+                <Users className="h-4 w-4 text-blue-600" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-slate-900">0</div>
+              <p className="text-xs text-slate-500 mt-1">Active across organization</p>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Departments</CardTitle>
-            <Building2 className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">0</div>
-            <p className="text-xs text-muted-foreground">With teams and members</p>
-          </CardContent>
-        </Card>
+          <Card className="relative overflow-hidden border-slate-200/60 bg-white/70 backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-purple-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-semibold text-slate-600">Departments</CardTitle>
+              <div className="p-2 rounded-lg bg-purple-100">
+                <Building2 className="h-4 w-4 text-purple-600" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-slate-900">0</div>
+              <p className="text-xs text-slate-500 mt-1">With teams and members</p>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Projects</CardTitle>
-            <FolderKanban className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">0</div>
-            <p className="text-xs text-muted-foreground">On track and in progress</p>
-          </CardContent>
-        </Card>
+          <Card className="relative overflow-hidden border-slate-200/60 bg-white/70 backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-500/10 to-green-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-semibold text-slate-600">Active Projects</CardTitle>
+              <div className="p-2 rounded-lg bg-green-100">
+                <FolderKanban className="h-4 w-4 text-green-600" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-slate-900">0</div>
+              <p className="text-xs text-slate-500 mt-1">On track and in progress</p>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">0%</div>
-            <p className="text-xs text-muted-foreground">Organization average</p>
-          </CardContent>
-        </Card>
-      </div>
+          <Card className="relative overflow-hidden border-slate-200/60 bg-white/70 backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-500/10 to-orange-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-semibold text-slate-600">Completion Rate</CardTitle>
+              <div className="p-2 rounded-lg bg-orange-100">
+                <TrendingUp className="h-4 w-4 text-orange-600" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-slate-900">0%</div>
+              <p className="text-xs text-slate-500 mt-1">Organization average</p>
+            </CardContent>
+          </Card>
+        </div>
 
-      {/* Quick Actions */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              User Management
-            </CardTitle>
-            <CardDescription>
-              Manage users, roles, and permissions
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
+        {/* Quick Actions */}
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">Quick Access</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* User Management */}
             <Link href="/admin/users">
-              <Button className="w-full" variant="outline">
-                View All Users
-              </Button>
+              <Card className="group relative overflow-hidden border-2 border-blue-200/50 bg-gradient-to-br from-blue-50 to-indigo-50 hover:border-blue-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-indigo-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+                <CardContent className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-blue-600 shadow-lg shadow-blue-500/30">
+                      <Users className="h-6 w-6 text-white" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-blue-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">User Management</h3>
+                  <p className="text-sm text-slate-600 mb-4">Manage users, roles, and permissions</p>
+                  <div className="flex gap-2">
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-blue-600">
+                      <UserPlus className="h-3 w-3" />
+                      Create User
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
             </Link>
-            <Link href="/admin/users/create">
-              <Button className="w-full">Create New User</Button>
-            </Link>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Building2 className="h-5 w-5" />
-              Organization
-            </CardTitle>
-            <CardDescription>
-              Manage departments, teams, and structure
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
+            {/* Organization */}
             <Link href="/admin/departments">
-              <Button className="w-full" variant="outline">
-                Departments
-              </Button>
+              <Card className="group relative overflow-hidden border-2 border-purple-200/50 bg-gradient-to-br from-purple-50 to-pink-50 hover:border-purple-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+                <CardContent className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-purple-600 shadow-lg shadow-purple-500/30">
+                      <Building2 className="h-6 w-6 text-white" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-purple-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Organization</h3>
+                  <p className="text-sm text-slate-600 mb-4">Manage departments, teams, and structure</p>
+                  <div className="flex gap-2">
+                    <span className="text-xs font-medium text-purple-600">Departments</span>
+                    <span className="text-xs text-slate-400">•</span>
+                    <span className="text-xs font-medium text-purple-600">Teams</span>
+                  </div>
+                </CardContent>
+              </Card>
             </Link>
-            <Link href="/admin/teams">
-              <Button className="w-full" variant="outline">
-                Teams
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FolderKanban className="h-5 w-5" />
-              Projects
-            </CardTitle>
-            <CardDescription>
-              Overview of all projects and status
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
+            {/* Projects */}
             <Link href="/admin/projects">
-              <Button className="w-full" variant="outline">
-                View All Projects
-              </Button>
+              <Card className="group relative overflow-hidden border-2 border-green-200/50 bg-gradient-to-br from-green-50 to-emerald-50 hover:border-green-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-400/20 to-emerald-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+                <CardContent className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-green-600 shadow-lg shadow-green-500/30">
+                      <FolderKanban className="h-6 w-6 text-white" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-green-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Projects</h3>
+                  <p className="text-sm text-slate-600">Overview of all projects and status</p>
+                </CardContent>
+              </Card>
             </Link>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5" />
-              Performance
-            </CardTitle>
-            <CardDescription>
-              Analytics, KPIs, and appraisals
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
+            {/* Performance */}
             <Link href="/admin/analytics">
-              <Button className="w-full" variant="outline">
-                View Analytics
-              </Button>
+              <Card className="group relative overflow-hidden border-2 border-orange-200/50 bg-gradient-to-br from-orange-50 to-red-50 hover:border-orange-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-400/20 to-red-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+                <CardContent className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-orange-600 shadow-lg shadow-orange-500/30">
+                      <BarChart3 className="h-6 w-6 text-white" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-orange-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Performance</h3>
+                  <p className="text-sm text-slate-600 mb-4">Analytics, KPIs, and appraisals</p>
+                  <div className="flex gap-2">
+                    <span className="text-xs font-medium text-orange-600">Analytics</span>
+                    <span className="text-xs text-slate-400">•</span>
+                    <span className="text-xs font-medium text-orange-600">Appraisals</span>
+                  </div>
+                </CardContent>
+              </Card>
             </Link>
-            <Link href="/admin/appraisals">
-              <Button className="w-full" variant="outline">
-                Appraisals
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Shield className="h-5 w-5" />
-              Security & Audit
-            </CardTitle>
-            <CardDescription>
-              Audit logs and security settings
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
+            {/* Security & Audit */}
             <Link href="/admin/audit">
-              <Button className="w-full" variant="outline">
-                View Audit Logs
-              </Button>
+              <Card className="group relative overflow-hidden border-2 border-red-200/50 bg-gradient-to-br from-red-50 to-rose-50 hover:border-red-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-400/20 to-rose-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+                <CardContent className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-red-600 shadow-lg shadow-red-500/30">
+                      <Shield className="h-6 w-6 text-white" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-red-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Security & Audit</h3>
+                  <p className="text-sm text-slate-600">Audit logs and security settings</p>
+                </CardContent>
+              </Card>
             </Link>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Settings className="h-5 w-5" />
-              Integrations & Settings
-            </CardTitle>
-            <CardDescription>
-              Configure integrations and AI features
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <Link href="/admin/integrations">
-              <Button className="w-full" variant="outline">
-                Integrations
-              </Button>
-            </Link>
+            {/* Integrations & Settings */}
             <Link href="/admin/settings">
-              <Button className="w-full" variant="outline">
-                Settings
-              </Button>
+              <Card className="group relative overflow-hidden border-2 border-slate-200/50 bg-gradient-to-br from-slate-50 to-gray-50 hover:border-slate-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-slate-400/20 to-gray-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+                <CardContent className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-slate-600 shadow-lg shadow-slate-500/30">
+                      <Settings className="h-6 w-6 text-white" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-slate-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Integrations & Settings</h3>
+                  <p className="text-sm text-slate-600 mb-4">Configure integrations and AI features</p>
+                  <div className="flex gap-2">
+                    <span className="text-xs font-medium text-slate-600">Integrations</span>
+                    <span className="text-xs text-slate-400">•</span>
+                    <span className="text-xs font-medium text-slate-600">Settings</span>
+                  </div>
+                </CardContent>
+              </Card>
             </Link>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

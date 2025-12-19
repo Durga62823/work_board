@@ -8,7 +8,22 @@ import {
   getTeamWorkload,
   getSprintVelocity,
 } from "@/lib/lead-helpers";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import {
+  Users,
+  ListChecks,
+  Clock,
+  AlertTriangle,
+  CheckCircle2,
+  TrendingUp,
+  Sparkles,
+  Target,
+  Plus,
+  Calendar as CalendarIcon,
+  BarChart3,
+  ArrowUpRight,
+} from "lucide-react";
 
 export default async function LeadOverviewPage() {
   const session = await auth();
@@ -34,9 +49,16 @@ export default async function LeadOverviewPage() {
 
   if (!user?.team) {
     return (
-      <div className="text-center py-12">
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">No Team Assigned</h2>
-        <p className="text-gray-600">Please contact your administrator to assign you to a team.</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 flex items-center justify-center p-6">
+        <Card className="max-w-md w-full border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-xl">
+          <CardContent className="pt-12 pb-12 text-center">
+            <div className="p-4 rounded-full bg-purple-100 inline-flex mb-6">
+              <Users className="h-12 w-12 text-purple-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">No Team Assigned</h2>
+            <p className="text-slate-600">Please contact your administrator to assign you to a team.</p>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -68,236 +90,369 @@ export default async function LeadOverviewPage() {
   const currentSprint = activeSprints.find((s) => s.status === "ACTIVE");
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div>
-        <h2 className="text-3xl font-bold text-gray-900">{user.team.name}</h2>
-        <p className="text-gray-600">
-          {user.team._count.users} team members • {allTasks.length} total tasks
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 p-6">
+      <div className="max-w-7xl mx-auto space-y-8">
+        {/* Header */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-700 p-8 md:p-12 shadow-2xl shadow-purple-500/20">
+          <div className="absolute inset-0 bg-grid-white/5" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl" />
+          
+          <div className="relative">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-4">
+              <Sparkles className="h-4 w-4 text-yellow-300" />
+              <span className="text-sm font-medium text-white">Tech Lead Dashboard</span>
+            </div>
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
+              {user.team.name}
+            </h1>
+            <p className="text-lg text-purple-100">
+              {user.team._count.users} team members • {allTasks.length} total tasks
+            </p>
+          </div>
+        </div>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="text-sm font-medium text-gray-600">To Do</div>
-          <div className="mt-2 text-3xl font-bold text-gray-900">{tasksByStatus.todo}</div>
-        </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="text-sm font-medium text-gray-600">In Progress</div>
-          <div className="mt-2 text-3xl font-bold text-blue-600">{tasksByStatus.inProgress}</div>
-        </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="text-sm font-medium text-gray-600">In Review</div>
-          <div className="mt-2 text-3xl font-bold text-purple-600">{tasksByStatus.inReview}</div>
-        </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="text-sm font-medium text-gray-600">Done</div>
-          <div className="mt-2 text-3xl font-bold text-green-600">{tasksByStatus.done}</div>
-        </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="text-sm font-medium text-gray-600">Blocked</div>
-          <div className="mt-2 text-3xl font-bold text-red-600">{tasksByStatus.blocked}</div>
-        </div>
-      </div>
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+          <Card className="relative overflow-hidden border-slate-200/60 bg-white/70 backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-slate-500/10 to-slate-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <CardContent className="relative pt-6">
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2 rounded-lg bg-slate-100">
+                  <ListChecks className="h-5 w-5 text-slate-600" />
+                </div>
+              </div>
+              <p className="text-xs font-semibold text-slate-600 mb-1">To Do</p>
+              <p className="text-3xl font-bold text-slate-900">{tasksByStatus.todo}</p>
+            </CardContent>
+          </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Current Sprint */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Current Sprint</h3>
-          {currentSprint ? (
-            <div>
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h4 className="font-medium text-gray-900">{currentSprint.name}</h4>
-                  {currentSprint.goal && (
-                    <p className="text-sm text-gray-600 mt-1">{currentSprint.goal}</p>
-                  )}
+          <Card className="relative overflow-hidden border-slate-200/60 bg-white/70 backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <CardContent className="relative pt-6">
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2 rounded-lg bg-blue-100">
+                  <Clock className="h-5 w-5 text-blue-600" />
+                </div>
+              </div>
+              <p className="text-xs font-semibold text-slate-600 mb-1">In Progress</p>
+              <p className="text-3xl font-bold text-blue-600">{tasksByStatus.inProgress}</p>
+            </CardContent>
+          </Card>
+
+          <Card className="relative overflow-hidden border-slate-200/60 bg-white/70 backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-purple-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <CardContent className="relative pt-6">
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2 rounded-lg bg-purple-100">
+                  <ListChecks className="h-5 w-5 text-purple-600" />
+                </div>
+              </div>
+              <p className="text-xs font-semibold text-slate-600 mb-1">In Review</p>
+              <p className="text-3xl font-bold text-purple-600">{tasksByStatus.inReview}</p>
+            </CardContent>
+          </Card>
+
+          <Card className="relative overflow-hidden border-slate-200/60 bg-white/70 backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-500/10 to-green-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <CardContent className="relative pt-6">
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2 rounded-lg bg-green-100">
+                  <CheckCircle2 className="h-5 w-5 text-green-600" />
+                </div>
+              </div>
+              <p className="text-xs font-semibold text-slate-600 mb-1">Done</p>
+              <p className="text-3xl font-bold text-green-600">{tasksByStatus.done}</p>
+            </CardContent>
+          </Card>
+
+          <Card className="relative overflow-hidden border-slate-200/60 bg-white/70 backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-500/10 to-red-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <CardContent className="relative pt-6">
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2 rounded-lg bg-red-100">
+                  <AlertTriangle className="h-5 w-5 text-red-600" />
+                </div>
+              </div>
+              <p className="text-xs font-semibold text-slate-600 mb-1">Blocked</p>
+              <p className="text-3xl font-bold text-red-600">{tasksByStatus.blocked}</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Current Sprint */}
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600">
+                  <Target className="h-5 w-5 text-white" />
+                </div>
+                <CardTitle className="text-xl font-bold text-slate-900">Current Sprint</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              {currentSprint ? (
+                <div className="space-y-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-lg">{currentSprint.name}</h4>
+                      {currentSprint.goal && (
+                        <p className="text-sm text-slate-600 mt-1">{currentSprint.goal}</p>
+                      )}
+                    </div>
+                    <Link
+                      href="/lead/sprints"
+                      className="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
+                    >
+                      Details
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                  <div className="space-y-3 p-4 rounded-xl bg-slate-50">
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-slate-600 font-medium">Progress</span>
+                        <span className="font-bold text-slate-900">{currentSprint.progress.toFixed(0)}%</span>
+                      </div>
+                      <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                        <div
+                          className="bg-gradient-to-r from-indigo-600 to-purple-600 h-3 rounded-full transition-all duration-500"
+                          style={{ width: `${currentSprint.progress}%` }}
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-3 rounded-lg bg-white">
+                        <p className="text-xs text-slate-600 font-medium mb-1">Tasks</p>
+                        <p className="text-2xl font-bold text-slate-900">
+                          {currentSprint.completedTasks}<span className="text-base text-slate-400">/{currentSprint.totalTasks}</span>
+                        </p>
+                      </div>
+                      <div className="p-3 rounded-lg bg-white">
+                        <p className="text-xs text-slate-600 font-medium mb-1">Points</p>
+                        <p className="text-2xl font-bold text-slate-900">
+                          {currentSprint.completedPoints}<span className="text-base text-slate-400">/{currentSprint.totalPoints}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-slate-600">
+                      <CalendarIcon className="h-4 w-4" />
+                      <span>Ends: {new Date(currentSprint.endDate).toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="p-4 rounded-full bg-slate-100 inline-flex mb-4">
+                    <Target className="h-8 w-8 text-slate-400" />
+                  </div>
+                  <p className="text-slate-600 mb-6">No active sprint</p>
+                  <Link
+                    href="/lead/sprints"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                  >
+                    <Plus className="h-5 w-5" />
+                    Plan Sprint
+                  </Link>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Sprint Velocity */}
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600">
+                  <TrendingUp className="h-5 w-5 text-white" />
+                </div>
+                <CardTitle className="text-xl font-bold text-slate-900">Sprint Velocity</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              {velocityData.velocities.length > 0 ? (
+                <div className="space-y-4">
+                  <div className="p-6 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200/50">
+                    <p className="text-sm text-slate-600 font-medium mb-2">Average Velocity</p>
+                    <p className="text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                      {velocityData.avgVelocity.toFixed(1)}
+                    </p>
+                    <p className="text-sm text-slate-600 mt-1">points per sprint</p>
+                  </div>
+                  <div className="space-y-3">
+                    {velocityData.velocities.slice(0, 3).map((v, idx) => (
+                      <div key={v.sprintId} className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
+                        <span className="text-sm font-medium text-slate-700">{v.sprintName}</span>
+                        <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-bold">{v.points} pts</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="p-4 rounded-full bg-slate-100 inline-flex mb-4">
+                    <TrendingUp className="h-8 w-8 text-slate-400" />
+                  </div>
+                  <p className="text-slate-600">No completed sprints yet</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Blocked Tasks */}
+        {blockedTasks.length > 0 && (
+          <Card className="border-red-200/60 bg-red-50/50 backdrop-blur-sm shadow-lg">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-red-500 to-orange-600">
+                    <AlertTriangle className="h-5 w-5 text-white" />
+                  </div>
+                  <CardTitle className="text-xl font-bold text-slate-900">Blocked Tasks</CardTitle>
                 </div>
                 <Link
-                  href="/lead/sprints"
-                  className="text-sm text-blue-600 hover:text-blue-800"
+                  href="/lead/team-board?filter=blocked"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-red-600 hover:text-red-700 transition-colors"
                 >
-                  View Details →
+                  View All
+                  <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
+            </CardHeader>
+            <CardContent>
               <div className="space-y-3">
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span className="text-gray-600">Progress</span>
-                    <span className="font-medium">{currentSprint.progress.toFixed(0)}%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className="bg-blue-600 h-2 rounded-full"
-                      style={{ width: `${currentSprint.progress}%` }}
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <span className="text-gray-600">Tasks:</span>{" "}
-                    <span className="font-medium">
-                      {currentSprint.completedTasks} / {currentSprint.totalTasks}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-gray-600">Points:</span>{" "}
-                    <span className="font-medium">
-                      {currentSprint.completedPoints} / {currentSprint.totalPoints}
-                    </span>
-                  </div>
-                </div>
-                <div className="text-sm text-gray-600">
-                  Ends: {new Date(currentSprint.endDate).toLocaleDateString()}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="text-center py-8">
-              <p className="text-gray-600 mb-4">No active sprint</p>
-              <Link
-                href="/lead/sprints"
-                className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-              >
-                Plan Sprint
-              </Link>
-            </div>
-          )}
-        </div>
-
-        {/* Sprint Velocity */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Sprint Velocity</h3>
-          {velocityData.velocities.length > 0 ? (
-            <div>
-              <div className="mb-4">
-                <div className="text-3xl font-bold text-gray-900">
-                  {velocityData.avgVelocity.toFixed(1)}
-                </div>
-                <div className="text-sm text-gray-600">Average points per sprint</div>
-              </div>
-              <div className="space-y-2">
-                {velocityData.velocities.slice(0, 3).map((v) => (
-                  <div key={v.sprintId} className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">{v.sprintName}</span>
-                    <span className="text-sm font-medium">{v.points} points</span>
+                {blockedTasks.slice(0, 5).map((task) => (
+                  <div
+                    key={task.id}
+                    className="p-4 bg-white rounded-xl border-2 border-red-200 hover:shadow-md transition-all"
+                  >
+                    <h4 className="font-bold text-slate-900 mb-1">{task.title}</h4>
+                    {task.blockedReason && (
+                      <p className="text-sm text-red-600 mb-2">
+                        <AlertTriangle className="h-3 w-3 inline mr-1" />
+                        {task.blockedReason}
+                      </p>
+                    )}
+                    {task.project && (
+                      <p className="text-xs text-slate-500">{task.project.name}</p>
+                    )}
                   </div>
                 ))}
               </div>
-            </div>
-          ) : (
-            <p className="text-gray-600 text-center py-8">
-              No completed sprints yet
-            </p>
-          )}
-        </div>
-      </div>
+            </CardContent>
+          </Card>
+        )}
 
-      {/* Blocked Tasks */}
-      {blockedTasks.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-              <span className="mr-2">⚠️</span> Blocked Tasks
-            </h3>
-            <Link
-              href="/lead/team-board?filter=blocked"
-              className="text-sm text-blue-600 hover:text-blue-800"
-            >
-              View All →
+        {/* Team Workload */}
+        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600">
+                  <Users className="h-5 w-5 text-white" />
+                </div>
+                <CardTitle className="text-xl font-bold text-slate-900">Team Workload</CardTitle>
+              </div>
+              <Link
+                href="/lead/team-board"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+              >
+                Manage
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {workload.slice(0, 5).map((member) => (
+                <div key={member.userId} className="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-bold text-slate-900">{member.userName}</span>
+                    <div className="flex items-center gap-4 text-sm">
+                      <span className="text-slate-600">{member.taskCount} tasks</span>
+                      <span className="px-2 py-1 rounded-full bg-blue-100 text-blue-700 font-semibold">{member.storyPoints} pts</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 bg-slate-200 rounded-full h-3 overflow-hidden">
+                      <div
+                        className="bg-gradient-to-r from-blue-600 to-indigo-600 h-3 rounded-full transition-all"
+                        style={{
+                          width: `${Math.min(
+                            100,
+                            (member.storyPoints / Math.max(...workload.map((w) => w.storyPoints))) * 100
+                          )}%`,
+                        }}
+                      />
+                    </div>
+                    {member.blocked > 0 && (
+                      <span className="flex items-center gap-1 text-xs text-red-600 font-bold whitespace-nowrap">
+                        <AlertTriangle className="h-3 w-3" />
+                        {member.blocked} blocked
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Quick Actions */}
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">Quick Actions</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/lead/team-board?action=create-task">
+              <Card className="group relative overflow-hidden border-2 border-blue-200/50 bg-gradient-to-br from-blue-50 to-indigo-50 hover:border-blue-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-indigo-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+                <CardContent className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-blue-600 shadow-lg shadow-blue-500/30">
+                      <Plus className="h-6 w-6 text-white" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-blue-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Create Task</h3>
+                  <p className="text-sm text-slate-600">Add a new task to the board</p>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="/lead/sprints?action=create-sprint">
+              <Card className="group relative overflow-hidden border-2 border-purple-200/50 bg-gradient-to-br from-purple-50 to-pink-50 hover:border-purple-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+                <CardContent className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-purple-600 shadow-lg shadow-purple-500/30">
+                      <CalendarIcon className="h-6 w-6 text-white" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-purple-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Plan Sprint</h3>
+                  <p className="text-sm text-slate-600">Create and plan a new sprint</p>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="/lead/metrics">
+              <Card className="group relative overflow-hidden border-2 border-green-200/50 bg-gradient-to-br from-green-50 to-emerald-50 hover:border-green-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-400/20 to-emerald-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+                <CardContent className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-green-600 shadow-lg shadow-green-500/30">
+                      <BarChart3 className="h-6 w-6 text-white" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-green-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">View Metrics</h3>
+                  <p className="text-sm text-slate-600">Track team technical metrics</p>
+                </CardContent>
+              </Card>
             </Link>
           </div>
-          <div className="space-y-3">
-            {blockedTasks.slice(0, 5).map((task) => (
-              <div
-                key={task.id}
-                className="flex items-start justify-between p-3 bg-red-50 rounded border border-red-200"
-              >
-                <div className="flex-1">
-                  <h4 className="font-medium text-gray-900">{task.title}</h4>
-                  {task.blockedReason && (
-                    <p className="text-sm text-gray-600 mt-1">{task.blockedReason}</p>
-                  )}
-                  {task.project && (
-                    <p className="text-xs text-gray-500 mt-1">{task.project.name}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
-      )}
-
-      {/* Team Workload */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Team Workload</h3>
-          <Link
-            href="/lead/team-board"
-            className="text-sm text-blue-600 hover:text-blue-800"
-          >
-            Manage Tasks →
-          </Link>
-        </div>
-        <div className="space-y-4">
-          {workload.slice(0, 5).map((member) => (
-            <div key={member.userId}>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-900">{member.userName}</span>
-                <span className="text-sm text-gray-600">
-                  {member.taskCount} tasks • {member.storyPoints} pts
-                </span>
-              </div>
-              <div className="flex gap-2">
-                <div className="flex-1 bg-gray-200 rounded-full h-2">
-                  <div
-                    className="bg-blue-600 h-2 rounded-full"
-                    style={{
-                      width: `${Math.min(
-                        100,
-                        (member.storyPoints / Math.max(...workload.map((w) => w.storyPoints))) * 100
-                      )}%`,
-                    }}
-                  />
-                </div>
-                {member.blocked > 0 && (
-                  <span className="text-xs text-red-600 font-medium">
-                    {member.blocked} blocked
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Link
-          href="/lead/team-board?action=create-task"
-          className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
-        >
-          <div className="text-2xl mb-2">➕</div>
-          <h4 className="font-semibold text-gray-900">Create Task</h4>
-          <p className="text-sm text-gray-600 mt-1">Add a new task to the board</p>
-        </Link>
-        <Link
-          href="/lead/sprints?action=create-sprint"
-          className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
-        >
-          <div className="text-2xl mb-2">📅</div>
-          <h4 className="font-semibold text-gray-900">Plan Sprint</h4>
-          <p className="text-sm text-gray-600 mt-1">Create and plan a new sprint</p>
-        </Link>
-        <Link
-          href="/lead/metrics"
-          className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
-        >
-          <div className="text-2xl mb-2">📊</div>
-          <h4 className="font-semibold text-gray-900">View Metrics</h4>
-          <p className="text-sm text-gray-600 mt-1">Track team technical metrics</p>
-        </Link>
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ import {
   Target,
   Clock,
   CheckCircle2,
+  Sparkles,
 } from "lucide-react";
 import {
   getMyPerformanceMetrics,
@@ -120,46 +121,58 @@ export default function PerformancePage() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">My Performance</h1>
-        <p className="text-muted-foreground mt-1">
-          Track your performance metrics and productivity
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div className="container mx-auto p-6 space-y-6">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg">
+            <Sparkles className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              My Performance
+            </h1>
+            <p className="text-gray-600 mt-1">
+              Track your performance metrics and productivity
+            </p>
+          </div>
+        </div>
 
-      {/* Key Performance Indicators */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {taskStats && (
-          <>
-            <Card>
-              <CardHeader className="pb-2">
-                <div className="flex items-center justify-between">
-                  <CardDescription>Task Completion</CardDescription>
-                  <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">
-                  {taskStats.completionRate}%
-                </div>
+        {/* Key Performance Indicators */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {taskStats && (
+            <>
+              <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center justify-between">
+                    <CardDescription className="font-medium">Task Completion</CardDescription>
+                    <div className="p-2 rounded-lg bg-gradient-to-br from-green-500 to-green-600 shadow-md">
+                      <CheckCircle2 className="h-4 w-4 text-white" />
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                    {taskStats.completionRate}%
+                  </div>
                 <p className="text-xs text-muted-foreground mt-1">
                   {taskStats.completedTasks} of {taskStats.totalTasks} tasks
                 </p>
               </CardContent>
             </Card>
 
-            <Card>
-              <CardHeader className="pb-2">
-                <div className="flex items-center justify-between">
-                  <CardDescription>On-Time Delivery</CardDescription>
-                  <Clock className="h-4 w-4 text-muted-foreground" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">
-                  {taskStats.onTimeRate}%
-                </div>
+              <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center justify-between">
+                    <CardDescription className="font-medium">On-Time Delivery</CardDescription>
+                    <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 shadow-md">
+                      <Clock className="h-4 w-4 text-white" />
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    {taskStats.onTimeRate}%
+                  </div>
                 <p className="text-xs text-muted-foreground mt-1">
                   {taskStats.onTimeTasks} tasks delivered on time
                 </p>
@@ -168,34 +181,32 @@ export default function PerformancePage() {
           </>
         )}
 
-        {timeAccuracy && (
-          <Card>
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <CardDescription>Estimation Accuracy</CardDescription>
-                <Target className="h-4 w-4 text-muted-foreground" />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div
-                className={`text-3xl font-bold ${getScoreColor(
-                  timeAccuracy.accuracy
-                )}`}
-              >
-                {Math.round(timeAccuracy.accuracy)}%
-              </div>
+          {timeAccuracy && (
+            <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <CardHeader className="pb-2">
+                <div className="flex items-center justify-between">
+                  <CardDescription className="font-medium">Estimation Accuracy</CardDescription>
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 shadow-md">
+                    <Target className="h-4 w-4 text-white" />
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  {Math.round(timeAccuracy.accuracy)}%
+                </div>
               <p className="text-xs text-muted-foreground mt-1">
                 {timeAccuracy.variance > 0 ? "+" : ""}
                 {Math.round(timeAccuracy.variance)}% variance
               </p>
-            </CardContent>
-          </Card>
-        )}
-      </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
 
-      {/* Time Estimation Details */}
-      {timeAccuracy && (
-        <Card>
+        {/* Time Estimation Details */}
+        {timeAccuracy && (
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
           <CardHeader>
             <CardTitle>Time Estimation Analysis</CardTitle>
             <CardDescription>
@@ -240,9 +251,9 @@ export default function PerformancePage() {
         </Card>
       )}
 
-      {/* Recent Performance Metrics */}
-      {metrics.length > 0 && (
-        <Card>
+        {/* Recent Performance Metrics */}
+        {metrics.length > 0 && (
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
           <CardHeader>
             <CardTitle>Recent Metrics</CardTitle>
             <CardDescription>
@@ -250,12 +261,12 @@ export default function PerformancePage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {metrics.map((metric) => (
-                <div
-                  key={metric.id}
-                  className="flex items-center justify-between p-3 border rounded-lg"
-                >
+              <div className="space-y-3">
+                {metrics.map((metric) => (
+                  <div
+                    key={metric.id}
+                    className="flex items-center justify-between p-3 border border-slate-200/60 rounded-xl bg-white/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                  >
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <p className="font-medium">
@@ -282,17 +293,18 @@ export default function PerformancePage() {
         </Card>
       )}
 
-      {metrics.length === 0 && taskStats?.totalTasks === 0 && (
-        <Card>
+        {metrics.length === 0 && taskStats?.totalTasks === 0 && (
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
           <CardContent className="flex flex-col items-center justify-center py-12">
             <TrendingUp className="h-12 w-12 text-gray-400 mb-4" />
             <p className="text-gray-500 text-center">
               No performance data available yet. Complete tasks to see your
               metrics!
             </p>
-          </CardContent>
-        </Card>
-      )}
+            </CardContent>
+          </Card>
+        )}
+      </div>
     </div>
   );
 }

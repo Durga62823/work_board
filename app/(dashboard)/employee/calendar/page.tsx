@@ -16,6 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
+  Sparkles,
 } from "lucide-react";
 import {
   getMyCalendarEvents,
@@ -193,20 +194,30 @@ export default function CalendarPage() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">My Calendar</h1>
-        <p className="text-muted-foreground mt-1">
-          View your schedule and upcoming events
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div className="container mx-auto p-6 space-y-6">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg">
+            <Sparkles className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              My Calendar
+            </h1>
+            <p className="text-gray-600 mt-1">
+              View your schedule and upcoming events
+            </p>
+          </div>
+        </div>
 
-      {/* Upcoming Events */}
-      {upcomingEvents.length > 0 && (
-        <Card className="border-blue-200 bg-blue-50">
-          <CardHeader>
-            <CardTitle className="text-blue-800">Upcoming Events</CardTitle>
-          </CardHeader>
+        {/* Upcoming Events */}
+        {upcomingEvents.length > 0 && (
+          <Card className="border-blue-300/60 bg-gradient-to-br from-blue-50/70 to-indigo-50/70 backdrop-blur-sm shadow-lg">
+            <CardHeader>
+              <CardTitle className="bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
+                Upcoming Events
+              </CardTitle>
+            </CardHeader>
           <CardContent>
             <div className="space-y-2">
               {upcomingEvents.slice(0, 5).map((event) => (
@@ -230,8 +241,8 @@ export default function CalendarPage() {
         </Card>
       )}
 
-      {/* Calendar Navigation */}
-      <Card>
+        {/* Calendar Navigation */}
+        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle>
@@ -240,21 +251,22 @@ export default function CalendarPage() {
                 year: "numeric",
               })}
             </CardTitle>
-            <div className="flex gap-2">
-              <Button size="sm" variant="outline" onClick={previousMonth}>
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => setCurrentDate(new Date())}
-              >
-                Today
-              </Button>
-              <Button size="sm" variant="outline" onClick={nextMonth}>
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
+              <div className="flex gap-2">
+                <Button size="sm" variant="outline" onClick={previousMonth} className="hover:bg-blue-50 transition-colors">
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => setCurrentDate(new Date())}
+                  className="hover:bg-blue-50 transition-colors"
+                >
+                  Today
+                </Button>
+                <Button size="sm" variant="outline" onClick={nextMonth} className="hover:bg-blue-50 transition-colors">
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </div>
           </div>
         </CardHeader>
         <CardContent>
@@ -275,17 +287,17 @@ export default function CalendarPage() {
                 selectedDate.getMonth() === day.getMonth();
 
               return (
-                <div
-                  key={index}
-                  className={`min-h-[100px] p-2 border rounded-lg cursor-pointer transition-colors ${
-                    !day
-                      ? "bg-gray-50"
-                      : isToday(day)
-                      ? "bg-blue-50 border-blue-300"
-                      : "bg-white hover:bg-gray-50"
-                  } ${isSelected ? "ring-2 ring-blue-500" : ""}`}
-                  onClick={() => day && setSelectedDate(day)}
-                >
+                  <div
+                    key={index}
+                    className={`min-h-[100px] p-2 border rounded-xl cursor-pointer transition-all duration-300 ${
+                      !day
+                        ? "bg-gray-50/50"
+                        : isToday(day)
+                        ? "bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-300 shadow-md"
+                        : "bg-white/50 hover:bg-white/80 hover:shadow-lg hover:-translate-y-0.5"
+                    } ${isSelected ? "ring-2 ring-blue-500 shadow-xl" : ""}`}
+                    onClick={() => day && setSelectedDate(day)}
+                  >
                   {day && (
                     <>
                       <div
@@ -322,9 +334,9 @@ export default function CalendarPage() {
         </CardContent>
       </Card>
 
-      {/* Selected Date Events */}
-      {selectedDate && (
-        <Card>
+        {/* Selected Date Events */}
+        {selectedDate && (
+          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
           <CardHeader>
             <CardTitle>
               Events on{" "}
@@ -341,9 +353,9 @@ export default function CalendarPage() {
                 No events on this day
               </p>
             ) : (
-              <div className="space-y-3">
-                {selectedEvents.map((event) => (
-                  <div key={event.id} className="border rounded-lg p-4">
+                <div className="space-y-3">
+                  {selectedEvents.map((event) => (
+                    <div key={event.id} className="border border-slate-200/60 rounded-xl p-4 bg-white/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
@@ -380,9 +392,10 @@ export default function CalendarPage() {
                 ))}
               </div>
             )}
-          </CardContent>
-        </Card>
-      )}
-    </div>
-  );
-}
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      </div>
+    );
+  }
