@@ -128,7 +128,7 @@ export function StandupSummary() {
                     onClick={() => removeUpdate(index)}
                     variant="ghost"
                     size="sm"
-                    className="text-red-600"
+                    className="text-destructive"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -196,8 +196,8 @@ export function StandupSummary() {
 
       {/* Error Display */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-800">{error}</p>
+        <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-lg">
+          <p className="text-destructive">{error}</p>
         </div>
       )}
 
@@ -207,21 +207,21 @@ export function StandupSummary() {
           <h3 className="text-xl font-bold">Standup Summary</h3>
 
           {/* Summary */}
-          <div className="p-5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+          <div className="p-5 bg-primary/10 border border-primary/30 rounded-lg">
             <h4 className="font-semibold mb-2">Meeting Summary</h4>
-            <p className="text-gray-700">{result.summary}</p>
+            <p className="text-foreground">{result.summary}</p>
           </div>
 
           {/* Team Morale */}
-          <div className="bg-gradient-to-r from-green-50 to-blue-100 p-6 rounded-lg">
+          <div className="bg-primary/10 border border-primary/30 p-6 rounded-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 mb-1">Team Morale Score</p>
-                <p className="text-4xl font-bold text-green-900">{result.teamMorale.score}/100</p>
+                <p className="text-sm text-muted-foreground mb-1">Team Morale Score</p>
+                <p className="text-4xl font-bold text-primary">{result.teamMorale.score}/100</p>
               </div>
-              <TrendingUp className="h-12 w-12 text-green-600" />
+              <TrendingUp className="h-12 w-12 text-primary" />
             </div>
-            <p className="text-sm text-gray-700 mt-3">{result.teamMorale.assessment}</p>
+            <p className="text-sm text-foreground mt-3">{result.teamMorale.assessment}</p>
           </div>
 
           {/* Key Achievements */}
@@ -229,8 +229,8 @@ export function StandupSummary() {
             <h4 className="font-semibold mb-3">Key Achievements</h4>
             <div className="grid gap-2">
               {result.keyAchievements.map((achievement, index) => (
-                <div key={index} className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                  <p className="text-sm text-gray-700">✓ {achievement}</p>
+                <div key={index} className="p-3 bg-primary/10 border border-primary/30 rounded-lg">
+                  <p className="text-sm text-foreground">✓ {achievement}</p>
                 </div>
               ))}
             </div>
@@ -240,7 +240,7 @@ export function StandupSummary() {
           {result.blockers.length > 0 && (
             <div>
               <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <AlertCircle className="h-5 w-5 text-orange-600" />
+                <AlertCircle className="h-5 w-5 text-destructive" />
                 Blockers & Suggestions
               </h4>
               <div className="space-y-3">
@@ -249,10 +249,10 @@ export function StandupSummary() {
                     key={index}
                     className={`p-4 rounded-lg border ${
                       item.severity === 'high'
-                        ? 'bg-red-50 border-red-200'
+                        ? 'bg-destructive/10 border-destructive/30'
                         : item.severity === 'medium'
-                        ? 'bg-orange-50 border-orange-200'
-                        : 'bg-yellow-50 border-yellow-200'
+                        ? 'bg-destructive/5 border-destructive/20'
+                        : 'bg-muted border-border'
                     }`}
                   >
                     <div className="flex items-start justify-between mb-2">
@@ -275,9 +275,9 @@ export function StandupSummary() {
             <h4 className="font-semibold mb-3">Action Items</h4>
             <ul className="space-y-2">
               {result.actionItems.map((item, index) => (
-                <li key={index} className="flex items-start gap-2 p-3 bg-blue-50 rounded-lg">
-                  <span className="text-blue-600 font-bold mt-0.5">{index + 1}.</span>
-                  <span className="text-sm text-gray-700">{item}</span>
+                <li key={index} className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg">
+                  <span className="text-primary font-bold mt-0.5">{index + 1}.</span>
+                  <span className="text-sm text-foreground">{item}</span>
                 </li>
               ))}
             </ul>

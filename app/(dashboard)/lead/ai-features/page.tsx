@@ -67,14 +67,14 @@ export default function LeadAIFeaturesPage() {
   return (
     <div className="min-h-screen bg-background p-6 max-w-7xl mx-auto">
       <div className="mb-8">
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-primary-foreground rounded-full shadow-lg w-fit mb-3">
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
           <Sparkles className="h-4 w-4" />
           <span className="text-sm font-semibold">AI Powered</span>
         </div>
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-bold text-primary">
           Lead AI Features
         </h1>
-        <p className="text-primary mt-2">
+        <p className="text-muted-foreground mt-2">
           AI-powered tools to enhance team leadership and sprint management
         </p>
       </div>
@@ -86,19 +86,19 @@ export default function LeadAIFeaturesPage() {
             return (
               <Card
                 key={feature.id}
-                className="p-6 cursor-pointer border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border-2 hover:border-purple-300"
+                className="p-6 cursor-pointer border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border-2 hover:border-primary/50"
                 onClick={() => setActiveFeature(feature.id)}
               >
                 <div className="flex flex-col">
-                  <div className={`p-4 rounded-full bg-gradient-to-br ${feature.bgGradient} w-fit mb-4 shadow-md`}>
-                    <Icon className={`h-8 w-8 bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent`} style={{ WebkitTextFillColor: 'transparent' }} />
+                  <div className="p-4 rounded-full bg-primary/10 w-fit mb-4 shadow-md">
+                    <Icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                  <h3 className="font-semibold text-lg mb-2 text-primary">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-primary mb-4 flex-grow">{feature.description}</p>
+                  <p className="text-sm text-muted-foreground mb-4 flex-grow">{feature.description}</p>
                   <Button 
-                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:shadow-lg hover:scale-105 transition-all duration-300" 
+                    className="w-full hover:shadow-lg hover:scale-105 transition-all duration-300" 
                     variant="default"
                   >
                     Open Feature
@@ -113,7 +113,7 @@ export default function LeadAIFeaturesPage() {
           <Button
             onClick={() => setActiveFeature(null)}
             variant="outline"
-            className="mb-4 border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 transition-all duration-300"
+            className="mb-4 hover:bg-muted transition-all duration-300"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Features

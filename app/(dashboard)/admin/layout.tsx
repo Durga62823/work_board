@@ -37,71 +37,40 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50">
-      {/* Sidebar */}
-      <aside className="hidden w-64 overflow-y-auto border-r bg-white lg:flex lg:flex-col">
-        <div className="flex h-full flex-col">
-          <div className="px-4 py-6 border-b">
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="text-lg font-bold text-gray-900">Admin Panel</h2>
+    <div className="min-h-screen bg-muted flex flex-col">
+      {/* Top Navigation Bar */}
+      <header className="border-b border-border bg-card shadow-sm sticky top-0 z-40">
+        <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-8 flex-1">
+              <h1 className="text-lg font-bold text-foreground whitespace-nowrap">
+                Admin
+              </h1>
+              <nav className="hidden md:flex gap-1">
+                {adminNavigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
             </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Organization management
-            </p>
-            <div className="flex items-center gap-2 mt-3">
+            <div className="flex items-center gap-3">
               <ModeToggle />
               <ColorPicker />
+              <UserMenu />
             </div>
           </div>
-          <nav className="flex-1 space-y-1 px-3 py-4 overflow-y-auto">
-            {adminNavigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors"
-              >
-                <item.icon className="h-5 w-5" />
-                {item.name}
-              </Link>
-            ))}
-          </nav>
         </div>
-      </aside>
+      </header>
 
       {/* Main content area */}
-      <main className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Header */}
-        <header className="border-b bg-white shadow-sm">
-          <div className="flex items-center justify-between px-4 md:px-8 py-4">
-            <div className="flex items-center gap-4">
-              <div className="lg:hidden">
-                <h1 className="text-xl font-bold text-gray-900">Admin</h1>
-              </div>
-              <div className="hidden lg:block">
-                <h2 className="text-sm font-medium text-gray-600">Dashboard</h2>
-              </div>
-            </div>
-
-            {/* User Menu - Visible on all screens */}
-            <div className="flex items-center gap-2">
-              <UserMenu
-                name={session.user?.name}
-                email={session.user?.email}
-                image={session.user?.image}
-              />
-              <LogoutButton
-                variant="ghost"
-                size="sm"
-                showIcon={true}
-                showLabel={false}
-                className="hidden lg:flex"
-              />
-            </div>
-          </div>
-        </header>
-
-        {/* Page Content */}
-        <div className="flex-1 overflow-y-auto">{children}</div>
+      <main className="flex-1">
+        {children}
       </main>
     </div>
   );

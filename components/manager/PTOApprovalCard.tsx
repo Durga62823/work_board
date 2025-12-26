@@ -92,14 +92,14 @@ export function PTOApprovalCard({ request }: { request: PTORequest }) {
           <button
             onClick={handleApprove}
             disabled={isProcessing}
-            className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 disabled:opacity-50"
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
           >
             Approve
           </button>
           <button
-            onClick={() => setShowRejectDialog(true)}
+            onClick={() => setShowDialog(true)}
             disabled={isProcessing}
-            className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+            className="rounded-lg border border-destructive/30 bg-card px-4 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50"
           >
             Reject
           </button>
@@ -134,7 +134,7 @@ export function PTOApprovalCard({ request }: { request: PTORequest }) {
               <button
                 onClick={handleReject}
                 disabled={isProcessing}
-                className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                className="rounded-lg bg-destructive px-4 py-2 text-sm font-medium text-destructive-foreground hover:bg-destructive/90"
               >
                 Reject Request
               </button>

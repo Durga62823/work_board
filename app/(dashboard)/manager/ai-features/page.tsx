@@ -26,9 +26,6 @@ export default function ManagerAIFeaturesPage() {
       description:
         "Analyze team productivity, identify trends, and detect burnout risks",
       icon: Users,
-      color: "blue",
-      gradient: "from-blue-500 to-cyan-500",
-      bgGradient: "from-blue-50 to-cyan-50",
     },
     {
       id: "resource-optimization" as const,
@@ -36,27 +33,18 @@ export default function ManagerAIFeaturesPage() {
       description:
         "Optimize team allocation, identify conflicts, and predict hiring needs",
       icon: TrendingUp,
-      color: "green",
-      gradient: "from-green-500 to-emerald-500",
-      bgGradient: "from-green-50 to-emerald-50",
     },
     {
       id: "approval-assistant" as const,
       title: "Approval Assistant",
       description: "Get AI recommendations for timesheet and PTO approvals",
       icon: CheckCircle,
-      color: "purple",
-      gradient: "from-purple-500 to-pink-500",
-      bgGradient: "from-purple-50 to-pink-50",
     },
     {
       id: "report-generation" as const,
       title: "Smart Report Generator",
       description: "Generate comprehensive project reports with insights",
       icon: Sparkles,
-      color: "orange",
-      gradient: "from-orange-500 to-amber-500",
-      bgGradient: "from-orange-50 to-amber-50",
     },
   ];
 
@@ -84,7 +72,7 @@ export default function ManagerAIFeaturesPage() {
             <Sparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-primary">
               Manager - AI Features
             </h1>
             <p className="mt-1 text-muted-foreground">
@@ -100,14 +88,14 @@ export default function ManagerAIFeaturesPage() {
               return (
                 <div
                   key={feature.id}
-                  className="group rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 cursor-pointer transition-all hover:shadow-2xl hover:scale-105 hover:border-green-300"
+                  className="group rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 cursor-pointer transition-all hover:shadow-2xl hover:scale-105 hover:border-primary/50"
                   onClick={() => setActiveFeature(feature.id)}
                 >
                   <div className="flex flex-col">
                     <div
-                      className={`p-4 rounded-xl bg-gradient-to-br ${feature.bgGradient} w-fit mb-4 group-hover:shadow-md transition-all`}
+                      className="p-4 rounded-xl bg-primary/10 w-fit mb-4 group-hover:shadow-md transition-all"
                     >
-                      <Icon className={`h-8 w-8 bg-gradient-to-br ${feature.gradient} bg-clip-text text-transparent`} style={{WebkitTextFillColor: 'transparent', backgroundClip: 'text'}} />
+                      <Icon className="h-8 w-8 text-primary" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2 text-foreground">
                       {feature.title}
@@ -116,7 +104,7 @@ export default function ManagerAIFeaturesPage() {
                       {feature.description}
                     </p>
                     <Button 
-                      className={`w-full bg-gradient-to-r ${feature.gradient} text-primary-foreground hover:opacity-90 shadow-md hover:shadow-lg transition-all`}
+                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all"
                     >
                       Open Feature
                     </Button>
@@ -130,7 +118,7 @@ export default function ManagerAIFeaturesPage() {
             <Button
               onClick={() => setActiveFeature(null)}
               variant="outline"
-              className="mb-4 border-border hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:border-green-300"
+              className="mb-4 border-border hover:bg-muted hover:border-primary"
             >
               ← Back to Features
             </Button>

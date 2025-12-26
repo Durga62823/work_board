@@ -21,7 +21,7 @@ export default async function LeadMetricsPage() {
       <div className="min-h-screen bg-background">
         <div className="text-center py-12">
           <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">No Team Assigned</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-2">No Team Assigned</h2>
             <p className="text-primary">Please contact your administrator to assign you to a team.</p>
           </div>
         </div>
@@ -73,7 +73,7 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             {getMetricValue(weeklyMetrics, "pr_merge_time")}
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Target: &lt;24h
           </p>
         </div>
@@ -86,7 +86,7 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             {getMetricValue(weeklyMetrics, "code_review_time")}
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Target: &lt;4h
           </p>
         </div>
@@ -99,7 +99,7 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             {getMetricValue(weeklyMetrics, "build_time")}
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Target: &lt;5m
           </p>
         </div>
@@ -112,7 +112,7 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             {getMetricNumber(weeklyMetrics, "deployment_frequency")}
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             deploys/week
           </p>
         </div>
@@ -125,7 +125,7 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             {taskMetrics.averageCycleTime ? `${taskMetrics.averageCycleTime.toFixed(1)}d` : "-"}
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Time from start to completion
           </p>
         </div>
@@ -135,7 +135,7 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             {taskMetrics.averageLeadTime ? `${taskMetrics.averageLeadTime.toFixed(1)}d` : "-"}
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Time from creation to completion
           </p>
         </div>
@@ -145,7 +145,7 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             {taskMetrics.completedTasks || 0}
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             This sprint
           </p>
         </div>
@@ -166,7 +166,7 @@ export default async function LeadMetricsPage() {
               <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 {getMetricNumber(weeklyMetrics, "bug_count")}
               </p>
-              <div className="mt-2 text-xs text-gray-500">
+              <div className="mt-2 text-xs text-muted-foreground">
                 Target: &lt;10 per sprint
               </div>
             </div>
@@ -179,7 +179,7 @@ export default async function LeadMetricsPage() {
               <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 {getMetricNumber(weeklyMetrics, "test_coverage")}%
               </p>
-              <div className="mt-2 text-xs text-gray-500">
+              <div className="mt-2 text-xs text-muted-foreground">
                 Target: &gt;80%
               </div>
             </div>
@@ -192,7 +192,7 @@ export default async function LeadMetricsPage() {
               <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 {getMetricValue(weeklyMetrics, "api_response_time")}
               </p>
-              <div className="mt-2 text-xs text-gray-500">
+              <div className="mt-2 text-xs text-muted-foreground">
                 Target: &lt;200ms
               </div>
             </div>
@@ -207,7 +207,7 @@ export default async function LeadMetricsPage() {
             30-Day Trend
           </h2>
           <div className="h-64 flex items-center justify-center border-2 border-dashed border-purple-300 rounded-lg bg-gradient-to-br from-purple-50 to-indigo-50">
-            <div className="text-center text-gray-500">
+            <div className="text-center text-muted-foreground">
               <svg
                 className="w-12 h-12 mx-auto mb-2 text-purple-400"
                 fill="none"

@@ -158,8 +158,8 @@ export function ApprovalAssistant() {
 
       {/* Error Display */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-800">{error}</p>
+        <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+          <p className="text-destructive">{error}</p>
         </div>
       )}
 
@@ -171,19 +171,19 @@ export function ApprovalAssistant() {
           {/* Decision Badge */}
           <div className={`p-6 rounded-lg border-2 ${
             result.decision === 'approve' 
-              ? 'bg-green-50 border-green-300'
+              ? 'bg-primary/5 border-primary/20'
               : result.decision === 'reject'
-              ? 'bg-red-50 border-red-300'
-              : 'bg-orange-50 border-orange-300'
+              ? 'bg-destructive/5 border-destructive/20'
+              : 'bg-primary/5 border-primary/20'
           }`}>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
-                {result.decision === 'approve' && <CheckCircle className="h-8 w-8 text-green-600" />}
-                {result.decision === 'reject' && <XCircle className="h-8 w-8 text-red-600" />}
-                {result.decision === 'review' && <AlertCircle className="h-8 w-8 text-orange-600" />}
+                {result.decision === 'approve' && <CheckCircle className="h-8 w-8 text-primary" />}
+                {result.decision === 'reject' && <XCircle className="h-8 w-8 text-destructive" />}
+                {result.decision === 'review' && <AlertCircle className="h-8 w-8 text-primary" />}
                 <div>
-                  <p className="text-2xl font-bold capitalize">{result.decision}</p>
-                  <p className="text-sm text-gray-600">Confidence: {result.confidence}%</p>
+                  <p className="text-2xl font-bold capitalize text-foreground">{result.decision}</p>
+                  <p className="text-sm text-muted-foreground">Confidence: {result.confidence}%</p>
                 </div>
               </div>
             </div>
@@ -191,12 +191,12 @@ export function ApprovalAssistant() {
 
           {/* Reasoning */}
           <div>
-            <h4 className="font-semibold mb-3">Analysis Reasoning</h4>
+            <h4 className="font-semibold mb-3 text-foreground">Analysis Reasoning</h4>
             <ul className="space-y-2">
               {result.reasoning.map((reason, index) => (
-                <li key={index} className="flex items-start gap-2 p-3 bg-blue-50 rounded-lg">
-                  <span className="text-blue-600 font-bold mt-0.5">{index + 1}.</span>
-                  <span className="text-sm text-gray-700">{reason}</span>
+                <li key={index} className="flex items-start gap-2 p-3 bg-primary/5 rounded-lg border border-primary/10">
+                  <span className="text-primary font-bold mt-0.5">{index + 1}.</span>
+                  <span className="text-sm text-muted-foreground">{reason}</span>
                 </li>
               ))}
             </ul>

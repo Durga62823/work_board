@@ -144,7 +144,7 @@ export function TaskPrioritization() {
                     onClick={() => removeTask(index)}
                     variant="ghost"
                     size="sm"
-                    className="text-red-600"
+                    className="text-destructive"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -220,8 +220,8 @@ export function TaskPrioritization() {
 
       {/* Error Display */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-800">{error}</p>
+        <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-lg">
+          <p className="text-destructive">{error}</p>
         </div>
       )}
 
@@ -257,11 +257,11 @@ export function TaskPrioritization() {
 
           {/* Dependencies */}
           {result.dependencies.length > 0 && (
-            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="p-4 bg-primary/10 border border-primary/30 rounded-lg">
               <h4 className="font-semibold mb-2">Key Dependencies</h4>
               <ul className="space-y-1">
                 {result.dependencies.map((dep, index) => (
-                  <li key={index} className="text-sm text-gray-700">• {dep}</li>
+                  <li key={index} className="text-sm text-muted-foreground">• {dep}</li>
                 ))}
               </ul>
             </div>
@@ -271,7 +271,7 @@ export function TaskPrioritization() {
           {result.risks.length > 0 && (
             <div>
               <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-orange-600" />
+                <AlertTriangle className="h-5 w-5 text-destructive" />
                 Identified Risks
               </h4>
               <div className="space-y-2">
@@ -280,10 +280,10 @@ export function TaskPrioritization() {
                     key={index}
                     className={`p-3 rounded-lg border ${
                       risk.severity === 'high'
-                        ? 'bg-red-50 border-red-200'
+                        ? 'bg-destructive/10 border-destructive/30'
                         : risk.severity === 'medium'
-                        ? 'bg-orange-50 border-orange-200'
-                        : 'bg-yellow-50 border-yellow-200'
+                        ? 'bg-destructive/5 border-destructive/20'
+                        : 'bg-muted border-border'
                     }`}
                   >
                     <div className="flex items-start justify-between">
@@ -302,9 +302,9 @@ export function TaskPrioritization() {
           )}
 
           {/* Sprint Recommendation */}
-          <div className="p-5 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
+          <div className="p-5 bg-primary/10 border border-primary/30 rounded-lg">
             <h4 className="font-semibold mb-2">Sprint Recommendation</h4>
-            <p className="text-gray-700">{result.sprintRecommendation}</p>
+            <p className="text-foreground">{result.sprintRecommendation}</p>
           </div>
         </div>
       )}

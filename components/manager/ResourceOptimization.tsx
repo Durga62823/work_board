@@ -158,7 +158,7 @@ export function ResourceOptimization() {
                     onClick={() => removeProject(index)}
                     variant="ghost"
                     size="sm"
-                    className="text-red-600"
+                    className="text-destructive"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -288,8 +288,8 @@ export function ResourceOptimization() {
 
       {/* Error Display */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-800">{error}</p>
+        <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+          <p className="text-destructive">{error}</p>
         </div>
       )}
 
@@ -299,13 +299,13 @@ export function ResourceOptimization() {
           <h3 className="text-xl font-bold">Optimization Results</h3>
 
           {/* Efficiency Score */}
-          <div className="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
+          <div className="bg-primary/10 border border-primary/20 p-6 rounded-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 mb-1">Resource Efficiency Score</p>
-                <p className="text-4xl font-bold text-green-900">{result.efficiencyScore}/100</p>
+                <p className="text-sm text-muted-foreground mb-1">Resource Efficiency Score</p>
+                <p className="text-4xl font-bold text-primary">{result.efficiencyScore}/100</p>
               </div>
-              <TrendingUp className="h-12 w-12 text-green-600" />
+              <TrendingUp className="h-12 w-12 text-primary" />
             </div>
           </div>
 
@@ -333,8 +333,8 @@ export function ResourceOptimization() {
           {/* Conflicts */}
           {result.conflicts.length > 0 && (
             <div>
-              <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <AlertCircle className="h-5 w-5 text-orange-600" />
+              <h4 className="font-semibold mb-3 flex items-center gap-2 text-foreground">
+                <AlertCircle className="h-5 w-5 text-primary" />
                 Resource Conflicts
               </h4>
               <div className="space-y-2">
@@ -372,9 +372,9 @@ export function ResourceOptimization() {
               <h4 className="font-semibold mb-3">Hiring Recommendations</h4>
               <ul className="space-y-2">
                 {result.hiringRecommendations.map((rec, index) => (
-                  <li key={index} className="flex items-start gap-2 p-3 bg-purple-50 rounded-lg">
-                    <span className="text-purple-600 font-bold mt-0.5">•</span>
-                    <span className="text-sm text-gray-700">{rec}</span>
+                  <li key={index} className="flex items-start gap-2 p-3 bg-primary/5 rounded-lg border border-primary/10">
+                    <span className="text-primary font-bold mt-0.5">•</span>
+                    <span className="text-sm text-muted-foreground">{rec}</span>
                   </li>
                 ))}
               </ul>

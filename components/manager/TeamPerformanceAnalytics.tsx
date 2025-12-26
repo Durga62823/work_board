@@ -181,33 +181,33 @@ export function TeamPerformanceAnalytics() {
       </form>
 
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
-          <AlertCircle className="h-5 w-5 text-red-600 mt-0.5" />
+        <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg flex items-start gap-2">
+          <AlertCircle className="h-5 w-5 text-destructive mt-0.5" />
           <div className="flex-1">
-            <p className="font-semibold text-red-900">Error</p>
-            <p className="text-sm text-red-700">{error}</p>
+            <p className="font-semibold text-destructive">Error</p>
+            <p className="text-sm text-destructive/80">{error}</p>
           </div>
         </div>
       )}
 
       {result && (
         <div className="space-y-4">
-          <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50">
-            <h3 className="text-xl font-bold mb-4">Performance Analysis Results</h3>
+          <Card className="p-6 bg-card border-primary/20">
+            <h3 className="text-xl font-bold mb-4 text-foreground">Performance Analysis Results</h3>
             
             <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-white p-4 rounded-lg">
-                <p className="text-sm text-gray-600">Overall Score</p>
-                <p className="text-3xl font-bold text-blue-600">{result.overallScore ?? 'N/A'}/100</p>
+              <div className="bg-primary/5 p-4 rounded-lg border border-primary/10">
+                <p className="text-sm text-muted-foreground">Overall Score</p>
+                <p className="text-3xl font-bold text-primary">{result.overallScore ?? 'N/A'}/100</p>
               </div>
               {result.trends?.productivity && (
-                <div className="bg-white p-4 rounded-lg">
-                  <p className="text-sm text-gray-600">Productivity Trend</p>
+                <div className="bg-primary/5 p-4 rounded-lg border border-primary/10">
+                  <p className="text-sm text-muted-foreground">Productivity Trend</p>
                   <div className="flex items-center gap-2 mt-1">
-                    {result.trends.productivity === 'increasing' && <TrendingUp className="h-6 w-6 text-green-600" />}
-                    {result.trends.productivity === 'decreasing' && <TrendingDown className="h-6 w-6 text-red-600" />}
-                    {result.trends.productivity === 'stable' && <Minus className="h-6 w-6 text-gray-600" />}
-                    <p className="text-xl font-semibold capitalize">{result.trends.productivity}</p>
+                    {result.trends.productivity === 'increasing' && <TrendingUp className="h-6 w-6 text-primary" />}
+                    {result.trends.productivity === 'decreasing' && <TrendingDown className="h-6 w-6 text-destructive" />}
+                    {result.trends.productivity === 'stable' && <Minus className="h-6 w-6 text-muted-foreground" />}
+                    <p className="text-xl font-semibold capitalize text-foreground">{result.trends.productivity}</p>
                   </div>
                 </div>
               )}
@@ -220,11 +220,11 @@ export function TeamPerformanceAnalytics() {
                   {result.teamMembers.map((member: any, index: number) => (
                     <Card key={index} className="p-4">
                       <div className="flex justify-between items-start mb-2">
-                        <h5 className="font-medium">{member.name}</h5>
+                        <h5 className="font-medium text-foreground">{member.name}</h5>
                         <span className={`px-2 py-1 rounded text-xs font-medium ${
-                          member.performance === 'high' ? 'bg-green-100 text-green-800' :
-                          member.performance === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                          'bg-red-100 text-red-800'
+                          member.performance === 'high' ? 'bg-primary/10 text-primary dark:bg-primary/20' :
+                          member.performance === 'medium' ? 'bg-primary/10 text-primary dark:bg-primary/20' :
+                          'bg-destructive/10 text-destructive dark:bg-destructive/20'
                         }`}>
                           {member.performance.toUpperCase()}
                         </span>
@@ -232,8 +232,8 @@ export function TeamPerformanceAnalytics() {
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         {member.strengths && member.strengths.length > 0 && (
                           <div>
-                            <p className="font-medium text-green-700 mb-1">Strengths:</p>
-                            <ul className="list-disc list-inside text-gray-700">
+                            <p className="font-medium text-primary mb-1">Strengths:</p>
+                            <ul className="list-disc list-inside text-muted-foreground">
                               {member.strengths.map((s: string, i: number) => (
                                 <li key={i}>{s}</li>
                               ))}
@@ -242,8 +242,8 @@ export function TeamPerformanceAnalytics() {
                         )}
                         {member.concerns && member.concerns.length > 0 && (
                           <div>
-                            <p className="font-medium text-orange-700 mb-1">Concerns:</p>
-                            <ul className="list-disc list-inside text-gray-700">
+                            <p className="font-medium text-primary mb-1">Concerns:</p>
+                            <ul className="list-disc list-inside text-muted-foreground">
                               {member.concerns.map((c: string, i: number) => (
                                 <li key={i}>{c}</li>
                               ))}
@@ -259,22 +259,22 @@ export function TeamPerformanceAnalytics() {
 
             {result.burnoutRisks && result.burnoutRisks.length > 0 && (
               <div className="mb-6">
-                <h4 className="font-semibold mb-3 text-red-700">⚠️ Burnout Risk Alerts</h4>
+                <h4 className="font-semibold mb-3 text-destructive">⚠️ Burnout Risk Alerts</h4>
                 <div className="space-y-2">
                   {result.burnoutRisks.map((risk: any, index: number) => (
-                    <Card key={index} className="p-4 border-red-200 bg-red-50">
+                    <Card key={index} className="p-4 border-destructive/20 bg-destructive/5">
                       <div className="flex justify-between items-start mb-2">
-                        <p className="font-medium">{risk.member}</p>
+                        <p className="font-medium text-foreground">{risk.member}</p>
                         <span className={`px-2 py-1 rounded text-xs font-medium ${
-                          risk.riskLevel === 'high' ? 'bg-red-600 text-white' :
-                          risk.riskLevel === 'medium' ? 'bg-orange-500 text-white' :
-                          'bg-yellow-500 text-white'
+                          risk.riskLevel === 'high' ? 'bg-destructive text-destructive-foreground' :
+                          risk.riskLevel === 'medium' ? 'bg-primary text-primary-foreground' :
+                          'bg-primary/50 text-primary-foreground'
                         }`}>
                           {risk.riskLevel.toUpperCase()} RISK
                         </span>
                       </div>
                       {risk.indicators && risk.indicators.length > 0 && (
-                        <ul className="list-disc list-inside text-sm text-gray-700">
+                        <ul className="list-disc list-inside text-sm text-muted-foreground">
                           {risk.indicators.map((indicator: string, i: number) => (
                             <li key={i}>{indicator}</li>
                           ))}

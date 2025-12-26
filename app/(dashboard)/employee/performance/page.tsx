@@ -107,9 +107,9 @@ export default function PerformancePage() {
   }
 
   function getScoreBadge(score: number) {
-    if (score >= 80) return "bg-primary/10 text-green-800";
-    if (score >= 60) return "bg-primary/10 text-yellow-800";
-    return "bg-primary/10 text-red-800";
+    if (score >= 80) return "bg-primary/10 text-primary dark:bg-primary/20";
+    if (score >= 60) return "bg-primary/10 text-primary dark:bg-primary/20";
+    return "bg-destructive/10 text-destructive dark:bg-destructive/20";
   }
 
   if (loading) {
@@ -235,9 +235,9 @@ export default function PerformancePage() {
             <div className="mt-4">
               <div className="flex items-center gap-2 mb-2">
                 {timeAccuracy.variance > 0 ? (
-                  <TrendingUp className="h-5 w-5 text-red-500" />
+                  <TrendingUp className="h-5 w-5 text-destructive" />
                 ) : (
-                  <TrendingDown className="h-5 w-5 text-green-500" />
+                  <TrendingDown className="h-5 w-5 text-primary" />
                 )}
                 <span className="text-sm">
                   {timeAccuracy.variance > 0
@@ -265,7 +265,7 @@ export default function PerformancePage() {
                 {metrics.map((metric) => (
                   <div
                     key={metric.id}
-                    className="flex items-center justify-between p-3 border border-border rounded-xl bg-white/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    className="flex items-center justify-between p-3 border border-border rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                   >
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
@@ -296,8 +296,8 @@ export default function PerformancePage() {
         {metrics.length === 0 && taskStats?.totalTasks === 0 && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <TrendingUp className="h-12 w-12 text-gray-400 mb-4" />
-            <p className="text-gray-500 text-center">
+            <TrendingUp className="h-12 w-12 text-muted-foreground mb-4" />
+            <p className="text-muted-foreground text-center">
               No performance data available yet. Complete tasks to see your
               metrics!
             </p>

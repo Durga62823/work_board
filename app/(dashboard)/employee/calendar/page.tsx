@@ -131,19 +131,19 @@ export default function CalendarPage() {
   function getEventTypeBadge(type: string) {
     switch (type) {
       case "task":
-        return "bg-primary/10 text-blue-800";
+        return "bg-primary/10 text-primary dark:bg-primary/20";
       case "meeting":
-        return "bg-primary/10 text-purple-800";
+        return "bg-primary/10 text-primary dark:bg-primary/20";
       case "deadline":
-        return "bg-primary/10 text-red-800";
+        return "bg-destructive/10 text-destructive dark:bg-destructive/20";
       case "milestone":
-        return "bg-primary/10 text-green-800";
+        return "bg-primary/10 text-primary dark:bg-primary/20";
       case "appraisal":
-        return "bg-primary/10 text-yellow-800";
+        return "bg-primary/10 text-primary dark:bg-primary/20";
       case "pto":
-        return "bg-primary/10 text-orange-800";
+        return "bg-primary/10 text-primary dark:bg-primary/20";
       default:
-        return "bg-primary/10 text-gray-800";
+        return "bg-primary/10 text-foreground";
     }
   }
 
@@ -223,7 +223,7 @@ export default function CalendarPage() {
               {upcomingEvents.slice(0, 5).map((event) => (
                 <div
                   key={event.id}
-                  className="flex items-center justify-between p-2 bg-white rounded"
+                  className="flex items-center justify-between p-2 bg-card rounded"
                 >
                   <div className="flex items-center gap-2">
                     <Badge className={getEventTypeBadge(event.type)}>
@@ -294,7 +294,7 @@ export default function CalendarPage() {
                         ? "bg-primary/10/50"
                         : isToday(day)
                         ? "bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-300 shadow-md"
-                        : "bg-white/50 hover:bg-white/80 hover:shadow-lg hover:-translate-y-0.5"
+                        : "bg-card/50 hover:bg-card/80 hover:shadow-lg hover:-translate-y-0.5"
                     } ${isSelected ? "ring-2 ring-blue-500 shadow-xl" : ""}`}
                     onClick={() => day && setSelectedDate(day)}
                   >
@@ -320,7 +320,7 @@ export default function CalendarPage() {
                           </div>
                         ))}
                         {dayEvents.length > 2 && (
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-muted-foreground">
                             +{dayEvents.length - 2} more
                           </div>
                         )}
@@ -355,7 +355,7 @@ export default function CalendarPage() {
             ) : (
                 <div className="space-y-3">
                   {selectedEvents.map((event) => (
-                    <div key={event.id} className="border border-border rounded-xl p-4 bg-white/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                    <div key={event.id} className="border border-border rounded-xl p-4 bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">

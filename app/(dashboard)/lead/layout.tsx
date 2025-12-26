@@ -18,11 +18,11 @@ export default async function LeadLayout({
 
   return (
     <SettingsProvider>
-      <div className="min-h-screen bg-gray-50">
-        <div className="border-b bg-white">
+      <div className="min-h-screen bg-muted">
+        <div className="border-b bg-card">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between py-4">
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-2xl font-bold text-foreground">
                 Tech Lead Dashboard
               </h1>
               <div className="flex items-center gap-3">
@@ -31,7 +31,7 @@ export default async function LeadLayout({
                 <UserMenu />
                 <Link
                   href="/dashboard"
-                  className="text-sm text-gray-600 hover:text-gray-900"
+                  className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   ← Back to Dashboard
                 </Link>
@@ -40,49 +40,49 @@ export default async function LeadLayout({
             <nav className="flex space-x-8">
               <Link
                 href="/lead"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
               >
                 Overview
               </Link>
               <Link
                 href="/lead/team-board"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
               >
                 Team Board
               </Link>
               <Link
                 href="/lead/sprints"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
               >
                 Sprints
               </Link>
               <Link
                 href="/lead/metrics"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
               >
                 Technical Metrics
               </Link>
               <Link
                 href="/lead/code-reviews"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
               >
                 Code Reviews
               </Link>
               <Link
                 href="/lead/profile"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
               >
                 Profile
               </Link>
               <Link
                 href="/lead/settings"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
               >
                 Settings
               </Link>
               <Link
                 href="/lead/ai-features"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900"
+                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
               >
                 ✨ AI Features
               </Link>

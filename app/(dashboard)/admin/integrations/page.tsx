@@ -68,7 +68,7 @@ export default async function IntegrationsPage() {
             return (
               <Card 
                 key={integration.name}
-                className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">

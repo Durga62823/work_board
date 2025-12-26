@@ -217,7 +217,7 @@ export default function MyWorkPage() {
         LOW: { label: "Low", className: "bg-primary/10 text-primary" },
         MEDIUM: { label: "Medium", className: "bg-primary/10 text-primary" },
         HIGH: { label: "High", className: "bg-primary/10 text-primary" },
-        URGENT: { label: "Urgent", className: "bg-red-200 text-red-900" },
+        URGENT: { label: "Urgent", className: "bg-destructive/20 text-destructive dark:bg-destructive/30" },
       };
     return priorityConfig[priority] || priorityConfig["MEDIUM"];
   };
@@ -273,7 +273,7 @@ export default function MyWorkPage() {
       {/* Filters */}
       <div className="flex items-center gap-4">
         <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             type="text"
             placeholder="Search tasks..."
@@ -364,7 +364,7 @@ export default function MyWorkPage() {
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : filteredTasks.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
+            <div className="text-center py-12 text-muted-foreground">
               <p className="text-lg font-medium">No tasks found</p>
               <p className="text-sm">
                 Try adjusting your filters or search query
@@ -375,7 +375,7 @@ export default function MyWorkPage() {
               {filteredTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="p-4 border border-border rounded-xl bg-white/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                  className="p-4 border border-border rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                 >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
@@ -391,7 +391,7 @@ export default function MyWorkPage() {
                       {task.project?.name || "No project"}
                     </p>
                     {task.description && (
-                      <p className="text-sm text-gray-500 mb-2">
+                      <p className="text-sm text-muted-foreground mb-2">
                         {task.description}
                       </p>
                     )}
@@ -453,7 +453,7 @@ export default function MyWorkPage() {
         {/* Log Time Dialog */}
         {logTimeDialog.open && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <Card className="w-full max-w-md p-6 border-border bg-white shadow-2xl animate-in fade-in duration-200">
+            <Card className="w-full max-w-md p-6 border-border bg-card shadow-2xl animate-in fade-in duration-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Log Time</h3>
               <Button
@@ -514,7 +514,7 @@ export default function MyWorkPage() {
         {/* Create Task Dialog */}
         {createTaskDialog && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <Card className="w-full max-w-2xl p-6 max-h-[90vh] overflow-y-auto border-border bg-white shadow-2xl animate-in fade-in duration-200">
+            <Card className="w-full max-w-2xl p-6 max-h-[90vh] overflow-y-auto border-border bg-card shadow-2xl animate-in fade-in duration-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Create New Task</h3>
               <Button

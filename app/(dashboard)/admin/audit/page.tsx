@@ -31,32 +31,32 @@ export default async function AuditLogsPage() {
   const { logs, total } = result;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50">
-      <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
+    <div className="p-6 md:p-8">
+      <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
-              <Shield className="h-6 w-6 text-white" />
+            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-destructive shadow-lg">
+              <Shield className="h-6 w-6 text-destructive-foreground" />
             </div>
             <div>
-              <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground">
                 Admin - Audit Logs
               </h2>
-              <p className="text-slate-600 mt-1">
+              <p className="text-muted-foreground mt-1">
                 Track all administrative actions and security events
               </p>
             </div>
           </div>
           <Button 
             variant="outline"
-            className="border-red-200 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 hover:text-red-700 transition-all"
+            className="border-border hover:bg-muted hover:text-foreground transition-all"
           >
             <Download className="mr-2 h-4 w-4" />
             Export Logs
           </Button>
         </div>
 
-        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+        <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
@@ -65,14 +65,14 @@ export default async function AuditLogsPage() {
                   Showing {logs.length} of {total} total log entries
                 </CardDescription>
               </div>
-              <Shield className="h-8 w-8 text-red-500" />
+              <Shield className="h-8 w-8 text-destructive" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="rounded-lg border border-slate-200/60 overflow-hidden bg-white/50 backdrop-blur-sm">
+            <div className="rounded-lg border border-border overflow-hidden bg-card/50 backdrop-blur-sm">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-gradient-to-r from-red-50 to-orange-50 hover:from-red-100 hover:to-orange-100">
+                  <TableRow className="bg-muted hover:bg-muted/80">
                     <TableHead className="font-semibold">Timestamp</TableHead>
                     <TableHead className="font-semibold">User</TableHead>
                     <TableHead className="font-semibold">Action</TableHead>
@@ -84,13 +84,13 @@ export default async function AuditLogsPage() {
                 <TableBody>
                   {logs.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-8 text-slate-500">
+                      <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
                         No audit logs found
                       </TableCell>
                     </TableRow>
                   ) : (
                     logs.map((log) => (
-                      <TableRow key={log.id} className="hover:bg-red-50/50 transition-colors">
+                      <TableRow key={log.id} className="hover:bg-muted/50 transition-colors">
                         <TableCell className="text-sm">
                         {new Date(log.createdAt).toLocaleString()}
                       </TableCell>
@@ -101,23 +101,23 @@ export default async function AuditLogsPage() {
                                 <div className="font-medium">
                                   {log.user.firstName} {log.user.lastName}
                                 </div>
-                                <div className="text-slate-500">{log.user.email}</div>
+                                <div className="text-muted-foreground">{log.user.email}</div>
                               </>
                             ) : (
-                              <span className="text-slate-500">System</span>
+                              <span className="text-muted-foreground">System</span>
                             )}
                           </div>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="outline" className="border-red-200 text-red-700">
+                          <Badge variant="outline" className="border-destructive/50 text-destructive">
                             {log.action.replace(/_/g, " ")}
                           </Badge>
                         </TableCell>
                         <TableCell className="font-medium">{log.entity}</TableCell>
-                        <TableCell className="max-w-md truncate text-sm text-slate-600">
+                        <TableCell className="max-w-md truncate text-sm text-muted-foreground">
                           {log.details || "-"}
                         </TableCell>
-                        <TableCell className="text-sm text-slate-500">
+                        <TableCell className="text-sm text-muted-foreground">
                           {log.ipAddress || "-"}
                         </TableCell>
                       </TableRow>

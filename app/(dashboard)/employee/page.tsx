@@ -110,8 +110,8 @@ export default function EmployeeDashboardPage() {
                     </div>
                     <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">My Tasks</h3>
-                  <p className="text-sm text-muted-foreground">View and manage your assigned tasks</p>
+                  <h3 className="text-lg font-bold text-primary-foreground mb-2">My Tasks</h3>
+                  <p className="text-sm text-primary-foreground/80">View and manage your assigned tasks</p>
                 </CardContent>
               </Card>
             </Link>
@@ -126,8 +126,8 @@ export default function EmployeeDashboardPage() {
                     </div>
                     <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Timesheet</h3>
-                  <p className="text-sm text-muted-foreground">Log and track your hours</p>
+                  <h3 className="text-lg font-bold text-primary-foreground mb-2">Timesheet</h3>
+                  <p className="text-sm text-primary-foreground/80">Log and track your hours</p>
                 </CardContent>
               </Card>
             </Link>
@@ -142,8 +142,8 @@ export default function EmployeeDashboardPage() {
                     </div>
                     <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Performance</h3>
-                  <p className="text-sm text-muted-foreground">View your metrics and progress</p>
+                  <h3 className="text-lg font-bold text-primary-foreground mb-2">Performance</h3>
+                  <p className="text-sm text-primary-foreground/80">View your metrics and progress</p>
                 </CardContent>
               </Card>
             </Link>
@@ -158,8 +158,8 @@ export default function EmployeeDashboardPage() {
                     </div>
                     <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">My Goals</h3>
-                  <p className="text-sm text-muted-foreground">Track your goals and objectives</p>
+                  <h3 className="text-lg font-bold text-primary-foreground mb-2">My Goals</h3>
+                  <p className="text-sm text-primary-foreground/80">Track your goals and objectives</p>
                 </CardContent>
               </Card>
             </Link>
@@ -174,8 +174,8 @@ export default function EmployeeDashboardPage() {
                     </div>
                     <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Calendar</h3>
-                  <p className="text-sm text-muted-foreground">View deadlines and milestones</p>
+                  <h3 className="text-lg font-bold text-primary-foreground mb-2">Calendar</h3>
+                  <p className="text-sm text-primary-foreground/80">View deadlines and milestones</p>
                 </CardContent>
               </Card>
             </Link>
@@ -190,8 +190,8 @@ export default function EmployeeDashboardPage() {
                     </div>
                     <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Appraisals</h3>
-                  <p className="text-sm text-muted-foreground">Self-appraisal and feedback</p>
+                  <h3 className="text-lg font-bold text-primary-foreground mb-2">Appraisals</h3>
+                  <p className="text-sm text-primary-foreground/80">Self-appraisal and feedback</p>
                 </CardContent>
               </Card>
             </Link>
@@ -221,7 +221,7 @@ export default function EmployeeDashboardPage() {
                     <p className="text-sm text-muted-foreground mt-0.5">Project Alpha  Due today</p>
                   </div>
                 </div>
-                <Badge className="bg-blue-600 hover:bg-blue-700">In Progress</Badge>
+                <Badge className="bg-primary text-primary-foreground hover:bg-primary/90">In Progress</Badge>
               </div>
 
               <div className="flex items-center justify-between p-4 rounded-xl bg-primary/10 border border-primary/30 hover:shadow-md transition-all group">

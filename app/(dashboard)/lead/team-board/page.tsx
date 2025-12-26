@@ -24,7 +24,7 @@ export default async function TeamBoardPage() {
       <div className="min-h-screen bg-background">
         <div className="text-center py-12">
           <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">No Team Assigned</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-2">No Team Assigned</h2>
             <p className="text-primary">Please contact your administrator to assign you to a team.</p>
           </div>
         </div>

@@ -38,12 +38,12 @@
   }
 
   .dark {
-    /* Dark mode colors */
-    --background: oklch(0.141 0.005 285.823);
+    /* Dark mode colors - Pure Black Background */
+    --background: oklch(0 0 0);
     --foreground: oklch(0.985 0 0);
-    --card: oklch(0.174 0.006 286.033);
+    --card: oklch(0.05 0 0);
     --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.21 0.006 285.885);
+    --popover: oklch(0.08 0 0);
     --popover-foreground: oklch(0.985 0 0);
     
     /* Primary colors (will be overridden by ColorThemeContext) */
@@ -51,16 +51,16 @@
     --primary-foreground: oklch(0.421 0.095 57.708);
     
     /* Secondary, muted, accent colors for dark mode */
-    --secondary: oklch(0.274 0.006 286.033);
+    --secondary: oklch(0.1 0 0);
     --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.274 0.006 286.033);
+    --muted: oklch(0.15 0 0);
     --muted-foreground: oklch(0.705 0.015 286.067);
-    --accent: oklch(0.274 0.006 286.033);
+    --accent: oklch(0.1 0 0);
     --accent-foreground: oklch(0.985 0 0);
     
     /* Border and input for dark mode */
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
+    --border: oklch(0.2 0 0);
+    --input: oklch(0.2 0 0);
     --ring: oklch(0.421 0.095 57.708);
     
     /* Destructive for dark mode */

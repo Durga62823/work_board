@@ -103,7 +103,7 @@ export default function NewSprintPage() {
             <textarea
               id="goal"
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               placeholder="e.g., Complete user authentication and dashboard redesign"
               {...register("goal")}
             />
@@ -152,7 +152,7 @@ export default function NewSprintPage() {
             {errors.capacityHours && (
               <p className="text-sm text-primary">{errors.capacityHours.message}</p>
             )}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Estimate total available hours for the sprint (e.g., 4 people × 40h/week × 2 weeks = 320h)
             </p>
           </div>

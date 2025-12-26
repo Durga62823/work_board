@@ -142,10 +142,10 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                 {columnTasks.map((task) => {
                   const assignee = teamMembers.find((m) => m.id === task.assigneeId);
                   const priorityColors = {
-                    LOW: "bg-gray-100 text-gray-800",
-                    MEDIUM: "bg-blue-100 text-blue-800",
-                    HIGH: "bg-orange-100 text-orange-800",
-                    URGENT: "bg-red-100 text-red-800",
+                    LOW: "bg-muted text-muted-foreground",
+                    MEDIUM: "bg-primary/10 text-primary",
+                    HIGH: "bg-primary/20 text-primary",
+                    URGENT: "bg-destructive/10 text-destructive",
                   };
 
                   return (

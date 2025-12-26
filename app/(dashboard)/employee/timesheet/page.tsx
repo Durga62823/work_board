@@ -436,7 +436,7 @@ export default function TimesheetPage() {
               <Label htmlFor="project">Project *</Label>
               <select
                 id="project"
-                className="w-full p-2 border rounded bg-white"
+                className="w-full p-2 border rounded bg-card"
                 value={formData.projectId}
                 onChange={(e) =>
                   setFormData({ ...formData, projectId: e.target.value })
@@ -516,7 +516,7 @@ export default function TimesheetPage() {
             {timesheet.entries.map((entry: any) => (
               <div
                 key={entry.id}
-                className="p-4 border border-border rounded-xl bg-white/50 backdrop-blur-sm flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                className="p-4 border border-border rounded-xl bg-card/50 backdrop-blur-sm flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
@@ -563,8 +563,8 @@ export default function TimesheetPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-gray-500">
-            <Clock className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+          <div className="text-center py-12 text-muted-foreground">
+            <Clock className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <p>No time entries for this week yet</p>
             <p className="text-sm mt-2">
               Click "Add Entry" to log your work hours
@@ -615,7 +615,7 @@ export default function TimesheetPage() {
         {timesheet && timesheet.status === "APPROVED" && (
           <div className="mt-6 pt-6 border-t">
             <div className="bg-primary/10 border border-primary/20 rounded p-4">
-              <p className="text-green-800 font-medium">
+              <p className="text-primary font-medium">
                 ✓ Timesheet approved on{" "}
                 {timesheet.approvedAt
                   ? formatDate(timesheet.approvedAt)
@@ -627,10 +627,10 @@ export default function TimesheetPage() {
 
         {timesheet && timesheet.status === "REJECTED" && (
           <div className="mt-6 pt-6 border-t">
-            <div className="bg-primary/10 border border-primary/20 rounded p-4">
-              <p className="text-red-800 font-medium">Timesheet rejected</p>
+            <div className="bg-destructive/10 border border-destructive/20 rounded p-4">
+              <p className="text-destructive font-medium">Timesheet rejected</p>
               {timesheet.rejectionReason && (
-                <p className="text-sm text-primary mt-2">
+                <p className="text-sm text-destructive/80 mt-2">
                   Reason: {timesheet.rejectionReason}
                 </p>
               )}

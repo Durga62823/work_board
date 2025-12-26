@@ -171,8 +171,8 @@ export function SprintRetrospective() {
 
       {/* Error Display */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-800">{error}</p>
+        <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-lg">
+          <p className="text-destructive">{error}</p>
         </div>
       )}
 
@@ -182,9 +182,9 @@ export function SprintRetrospective() {
           <h3 className="text-xl font-bold">Retrospective Analysis</h3>
 
           {/* Summary */}
-          <div className="p-5 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
+          <div className="p-5 bg-primary/10 border border-primary/30 rounded-lg">
             <h4 className="font-semibold mb-2">Sprint Summary</h4>
-            <p className="text-gray-700">{result.summary}</p>
+            <p className="text-foreground">{result.summary}</p>
           </div>
 
           {/* Metrics */}
@@ -193,13 +193,13 @@ export function SprintRetrospective() {
               <h4 className="font-semibold mb-3">Sprint Metrics</h4>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {result.metrics.map((metric, index) => (
-                  <div key={index} className="p-4 bg-white border rounded-lg">
+                  <div key={index} className="p-4 bg-card border rounded-lg">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm text-gray-600">{metric.name}</p>
-                      {metric.trend === 'up' && <TrendingUp className="h-4 w-4 text-green-600" />}
-                      {metric.trend === 'down' && <TrendingDown className="h-4 w-4 text-red-600" />}
+                      <p className="text-sm text-muted-foreground">{metric.name}</p>
+                      {metric.trend === 'up' && <TrendingUp className="h-4 w-4 text-primary" />}
+                      {metric.trend === 'down' && <TrendingDown className="h-4 w-4 text-destructive" />}
                     </div>
-                    <p className="text-2xl font-bold text-blue-900">{metric.value}</p>
+                    <p className="text-2xl font-bold text-primary">{metric.value}</p>
                   </div>
                 ))}
               </div>
@@ -209,13 +209,13 @@ export function SprintRetrospective() {
           {/* What Went Well */}
           <div>
             <h4 className="font-semibold mb-3 flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-green-600" />
+              <TrendingUp className="h-5 w-5 text-primary" />
               What Went Well
             </h4>
             <div className="space-y-2">
               {result.wentWell.map((item, index) => (
-                <div key={index} className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                  <p className="text-sm text-gray-700">✓ {item}</p>
+                <div key={index} className="p-3 bg-primary/10 border border-primary/30 rounded-lg">
+                  <p className="text-sm text-foreground">✓ {item}</p>
                 </div>
               ))}
             </div>
@@ -224,13 +224,13 @@ export function SprintRetrospective() {
           {/* Needs Improvement */}
           <div>
             <h4 className="font-semibold mb-3 flex items-center gap-2">
-              <TrendingDown className="h-5 w-5 text-orange-600" />
+              <TrendingDown className="h-5 w-5 text-destructive" />
               Needs Improvement
             </h4>
             <div className="space-y-2">
               {result.needsImprovement.map((item, index) => (
-                <div key={index} className="p-3 bg-orange-50 border border-orange-200 rounded-lg">
-                  <p className="text-sm text-gray-700">⚠ {item}</p>
+                <div key={index} className="p-3 bg-destructive/10 border border-destructive/30 rounded-lg">
+                  <p className="text-sm text-foreground">⚠ {item}</p>
                 </div>
               ))}
             </div>
@@ -265,14 +265,14 @@ export function SprintRetrospective() {
           {/* Recommendations */}
           <div>
             <h4 className="font-semibold mb-3 flex items-center gap-2">
-              <Lightbulb className="h-5 w-5 text-yellow-600" />
+              <Lightbulb className="h-5 w-5 text-primary" />
               AI Recommendations
             </h4>
             <ul className="space-y-2">
               {result.recommendations.map((rec, index) => (
-                <li key={index} className="flex items-start gap-2 p-3 bg-blue-50 rounded-lg">
-                  <span className="text-blue-600 font-bold mt-0.5">•</span>
-                  <span className="text-sm text-gray-700">{rec}</span>
+                <li key={index} className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg">
+                  <span className="text-primary font-bold mt-0.5">•</span>
+                  <span className="text-sm text-foreground">{rec}</span>
                 </li>
               ))}
             </ul>

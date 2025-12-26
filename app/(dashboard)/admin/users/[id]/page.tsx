@@ -35,8 +35,8 @@ export default async function UserDetailPage({ params }: { params: { id: string 
   const initials = `${user.firstName?.[0] || ""}${user.lastName?.[0] || ""}`.toUpperCase();
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
+    <div className="p-6 md:p-8">
+      <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -64,13 +64,13 @@ export default async function UserDetailPage({ params }: { params: { id: string 
           <div className="flex gap-2">
             <Button 
               variant="outline"
-              className="border-red-200 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50"
+              className="border-border hover:bg-muted"
             >
               Edit User
             </Button>
             <Button 
               variant="outline"
-              className="border-red-200 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50"
+              className="border-border hover:bg-muted"
             >
               Reset Password
             </Button>
@@ -140,10 +140,10 @@ export default async function UserDetailPage({ params }: { params: { id: string 
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-2 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+        <Card className="md:col-span-2 border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <Tabs defaultValue="overview" className="w-full">
             <CardHeader>
-              <TabsList className="bg-gradient-to-r from-red-50 to-orange-50">
+              <TabsList className="bg-muted">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="team">Team</TabsTrigger>
                 <TabsTrigger value="performance">Performance</TabsTrigger>
@@ -153,10 +153,10 @@ export default async function UserDetailPage({ params }: { params: { id: string 
             <CardContent>
               <TabsContent value="overview" className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
-                  <Card className="border-red-100 bg-gradient-to-br from-white to-red-50/30">
+                  <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">Manager</CardTitle>
-                      <Users className="h-4 w-4 text-red-500" />
+                      <Users className="h-4 w-4 text-primary" />
                     </CardHeader>
                     <CardContent>
                       {user.manager ? (
@@ -172,10 +172,10 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                     </CardContent>
                   </Card>
 
-                  <Card className="border-orange-100 bg-gradient-to-br from-white to-orange-50/30">
+                  <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">Direct Reports</CardTitle>
-                      <Users className="h-4 w-4 text-orange-500" />
+                      <Users className="h-4 w-4 text-primary" />
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">{user.employees?.length || 0}</div>
@@ -185,10 +185,10 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                     </CardContent>
                   </Card>
 
-                  <Card className="border-red-100 bg-gradient-to-br from-white to-red-50/30">
+                  <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">Email Verified</CardTitle>
-                      <Mail className="h-4 w-4 text-red-500" />
+                      <Mail className="h-4 w-4 text-primary" />
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">
@@ -202,10 +202,10 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                     </CardContent>
                   </Card>
 
-                  <Card className="border-orange-100 bg-gradient-to-br from-white to-orange-50/30">
+                  <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">Last Updated</CardTitle>
-                      <Calendar className="h-4 w-4 text-orange-500" />
+                      <Calendar className="h-4 w-4 text-primary" />
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">

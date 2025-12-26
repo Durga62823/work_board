@@ -22,7 +22,7 @@ export default async function LeadCodeReviewsPage() {
       <div className="min-h-screen bg-background">
         <div className="text-center py-12">
           <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">No Team Assigned</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-2">No Team Assigned</h2>
             <p className="text-primary">Please contact your administrator to assign you to a team.</p>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default async function LeadCodeReviewsPage() {
       case "changes_requested":
         return "bg-primary/10 text-orange-800";
       default:
-        return "bg-primary/10 text-gray-800";
+        return "bg-primary/10 text-foreground";
     }
   };
 
@@ -177,7 +177,7 @@ export default async function LeadCodeReviewsPage() {
                         >
                           {getStatusLabel(review.status)}
                         </span>
-                        <h3 className="font-semibold text-gray-900">{review.prTitle}</h3>
+                        <h3 className="font-semibold text-foreground">{review.prTitle}</h3>
                       </div>
                       <p className="text-sm text-primary mb-3">
                         by {review.author?.name || "Unknown"} •{" "}
@@ -226,7 +226,7 @@ export default async function LeadCodeReviewsPage() {
                         >
                           {getStatusLabel(review.status)}
                         </span>
-                        <h3 className="font-semibold text-gray-900">{review.prTitle}</h3>
+                        <h3 className="font-semibold text-foreground">{review.prTitle}</h3>
                       </div>
                       <p className="text-sm text-primary mb-3">
                         by {review.author?.name || "Unknown"} • Reviewed{" "}
@@ -277,7 +277,7 @@ export default async function LeadCodeReviewsPage() {
                         >
                           {getStatusLabel(review.status)}
                         </span>
-                        <h3 className="font-semibold text-gray-900">{review.prTitle}</h3>
+                        <h3 className="font-semibold text-foreground">{review.prTitle}</h3>
                       </div>
                       <p className="text-sm text-primary mb-3">
                         by {review.author?.name || "Unknown"} • Approved{" "}

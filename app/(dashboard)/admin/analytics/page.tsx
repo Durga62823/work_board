@@ -58,7 +58,7 @@ function AnimatedCounter({
 // Animated Progress Bar with Premium Effects
 function AnimatedProgressBar({
   percentage,
-  color = "bg-blue-600",
+  color = "bg-primary",
 }: {
   percentage: number;
   color?: string;
@@ -74,7 +74,7 @@ function AnimatedProgressBar({
   }, [percentage]);
 
   return (
-    <div className="w-full bg-gradient-to-r from-gray-100 to-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
+    <div className="w-full bg-muted/30 rounded-full h-3 overflow-hidden shadow-inner">
       <div
         className={`${color} h-3 rounded-full transition-all duration-1200 ease-out shadow-lg`}
         style={{
@@ -122,7 +122,7 @@ export default function AnalyticsPage() {
   if (!analytics) {
     return (
       <div className="p-8">
-        <p className="text-red-600">Failed to load analytics data</p>
+        <p className="text-destructive">Failed to load analytics data</p>
       </div>
     );
   }
@@ -135,216 +135,159 @@ export default function AnalyticsPage() {
       : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50 p-8 overflow-hidden relative">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 right-10 w-64 h-64 bg-red-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-        <div
-          className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"
-          style={{ animationDelay: "2s" }}
-        ></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header with Premium Animation */}
-        <div
-          className="mb-12 animate-slide-in-down"
-          style={{ animationDelay: "0s" }}
-        >
-          <div className="flex items-center gap-4 mb-4">
-            <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
-              <span className="text-3xl">📊</span>
+    <div className="p-6 md:p-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        {/* Header */}
+        <div>
+          <div className="flex items-center gap-4 mb-2">
+            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
+              <span className="text-2xl">📊</span>
             </div>
-            <h1 className="text-5xl font-black bg-gradient-to-r from-red-600 via-orange-600 to-red-600 bg-clip-text text-transparent">
-              Admin - Analytics Dashboard
+            <h1 className="text-3xl font-bold text-foreground">
+              Analytics Dashboard
             </h1>
           </div>
-          <p className="text-slate-600 text-lg font-light ml-20">
+          <p className="text-muted-foreground ml-16">
             Real-time organization performance metrics
           </p>
         </div>
 
-        {/* Summary Cards with Premium Effects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Users Card */}
-          <div
-            className="group animate-slide-in-up hover-lift"
-            style={{ animationDelay: "0.1s" }}
-          >
-            <Card className="p-6 bg-gradient-to-br from-red-500 to-red-700 border-0 text-white shadow-2xl hover-glow">
-              <div className="flex items-start justify-between mb-4">
-                <div
-                  className="text-5xl animate-bounce"
-                  style={{ animationDelay: "0.2s" }}
-                >
-                  👥
-                </div>
-                <div className="text-xs font-bold bg-red-600 bg-opacity-50 px-3 py-1 rounded-full">
-                  Users
-                </div>
+          <Card className="p-6 bg-primary border-0 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow">
+            <div className="flex items-start justify-between mb-4">
+              <div className="text-5xl">
+                👥
               </div>
-              <p className="text-red-100 text-sm font-semibold mb-2">
-                Total Users
-              </p>
-              <p className="text-4xl font-black">
-                <AnimatedCounter
-                  value={analytics.summary.totalUsers}
-                  duration={1200}
-                />
-              </p>
-              <p className="text-xs text-red-200 mt-2">
-                Active: {analytics.summary.activeUsers}
-              </p>
-            </Card>
-          </div>
+              <div className="text-xs font-bold bg-primary-foreground/20 px-3 py-1 rounded-full">
+                Users
+              </div>
+            </div>
+            <p className="text-primary-foreground/80 text-sm font-semibold mb-2">
+              Total Users
+            </p>
+            <p className="text-4xl font-black">
+              <AnimatedCounter
+                value={analytics.summary.totalUsers}
+                duration={1200}
+              />
+            </p>
+            <p className="text-xs text-primary-foreground/70 mt-2">
+              Active: {analytics.summary.activeUsers}
+            </p>
+          </Card>
 
           {/* Projects Card */}
-          <div
-            className="group animate-slide-in-up hover-lift"
-            style={{ animationDelay: "0.2s" }}
-          >
-            <Card className="p-6 bg-gradient-to-br from-orange-500 to-orange-700 border-0 text-white shadow-2xl hover-glow">
-              <div className="flex items-start justify-between mb-4">
-                <div
-                  className="text-5xl animate-bounce"
-                  style={{ animationDelay: "0.4s" }}
-                >
-                  📁
-                </div>
-                <div className="text-xs font-bold bg-orange-600 bg-opacity-50 px-3 py-1 rounded-full">
-                  Projects
-                </div>
+          <Card className="p-6 bg-primary border-0 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow">
+            <div className="flex items-start justify-between mb-4">
+              <div className="text-5xl">
+                📁
               </div>
-              <p className="text-orange-100 text-sm font-semibold mb-2">
-                Total Projects
-              </p>
-              <p className="text-4xl font-black">
-                <AnimatedCounter
-                  value={analytics.summary.totalProjects}
-                  duration={1200}
-                />
-              </p>
-              <p className="text-xs text-orange-200 mt-2">
-                Completed: {analytics.summary.completedProjects}
-              </p>
-            </Card>
-          </div>
+              <div className="text-xs font-bold bg-primary-foreground/20 px-3 py-1 rounded-full">
+                Projects
+              </div>
+            </div>
+            <p className="text-primary-foreground/80 text-sm font-semibold mb-2">
+              Total Projects
+            </p>
+            <p className="text-4xl font-black">
+              <AnimatedCounter
+                value={analytics.summary.totalProjects}
+                duration={1200}
+              />
+            </p>
+            <p className="text-xs text-primary-foreground/70 mt-2">
+              Completed: {analytics.summary.completedProjects}
+            </p>
+          </Card>
 
           {/* Appraisals Card */}
-          <div
-            className="group animate-slide-in-up hover-lift"
-            style={{ animationDelay: "0.3s" }}
-          >
-            <Card className="p-6 bg-gradient-to-br from-red-600 to-orange-600 border-0 text-white shadow-2xl hover-glow">
-              <div className="flex items-start justify-between mb-4">
-                <div
-                  className="text-5xl animate-bounce"
-                  style={{ animationDelay: "0.6s" }}
-                >
-                  ⭐
-                </div>
-                <div className="text-xs font-bold bg-red-700 bg-opacity-50 px-3 py-1 rounded-full">
-                  Reviews
-                </div>
+          <Card className="p-6 bg-primary border-0 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow">
+            <div className="flex items-start justify-between mb-4">
+              <div className="text-5xl">
+                ⭐
               </div>
-              <p className="text-red-100 text-sm font-semibold mb-2">
-                Appraisals
-              </p>
-              <p className="text-4xl font-black">
-                <AnimatedCounter
-                  value={analytics.summary.totalAppraisals}
-                  duration={1200}
-                />
-              </p>
-              <p className="text-xs text-red-200 mt-2">
-                Avg Rating: {analytics.summary.averageRating.toFixed(1)}
-              </p>
-            </Card>
-          </div>
+              <div className="text-xs font-bold bg-primary-foreground/20 px-3 py-1 rounded-full">
+                Reviews
+              </div>
+            </div>
+            <p className="text-primary-foreground/80 text-sm font-semibold mb-2">
+              Appraisals
+            </p>
+            <p className="text-4xl font-black">
+              <AnimatedCounter
+                value={analytics.summary.totalAppraisals}
+                duration={1200}
+              />
+            </p>
+            <p className="text-xs text-primary-foreground/70 mt-2">
+              Avg Rating: {analytics.summary.averageRating.toFixed(1)}
+            </p>
+          </Card>
 
           {/* Engagement Card */}
-          <div
-            className="group animate-slide-in-up hover-lift"
-            style={{ animationDelay: "0.4s" }}
-          >
-            <Card className="p-6 bg-gradient-to-br from-orange-600 to-red-600 border-0 text-white shadow-2xl hover-glow">
-              <div className="flex items-start justify-between mb-4">
-                <div
-                  className="text-5xl animate-bounce"
-                  style={{ animationDelay: "0.8s" }}
-                >
-                  📈
-                </div>
-                <div className="text-xs font-bold bg-orange-700 bg-opacity-50 px-3 py-1 rounded-full">
-                  Metric
-                </div>
+          <Card className="p-6 bg-primary border-0 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow">
+            <div className="flex items-start justify-between mb-4">
+              <div className="text-5xl">
+                📈
               </div>
-              <p className="text-orange-100 text-sm font-semibold mb-2">
-                Engagement
-              </p>
-              <p className="text-4xl font-black">
-                <AnimatedCounter
-                  value={Math.round(
-                    (analytics.summary.activeUsers /
-                      analytics.summary.totalUsers) *
-                      100
+              <div className="text-xs font-bold bg-primary-foreground/20 px-3 py-1 rounded-full">
+                Metric
+              </div>
+            </div>
+            <p className="text-primary-foreground/80 text-sm font-semibold mb-2">
+              Engagement
+            </p>
+            <p className="text-4xl font-black">
+              <AnimatedCounter
+                value={Math.round(
+                  (analytics.summary.activeUsers /
+                    analytics.summary.totalUsers) *
+                    100
                   )}
                   duration={1200}
                 />
                 %
               </p>
-              <p className="text-xs text-orange-200 mt-2">Active participation</p>
-            </Card>
-          </div>
+              <p className="text-xs text-primary-foreground/70 mt-2">Active participation</p>
+          </Card>
         </div>
 
         {/* Users by Role & Projects by Status */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Users by Role */}
-          <div
-            className="group animate-slide-in-left"
-            style={{ animationDelay: "0.5s" }}
-          >
-            <Card className="p-8 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-2xl hover-glow h-full">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-4xl animate-float">👤</span>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">Users by Role</h3>
-              </div>
-              <div className="space-y-6">
-                {analytics.usersByRole.map((item, idx) => (
-                  <div
-                    key={item.role}
-                    className="group/item animate-fade-in"
-                    style={{ animationDelay: `${0.6 + idx * 0.1}s` }}
-                  >
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-bold text-slate-600 uppercase tracking-wide">
-                        {item.role}
-                      </span>
-                      <span className="text-sm font-black text-red-600">
-                        {item.count} users
-                      </span>
-                    </div>
-                    <AnimatedProgressBar
-                      percentage={
-                        analytics.summary.totalUsers > 0
-                          ? (item.count / analytics.summary.totalUsers) * 100
-                          : 0
-                      }
-                      color="bg-gradient-to-r from-red-500 to-orange-500"
-                    />
+          <Card className="p-6 border-border bg-card shadow-lg h-full">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-3xl">👤</span>
+              <h3 className="text-xl font-bold text-foreground">Users by Role</h3>
+            </div>
+            <div className="space-y-4">
+              {analytics.usersByRole.map((item, idx) => (
+                <div key={item.role} className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-bold text-muted-foreground uppercase tracking-wide">
+                      {item.role}
+                    </span>
+                    <span className="text-sm font-black text-primary">
+                      {item.count} users
+                    </span>
                   </div>
-                ))}
-              </div>
-            </Card>
-          </div>
+                  <AnimatedProgressBar
+                    percentage={
+                      analytics.summary.totalUsers > 0
+                        ? (item.count / analytics.summary.totalUsers) * 100
+                        : 0
+                    }
+                    color="bg-primary"
+                  />
+                </div>
+              ))}
+            </div>
+          </Card>
 
           {/* Projects by Status */}
-          <div
-            className="group animate-slide-in-right"
-            style={{ animationDelay: "0.5s" }}
-          >
-            <Card className="p-8 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-2xl hover-glow h-full">
+          <Card className="p-6 border-border bg-card shadow-lg h-full">
               <div className="flex items-center gap-3 mb-6">
                 <span
                   className="text-4xl animate-float"
@@ -352,20 +295,16 @@ export default function AnalyticsPage() {
                 >
                   📊
                 </span>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">Projects by Status</h3>
+                <h3 className="text-2xl font-bold text-foreground">Projects by Status</h3>
               </div>
-              <div className="space-y-6">
-                {analytics.projectsByStatus.map((item, idx) => (
-                  <div
-                    key={item.status}
-                    className="group/item animate-fade-in"
-                    style={{ animationDelay: `${0.6 + idx * 0.1}s` }}
-                  >
+              <div className="space-y-4">
+                {analytics.projectsByStatus.map((item) => (
+                  <div key={item.status}>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-bold text-slate-600 uppercase tracking-wide">
+                      <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
                         {item.status}
                       </span>
-                      <span className="text-sm font-black text-orange-600">
+                      <span className="text-sm font-bold text-primary">
                         {item.count} projects
                       </span>
                     </div>
@@ -375,7 +314,7 @@ export default function AnalyticsPage() {
                           ? (item.count / analytics.summary.totalProjects) * 100
                           : 0
                       }
-                      color="bg-gradient-to-r from-orange-500 to-red-500"
+                      color="bg-primary"
                     />
                   </div>
                 ))}
@@ -385,42 +324,28 @@ export default function AnalyticsPage() {
         </div>
 
         {/* PTO Statistics */}
-        <div
-          className="mb-12 animate-slide-in-up"
-          style={{ animationDelay: "0.9s" }}
-        >
-          <Card className="p-8 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-2xl hover-glow">
-            <div className="flex items-center gap-3 mb-8">
-              <span
-                className="text-4xl animate-float"
-                style={{ animationDelay: "1.5s" }}
-              >
-                🏖️
-              </span>
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">PTO Requests</h3>
+        <div className="mb-12">
+          <Card className="p-6 border-border bg-card shadow-lg">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-4xl">🏖️</span>
+              <h3 className="text-2xl font-bold text-foreground">PTO Requests</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {analytics.ptoStats.map((item, idx) => (
+              {analytics.ptoStats.map((item) => (
                 <div
                   key={item.status}
-                  className="p-6 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 text-white transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-scale-in cursor-pointer group/pto"
-                  style={{ animationDelay: `${1.0 + idx * 0.1}s` }}
+                  className="p-6 rounded-lg bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <span
-                      className="text-3xl animate-bounce"
-                      style={{ animationDelay: `${1.2 + idx * 0.1}s` }}
-                    >
-                      ✈️
-                    </span>
-                    <span className="text-xs font-bold bg-red-600 px-2 py-1 rounded-full">
+                    <span className="text-3xl">✈️</span>
+                    <span className="text-xs font-bold bg-primary-foreground/20 px-2 py-1 rounded-full">
                       {item.status}
                     </span>
                   </div>
-                  <p className="text-4xl font-black mb-1">
+                  <p className="text-4xl font-bold mb-1">
                     <AnimatedCounter value={item.count} duration={1200} />
                   </p>
-                  <p className="text-xs text-red-100 font-semibold">
+                  <p className="text-xs text-primary-foreground/70 font-semibold">
                     requests
                   </p>
                 </div>
@@ -430,35 +355,24 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Timesheet Statistics */}
-        <div className="animate-slide-in-up" style={{ animationDelay: "1.2s" }}>
-          <Card className="p-8 border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-2xl hover-glow">
-            <div className="flex items-center gap-3 mb-8">
-              <span
-                className="text-4xl animate-float"
-                style={{ animationDelay: "2s" }}
-              >
-                ⏱️
-              </span>
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">Timesheet Status</h3>
+        <div>
+          <Card className="p-6 border-border bg-card shadow-lg">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-4xl">⏱️</span>
+              <h3 className="text-2xl font-bold text-foreground">Timesheet Status</h3>
             </div>
             <div className="space-y-4">
-              {analytics.timesheetStats.map((item, idx) => (
+              {analytics.timesheetStats.map((item) => (
                 <div
                   key={item.status}
-                  className="p-4 rounded-lg bg-gradient-to-r from-red-100 to-orange-100 flex items-center justify-between transition-all duration-300 hover:from-red-200 hover:to-orange-200 hover:shadow-lg hover:translate-x-2 animate-fade-in group/ts cursor-pointer border border-red-200"
-                  style={{ animationDelay: `${1.3 + idx * 0.1}s` }}
+                  className="p-4 rounded-lg bg-muted flex items-center justify-between hover:bg-muted/80 hover:shadow-lg transition-all border border-border"
                 >
                   <div className="flex items-center gap-4">
-                    <span
-                      className="text-2xl animate-bounce"
-                      style={{ animationDelay: `${1.4 + idx * 0.1}s` }}
-                    >
-                      📋
-                    </span>
+                    <span className="text-2xl">📋</span>
                     <div>
-                      <p className="font-bold text-red-900">{item.status}</p>
-                      <p className="text-sm text-red-700 font-semibold">
-                        <span className="text-orange-700 font-black">
+                      <p className="font-bold text-foreground">{item.status}</p>
+                      <p className="text-sm text-muted-foreground font-semibold">
+                        <span className="text-primary font-bold">
                           <AnimatedCounter value={item.count} duration={1200} />
                         </span>{" "}
                         submitted
@@ -466,8 +380,8 @@ export default function AnalyticsPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-red-600">Total Hours</p>
-                    <p className="text-2xl font-black text-orange-600">
+                    <p className="text-xs text-muted-foreground">Total Hours</p>
+                    <p className="text-2xl font-bold text-primary">
                       {item.totalHours}h
                     </p>
                   </div>
@@ -477,6 +391,6 @@ export default function AnalyticsPage() {
           </Card>
         </div>
       </div>
-    </div>
+    
   );
 }

@@ -160,15 +160,15 @@ export default function MyGoalsPage() {
   function getStatusColor(status: string) {
     switch (status) {
       case "active":
-        return "bg-primary/10 text-blue-800";
+        return "bg-primary/10 text-primary dark:bg-primary/20";
       case "completed":
-        return "bg-primary/10 text-green-800";
+        return "bg-primary/10 text-primary dark:bg-primary/20";
       case "on_hold":
-        return "bg-primary/10 text-yellow-800";
+        return "bg-primary/10 text-primary dark:bg-primary/20";
       case "cancelled":
-        return "bg-primary/10 text-red-800";
+        return "bg-destructive/10 text-destructive dark:bg-destructive/20";
       default:
-        return "bg-primary/10 text-gray-800";
+        return "bg-primary/10 text-foreground";
     }
   }
 
@@ -337,8 +337,8 @@ export default function MyGoalsPage() {
           {goals.length === 0 ? (
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
               <CardContent className="flex flex-col items-center justify-center py-12">
-              <Target className="h-12 w-12 text-gray-400 mb-4" />
-              <p className="text-gray-500 text-center">
+              <Target className="h-12 w-12 text-muted-foreground mb-4" />
+              <p className="text-muted-foreground text-center">
                 No goals yet. Create your first goal to get started!
               </p>
             </CardContent>
@@ -390,9 +390,9 @@ export default function MyGoalsPage() {
                     <span>Progress</span>
                     <span className="font-semibold">{goal.progress}%</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-muted rounded-full h-2">
                     <div
-                      className="bg-blue-600 h-2 rounded-full transition-all"
+                      className="bg-primary h-2 rounded-full transition-all"
                       style={{ width: `${goal.progress}%` }}
                     />
                   </div>

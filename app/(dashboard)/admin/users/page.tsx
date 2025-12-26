@@ -122,7 +122,7 @@ export default async function UsersPage() {
                                 ? "secondary"
                                 : "destructive"
                             }
-                            className={user.status === "ACTIVE" ? "bg-green-500" : ""}
+                            className={user.status === "ACTIVE" ? "bg-primary" : ""}
                           >
                             {user.status}
                           </Badge>

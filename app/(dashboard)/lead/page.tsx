@@ -261,7 +261,7 @@ export default async function LeadOverviewPage() {
           </Card>
 
           {/* Sprint Velocity */}
-          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
+          <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg">
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600">
@@ -282,9 +282,9 @@ export default async function LeadOverviewPage() {
                   </div>
                   <div className="space-y-3">
                     {velocityData.velocities.slice(0, 3).map((v, idx) => (
-                      <div key={v.sprintId} className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                        <span className="text-sm font-medium text-slate-700">{v.sprintName}</span>
-                        <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-bold">{v.points} pts</span>
+                      <div key={v.sprintId} className="flex justify-between items-center p-3 rounded-lg hover:bg-muted transition-colors">
+                        <span className="text-sm font-medium text-foreground">{v.sprintName}</span>
+                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold">{v.points} pts</span>
                       </div>
                     ))}
                   </div>
@@ -303,18 +303,18 @@ export default async function LeadOverviewPage() {
 
         {/* Blocked Tasks */}
         {blockedTasks.length > 0 && (
-          <Card className="border-red-200/60 bg-red-50/50 backdrop-blur-sm shadow-lg">
+          <Card className="border-destructive/30 bg-destructive/5 backdrop-blur-sm shadow-lg">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-gradient-to-br from-red-500 to-orange-600">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-destructive to-destructive/80">
                     <AlertTriangle className="h-5 w-5 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-bold text-slate-900">Blocked Tasks</CardTitle>
+                  <CardTitle className="text-xl font-bold text-foreground">Blocked Tasks</CardTitle>
                 </div>
                 <Link
                   href="/lead/team-board?filter=blocked"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-red-600 hover:text-red-700 transition-colors"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-destructive hover:text-destructive/80 transition-colors"
                 >
                   View All
                   <ArrowUpRight className="h-4 w-4" />
@@ -326,17 +326,17 @@ export default async function LeadOverviewPage() {
                 {blockedTasks.slice(0, 5).map((task) => (
                   <div
                     key={task.id}
-                    className="p-4 bg-white rounded-xl border-2 border-red-200 hover:shadow-md transition-all"
+                    className="p-4 bg-card rounded-xl border-2 border-destructive/30 hover:shadow-md transition-all"
                   >
-                    <h4 className="font-bold text-slate-900 mb-1">{task.title}</h4>
+                    <h4 className="font-bold text-foreground mb-1">{task.title}</h4>
                     {task.blockedReason && (
-                      <p className="text-sm text-red-600 mb-2">
+                      <p className="text-sm text-destructive mb-2">
                         <AlertTriangle className="h-3 w-3 inline mr-1" />
                         {task.blockedReason}
                       </p>
                     )}
                     {task.project && (
-                      <p className="text-xs text-slate-500">{task.project.name}</p>
+                      <p className="text-xs text-muted-foreground">{task.project.name}</p>
                     )}
                   </div>
                 ))}
@@ -346,18 +346,18 @@ export default async function LeadOverviewPage() {
         )}
 
         {/* Team Workload */}
-        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg">
+        <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/80">
                   <Users className="h-5 w-5 text-white" />
                 </div>
-                <CardTitle className="text-xl font-bold text-slate-900">Team Workload</CardTitle>
+                <CardTitle className="text-xl font-bold text-foreground">Team Workload</CardTitle>
               </div>
               <Link
                 href="/lead/team-board"
-                className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
               >
                 Manage
                 <ArrowUpRight className="h-4 w-4" />
@@ -367,18 +367,18 @@ export default async function LeadOverviewPage() {
           <CardContent>
             <div className="space-y-4">
               {workload.slice(0, 5).map((member) => (
-                <div key={member.userId} className="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                <div key={member.userId} className="p-4 rounded-xl hover:bg-muted transition-colors">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-bold text-slate-900">{member.userName}</span>
+                    <span className="font-bold text-foreground">{member.userName}</span>
                     <div className="flex items-center gap-4 text-sm">
-                      <span className="text-slate-600">{member.taskCount} tasks</span>
-                      <span className="px-2 py-1 rounded-full bg-blue-100 text-blue-700 font-semibold">{member.storyPoints} pts</span>
+                      <span className="text-muted-foreground">{member.taskCount} tasks</span>
+                      <span className="px-2 py-1 rounded-full bg-primary/10 text-primary font-semibold">{member.storyPoints} pts</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="flex-1 bg-slate-200 rounded-full h-3 overflow-hidden">
+                    <div className="flex-1 bg-muted rounded-full h-3 overflow-hidden">
                       <div
-                        className="bg-gradient-to-r from-blue-600 to-indigo-600 h-3 rounded-full transition-all"
+                        className="bg-gradient-to-r from-primary to-primary/80 h-3 rounded-full transition-all"
                         style={{
                           width: `${Math.min(
                             100,
@@ -388,7 +388,7 @@ export default async function LeadOverviewPage() {
                       />
                     </div>
                     {member.blocked > 0 && (
-                      <span className="flex items-center gap-1 text-xs text-red-600 font-bold whitespace-nowrap">
+                      <span className="flex items-center gap-1 text-xs text-destructive font-bold whitespace-nowrap">
                         <AlertTriangle className="h-3 w-3" />
                         {member.blocked} blocked
                       </span>
@@ -402,52 +402,52 @@ export default async function LeadOverviewPage() {
 
         {/* Quick Actions */}
         <div>
-          <h2 className="text-2xl font-bold text-slate-900 mb-6">Quick Actions</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">Quick Actions</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Link href="/lead/team-board?action=create-task">
-              <Card className="group relative overflow-hidden border-2 border-blue-200/50 bg-gradient-to-br from-blue-50 to-indigo-50 hover:border-blue-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-indigo-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+              <Card className="group relative overflow-hidden border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-blue-600 shadow-lg shadow-blue-500/30">
+                    <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
                       <Plus className="h-6 w-6 text-white" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-blue-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">Create Task</h3>
-                  <p className="text-sm text-slate-600">Add a new task to the board</p>
+                  <h3 className="text-lg font-bold text-foreground mb-2">Create Task</h3>
+                  <p className="text-sm text-muted-foreground">Add a new task to the board</p>
                 </CardContent>
               </Card>
             </Link>
 
             <Link href="/lead/sprints?action=create-sprint">
-              <Card className="group relative overflow-hidden border-2 border-purple-200/50 bg-gradient-to-br from-purple-50 to-pink-50 hover:border-purple-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+              <Card className="group relative overflow-hidden border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-purple-600 shadow-lg shadow-purple-500/30">
+                    <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
                       <CalendarIcon className="h-6 w-6 text-white" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-purple-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">Plan Sprint</h3>
-                  <p className="text-sm text-slate-600">Create and plan a new sprint</p>
+                  <h3 className="text-lg font-bold text-foreground mb-2">Plan Sprint</h3>
+                  <p className="text-sm text-muted-foreground">Create and plan a new sprint</p>
                 </CardContent>
               </Card>
             </Link>
 
             <Link href="/lead/metrics">
-              <Card className="group relative overflow-hidden border-2 border-green-200/50 bg-gradient-to-br from-green-50 to-emerald-50 hover:border-green-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-400/20 to-emerald-400/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+              <Card className="group relative overflow-hidden border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-green-600 shadow-lg shadow-green-500/30">
+                    <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
                       <BarChart3 className="h-6 w-6 text-white" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-green-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">View Metrics</h3>
-                  <p className="text-sm text-slate-600">Track team technical metrics</p>
+                  <h3 className="text-lg font-bold text-foreground mb-2">View Metrics</h3>
+                  <p className="text-sm text-muted-foreground">Track team technical metrics</p>
                 </CardContent>
               </Card>
             </Link>

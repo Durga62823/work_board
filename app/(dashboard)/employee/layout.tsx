@@ -31,16 +31,16 @@ export default async function EmployeeDashboardLayout({
   const userRole = (session.user as any).role || "EMPLOYEE";
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <header className="bg-card border-b border-border sticky top-0 z-10">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-2xl font-bold text-foreground">
                 Project Management Tool
               </h1>
-              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
                 Employee
               </span>
             </div>
@@ -55,71 +55,71 @@ export default async function EmployeeDashboardLayout({
 
       <div className="flex">
         {/* Sidebar */}
-        <aside className="w-64 bg-white border-r border-gray-200 min-h-[calc(100vh-73px)]">
+        <aside className="w-64 bg-card border-r border-border min-h-[calc(100vh-73px)]">
           <nav className="p-4 space-y-2">
             <Link
               href="/employee"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <Home className="h-5 w-5 text-gray-600" />
-              <span className="font-medium text-gray-700">Dashboard</span>
+              <Home className="h-5 w-5 text-muted-foreground" />
+              <span className="font-medium text-foreground">Dashboard</span>
             </Link>
 
             <Link
               href="/employee/my-work"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <CheckCircle className="h-5 w-5 text-gray-600" />
-              <span className="font-medium text-gray-700">My Tasks</span>
+              <CheckCircle className="h-5 w-5 text-muted-foreground" />
+              <span className="font-medium text-foreground">My Tasks</span>
             </Link>
 
             <Link
               href="/employee/timesheet"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <Clock className="h-5 w-5 text-gray-600" />
-              <span className="font-medium text-gray-700">Timesheet</span>
+              <Clock className="h-5 w-5 text-muted-foreground" />
+              <span className="font-medium text-foreground">Timesheet</span>
             </Link>
 
             <Link
               href="/employee/performance"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <TrendingUp className="h-5 w-5 text-gray-600" />
-              <span className="font-medium text-gray-700">Performance</span>
+              <TrendingUp className="h-5 w-5 text-muted-foreground" />
+              <span className="font-medium text-foreground">Performance</span>
             </Link>
 
             <Link
               href="/employee/goals"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <Target className="h-5 w-5 text-gray-600" />
-              <span className="font-medium text-gray-700">My Goals</span>
+              <Target className="h-5 w-5 text-muted-foreground" />
+              <span className="font-medium text-foreground">My Goals</span>
             </Link>
 
             <Link
               href="/employee/calendar"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <Calendar className="h-5 w-5 text-gray-600" />
-              <span className="font-medium text-gray-700">Calendar</span>
+              <Calendar className="h-5 w-5 text-muted-foreground" />
+              <span className="font-medium text-foreground">Calendar</span>
             </Link>
 
             <Link
               href="/employee/appraisal"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <FileText className="h-5 w-5 text-gray-600" />
-              <span className="font-medium text-gray-700">Appraisals</span>
+              <FileText className="h-5 w-5 text-muted-foreground" />
+              <span className="font-medium text-foreground">Appraisals</span>
             </Link>
 
-            <div className="pt-4 mt-4 border-t border-gray-200">
+            <div className="pt-4 mt-4 border-t border-border">
               <Link
                 href="/settings"
-                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <Settings className="h-5 w-5 text-gray-600" />
-                <span className="font-medium text-gray-700">Settings</span>
+                <Settings className="h-5 w-5 text-muted-foreground" />
+                <span className="font-medium text-foreground">Settings</span>
               </Link>
 
               <div className="px-4 py-3">

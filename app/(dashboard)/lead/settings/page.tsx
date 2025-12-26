@@ -115,8 +115,8 @@ export default function LeadSettingsPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading settings...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Loading settings...</p>
         </div>
       </div>
     );
@@ -126,21 +126,21 @@ export default function LeadSettingsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
-          <p className="text-gray-600">Manage your account preferences and security</p>
+          <h1 className="text-2xl font-bold text-foreground">Settings</h1>
+          <p className="text-muted-foreground">Manage your account preferences and security</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+      <div className="bg-card rounded-lg shadow-sm border border-border">
         {/* Tabs */}
-        <div className="border-b border-gray-200">
+        <div className="border-b border-border">
           <div className="flex">
             <button
               onClick={() => setActiveTab("preferences")}
               className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === "preferences"
-                  ? "border-purple-500 text-purple-600"
-                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
               }`}
             >
               Preferences
@@ -149,8 +149,8 @@ export default function LeadSettingsPage() {
               onClick={() => setActiveTab("notifications")}
               className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === "notifications"
-                  ? "border-purple-500 text-purple-600"
-                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
               }`}
             >
               Notifications
@@ -159,8 +159,8 @@ export default function LeadSettingsPage() {
               onClick={() => setActiveTab("password")}
               className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === "password"
-                  ? "border-purple-500 text-purple-600"
-                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
               }`}
             >
               Password
@@ -174,12 +174,12 @@ export default function LeadSettingsPage() {
           {activeTab === "preferences" && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Display Settings</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-4">Display Settings</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">Compact View</p>
-                      <p className="text-sm text-gray-600">Show more items per page</p>
+                      <p className="font-medium text-foreground">Compact View</p>
+                      <p className="text-sm text-muted-foreground">Show more items per page</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input 
@@ -188,7 +188,7 @@ export default function LeadSettingsPage() {
                         checked={preferences.compactView}
                         onChange={(e) => setPreferences({ ...preferences, compactView: e.target.checked })}
                       />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                      <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-card after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                     </label>
                   </div>
 
@@ -198,7 +198,7 @@ export default function LeadSettingsPage() {
                       id="timezone"
                       value={preferences.timezone}
                       onChange={(e) => setPreferences({ ...preferences, timezone: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       <option>UTC (GMT+0:00)</option>
                       <option>Eastern Time (GMT-5:00)</option>
@@ -214,7 +214,7 @@ export default function LeadSettingsPage() {
                       id="language"
                       value={preferences.language}
                       onChange={(e) => setPreferences({ ...preferences, language: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       <option>English</option>
                       <option>Spanish</option>
@@ -229,7 +229,6 @@ export default function LeadSettingsPage() {
                 <Button
                   onClick={handleSavePreferences}
                   disabled={isPending}
-                  className="bg-purple-600 hover:bg-purple-700"
                 >
                   {isPending ? "Saving..." : "Save Preferences"}
                 </Button>
@@ -241,12 +240,12 @@ export default function LeadSettingsPage() {
           {activeTab === "notifications" && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Email Notifications</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-4">Email Notifications</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">Task Assignments</p>
-                      <p className="text-sm text-gray-600">Get notified when tasks are assigned to you</p>
+                      <p className="font-medium text-foreground">Task Assignments</p>
+                      <p className="text-sm text-muted-foreground">Get notified when tasks are assigned to you</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input 
@@ -255,14 +254,14 @@ export default function LeadSettingsPage() {
                         checked={notifications.taskAssignments}
                         onChange={(e) => setNotifications({ ...notifications, taskAssignments: e.target.checked })}
                       />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                      <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-card after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                     </label>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">Code Review Requests</p>
-                      <p className="text-sm text-gray-600">Get notified when PRs need your review</p>
+                      <p className="font-medium text-foreground">Code Review Requests</p>
+                      <p className="text-sm text-muted-foreground">Get notified when PRs need your review</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input 
@@ -271,14 +270,14 @@ export default function LeadSettingsPage() {
                         checked={notifications.codeReviews}
                         onChange={(e) => setNotifications({ ...notifications, codeReviews: e.target.checked })}
                       />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                      <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-card after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                     </label>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">Sprint Updates</p>
-                      <p className="text-sm text-gray-600">Get notified about sprint changes and completions</p>
+                      <p className="font-medium text-foreground">Sprint Updates</p>
+                      <p className="text-sm text-muted-foreground">Get notified about sprint changes and completions</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input 
@@ -287,14 +286,14 @@ export default function LeadSettingsPage() {
                         checked={notifications.sprintUpdates}
                         onChange={(e) => setNotifications({ ...notifications, sprintUpdates: e.target.checked })}
                       />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                      <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-card after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                     </label>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">Blocked Tasks</p>
-                      <p className="text-sm text-gray-600">Get notified when tasks become blocked</p>
+                      <p className="font-medium text-foreground">Blocked Tasks</p>
+                      <p className="text-sm text-muted-foreground">Get notified when tasks become blocked</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input 
@@ -303,14 +302,14 @@ export default function LeadSettingsPage() {
                         checked={notifications.blockedTasks}
                         onChange={(e) => setNotifications({ ...notifications, blockedTasks: e.target.checked })}
                       />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                      <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-card after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                     </label>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">Weekly Summary</p>
-                      <p className="text-sm text-gray-600">Receive weekly team performance summary</p>
+                      <p className="font-medium text-foreground">Weekly Summary</p>
+                      <p className="text-sm text-muted-foreground">Receive weekly team performance summary</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input 
@@ -319,7 +318,7 @@ export default function LeadSettingsPage() {
                         checked={notifications.weeklySummary}
                         onChange={(e) => setNotifications({ ...notifications, weeklySummary: e.target.checked })}
                       />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                      <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-card after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                     </label>
                   </div>
                 </div>
@@ -329,7 +328,6 @@ export default function LeadSettingsPage() {
                 <Button
                   onClick={handleSaveNotifications}
                   disabled={isPending}
-                  className="bg-purple-600 hover:bg-purple-700"
                 >
                   {isPending ? "Saving..." : "Save Notifications"}
                 </Button>
@@ -341,7 +339,7 @@ export default function LeadSettingsPage() {
           {activeTab === "password" && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Change Password</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-4">Change Password</h3>
                 <div className="space-y-4 max-w-md">
                   <div className="space-y-2">
                     <Label htmlFor="current-password">Current Password</Label>
@@ -361,7 +359,7 @@ export default function LeadSettingsPage() {
                       value={passwordData.newPassword}
                       onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
                     />
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       Must be at least 8 characters with uppercase, lowercase, and numbers
                     </p>
                   </div>
@@ -382,19 +380,18 @@ export default function LeadSettingsPage() {
                 <Button
                   onClick={handleChangePassword}
                   disabled={isPending}
-                  className="bg-purple-600 hover:bg-purple-700"
                 >
                   {isPending ? "Changing..." : "Change Password"}
                 </Button>
               </div>
 
               <div className="pt-6 border-t">
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <h4 className="text-sm font-semibold text-red-900 mb-2">Danger Zone</h4>
-                  <p className="text-sm text-red-700 mb-3">
+                <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-4">
+                  <h4 className="text-sm font-semibold text-destructive mb-2">Danger Zone</h4>
+                  <p className="text-sm text-destructive/80 mb-3">
                     Once you delete your account, there is no going back. Please be certain.
                   </p>
-                  <Button variant="outline" className="border-red-300 text-red-700 hover:bg-red-50">
+                  <Button variant="outline" className="border-destructive/30 text-destructive hover:bg-destructive/10">
                     Request Account Deletion
                   </Button>
                 </div>

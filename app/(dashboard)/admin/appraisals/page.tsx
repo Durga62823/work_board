@@ -39,7 +39,7 @@ export default async function AppraisalsPage() {
 
         {/* Appraisal Stats */}
         <div className="grid gap-4 md:grid-cols-3">
-          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Active Cycles</CardTitle>
               <Calendar className="h-4 w-4 text-red-500" />
@@ -50,7 +50,7 @@ export default async function AppraisalsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Pending Reviews</CardTitle>
               <Award className="h-4 w-4 text-orange-500" />
@@ -61,7 +61,7 @@ export default async function AppraisalsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
               <Award className="h-4 w-4 text-red-500" />
@@ -74,7 +74,7 @@ export default async function AppraisalsPage() {
         </div>
 
         {/* Appraisal Cycles */}
-        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+        <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-2xl">Appraisal Cycles</CardTitle>
             <CardDescription className="text-base">
@@ -97,7 +97,7 @@ export default async function AppraisalsPage() {
         </Card>
 
         {/* Recent Appraisals */}
-        <Card className="border-slate-200/60 bg-white/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+        <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-2xl">Recent Appraisals</CardTitle>
             <CardDescription className="text-base">

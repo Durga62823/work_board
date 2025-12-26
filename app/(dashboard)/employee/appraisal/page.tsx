@@ -161,10 +161,10 @@ export default function AppraisalPage() {
             <Sparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-foreground">
               Performance Appraisals
             </h1>
-            <p className="text-primary">
+            <p className="text-muted-foreground">
               Manage your performance reviews and development plans
             </p>
           </div>
@@ -178,8 +178,8 @@ export default function AppraisalPage() {
                 <FileText className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
-                <p className="text-sm text-primary font-medium">Total Reviews</p>
-                <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                <p className="text-sm text-muted-foreground font-medium">Total Reviews</p>
+                <p className="text-3xl font-bold text-primary">
                   {stats.total}
                 </p>
               </div>
@@ -192,8 +192,8 @@ export default function AppraisalPage() {
                 <Clock className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
-                <p className="text-sm text-primary font-medium">Pending</p>
-                <p className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                <p className="text-sm text-muted-foreground font-medium">Pending</p>
+                <p className="text-3xl font-bold text-primary">
                   {stats.draft + stats.inProgress}
                 </p>
               </div>
@@ -206,8 +206,8 @@ export default function AppraisalPage() {
                 <CheckCircle className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
-                <p className="text-sm text-primary font-medium">Completed</p>
-                <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                <p className="text-sm text-muted-foreground font-medium">Completed</p>
+                <p className="text-3xl font-bold text-primary">
                   {stats.completed}
                 </p>
               </div>
@@ -220,8 +220,8 @@ export default function AppraisalPage() {
                 <FileText className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
-                <p className="text-sm text-primary font-medium">Avg Rating</p>
-                <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <p className="text-sm text-muted-foreground font-medium">Avg Rating</p>
+                <p className="text-3xl font-bold text-primary">
                   {stats.avgRating > 0 ? stats.avgRating.toFixed(1) : "N/A"}
                 </p>
               </div>
@@ -233,7 +233,7 @@ export default function AppraisalPage() {
         {currentAppraisal && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="font-semibold text-xl">
+            <h3 className="font-semibold text-xl text-foreground">
               Current Appraisal - {currentAppraisal.cycle?.name}
             </h3>
             <Badge variant={getStatusBadge(currentAppraisal.status).variant}>
@@ -245,7 +245,7 @@ export default function AppraisalPage() {
             <div className="space-y-6">
               {/* Self-Assessment */}
               <div>
-                <h4 className="font-semibold mb-4">Self-Review</h4>
+                <h4 className="font-semibold mb-4 text-foreground">Self-Review</h4>
                 <div className="space-y-4">
                   <div>
                     <Label>Self-Assessment</Label>
@@ -316,15 +316,15 @@ export default function AppraisalPage() {
           ) : (
             <div className="space-y-4">
               <div>
-                <h4 className="font-semibold mb-2">Your Self-Review</h4>
-                <p className="text-primary whitespace-pre-wrap">
+                <h4 className="font-semibold mb-2 text-foreground">Your Self-Review</h4>
+                <p className="text-muted-foreground whitespace-pre-wrap">
                   {currentAppraisal.selfReview || "No self-review submitted"}
                 </p>
               </div>
 
               {currentAppraisal.rating && (
                 <div>
-                  <h4 className="font-semibold mb-2">Your Self-Rating</h4>
+                  <h4 className="font-semibold mb-2 text-foreground">Your Self-Rating</h4>
                   <p className="text-2xl font-bold text-primary">
                     {currentAppraisal.rating}/5
                   </p>
@@ -333,8 +333,8 @@ export default function AppraisalPage() {
 
               {currentAppraisal.managerFeedback && (
                 <div className="mt-6 pt-6 border-t">
-                  <h4 className="font-semibold mb-2">Manager Feedback</h4>
-                  <p className="text-primary whitespace-pre-wrap">
+                  <h4 className="font-semibold mb-2 text-foreground">Manager Feedback</h4>
+                  <p className="text-muted-foreground whitespace-pre-wrap">
                     {currentAppraisal.managerFeedback}
                   </p>
                 </div>
@@ -342,7 +342,7 @@ export default function AppraisalPage() {
 
               {currentAppraisal.finalRating && (
                 <div className="mt-4">
-                  <h4 className="font-semibold mb-2">Final Rating</h4>
+                  <h4 className="font-semibold mb-2 text-foreground">Final Rating</h4>
                   <p className="text-2xl font-bold text-primary">
                     {currentAppraisal.finalRating}/5
                   </p>
@@ -356,11 +356,11 @@ export default function AppraisalPage() {
         {!currentAppraisal && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
           <div className="text-center py-12">
-            <FileText className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="font-semibold text-lg mb-2">
+            <FileText className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <h3 className="font-semibold text-lg mb-2 text-foreground">
               No Active Appraisal Cycle
             </h3>
-            <p className="text-primary">
+            <p className="text-muted-foreground">
               There is no active appraisal cycle at the moment. Check back
               later.
             </p>
@@ -370,7 +370,7 @@ export default function AppraisalPage() {
 
         {/* Past Appraisals */}
         <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
-          <h3 className="font-semibold text-lg mb-4">Appraisal History</h3>
+          <h3 className="font-semibold text-lg mb-4 text-foreground">Appraisal History</h3>
           {pastAppraisals.length > 0 ? (
             <div className="space-y-3">
               {pastAppraisals.map((appraisal) => {
@@ -378,12 +378,12 @@ export default function AppraisalPage() {
                 return (
                   <div
                     key={appraisal.id}
-                    className="p-4 border border-border rounded-xl bg-white/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    className="p-4 border border-border rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                   >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h4 className="font-semibold">
+                        <h4 className="font-semibold text-foreground">
                           {appraisal.cycle?.name}
                         </h4>
                         <Badge
@@ -393,7 +393,7 @@ export default function AppraisalPage() {
                           {getStatusBadge(appraisal.status).label}
                         </Badge>
                       </div>
-                      <div className="grid grid-cols-2 gap-4 text-sm text-primary">
+                      <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
                         {appraisal.rating && (
                           <div>
                             <span className="font-medium">Self Rating:</span>{" "}
@@ -425,7 +425,7 @@ export default function AppraisalPage() {
                       </div>
                       {appraisal.selfReview && (
                         <div className="mt-3 pt-3 border-t">
-                          <p className="text-sm text-primary line-clamp-2">
+                          <p className="text-sm text-muted-foreground line-clamp-2">
                             {appraisal.selfReview}
                           </p>
                         </div>
@@ -437,7 +437,7 @@ export default function AppraisalPage() {
               })}
             </div>
           ) : (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               No appraisal history found
             </div>
           )}

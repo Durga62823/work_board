@@ -113,7 +113,7 @@ export default async function ManagerCapacityPage() {
                           ? "text-primary"
                           : "text-primary"
                       }`}>
-                    >
+                    
                       {(member.utilization * 100).toFixed(0)}%
                     </span>
                   </div>

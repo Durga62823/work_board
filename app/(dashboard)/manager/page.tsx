@@ -294,7 +294,7 @@ export default async function ManagerPage() {
                         {(member.utilization * 100).toFixed(0)}%
                       </span>
                       {member.utilization > 1 && (
-                        <AlertCircle className="h-4 w-4 text-red-500" />
+                        <AlertCircle className="h-4 w-4 text-destructive" />
                       )}
                     </div>
                   </div>

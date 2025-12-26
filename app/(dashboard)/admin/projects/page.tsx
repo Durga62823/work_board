@@ -151,21 +151,21 @@ export default async function ProjectsPage() {
                           {project.status.replace("_", " ")}
                         </Badge>
                       </TableCell>
-                        <TableCell className="text-slate-600">
+                        <TableCell className="text-muted-foreground">
                           {project.owner.firstName} {project.owner.lastName}
                         </TableCell>
-                        <TableCell className="text-slate-600">{project.team?.name || "-"}</TableCell>
+                        <TableCell className="text-muted-foreground">{project.team?.name || "-"}</TableCell>
                         <TableCell>
                           <Badge variant="outline" className="font-medium">
                             {project._count.members}
                           </Badge>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="outline" className="font-medium text-green-700">
+                          <Badge variant="outline" className="font-medium text-primary">
                             {Math.round(project.completionRate)}%
                           </Badge>
                         </TableCell>
-                        <TableCell className="text-slate-600">
+                        <TableCell className="text-muted-foreground">
                           {new Date(project.createdAt).toLocaleDateString()}
                         </TableCell>
                       </TableRow>
