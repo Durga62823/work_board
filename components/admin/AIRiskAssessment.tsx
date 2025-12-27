@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { AlertTriangle, Shield, CheckCircle2 } from "lucide-react";
+import { HiExclamationTriangle, HiShieldCheck, HiCheckCircle } from "react-icons/hi2";
 
 export function AIRiskAssessment() {
   const [projectName, setProjectName] = useState("");
@@ -66,7 +66,7 @@ export function AIRiskAssessment() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <Shield className="h-6 w-6 text-blue-600" />
+        <HiShieldCheck className="h-6 w-6 text-blue-600" />
         <h3 className="text-lg font-semibold">Smart Risk Assessment</h3>
       </div>
 
@@ -147,7 +147,7 @@ export function AIRiskAssessment() {
         <div className="space-y-4 mt-6">
           <Card className="p-4 bg-gradient-to-r from-blue-50 to-purple-50">
             <h4 className="font-semibold mb-3 flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-orange-600" />
+              <HiExclamationTriangle className="h-5 w-5 text-orange-600" />
               Risk Analysis
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -201,7 +201,7 @@ export function AIRiskAssessment() {
             result.resourceSuggestions.length > 0 && (
               <Card className="p-4">
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600" />
+                  <HiCheckCircle className="h-5 w-5 text-green-600" />
                   Resource Allocation Suggestions
                 </h4>
                 <div className="space-y-3">

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Users, Building2, UserPlus, Plus } from "lucide-react";
+import { HiArrowLeft, HiUserGroup, HiBuildingOffice2, HiUserPlus, HiPlus } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getDepartmentById } from "@/app/actions/admin-organization";
@@ -37,7 +37,7 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         <div className="flex items-center gap-4">
           <Link href="/admin/departments">
             <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-4 w-4" />
+              <HiArrowLeft className="h-4 w-4" />
             </Button>
           </Link>
           <div>
@@ -49,7 +49,7 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         </div>
         <div className="flex gap-2">
           <Button variant="outline">
-            <Plus className="mr-2 h-4 w-4" />
+            <HiPlus className="mr-2 h-4 w-4" />
             Add Team
           </Button>
           <Button variant="outline">Edit Department</Button>
@@ -60,7 +60,7 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <HiUserGroup className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{department.users.length}</div>
@@ -73,7 +73,7 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Teams</CardTitle>
-            <Building2 className="h-4 w-4 text-muted-foreground" />
+            <HiBuildingOffice2 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{department.teams.length}</div>
@@ -86,7 +86,7 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Managers</CardTitle>
-            <UserPlus className="h-4 w-4 text-muted-foreground" />
+            <HiUserPlus className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
@@ -99,7 +99,7 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Department Head</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <HiUserGroup className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">Not assigned</p>

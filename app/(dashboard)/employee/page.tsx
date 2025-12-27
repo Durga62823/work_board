@@ -1,20 +1,20 @@
-﻿"use client";
+"use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
-  CheckCircle,
-  Clock,
-  AlertCircle,
-  TrendingUp,
-  Calendar,
-  Target,
-  FileText,
-  ArrowUpRight,
-  Sparkles,
-  BarChart3,
-  ListTodo,
-} from "lucide-react";
+  HiCheckCircle,
+  HiClock,
+  HiExclamationCircle,
+  HiArrowTrendingUp,
+  HiCalendar,
+  HiFlag,
+  HiDocumentText,
+  HiArrowTopRightOnSquare,
+  HiSparkles,
+  HiChartBarSquare,
+  HiListBullet,
+} from "react-icons/hi2";
 import Link from "next/link";
 
 export default function EmployeeDashboardPage() {
@@ -29,7 +29,7 @@ export default function EmployeeDashboardPage() {
           
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-4">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
+              <HiSparkles className="h-4 w-4 text-primary-foreground" />
               <span className="text-sm font-medium text-primary-foreground">Employee Dashboard</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
@@ -48,7 +48,7 @@ export default function EmployeeDashboardPage() {
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="p-3 rounded-xl bg-primary/10">
-                  <ListTodo className="h-6 w-6 text-primary" />
+                  <HiListBullet className="h-6 w-6 text-primary" />
                 </div>
               </div>
               <p className="text-sm font-semibold text-muted-foreground mb-1">Active Tasks</p>
@@ -61,7 +61,7 @@ export default function EmployeeDashboardPage() {
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="p-3 rounded-xl bg-primary/10">
-                  <Clock className="h-6 w-6 text-primary" />
+                  <HiClock className="h-6 w-6 text-primary" />
                 </div>
               </div>
               <p className="text-sm font-semibold text-muted-foreground mb-1">Due This Week</p>
@@ -74,7 +74,7 @@ export default function EmployeeDashboardPage() {
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="p-3 rounded-xl bg-primary/10">
-                  <AlertCircle className="h-6 w-6 text-primary" />
+                  <HiExclamationCircle className="h-6 w-6 text-primary" />
                 </div>
               </div>
               <p className="text-sm font-semibold text-muted-foreground mb-1">Overdue</p>
@@ -87,7 +87,7 @@ export default function EmployeeDashboardPage() {
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="p-3 rounded-xl bg-primary/10">
-                  <TrendingUp className="h-6 w-6 text-primary" />
+                  <HiArrowTrendingUp className="h-6 w-6 text-primary" />
                 </div>
               </div>
               <p className="text-sm font-semibold text-muted-foreground mb-1">Completed</p>
@@ -106,9 +106,9 @@ export default function EmployeeDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg">
-                      <CheckCircle className="h-6 w-6 text-primary-foreground" />
+                      <HiCheckCircle className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowTopRightOnSquare className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-primary-foreground mb-2">My Tasks</h3>
                   <p className="text-sm text-primary-foreground/80">View and manage your assigned tasks</p>
@@ -122,9 +122,9 @@ export default function EmployeeDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg">
-                      <Clock className="h-6 w-6 text-primary-foreground" />
+                      <HiClock className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowTopRightOnSquare className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-primary-foreground mb-2">Timesheet</h3>
                   <p className="text-sm text-primary-foreground/80">Log and track your hours</p>
@@ -138,9 +138,9 @@ export default function EmployeeDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg">
-                      <BarChart3 className="h-6 w-6 text-primary-foreground" />
+                      <HiChartBarSquare className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowTopRightOnSquare className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-primary-foreground mb-2">Performance</h3>
                   <p className="text-sm text-primary-foreground/80">View your metrics and progress</p>
@@ -154,9 +154,9 @@ export default function EmployeeDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg">
-                      <Target className="h-6 w-6 text-primary-foreground" />
+                      <HiFlag className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowTopRightOnSquare className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-primary-foreground mb-2">My Goals</h3>
                   <p className="text-sm text-primary-foreground/80">Track your goals and objectives</p>
@@ -170,9 +170,9 @@ export default function EmployeeDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg">
-                      <Calendar className="h-6 w-6 text-primary-foreground" />
+                      <HiCalendar className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowTopRightOnSquare className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-primary-foreground mb-2">Calendar</h3>
                   <p className="text-sm text-primary-foreground/80">View deadlines and milestones</p>
@@ -186,9 +186,9 @@ export default function EmployeeDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg">
-                      <FileText className="h-6 w-6 text-primary-foreground" />
+                      <HiDocumentText className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowTopRightOnSquare className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-primary-foreground mb-2">Appraisals</h3>
                   <p className="text-sm text-primary-foreground/80">Self-appraisal and feedback</p>
@@ -203,7 +203,7 @@ export default function EmployeeDashboardPage() {
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-primary">
-                <CheckCircle className="h-5 w-5 text-primary-foreground" />
+                <HiCheckCircle className="h-5 w-5 text-primary-foreground" />
               </div>
               <CardTitle className="text-2xl font-bold text-foreground">Today's Tasks</CardTitle>
             </div>
@@ -214,7 +214,7 @@ export default function EmployeeDashboardPage() {
               <div className="flex items-center justify-between p-4 rounded-xl bg-primary/10 border border-primary/30 hover:shadow-md transition-all group">
                 <div className="flex items-center gap-4">
                   <div className="p-2 rounded-lg bg-primary/20">
-                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <HiCheckCircle className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Update user dashboard UI</p>
@@ -227,7 +227,7 @@ export default function EmployeeDashboardPage() {
               <div className="flex items-center justify-between p-4 rounded-xl bg-primary/10 border border-primary/30 hover:shadow-md transition-all group">
                 <div className="flex items-center gap-4">
                   <div className="p-2 rounded-lg bg-primary/20">
-                    <Clock className="h-5 w-5 text-primary" />
+                    <HiClock className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Code review for PR #123</p>
@@ -240,7 +240,7 @@ export default function EmployeeDashboardPage() {
               <div className="flex items-center justify-between p-4 rounded-xl bg-destructive/10 border border-destructive/30 hover:shadow-md transition-all group">
                 <div className="flex items-center gap-4">
                   <div className="p-2 rounded-lg bg-destructive/20">
-                    <AlertCircle className="h-5 w-5 text-destructive" />
+                    <HiExclamationCircle className="h-5 w-5 text-destructive" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Fix critical bug in payment module</p>
@@ -257,7 +257,7 @@ export default function EmployeeDashboardPage() {
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
               >
                 View all tasks
-                <ArrowUpRight className="h-4 w-4" />
+                <HiArrowTopRightOnSquare className="h-4 w-4" />
               </Link>
             </div>
           </CardContent>

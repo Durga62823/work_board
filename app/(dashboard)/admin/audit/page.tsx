@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { Download, Shield } from "lucide-react";
+import { HiArrowDownTray, HiShieldCheck } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getAuditLogs } from "@/app/actions/admin-audit";
@@ -36,7 +36,7 @@ export default async function AuditLogsPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-destructive shadow-lg">
-              <Shield className="h-6 w-6 text-destructive-foreground" />
+              <HiShieldCheck className="h-6 w-6 text-destructive-foreground" />
             </div>
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-foreground">
@@ -51,7 +51,7 @@ export default async function AuditLogsPage() {
             variant="outline"
             className="border-border hover:bg-muted hover:text-foreground transition-all"
           >
-            <Download className="mr-2 h-4 w-4" />
+            <HiArrowDownTray className="mr-2 h-4 w-4" />
             Export Logs
           </Button>
         </div>
@@ -65,7 +65,7 @@ export default async function AuditLogsPage() {
                   Showing {logs.length} of {total} total log entries
                 </CardDescription>
               </div>
-              <Shield className="h-8 w-8 text-destructive" />
+              <HiShieldCheck className="h-8 w-8 text-destructive" />
             </div>
           </CardHeader>
           <CardContent>

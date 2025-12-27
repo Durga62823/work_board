@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, TrendingUp, CheckCircle, Sparkles } from "lucide-react";
+import { HiUserGroup, HiArrowTrendingUp, HiCheckCircle, HiSparkles } from "react-icons/hi2";
 import { TeamPerformanceAnalytics } from "@/components/manager/TeamPerformanceAnalytics";
 import { ResourceOptimization } from "@/components/manager/ResourceOptimization";
 import { ApprovalAssistant } from "@/components/manager/ApprovalAssistant";
@@ -25,26 +25,26 @@ export default function ManagerAIFeaturesPage() {
       title: "Team Performance Analytics",
       description:
         "Analyze team productivity, identify trends, and detect burnout risks",
-      icon: Users,
+      icon: HiUserGroup,
     },
     {
       id: "resource-optimization" as const,
       title: "Resource Optimization",
       description:
         "Optimize team allocation, identify conflicts, and predict hiring needs",
-      icon: TrendingUp,
+      icon: HiArrowTrendingUp,
     },
     {
       id: "approval-assistant" as const,
       title: "Approval Assistant",
       description: "Get AI recommendations for timesheet and PTO approvals",
-      icon: CheckCircle,
+      icon: HiCheckCircle,
     },
     {
       id: "report-generation" as const,
       title: "Smart Report Generator",
       description: "Generate comprehensive project reports with insights",
-      icon: Sparkles,
+      icon: HiSparkles,
     },
   ];
 
@@ -69,7 +69,7 @@ export default function ManagerAIFeaturesPage() {
         {/* Header */}
         <div className="mb-8 flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg">
-            <Sparkles className="h-6 w-6 text-primary-foreground" />
+            <HiSparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
             <h1 className="text-3xl font-bold text-primary">

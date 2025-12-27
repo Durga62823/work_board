@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { Plus, Search, Shield } from "lucide-react";
+import { HiPlus, HiMagnifyingGlass, HiShieldCheck } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getAllUsers } from "@/app/actions/admin-users";
@@ -37,7 +37,7 @@ export default async function UsersPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-              <Shield className="h-6 w-6 text-primary-foreground" />
+              <HiShieldCheck className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-primary">
@@ -50,7 +50,7 @@ export default async function UsersPage() {
           </div>
           <Link href="/admin/users/create">
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
-              <Plus className="mr-2 h-4 w-4" />
+              <HiPlus className="mr-2 h-4 w-4" />
               Add User
             </Button>
           </Link>
@@ -67,7 +67,7 @@ export default async function UsersPage() {
           <CardContent>
             <div className="mb-4">
               <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <HiMagnifyingGlass className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input 
                   placeholder="Search users..." 
                   className="pl-10 border-border focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"/>

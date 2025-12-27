@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { ImSpinner2 } from "react-icons/im";
 import { toast } from "sonner";
 
 import { updateTeam } from "@/app/actions/admin-organization";
@@ -134,7 +134,7 @@ export function EditTeamDialog({ open, onOpenChange, team, departments }: EditTe
               Cancel
             </Button>
             <Button type="submit" disabled={loading}>
-              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {loading && <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />}
               Update Team
             </Button>
           </DialogFooter>

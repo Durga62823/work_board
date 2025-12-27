@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { Calendar, Users, Target, AlertCircle } from "lucide-react";
+import { HiCalendar, HiUserGroup, HiFlag, HiExclamationCircle } from "react-icons/hi2";
 
 export function AISprintPlanning() {
   const [sprintDuration, setSprintDuration] = useState("14");
@@ -67,7 +67,7 @@ export function AISprintPlanning() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <Calendar className="h-6 w-6 text-purple-600" />
+        <HiCalendar className="h-6 w-6 text-purple-600" />
         <h3 className="text-lg font-semibold">Smart Sprint Planning</h3>
       </div>
 
@@ -89,7 +89,7 @@ export function AISprintPlanning() {
       <Card className="p-4">
         <div className="flex items-center justify-between mb-3">
           <h5 className="font-semibold flex items-center gap-2">
-            <Users className="h-4 w-4" />
+            <HiUserGroup className="h-4 w-4" />
             Team Members
           </h5>
           <Button
@@ -201,7 +201,7 @@ export function AISprintPlanning() {
         <div className="space-y-4 mt-6">
           <Card className="p-4 bg-purple-50">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
-              <Target className="h-5 w-5 text-purple-600" />
+              <HiFlag className="h-5 w-5 text-purple-600" />
               Sprint Goal
             </h4>
             <p className="text-sm bg-white p-3 rounded">{result.sprintGoal}</p>
@@ -260,7 +260,7 @@ export function AISprintPlanning() {
           {result.risks && result.risks.length > 0 && (
             <Card className="p-4 bg-red-50">
               <h5 className="font-semibold mb-2 flex items-center gap-2 text-red-700">
-                <AlertCircle className="h-4 w-4" />
+                <HiExclamationCircle className="h-4 w-4" />
                 Identified Risks
               </h5>
               <ul className="space-y-1">

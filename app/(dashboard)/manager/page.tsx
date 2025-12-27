@@ -9,16 +9,16 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import {
-  Users,
-  Clock,
-  FileText,
-  Activity,
-  Sparkles,
-  ArrowUpRight,
-  CalendarClock,
-  TrendingUp,
-  AlertCircle,
-} from "lucide-react";
+  HiUserGroup,
+  HiClock,
+  HiDocumentText,
+  HiChartBarSquare,
+  HiSparkles,
+  HiArrowUpRight,
+  HiCalendar,
+  HiArrowTrendingUp,
+  HiExclamationCircle,
+} from "react-icons/hi2";
 
 export const metadata = {
   title: "Manager Dashboard | Make It Possible",
@@ -53,7 +53,7 @@ export default async function ManagerPage() {
           
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-4">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
+              <HiSparkles className="h-4 w-4 text-primary-foreground" />
               <span className="text-sm font-medium text-primary-foreground">Manager Dashboard</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
@@ -72,7 +72,7 @@ export default async function ManagerPage() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-semibold text-muted-foreground">Team Members</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
-                <Users className="h-4 w-4 text-primary" />
+                <HiUserGroup className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
@@ -82,7 +82,7 @@ export default async function ManagerPage() {
                 className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
               >
                 View team
-                <ArrowUpRight className="h-3 w-3" />
+                <HiArrowUpRight className="h-3 w-3" />
               </Link>
             </CardContent>
           </Card>
@@ -92,7 +92,7 @@ export default async function ManagerPage() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-semibold text-muted-foreground">Pending PTO</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
-                <CalendarClock className="h-4 w-4 text-primary" />
+                <HiCalendar className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
@@ -102,7 +102,7 @@ export default async function ManagerPage() {
                 className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
               >
                 Review requests
-                <ArrowUpRight className="h-3 w-3" />
+                <HiArrowUpRight className="h-3 w-3" />
               </Link>
             </CardContent>
           </Card>
@@ -112,7 +112,7 @@ export default async function ManagerPage() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-semibold text-muted-foreground">Pending Timesheets</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
-                <FileText className="h-4 w-4 text-primary" />
+                <HiDocumentText className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
@@ -122,7 +122,7 @@ export default async function ManagerPage() {
                 className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
               >
                 Review timesheets
-                <ArrowUpRight className="h-3 w-3" />
+                <HiArrowUpRight className="h-3 w-3" />
               </Link>
             </CardContent>
           </Card>
@@ -132,7 +132,7 @@ export default async function ManagerPage() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-semibold text-muted-foreground">Team Utilization</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
-                <Activity className="h-4 w-4 text-primary" />
+                <HiChartBarSquare className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
@@ -144,7 +144,7 @@ export default async function ManagerPage() {
                 className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
               >
                 View capacity
-                <ArrowUpRight className="h-3 w-3" />
+                <HiArrowUpRight className="h-3 w-3" />
               </Link>
             </CardContent>
           </Card>
@@ -165,7 +165,7 @@ export default async function ManagerPage() {
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
                 >
                   View all
-                  <ArrowUpRight className="h-4 w-4" />
+                  <HiArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
             </CardHeader>
@@ -194,7 +194,7 @@ export default async function ManagerPage() {
                 {pendingPTO.length === 0 && (
                   <div className="py-12 text-center">
                     <div className="inline-flex p-4 rounded-full bg-primary/10 mb-3">
-                      <CalendarClock className="h-6 w-6 text-primary" />
+                      <HiCalendar className="h-6 w-6 text-primary" />
                     </div>
                     <p className="text-sm text-muted-foreground">No pending PTO requests</p>
                   </div>
@@ -216,7 +216,7 @@ export default async function ManagerPage() {
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
                 >
                   View all
-                  <ArrowUpRight className="h-4 w-4" />
+                  <HiArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
             </CardHeader>
@@ -243,7 +243,7 @@ export default async function ManagerPage() {
                 {pendingTimesheets.length === 0 && (
                   <div className="py-12 text-center">
                     <div className="inline-flex p-4 rounded-full bg-primary/10 mb-3">
-                      <FileText className="h-6 w-6 text-primary" />
+                      <HiDocumentText className="h-6 w-6 text-primary" />
                     </div>
                     <p className="text-sm text-muted-foreground">No pending timesheets</p>
                   </div>
@@ -294,7 +294,7 @@ export default async function ManagerPage() {
                         {(member.utilization * 100).toFixed(0)}%
                       </span>
                       {member.utilization > 1 && (
-                        <AlertCircle className="h-4 w-4 text-destructive" />
+                        <HiExclamationTriangle className="h-4 w-4 text-destructive" />
                       )}
                     </div>
                   </div>
@@ -303,7 +303,7 @@ export default async function ManagerPage() {
               {teamCapacity.length === 0 && (
                 <div className="py-12 text-center">
                   <div className="inline-flex p-4 rounded-full bg-primary/10 mb-3">
-                    <Users className="h-6 w-6 text-primary" />
+                    <HiUserGroup className="h-6 w-6 text-primary" />
                   </div>
                   <p className="text-sm text-muted-foreground">No team members assigned</p>
                 </div>

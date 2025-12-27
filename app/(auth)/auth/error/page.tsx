@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AlertCircle } from "lucide-react";
+import { HiExclamationCircle } from "react-icons/hi2";
 
 import {
   CardContent,
@@ -34,7 +34,7 @@ export default function AuthErrorPage({
     <>
       <CardHeader>
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
-          <AlertCircle className="h-6 w-6 text-red-600" />
+          <HiExclamationCircle className="h-6 w-6 text-red-600" />
         </div>
         <CardTitle className="text-center">{errorMessage}</CardTitle>
         <CardDescription className="text-center">

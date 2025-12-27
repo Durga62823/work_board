@@ -6,7 +6,7 @@ import {
   updateUserPreferences,
   updateNotificationSettings,
 } from "@/app/actions/settings";
-import { Loader2 } from "lucide-react";
+import { ImSpinner2 } from "react-icons/im";
 
 interface UserPreferences {
   theme?: string;
@@ -232,7 +232,7 @@ export function SettingsClient({
           >
             {preferencesPending ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <ImSpinner2 className="h-4 w-4 animate-spin" />
                 Saving...
               </>
             ) : (
@@ -330,7 +330,7 @@ export function SettingsClient({
         >
           {notificationsPending ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <ImSpinner2 className="h-4 w-4 animate-spin" />
               Saving...
             </>
           ) : (

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { Users, Building2, FolderKanban, TrendingUp, Shield, Settings, Sparkles, ArrowUpRight, BarChart3, UserPlus } from "lucide-react";
+import { HiUsers, HiBuildingOffice2, HiRocketLaunch, HiTrophy, HiShieldCheck, HiCog6Tooth, HiSparkles, HiArrowUpRight, HiChartBar, HiUserPlus, HiRectangleGroup } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,7 +28,7 @@ export default async function AdminDashboardPage() {
           
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-4">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
+              <HiSparkles className="h-4 w-4 text-primary-foreground" />
               <span className="text-sm font-medium text-primary-foreground">Admin Dashboard</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
@@ -47,7 +47,7 @@ export default async function AdminDashboardPage() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-semibold text-muted-foreground">Total Users</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
-                <Users className="h-4 w-4 text-primary" />
+                <HiUsers className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
@@ -61,7 +61,7 @@ export default async function AdminDashboardPage() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-semibold text-muted-foreground">Departments</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
-                <Building2 className="h-4 w-4 text-primary" />
+                <HiBuildingOffice2 className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
@@ -75,7 +75,7 @@ export default async function AdminDashboardPage() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-semibold text-muted-foreground">Active Projects</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
-                <FolderKanban className="h-4 w-4 text-primary" />
+                <HiRocketLaunch className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
@@ -89,7 +89,7 @@ export default async function AdminDashboardPage() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-semibold text-muted-foreground">Completion Rate</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
-                <TrendingUp className="h-4 w-4 text-primary" />
+                <HiTrophy className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
@@ -110,15 +110,15 @@ export default async function AdminDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <Users className="h-6 w-6 text-primary-foreground" />
+                      <HiUsers className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowUpRight className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">User Management</h3>
                   <p className="text-sm text-muted-foreground mb-4">Manage users, roles, and permissions</p>
                   <div className="flex gap-2">
                     <span className="inline-flex items-center gap-1 text-xs font-medium text-primary">
-                      <UserPlus className="h-3 w-3" />
+                      <HiUserPlus className="h-3 w-3" />
                       Create User
                     </span>
                   </div>
@@ -133,9 +133,9 @@ export default async function AdminDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <Building2 className="h-6 w-6 text-primary-foreground" />
+                      <HiBuildingOffice2 className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowUpRight className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Organization</h3>
                   <p className="text-sm text-muted-foreground mb-4">Manage departments, teams, and structure</p>
@@ -155,9 +155,9 @@ export default async function AdminDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <FolderKanban className="h-6 w-6 text-primary-foreground" />
+                      <HiRectangleGroup className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowUpRight className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Projects</h3>
                   <p className="text-sm text-muted-foreground">Overview of all projects and status</p>
@@ -172,9 +172,9 @@ export default async function AdminDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <BarChart3 className="h-6 w-6 text-primary-foreground" />
+                      <HiChartBar className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowUpRight className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Performance</h3>
                   <p className="text-sm text-muted-foreground mb-4">Analytics, KPIs, and appraisals</p>
@@ -194,9 +194,9 @@ export default async function AdminDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-destructive shadow-lg shadow-destructive/30">
-                      <Shield className="h-6 w-6 text-destructive-foreground" />
+                      <HiShieldCheck className="h-6 w-6 text-destructive-foreground" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-destructive group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowUpRight className="h-5 w-5 text-destructive group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Security & Audit</h3>
                   <p className="text-sm text-muted-foreground">Audit logs and security settings</p>
@@ -211,9 +211,9 @@ export default async function AdminDashboardPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-muted-foreground shadow-lg shadow-muted-foreground/30">
-                      <Settings className="h-6 w-6 text-muted" />
+                      <HiCog6Tooth className="h-6 w-6 text-muted" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Integrations & Settings</h3>
                   <p className="text-sm text-muted-foreground mb-4">Configure integrations and AI features</p>

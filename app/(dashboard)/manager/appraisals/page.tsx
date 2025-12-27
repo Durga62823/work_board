@@ -2,7 +2,7 @@ import { requireManager } from "@/lib/guards";
 import { getTeamAppraisals } from "@/lib/manager-helpers";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
+import { HiSparkles } from "react-icons/hi2";
 
 export const metadata = {
   title: "Appraisals | Manager Dashboard",
@@ -30,7 +30,7 @@ export default async function ManagerAppraisalsPage() {
         {/* Header */}
         <div className="flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg">
-            <Sparkles className="h-6 w-6 text-primary-foreground" />
+            <HiSparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
             <h1 className="text-3xl font-bold text-primary">

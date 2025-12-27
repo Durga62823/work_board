@@ -19,8 +19,8 @@ export default function SignupPage() {
       <CardContent>
         <SocialAuthButtons />
         <div className="relative mt-6 mb-2">
-          <div className="border-t border-slate-200" />
-          <span className="absolute inset-0 -mt-3 flex items-center justify-center bg-white text-xs uppercase text-slate-400">
+          <div className="border-t border-slate-200 dark:border-slate-700" />
+          <span className="absolute inset-0 -mt-3 flex items-center justify-center bg-white dark:bg-slate-950 text-xs uppercase text-slate-400 dark:text-slate-500">
             or continue with email
           </span>
         </div>

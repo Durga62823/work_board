@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { signOut } from "next-auth/react";
-import { LogOut, Loader2 } from "lucide-react";
+import { HiArrowRightOnRectangle } from "react-icons/hi2";
+import { ImSpinner2 } from "react-icons/im";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 
 interface LogoutButtonProps {
@@ -27,10 +29,13 @@ export function LogoutButton({
   className,
 }: LogoutButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const { setTheme } = useTheme();
 
   const handleLogout = async () => {
     setIsLoading(true);
     try {
+      // Reset theme to light mode before logout
+      setTheme("light");
       await signOut({ redirect: true, redirectTo: "/auth/login" });
     } catch (error) {
       console.error("Logout failed:", error);
@@ -47,9 +52,9 @@ export function LogoutButton({
       className={className}
     >
       {isLoading ? (
-        <Loader2 className="h-4 w-4 animate-spin" />
+        <ImSpinner2 className="h-4 w-4 animate-spin" />
       ) : (
-        showIcon && <LogOut className="h-4 w-4" />
+        showIcon && <HiArrowRightOnRectangle className="h-4 w-4" />
       )}
       {showLabel && (
         <span className={showIcon ? "ml-2" : ""}>

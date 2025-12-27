@@ -2,7 +2,7 @@ import { requireLead } from "@/lib/guards";
 import { prisma } from "@/lib/prisma";
 import { getTeamTasks, getTeamMembers } from "@/lib/lead-helpers";
 import { TaskBoard } from "@/components/lead/TaskBoard";
-import { Sparkles } from "lucide-react";
+import { HiSparkles } from "react-icons/hi2";
 
 export default async function TeamBoardPage() {
   const session = await requireLead();
@@ -65,7 +65,7 @@ export default async function TeamBoardPage() {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-3">
           <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-primary-foreground rounded-full shadow-lg">
-            <Sparkles className="h-4 w-4" />
+            <HiSparkles className="h-4 w-4" />
             <span className="text-sm font-semibold">Tech Lead</span>
           </div>
         </div>

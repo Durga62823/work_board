@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { ImSpinner2 } from "react-icons/im";
 import { toast } from "sonner";
 
 import { createTeam } from "@/app/actions/admin-organization";
@@ -119,7 +119,7 @@ export function CreateTeamDialog({ open, onOpenChange, departments }: CreateTeam
               Cancel
             </Button>
             <Button type="submit" disabled={loading}>
-              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {loading && <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />}
               Create Team
             </Button>
           </DialogFooter>

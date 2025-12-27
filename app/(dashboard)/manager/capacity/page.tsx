@@ -1,6 +1,6 @@
 import { requireManager } from "@/lib/guards";
 import { getTeamCapacity, getTeamCalendar } from "@/lib/manager-helpers";
-import { Sparkles } from "lucide-react";
+import { HiSparkles } from "react-icons/hi2";
 
 export const metadata = {
   title: "Team Capacity | Manager Dashboard",
@@ -31,7 +31,7 @@ export default async function ManagerCapacityPage() {
         {/* Header */}
         <div className="flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg">
-            <Sparkles className="h-6 w-6 text-primary-foreground" />
+            <HiSparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
             <h1 className="text-3xl font-bold text-primary">
@@ -162,7 +162,7 @@ export default async function ManagerCapacityPage() {
                   <div className="text-sm font-medium text-foreground">
                     {pto.days} days
                   </div>
-                  <div className="text-sm text-slate-500">
+                  <div className="text-sm text-muted-foreground">
                     {pto.type.replace("_", " ")}
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export default async function ManagerCapacityPage() {
             </div>
             ))}
             {calendar.ptoRequests.length === 0 && (
-              <div className="px-6 py-12 text-center text-slate-500">
+              <div className="px-6 py-12 text-center text-muted-foreground">
                 No upcoming time off scheduled
               </div>
             )}

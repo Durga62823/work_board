@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { MessageSquare, ClipboardList, CheckSquare2 } from "lucide-react";
+import { HiChatBubbleLeft, HiClipboardDocumentList, HiCheckCircle } from "react-icons/hi2";
 
 export function AIMeetingSummary() {
   const [transcript, setTranscript] = useState("");
@@ -41,7 +41,7 @@ export function AIMeetingSummary() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <MessageSquare className="h-6 w-6 text-teal-600" />
+        <HiChatBubbleLeft className="h-6 w-6 text-teal-600" />
         <h3 className="text-lg font-semibold">Meeting Summary Generator</h3>
       </div>
 
@@ -70,7 +70,7 @@ export function AIMeetingSummary() {
         <div className="space-y-4 mt-6">
           <Card className="p-4 bg-teal-50">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
-              <ClipboardList className="h-5 w-5 text-teal-600" />
+              <HiClipboardDocumentList className="h-5 w-5 text-teal-600" />
               Meeting Summary
             </h4>
             <p className="text-sm text-gray-700 bg-white p-3 rounded">
@@ -93,7 +93,7 @@ export function AIMeetingSummary() {
           {result.actionItems && result.actionItems.length > 0 && (
             <Card className="p-4 bg-amber-50">
               <h5 className="font-semibold mb-3 flex items-center gap-2">
-                <CheckSquare2 className="h-5 w-5 text-amber-600" />
+                <HiCheckCircle className="h-5 w-5 text-amber-600" />
                 Action Items
               </h5>
               <div className="space-y-2">

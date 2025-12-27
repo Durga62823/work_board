@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
-import { Github, Slack, Mail, Key, Zap, Shield } from "lucide-react";
+import { HiEnvelope, HiKey, HiBolt, HiShieldCheck } from "react-icons/hi2";
+import { FaGithub, FaSlack } from "react-icons/fa";
 
 import { auth } from "@/lib/auth";
 import { getAllIntegrations } from "@/app/actions/admin-settings";
@@ -8,11 +9,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const integrationIcons: Record<string, any> = {
-  github: Github,
-  slack: Slack,
-  email: Mail,
-  sso: Key,
-  ai: Zap,
+  github: FaGithub,
+  slack: FaSlack,
+  email: HiEnvelope,
+  sso: HiKey,
+  ai: HiBolt,
 };
 
 export default async function IntegrationsPage() {
@@ -49,13 +50,13 @@ export default async function IntegrationsPage() {
         {/* Header with gradient badge */}
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
-            <Shield className="h-6 w-6 text-white" />
+            <HiShieldCheck className="h-6 w-6 text-white" />
           </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
               Admin - Integrations
             </h2>
-            <p className="text-slate-600 mt-1">
+            <p className="text-muted-foreground mt-1">
               Connect external services and configure integrations
             </p>
           </div>
@@ -63,7 +64,7 @@ export default async function IntegrationsPage() {
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {displayIntegrations.map((integration) => {
-            const Icon = integrationIcons[integration.type] || Zap;
+            const Icon = integrationIcons[integration.type] || HiBolt;
             
             return (
               <Card 

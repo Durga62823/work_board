@@ -2,19 +2,19 @@ import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { 
-  LayoutDashboard, 
-  Users, 
-  FolderKanban, 
-  TrendingUp,
-  Sparkles,
-  ArrowRight,
-  CheckCircle2,
-  Shield,
-  BarChart3,
-  Zap,
-  Github,
-  Mail
-} from "lucide-react";
+  HiSquares2X2, 
+  HiUserGroup, 
+  HiFolder, 
+  HiArrowTrendingUp,
+  HiSparkles,
+  HiArrowRight,
+  HiCheckCircle,
+  HiShieldCheck,
+  HiChartBar,
+  HiBolt,
+  HiEnvelope
+} from "react-icons/hi2";
+import { FaGithub } from "react-icons/fa";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -51,7 +51,7 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-2xl bg-primary flex items-center justify-center shadow-lg">
-                <LayoutDashboard className="h-5 w-5 text-primary-foreground" />
+                <HiSquares2X2 className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
                 <span className="text-lg font-bold text-primary">
@@ -76,7 +76,7 @@ export default async function DashboardPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
         <div className="text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-            <Sparkles className="h-4 w-4 text-primary" />
+            <HiSparkles className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-primary">AI-Enhanced Workforce Management</span>
           </div>
           
@@ -93,7 +93,7 @@ export default async function DashboardPage() {
             <Link href="/auth/signup">
               <Button size="lg" className="text-lg px-8 py-6">
                 Get Started Free
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <HiArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/auth/login">
@@ -109,7 +109,7 @@ export default async function DashboardPage() {
           <Card className="border-border bg-card hover:shadow-lg transition-all">
             <CardHeader>
               <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <Users className="h-6 w-6 text-primary" />
+                <HiUserGroup className="h-6 w-6 text-primary" />
               </div>
               <CardTitle>Employee Management</CardTitle>
               <CardDescription>
@@ -121,7 +121,7 @@ export default async function DashboardPage() {
           <Card className="border-border bg-card hover:shadow-lg transition-all">
             <CardHeader>
               <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <FolderKanban className="h-6 w-6 text-primary" />
+                <HiFolder className="h-6 w-6 text-primary" />
               </div>
               <CardTitle>Project Tracking</CardTitle>
               <CardDescription>
@@ -133,7 +133,7 @@ export default async function DashboardPage() {
           <Card className="border-border bg-card hover:shadow-lg transition-all">
             <CardHeader>
               <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <Sparkles className="h-6 w-6 text-primary" />
+                <HiSparkles className="h-6 w-6 text-primary" />
               </div>
               <CardTitle>AI-Powered Insights</CardTitle>
               <CardDescription>
@@ -145,7 +145,7 @@ export default async function DashboardPage() {
           <Card className="border-border bg-card hover:shadow-lg transition-all">
             <CardHeader>
               <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <BarChart3 className="h-6 w-6 text-primary" />
+                <HiChartBar className="h-6 w-6 text-primary" />
               </div>
               <CardTitle>Performance Analytics</CardTitle>
               <CardDescription>
@@ -157,7 +157,7 @@ export default async function DashboardPage() {
           <Card className="border-border bg-card hover:shadow-lg transition-all">
             <CardHeader>
               <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <Shield className="h-6 w-6 text-primary" />
+                <HiShieldCheck className="h-6 w-6 text-primary" />
               </div>
               <CardTitle>Role-Based Access</CardTitle>
               <CardDescription>
@@ -169,7 +169,7 @@ export default async function DashboardPage() {
           <Card className="border-border bg-card hover:shadow-lg transition-all">
             <CardHeader>
               <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <Zap className="h-6 w-6 text-primary" />
+                <HiBolt className="h-6 w-6 text-primary" />
               </div>
               <CardTitle>Automation Tools</CardTitle>
               <CardDescription>
@@ -238,7 +238,7 @@ export default async function DashboardPage() {
             <Card className="border-border bg-card p-6">
               <div className="flex items-start gap-4">
                 <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Shield className="h-6 w-6 text-primary" />
+                  <HiShieldCheck className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-foreground mb-2">Admin Dashboard</h3>
@@ -247,15 +247,15 @@ export default async function DashboardPage() {
                   </p>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       User & role management
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Organization settings
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Audit logs & security
                     </li>
                   </ul>
@@ -266,7 +266,7 @@ export default async function DashboardPage() {
             <Card className="border-border bg-card p-6">
               <div className="flex items-start gap-4">
                 <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="h-6 w-6 text-primary" />
+                  <HiArrowTrendingUp className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-foreground mb-2">Manager Dashboard</h3>
@@ -275,15 +275,15 @@ export default async function DashboardPage() {
                   </p>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Timesheet & PTO approvals
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Team performance analytics
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       AI-powered insights
                     </li>
                   </ul>
@@ -294,7 +294,7 @@ export default async function DashboardPage() {
             <Card className="border-border bg-card p-6">
               <div className="flex items-start gap-4">
                 <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <FolderKanban className="h-6 w-6 text-primary" />
+                  <HiFolder className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-foreground mb-2">Lead Dashboard</h3>
@@ -303,15 +303,15 @@ export default async function DashboardPage() {
                   </p>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Sprint planning & tracking
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Task prioritization AI
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Code review management
                     </li>
                   </ul>
@@ -322,7 +322,7 @@ export default async function DashboardPage() {
             <Card className="border-border bg-card p-6">
               <div className="flex items-start gap-4">
                 <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Users className="h-6 w-6 text-primary" />
+                  <HiUserGroup className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-foreground mb-2">Employee Dashboard</h3>
@@ -331,15 +331,15 @@ export default async function DashboardPage() {
                   </p>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Task management
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Time tracking & calendar
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Goals & performance
                     </li>
                   </ul>
@@ -362,7 +362,7 @@ export default async function DashboardPage() {
               <Link href="/auth/signup">
                 <Button size="lg" variant="secondary" className="text-lg px-8 py-6">
                   Start Free Trial
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <HiArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="/auth/login">
@@ -382,7 +382,7 @@ export default async function DashboardPage() {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <div className="h-8 w-8 rounded-xl bg-primary flex items-center justify-center">
-                  <LayoutDashboard className="h-4 w-4 text-primary-foreground" />
+                  <HiSquares2X2 className="h-4 w-4 text-primary-foreground" />
                 </div>
                 <span className="font-bold text-primary">Make It Possible</span>
               </div>
@@ -428,10 +428,10 @@ export default async function DashboardPage() {
             </p>
             <div className="flex items-center gap-4">
               <Link href="https://github.com" className="text-muted-foreground hover:text-primary transition-colors">
-                <Github className="h-5 w-5" />
+                <FaGithub className="h-5 w-5" />
               </Link>
               <Link href="mailto:support@makeitpossible.com" className="text-muted-foreground hover:text-primary transition-colors">
-                <Mail className="h-5 w-5" />
+                <HiEnvelope className="h-5 w-5" />
               </Link>
             </div>
           </div>

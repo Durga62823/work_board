@@ -12,7 +12,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, Plus, Edit2, Trash2, Target, TrendingUp, Sparkles } from "lucide-react";
+import { HiPlus, HiPencilSquare, HiTrash, HiFlag, HiArrowTrendingUp, HiSparkles } from "react-icons/hi2";
+import { ImSpinner2 } from "react-icons/im";
 import {
   getMyGoals,
   createGoal,
@@ -175,7 +176,7 @@ export default function MyGoalsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin" />
+        <ImSpinner2 className="h-8 w-8 animate-spin" />
       </div>
     );
   }
@@ -186,7 +187,7 @@ export default function MyGoalsPage() {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-xl bg-primary shadow-lg">
-              <Sparkles className="h-6 w-6 text-primary-foreground" />
+              <HiSparkles className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
@@ -198,7 +199,7 @@ export default function MyGoalsPage() {
             </div>
           </div>
           <Button onClick={() => setShowCreateDialog(true)} className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
-            <Plus className="mr-2 h-4 w-4" />
+            <HiPlus className="mr-2 h-4 w-4" />
             New Goal
           </Button>
       </div>
@@ -235,7 +236,7 @@ export default function MyGoalsPage() {
 
         {/* Create/Edit Goal Dialog */}
         {(showCreateDialog || editingGoal) && (
-          <Card className="border-2 border-blue-400 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 backdrop-blur-sm shadow-xl">
+          <Card className="border-2 border-blue-400 dark:border-blue-700 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-900/30 dark:to-indigo-900/30 backdrop-blur-sm shadow-xl">
           <CardHeader>
             <CardTitle>
               {editingGoal ? "Edit Goal" : "Create New Goal"}
@@ -337,7 +338,7 @@ export default function MyGoalsPage() {
           {goals.length === 0 ? (
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
               <CardContent className="flex flex-col items-center justify-center py-12">
-              <Target className="h-12 w-12 text-muted-foreground mb-4" />
+              <HiFlag className="h-12 w-12 text-muted-foreground mb-4" />
               <p className="text-muted-foreground text-center">
                 No goals yet. Create your first goal to get started!
               </p>
@@ -372,14 +373,14 @@ export default function MyGoalsPage() {
                       variant="outline"
                       onClick={() => startEditGoal(goal)}
                     >
-                      <Edit2 className="h-4 w-4" />
+                      <HiPencilSquare className="h-4 w-4" />
                     </Button>
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => handleDeleteGoal(goal.id)}
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <HiTrash className="h-4 w-4" />
                     </Button>
                   </div>
                 </div>
@@ -436,7 +437,7 @@ export default function MyGoalsPage() {
                           )
                         }
                       >
-                        <TrendingUp className="mr-2 h-4 w-4" />
+                        <HiArrowTrendingUp className="mr-2 h-4 w-4" />
                         Mark Complete
                       </Button>
                     )}

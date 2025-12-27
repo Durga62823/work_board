@@ -7,16 +7,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import {
-  Calendar,
-  Clock,
-  Plus,
-  Save,
-  Loader2,
-  Edit,
-  Trash2,
-  Send,
-  Sparkles,
-} from "lucide-react";
+  HiCalendar,
+  HiClock,
+  HiPlus,
+  HiPencil,
+  HiTrash,
+  HiPaperAirplane,
+  HiSparkles,
+} from "react-icons/hi2";
+import { ImSpinner2 } from "react-icons/im";
 import {
   getCurrentTimesheet,
   addTimesheetEntry,
@@ -263,7 +262,7 @@ export default function TimesheetPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <ImSpinner2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -275,7 +274,7 @@ export default function TimesheetPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-xl bg-primary shadow-lg">
-              <Sparkles className="h-6 w-6 text-primary-foreground" />
+              <HiSparkles className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
@@ -298,7 +297,7 @@ export default function TimesheetPage() {
             disabled={timesheet && timesheet.status !== "DRAFT"}
             className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <Plus className="h-4 w-4 mr-2" />
+            <HiPlus className="h-4 w-4 mr-2" />
             Add Entry
           </Button>
         </div>
@@ -309,7 +308,7 @@ export default function TimesheetPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <Clock className="h-6 w-6 text-primary-foreground" />
+                <HiClock className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
                 <p className="text-sm text-primary font-medium">Total Hours</p>
@@ -323,7 +322,7 @@ export default function TimesheetPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <Clock className="h-6 w-6 text-primary-foreground" />
+                <HiClock className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
                 <p className="text-sm text-primary font-medium">Submitted Hours</p>
@@ -337,7 +336,7 @@ export default function TimesheetPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <Clock className="h-6 w-6 text-primary-foreground" />
+                <HiClock className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
                 <p className="text-sm text-primary font-medium">Approved Hours</p>
@@ -381,7 +380,7 @@ export default function TimesheetPage() {
 
         {/* Add/Edit Entry Dialog */}
         {showAddDialog && (
-          <Card className="p-6 border-2 border-blue-400 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 backdrop-blur-sm shadow-xl">
+          <Card className="p-6 border-2 border-blue-400 dark:border-blue-700 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-900/30 dark:to-indigo-900/30 backdrop-blur-sm shadow-xl">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-lg">
               {editingEntry ? "Edit Time Entry" : "Add Time Entry"}
@@ -494,14 +493,11 @@ export default function TimesheetPage() {
             >
               {saving ? (
                 <>
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  <ImSpinner2 className="h-4 w-4 mr-2 animate-spin" />
                   Saving...
                 </>
               ) : (
-                <>
-                  <Save className="h-4 w-4 mr-2" />
-                  {editingEntry ? "Update Entry" : "Save Entry"}
-                </>
+                editingEntry ? "Update Entry" : "Save Entry"
               )}
             </Button>
           </div>
@@ -547,14 +543,14 @@ export default function TimesheetPage() {
                         variant="ghost"
                         onClick={() => startEdit(entry)}
                       >
-                        <Edit className="h-4 w-4" />
+                        <HiPencil className="h-4 w-4" />
                       </Button>
                       <Button
                         size="sm"
                         variant="ghost"
                         onClick={() => handleDeleteEntry(entry.id)}
                       >
-                        <Trash2 className="h-4 w-4 text-primary" />
+                        <HiTrash className="h-4 w-4 text-primary" />
                       </Button>
                     </div>
                   )}
@@ -564,7 +560,7 @@ export default function TimesheetPage() {
           </div>
         ) : (
           <div className="text-center py-12 text-muted-foreground">
-            <Clock className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <HiClock className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <p>No time entries for this week yet</p>
             <p className="text-sm mt-2">
               Click "Add Entry" to log your work hours
@@ -587,12 +583,12 @@ export default function TimesheetPage() {
               <Button onClick={handleSubmit} disabled={submitting}>
                 {submitting ? (
                   <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    <ImSpinner2 className="h-4 w-4 mr-2 animate-spin" />
                     Submitting...
                   </>
                 ) : (
                   <>
-                    <Send className="h-4 w-4 mr-2" />
+                    <HiPaperAirplane className="h-4 w-4 mr-2" />
                     Submit Timesheet
                   </>
                 )}

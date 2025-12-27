@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { Settings, Clock, Calendar, Globe, Bot, Shield } from "lucide-react";
+import { HiCog6Tooth, HiClock, HiCalendar, HiGlobeAlt, HiChatBubbleLeftRight, HiShieldCheck } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getOrganizationSettings } from "@/app/actions/admin-settings";
@@ -73,7 +73,7 @@ export default async function SettingsPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Bot className="h-5 w-5 text-primary" />
+                <HiChatBubbleLeftRight className="h-5 w-5" />
                 AI Features
               </CardTitle>
               <CardDescription>

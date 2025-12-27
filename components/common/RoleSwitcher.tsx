@@ -16,7 +16,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Shield, Loader2 } from "lucide-react";
+import { HiShieldCheck } from "react-icons/hi2";
+import { ImSpinner2 } from "react-icons/im";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 
@@ -65,7 +66,7 @@ export function RoleSwitcher({ currentRole }: { currentRole: string }) {
     <Card className="border-amber-200 bg-amber-50/50">
       <CardHeader>
         <div className="flex items-center gap-2">
-          <Shield className="h-5 w-5 text-amber-600" />
+          <HiShieldCheck className="h-5 w-5 text-amber-600" />
           <CardTitle className="text-lg">Development: Role Switcher</CardTitle>
         </div>
         <CardDescription>
@@ -91,7 +92,7 @@ export function RoleSwitcher({ currentRole }: { currentRole: string }) {
           >
             {loading ? (
               <>
-                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                <ImSpinner2 className="h-4 w-4 mr-2 animate-spin" />
                 Updating...
               </>
             ) : (

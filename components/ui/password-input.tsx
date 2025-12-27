@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, EyeOff } from "lucide-react";
+import { HiEye, HiEyeSlash } from "react-icons/hi2";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -30,7 +30,7 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
           onClick={() => setVisible((prev) => !prev)}
           aria-label={visible ? "Hide password" : "Show password"}
         >
-          {visible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          {visible ? <HiEyeSlash className="h-4 w-4" /> : <HiEye className="h-4 w-4" />}
         </button>
       </div>
     );

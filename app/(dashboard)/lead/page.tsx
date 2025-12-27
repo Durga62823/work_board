@@ -11,19 +11,19 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import {
-  Users,
-  ListChecks,
-  Clock,
-  AlertTriangle,
-  CheckCircle2,
-  TrendingUp,
-  Sparkles,
-  Target,
-  Plus,
-  Calendar as CalendarIcon,
-  BarChart3,
-  ArrowUpRight,
-} from "lucide-react";
+  HiUserGroup,
+  HiListBullet,
+  HiClock,
+  HiExclamationTriangle,
+  HiCheckCircle,
+  HiArrowTrendingUp,
+  HiSparkles,
+  HiFlag,
+  HiPlus,
+  HiCalendar,
+  HiChartBar,
+  HiArrowUpRight,
+} from "react-icons/hi2";
 
 export default async function LeadOverviewPage() {
   const session = await auth();
@@ -53,7 +53,7 @@ export default async function LeadOverviewPage() {
         <Card className="max-w-md w-full border-border bg-card backdrop-blur-sm shadow-xl">
           <CardContent className="pt-12 pb-12 text-center">
             <div className="p-4 rounded-full bg-primary/10 inline-flex mb-6">
-              <Users className="h-12 w-12 text-primary" />
+              <HiUserGroup className="h-12 w-12 text-primary" />
             </div>
             <h2 className="text-2xl font-bold text-foreground mb-2">No Team Assigned</h2>
             <p className="text-muted-foreground">Please contact your administrator to assign you to a team.</p>
@@ -100,7 +100,7 @@ export default async function LeadOverviewPage() {
           
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-4">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
+              <HiSparkles className="h-4 w-4 text-primary-foreground" />
               <span className="text-sm font-medium text-primary-foreground">Tech Lead Dashboard</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
@@ -119,7 +119,7 @@ export default async function LeadOverviewPage() {
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2 rounded-lg bg-primary/10">
-                  <ListChecks className="h-5 w-5 text-primary" />
+                  <HiListBullet className="h-5 w-5 text-primary" />
                 </div>
               </div>
               <p className="text-xs font-semibold text-muted-foreground mb-1">To Do</p>
@@ -132,7 +132,7 @@ export default async function LeadOverviewPage() {
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2 rounded-lg bg-primary/10">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <HiClock className="h-5 w-5 text-primary" />
                 </div>
               </div>
               <p className="text-xs font-semibold text-muted-foreground mb-1">In Progress</p>
@@ -145,7 +145,7 @@ export default async function LeadOverviewPage() {
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2 rounded-lg bg-primary/10">
-                  <ListChecks className="h-5 w-5 text-primary" />
+                  <HiListBullet className="h-5 w-5 text-primary" />
                 </div>
               </div>
               <p className="text-xs font-semibold text-muted-foreground mb-1">In Review</p>
@@ -158,7 +158,7 @@ export default async function LeadOverviewPage() {
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2 rounded-lg bg-primary/10">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <HiCheckCircle className="h-5 w-5 text-primary" />
                 </div>
               </div>
               <p className="text-xs font-semibold text-muted-foreground mb-1">Done</p>
@@ -171,7 +171,7 @@ export default async function LeadOverviewPage() {
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2 rounded-lg bg-destructive/10">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <HiExclamationTriangle className="h-5 w-5 text-destructive" />
                 </div>
               </div>
               <p className="text-xs font-semibold text-muted-foreground mb-1">Blocked</p>
@@ -186,7 +186,7 @@ export default async function LeadOverviewPage() {
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 rounded-lg bg-primary">
-                  <Target className="h-5 w-5 text-primary-foreground" />
+                  <HiFlag className="h-5 w-5 text-primary-foreground" />
                 </div>
                 <CardTitle className="text-xl font-bold text-foreground">Current Sprint</CardTitle>
               </div>
@@ -206,7 +206,7 @@ export default async function LeadOverviewPage() {
                       className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
                     >
                       Details
-                      <ArrowUpRight className="h-4 w-4" />
+                      <HiArrowUpRight className="h-4 w-4" />
                     </Link>
                   </div>
                   <div className="space-y-3 p-4 rounded-xl bg-primary/10">
@@ -237,7 +237,7 @@ export default async function LeadOverviewPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CalendarIcon className="h-4 w-4" />
+                      <HiCalendar className="h-4 w-4" />
                       <span>Ends: {new Date(currentSprint.endDate).toLocaleDateString()}</span>
                     </div>
                   </div>
@@ -245,14 +245,14 @@ export default async function LeadOverviewPage() {
               ) : (
                 <div className="text-center py-12">
                   <div className="p-4 rounded-full bg-primary/10 inline-flex mb-4">
-                    <Target className="h-8 w-8 text-primary" />
+                    <HiFlag className="h-8 w-8 text-primary" />
                   </div>
                   <p className="text-muted-foreground mb-6">No active sprint</p>
                   <Link
                     href="/lead/sprints"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
                   >
-                    <Plus className="h-5 w-5" />
+                    <HiPlus className="h-5 w-5" />
                     Plan Sprint
                   </Link>
                 </div>
@@ -265,7 +265,7 @@ export default async function LeadOverviewPage() {
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600">
-                  <TrendingUp className="h-5 w-5 text-white" />
+                  <HiArrowTrendingUp className="h-5 w-5 text-white" />
                 </div>
                 <CardTitle className="text-xl font-bold text-slate-900">Sprint Velocity</CardTitle>
               </div>
@@ -273,12 +273,12 @@ export default async function LeadOverviewPage() {
             <CardContent>
               {velocityData.velocities.length > 0 ? (
                 <div className="space-y-4">
-                  <div className="p-6 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200/50">
-                    <p className="text-sm text-slate-600 font-medium mb-2">Average Velocity</p>
+                  <div className="p-6 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 border border-green-200/50 dark:border-green-700/50">
+                    <p className="text-sm text-muted-foreground font-medium mb-2">Average Velocity</p>
                     <p className="text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                       {velocityData.avgVelocity.toFixed(1)}
                     </p>
-                    <p className="text-sm text-slate-600 mt-1">points per sprint</p>
+                    <p className="text-sm text-muted-foreground mt-1">points per sprint</p>
                   </div>
                   <div className="space-y-3">
                     {velocityData.velocities.slice(0, 3).map((v, idx) => (
@@ -291,10 +291,10 @@ export default async function LeadOverviewPage() {
                 </div>
               ) : (
                 <div className="text-center py-12">
-                  <div className="p-4 rounded-full bg-slate-100 inline-flex mb-4">
-                    <TrendingUp className="h-8 w-8 text-slate-400" />
+                  <div className="p-4 rounded-full bg-muted inline-flex mb-4">
+                    <HiArrowTrendingUp className="h-8 w-8 text-muted-foreground" />
                   </div>
-                  <p className="text-slate-600">No completed sprints yet</p>
+                  <p className="text-muted-foreground">No completed sprints yet</p>
                 </div>
               )}
             </CardContent>
@@ -308,7 +308,7 @@ export default async function LeadOverviewPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-gradient-to-br from-destructive to-destructive/80">
-                    <AlertTriangle className="h-5 w-5 text-white" />
+                  <HiExclamationTriangle className="h-5 w-5 text-white" />
                   </div>
                   <CardTitle className="text-xl font-bold text-foreground">Blocked Tasks</CardTitle>
                 </div>
@@ -317,7 +317,7 @@ export default async function LeadOverviewPage() {
                   className="inline-flex items-center gap-1 text-sm font-semibold text-destructive hover:text-destructive/80 transition-colors"
                 >
                   View All
-                  <ArrowUpRight className="h-4 w-4" />
+                  <HiArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
             </CardHeader>
@@ -331,7 +331,7 @@ export default async function LeadOverviewPage() {
                     <h4 className="font-bold text-foreground mb-1">{task.title}</h4>
                     {task.blockedReason && (
                       <p className="text-sm text-destructive mb-2">
-                        <AlertTriangle className="h-3 w-3 inline mr-1" />
+                        <HiExclamationTriangle className="h-3 w-3 inline mr-1" />
                         {task.blockedReason}
                       </p>
                     )}
@@ -351,7 +351,7 @@ export default async function LeadOverviewPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/80">
-                  <Users className="h-5 w-5 text-white" />
+                  <HiUserGroup className="h-5 w-5 text-white" />
                 </div>
                 <CardTitle className="text-xl font-bold text-foreground">Team Workload</CardTitle>
               </div>
@@ -360,7 +360,7 @@ export default async function LeadOverviewPage() {
                 className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
               >
                 Manage
-                <ArrowUpRight className="h-4 w-4" />
+                <HiArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
           </CardHeader>
@@ -389,7 +389,7 @@ export default async function LeadOverviewPage() {
                     </div>
                     {member.blocked > 0 && (
                       <span className="flex items-center gap-1 text-xs text-destructive font-bold whitespace-nowrap">
-                        <AlertTriangle className="h-3 w-3" />
+                        <HiExclamationTriangle className="h-3 w-3" />
                         {member.blocked} blocked
                       </span>
                     )}
@@ -410,9 +410,9 @@ export default async function LeadOverviewPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <Plus className="h-6 w-6 text-white" />
+                      <HiPlus className="h-6 w-6 text-white" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Create Task</h3>
                   <p className="text-sm text-muted-foreground">Add a new task to the board</p>
@@ -426,9 +426,9 @@ export default async function LeadOverviewPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <CalendarIcon className="h-6 w-6 text-white" />
+                      <HiCalendar className="h-6 w-6 text-white" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Plan Sprint</h3>
                   <p className="text-sm text-muted-foreground">Create and plan a new sprint</p>
@@ -442,9 +442,9 @@ export default async function LeadOverviewPage() {
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <BarChart3 className="h-6 w-6 text-white" />
+                      <HiChartBar className="h-6 w-6 text-white" />
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">View Metrics</h3>
                   <p className="text-sm text-muted-foreground">Track team technical metrics</p>

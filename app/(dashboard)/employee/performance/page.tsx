@@ -10,14 +10,14 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
-  Loader2,
-  TrendingUp,
-  TrendingDown,
-  Target,
-  Clock,
-  CheckCircle2,
-  Sparkles,
-} from "lucide-react";
+  HiArrowTrendingUp,
+  HiArrowTrendingDown,
+  HiFlag,
+  HiClock,
+  HiCheckCircle,
+  HiSparkles,
+} from "react-icons/hi2";
+import { ImSpinner2 } from "react-icons/im";
 import {
   getMyPerformanceMetrics,
   getTaskCompletionStats,
@@ -115,7 +115,7 @@ export default function PerformancePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin" />
+        <ImSpinner2 className="h-8 w-8 animate-spin" />
       </div>
     );
   }
@@ -125,7 +125,7 @@ export default function PerformancePage() {
       <div className="container mx-auto p-6 space-y-6">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-xl bg-primary shadow-lg">
-            <Sparkles className="h-6 w-6 text-primary-foreground" />
+            <HiSparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
@@ -146,7 +146,7 @@ export default function PerformancePage() {
                   <div className="flex items-center justify-between">
                     <CardDescription className="font-medium">Task Completion</CardDescription>
                     <div className="p-2 rounded-lg bg-primary shadow-md">
-                      <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
+                      <HiCheckCircle className="h-4 w-4 text-primary-foreground" />
                     </div>
                   </div>
                 </CardHeader>
@@ -165,7 +165,7 @@ export default function PerformancePage() {
                   <div className="flex items-center justify-between">
                     <CardDescription className="font-medium">On-Time Delivery</CardDescription>
                     <div className="p-2 rounded-lg bg-primary shadow-md">
-                      <Clock className="h-4 w-4 text-primary-foreground" />
+                      <HiClock className="h-4 w-4 text-primary-foreground" />
                     </div>
                   </div>
                 </CardHeader>
@@ -187,7 +187,7 @@ export default function PerformancePage() {
                 <div className="flex items-center justify-between">
                   <CardDescription className="font-medium">Estimation Accuracy</CardDescription>
                   <div className="p-2 rounded-lg bg-primary shadow-md">
-                    <Target className="h-4 w-4 text-primary-foreground" />
+                    <HiFlag className="h-4 w-4 text-primary-foreground" />
                   </div>
                 </div>
               </CardHeader>
@@ -235,9 +235,9 @@ export default function PerformancePage() {
             <div className="mt-4">
               <div className="flex items-center gap-2 mb-2">
                 {timeAccuracy.variance > 0 ? (
-                  <TrendingUp className="h-5 w-5 text-destructive" />
+                  <HiArrowTrendingUp className="h-5 w-5 text-destructive" />
                 ) : (
-                  <TrendingDown className="h-5 w-5 text-primary" />
+                  <HiArrowTrendingDown className="h-5 w-5 text-primary" />
                 )}
                 <span className="text-sm">
                   {timeAccuracy.variance > 0
@@ -296,7 +296,7 @@ export default function PerformancePage() {
         {metrics.length === 0 && taskStats?.totalTasks === 0 && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <TrendingUp className="h-12 w-12 text-muted-foreground mb-4" />
+            <HiArrowTrendingUp className="h-12 w-12 text-muted-foreground mb-4" />
             <p className="text-muted-foreground text-center">
               No performance data available yet. Complete tasks to see your
               metrics!

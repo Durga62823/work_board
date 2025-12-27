@@ -6,15 +6,15 @@ import { LogoutButton } from "@/components/common/LogoutButton";
 import { UserMenu } from "@/components/common/UserMenu";
 import { ModeToggle, ColorPicker } from "@/components/common";
 import {
-  Home,
-  CheckCircle,
-  Clock,
-  TrendingUp,
-  Target,
-  Calendar,
-  FileText,
-  Settings,
-} from "lucide-react";
+  HiHome,
+  HiCheckCircle,
+  HiClock,
+  HiArrowTrendingUp,
+  HiFlag,
+  HiCalendar,
+  HiDocumentText,
+  HiCog6Tooth,
+} from "react-icons/hi2";
 
 export default async function EmployeeDashboardLayout({
   children,
@@ -61,7 +61,7 @@ export default async function EmployeeDashboardLayout({
               href="/employee"
               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <Home className="h-5 w-5 text-muted-foreground" />
+              <HiHome className="h-5 w-5 text-muted-foreground" />
               <span className="font-medium text-foreground">Dashboard</span>
             </Link>
 
@@ -69,7 +69,7 @@ export default async function EmployeeDashboardLayout({
               href="/employee/my-work"
               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <CheckCircle className="h-5 w-5 text-muted-foreground" />
+              <HiCheckCircle className="h-5 w-5 text-muted-foreground" />
               <span className="font-medium text-foreground">My Tasks</span>
             </Link>
 
@@ -77,7 +77,7 @@ export default async function EmployeeDashboardLayout({
               href="/employee/timesheet"
               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <Clock className="h-5 w-5 text-muted-foreground" />
+              <HiClock className="h-5 w-5 text-muted-foreground" />
               <span className="font-medium text-foreground">Timesheet</span>
             </Link>
 
@@ -85,7 +85,7 @@ export default async function EmployeeDashboardLayout({
               href="/employee/performance"
               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <TrendingUp className="h-5 w-5 text-muted-foreground" />
+              <HiArrowTrendingUp className="h-5 w-5 text-muted-foreground" />
               <span className="font-medium text-foreground">Performance</span>
             </Link>
 
@@ -93,7 +93,7 @@ export default async function EmployeeDashboardLayout({
               href="/employee/goals"
               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <Target className="h-5 w-5 text-muted-foreground" />
+              <HiFlag className="h-5 w-5 text-muted-foreground" />
               <span className="font-medium text-foreground">My Goals</span>
             </Link>
 
@@ -101,7 +101,7 @@ export default async function EmployeeDashboardLayout({
               href="/employee/calendar"
               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <Calendar className="h-5 w-5 text-muted-foreground" />
+              <HiCalendar className="h-5 w-5 text-muted-foreground" />
               <span className="font-medium text-foreground">Calendar</span>
             </Link>
 
@@ -109,7 +109,7 @@ export default async function EmployeeDashboardLayout({
               href="/employee/appraisal"
               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
             >
-              <FileText className="h-5 w-5 text-muted-foreground" />
+              <HiDocumentText className="h-5 w-5 text-muted-foreground" />
               <span className="font-medium text-foreground">Appraisals</span>
             </Link>
 
@@ -118,7 +118,7 @@ export default async function EmployeeDashboardLayout({
                 href="/settings"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <Settings className="h-5 w-5 text-muted-foreground" />
+                <HiCog6Tooth className="h-5 w-5 text-muted-foreground" />
                 <span className="font-medium text-foreground">Settings</span>
               </Link>
 

@@ -7,15 +7,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  CheckCircle,
-  Clock,
-  AlertCircle,
-  Search,
-  X,
-  Loader2,
-  Plus,
-  Sparkles,
-} from "lucide-react";
+  HiCheckCircle,
+  HiClock,
+  HiExclamationCircle,
+  HiMagnifyingGlass,
+  HiXMark,
+  HiPlus,
+  HiSparkles,
+} from "react-icons/hi2";
+import { ImSpinner2 } from "react-icons/im";
 import {
   getMyTasks,
   getMyTaskStats,
@@ -252,7 +252,7 @@ export default function MyWorkPage() {
           <div>
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 rounded-xl bg-primary shadow-lg">
-                <Sparkles className="h-6 w-6 text-primary-foreground" />
+                <HiSparkles className="h-6 w-6 text-primary-foreground" />
               </div>
               <div>
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
@@ -265,7 +265,7 @@ export default function MyWorkPage() {
             </div>
           </div>
           <Button onClick={() => setCreateTaskDialog(true)} className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
-            <Plus className="h-4 w-4 mr-2" />
+            <HiPlus className="h-4 w-4 mr-2" />
             Create Task
           </Button>
         </div>
@@ -273,7 +273,7 @@ export default function MyWorkPage() {
       {/* Filters */}
       <div className="flex items-center gap-4">
         <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <HiMagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             type="text"
             placeholder="Search tasks..."
@@ -303,7 +303,7 @@ export default function MyWorkPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <CheckCircle className="h-5 w-5 text-primary-foreground" />
+                <HiCheckCircle className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
                 <p className="text-sm text-primary font-medium">In Progress</p>
@@ -317,7 +317,7 @@ export default function MyWorkPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <Clock className="h-5 w-5 text-primary-foreground" />
+                <HiClock className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
                 <p className="text-sm text-primary font-medium">Total Tasks</p>
@@ -331,7 +331,7 @@ export default function MyWorkPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <AlertCircle className="h-5 w-5 text-primary-foreground" />
+                <HiExclamationCircle className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
                 <p className="text-sm text-primary font-medium">Overdue</p>
@@ -345,7 +345,7 @@ export default function MyWorkPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <CheckCircle className="h-5 w-5 text-primary-foreground" />
+                <HiCheckCircle className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
                 <p className="text-sm text-primary font-medium">Completed</p>
@@ -361,7 +361,7 @@ export default function MyWorkPage() {
         <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
           {loading ? (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              <ImSpinner2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : filteredTasks.length === 0 ? (
             <div className="text-center py-12 text-muted-foreground">
@@ -425,7 +425,7 @@ export default function MyWorkPage() {
                     disabled={actionLoading === task.id}
                   >
                     {actionLoading === task.id ? (
-                      <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                      <ImSpinner2 className="h-3 w-3 animate-spin mr-1" />
                     ) : null}
                     Log Time
                   </Button>
@@ -464,7 +464,7 @@ export default function MyWorkPage() {
                   setHoursToLog("");
                 }}
               >
-                <X className="h-4 w-4" />
+                <HiXMark className="h-4 w-4" />
               </Button>
             </div>
 
@@ -491,7 +491,7 @@ export default function MyWorkPage() {
                   className="flex-1"
                 >
                   {actionLoading === logTimeDialog.taskId ? (
-                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    <ImSpinner2 className="h-4 w-4 animate-spin mr-2" />
                   ) : null}
                   Log Time
                 </Button>
@@ -532,7 +532,7 @@ export default function MyWorkPage() {
                   });
                 }}
               >
-                <X className="h-4 w-4" />
+                <HiXMark className="h-4 w-4" />
               </Button>
             </div>
 
@@ -641,7 +641,7 @@ export default function MyWorkPage() {
                   className="flex-1"
                 >
                   {actionLoading === "create" ? (
-                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    <ImSpinner2 className="h-4 w-4 animate-spin mr-2" />
                   ) : null}
                   Create Task
                 </Button>

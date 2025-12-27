@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { Sparkles, ArrowLeft, Calendar } from "lucide-react";
+import { HiSparkles, HiArrowLeft, HiCalendar } from "react-icons/hi2";
 
 const sprintSchema = z.object({
   name: z.string().min(1, "Sprint name is required"),
@@ -68,12 +68,12 @@ export default function NewSprintPage() {
               href="/lead/sprints"
               className="flex items-center gap-2 text-primary hover:text-primary font-medium transition-colors"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <HiArrowLeft className="h-4 w-4" />
               Back to Sprints
             </Link>
           </div>
           <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-primary-foreground rounded-full shadow-lg w-fit mb-3">
-            <Sparkles className="h-4 w-4" />
+            <HiSparkles className="h-4 w-4" />
             <span className="text-sm font-semibold">New Sprint</span>
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
@@ -171,7 +171,7 @@ export default function NewSprintPage() {
                 variant="outline"
                 onClick={() => router.push("/lead/sprints")}
                 disabled={isPending}
-                className="border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 transition-all duration-300"
+                className="border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 dark:hover:from-purple-900/30 dark:hover:to-indigo-900/30 transition-all duration-300"
               >
                 Cancel
               </Button>
@@ -183,7 +183,7 @@ export default function NewSprintPage() {
         <div className="mt-6 border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-5 border-2 border-primary/20 hover:shadow-xl transition-all duration-300">
           <div className="flex items-center gap-2 mb-3">
             <div className="p-2 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-full">
-              <Calendar className="h-5 w-5 text-primary" />
+              <HiCalendar className="h-5 w-5 text-primary" />
             </div>
             <h3 className="font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
               Sprint Planning Tips

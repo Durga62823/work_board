@@ -4,13 +4,13 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
-  Bot,
-  Shield as ShieldIcon,
-  FileText,
-  MessageSquare,
-  Calendar,
-  Sparkles,
-} from "lucide-react";
+  HiChatBubbleLeftRight,
+  HiShieldCheck,
+  HiDocumentText,
+  HiChatBubbleBottomCenterText,
+  HiCalendar,
+  HiSparkles,
+} from "react-icons/hi2";
 import { AITaskAssistant } from "@/components/admin/AITaskAssistant";
 import { AIRiskAssessment } from "@/components/admin/AIRiskAssessment";
 import { AIPerformanceReview } from "@/components/admin/AIPerformanceReview";
@@ -34,7 +34,7 @@ export default function AIFeaturesPage() {
       title: "AI Task Assistant",
       description:
         "Break down tasks, estimate timelines, and generate test cases",
-      icon: Bot,
+      icon: HiChatBubbleLeftRight,
       gradient: "from-primary to-primary",
     },
     {
@@ -42,7 +42,7 @@ export default function AIFeaturesPage() {
       title: "Smart Risk Assessment",
       description:
         "Identify bottlenecks and get resource allocation suggestions",
-      icon: ShieldIcon,
+      icon: HiShieldCheck,
       gradient: "from-primary to-primary",
     },
     {
@@ -50,21 +50,21 @@ export default function AIFeaturesPage() {
       title: "Performance Review Assistant",
       description:
         "Generate comprehensive performance reviews for team members",
-      icon: FileText,
+      icon: HiDocumentText,
       gradient: "from-primary to-primary",
     },
     {
       id: "meeting-summary" as const,
       title: "Meeting Summary Generator",
       description: "Transform meeting transcripts into actionable summaries",
-      icon: MessageSquare,
+      icon: HiChatBubbleBottomCenterText,
       gradient: "from-primary to-primary",
     },
     {
       id: "sprint-planning" as const,
       title: "Smart Sprint Planning",
       description: "AI-powered sprint planning with capacity analysis",
-      icon: Calendar,
+      icon: HiCalendar,
       gradient: "from-primary to-primary",
     },
   ];
@@ -93,7 +93,7 @@ export default function AIFeaturesPage() {
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-primary shadow-lg">
-              <Sparkles className="h-7 w-7 text-primary-foreground" />
+              <HiSparkles className="h-7 w-7 text-primary-foreground" />
             </div>
             <div>
               <h1 className="text-4xl font-bold text-foreground">

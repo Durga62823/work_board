@@ -1,28 +1,19 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import {
-  Users,
-  Building2,
-  FolderKanban,
-  TrendingUp,
-  Shield,
-  Settings,
-  LayoutDashboard,
-  Sparkles,
-} from "lucide-react";
+import { HiUserGroup, HiBuildingOffice2, HiBriefcase, HiPresentationChartBar, HiClipboardDocumentList, HiCog6Tooth, HiChartPie, HiCpuChip } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { UserMenu, LogoutButton, ModeToggle, ColorPicker } from "@/components/common";
 
 const adminNavigation = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Users", href: "/admin/users", icon: Users },
-  { name: "Departments", href: "/admin/departments", icon: Building2 },
-  { name: "Projects", href: "/admin/projects", icon: FolderKanban },
-  { name: "Analytics", href: "/admin/analytics", icon: TrendingUp },
-  { name: "AI Features", href: "/admin/ai-features", icon: Sparkles },
-  { name: "Audit Logs", href: "/admin/audit", icon: Shield },
-  { name: "Settings", href: "/admin/settings", icon: Settings },
+  { name: "Dashboard", href: "/admin", icon: HiChartPie },
+  { name: "Users", href: "/admin/users", icon: HiUserGroup },
+  { name: "Departments", href: "/admin/departments", icon: HiBuildingOffice2 },
+  { name: "Projects", href: "/admin/projects", icon: HiBriefcase },
+  { name: "Analytics", href: "/admin/analytics", icon: HiPresentationChartBar },
+  { name: "AI Features", href: "/admin/ai-features", icon: HiCpuChip },
+  { name: "Audit Logs", href: "/admin/audit", icon: HiClipboardDocumentList },
+  { name: "Settings", href: "/admin/settings", icon: HiCog6Tooth },
 ];
 
 export default async function AdminLayout({
@@ -36,6 +27,8 @@ export default async function AdminLayout({
     redirect("/auth/login");
   }
 
+  const userName = session.user?.name || session.user?.email || "Admin";
+
   return (
     <div className="min-h-screen bg-muted flex flex-col">
       {/* Top Navigation Bar */}
@@ -44,7 +37,7 @@ export default async function AdminLayout({
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-8 flex-1">
               <h1 className="text-lg font-bold text-foreground whitespace-nowrap">
-                Admin
+                {userName}
               </h1>
               <nav className="hidden md:flex gap-1">
                 {adminNavigation.map((item) => (

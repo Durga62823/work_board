@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Building2, Edit, Trash2, MoreVertical, Shield } from "lucide-react";
+import { HiPlus, HiBuildingOffice2, HiPencil, HiTrash, HiEllipsisVertical, HiShieldCheck } from "react-icons/hi2";
 import Link from "next/link";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,7 +33,7 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-                <Building2 className="h-6 w-6 text-primary-foreground" />
+                <HiBuildingOffice2 className="h-6 w-6 text-primary-foreground" />
               </div>
               <div>
                 <h2 className="text-3xl font-bold tracking-tight text-foreground">
@@ -48,7 +48,7 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
               onClick={() => setOpenCreateDialog(true)}
               className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <Plus className="mr-2 h-4 w-4" />
+              <HiPlus className="mr-2 h-4 w-4" />
               Add Department
             </Button>
           </div>
@@ -56,7 +56,7 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
           {initialDepartments.length === 0 ? (
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
               <CardContent className="flex flex-col items-center justify-center py-12">
-                <Building2 className="h-12 w-12 text-primary mb-4" />
+                <HiBuildingOffice2 className="h-12 w-12 text-primary mb-4" />
                 <h3 className="text-lg font-semibold mb-2">No departments yet</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   Get started by creating your first department
@@ -65,7 +65,7 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
                   onClick={() => setOpenCreateDialog(true)}
                   className="bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
-                  <Plus className="mr-2 h-4 w-4" />
+                  <HiPlus className="mr-2 h-4 w-4" />
                   Create Department
                 </Button>
               </CardContent>
@@ -81,7 +81,7 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <CardTitle className="flex items-center gap-2">
-                          <Building2 className="h-5 w-5 text-primary" />
+                          <HiBuildingOffice2 className="h-5 w-5 text-primary" />
                           <span>{dept.name}</span>
                         </CardTitle>
                       <CardDescription className="mt-1.5">
@@ -91,19 +91,19 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">
-                          <MoreVertical className="h-4 w-4" />
+                          <HiEllipsisVertical className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => setEditDepartment(dept)}>
-                          <Edit className="mr-2 h-4 w-4" />
+                          <HiPencil className="mr-2 h-4 w-4" />
                           Edit
                         </DropdownMenuItem>
                         <DropdownMenuItem 
                           onClick={() => setDeleteDepartment(dept)}
                           className="text-destructive"
                         >
-                          <Trash2 className="mr-2 h-4 w-4" />
+                          <HiTrash className="mr-2 h-4 w-4" />
                           Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>

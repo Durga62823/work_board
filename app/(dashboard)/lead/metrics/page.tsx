@@ -2,7 +2,7 @@ import { requireLead } from "@/lib/guards";
 import { prisma } from "@/lib/prisma";
 import { getTeamTechnicalMetrics, getTaskMetrics } from "@/lib/lead-helpers";
 import { subDays } from "date-fns";
-import { Sparkles } from "lucide-react";
+import { HiSparkles } from "react-icons/hi2";
 
 export default async function LeadMetricsPage() {
   const session = await requireLead();
@@ -54,7 +54,7 @@ export default async function LeadMetricsPage() {
     <div className="min-h-screen bg-background space-y-6">
       <div>
         <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-primary-foreground rounded-full shadow-lg w-fit mb-3">
-          <Sparkles className="h-4 w-4" />
+          <HiSparkles className="h-4 w-4" />
           <span className="text-sm font-semibold">Team Metrics</span>
         </div>
         <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
@@ -158,9 +158,9 @@ export default async function LeadMetricsPage() {
             Quality Metrics
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-4 border border-border">
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-4 border border-border">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-primary">Bug Count</p>
+                <p className="text-sm font-medium text-muted-foreground">Bug Count</p>
                 <span className="text-xs text-primary font-medium">This Sprint</span>
               </div>
               <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
@@ -171,9 +171,9 @@ export default async function LeadMetricsPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-4 border border-border">
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-4 border border-border">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-primary">Test Coverage</p>
+                <p className="text-sm font-medium text-muted-foreground">Test Coverage</p>
                 <span className="text-xs text-primary font-medium">Current</span>
               </div>
               <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
@@ -184,9 +184,9 @@ export default async function LeadMetricsPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-4 border border-border">
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-4 border border-border">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-primary">API Response Time</p>
+                <p className="text-sm font-medium text-muted-foreground">API Response Time</p>
                 <span className="text-xs text-primary font-medium">Avg P95</span>
               </div>
               <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
@@ -206,7 +206,7 @@ export default async function LeadMetricsPage() {
           <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
             30-Day Trend
           </h2>
-          <div className="h-64 flex items-center justify-center border-2 border-dashed border-purple-300 rounded-lg bg-gradient-to-br from-purple-50 to-indigo-50">
+          <div className="h-64 flex items-center justify-center border-2 border-dashed border-purple-300 dark:border-purple-700 rounded-lg bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30">
             <div className="text-center text-muted-foreground">
               <svg
                 className="w-12 h-12 mx-auto mb-2 text-purple-400"
@@ -235,20 +235,20 @@ export default async function LeadMetricsPage() {
             Monthly Summary
           </h2>
           <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg border border-border hover:shadow-md transition-shadow">
-              <span className="text-sm font-medium text-primary">Total PRs Merged</span>
+            <div className="flex items-center justify-between p-3 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg border border-border hover:shadow-md transition-shadow">
+              <span className="text-sm font-medium text-muted-foreground">Total PRs Merged</span>
               <span className="text-lg font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 {getMetricNumber(monthlyMetrics, "pr_merged_count") || "-"}
               </span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg border border-border hover:shadow-md transition-shadow">
-              <span className="text-sm font-medium text-primary">Total Deployments</span>
+            <div className="flex items-center justify-between p-3 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg border border-border hover:shadow-md transition-shadow">
+              <span className="text-sm font-medium text-muted-foreground">Total Deployments</span>
               <span className="text-lg font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 {getMetricNumber(monthlyMetrics, "deployment_frequency") || "-"}
               </span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg border border-border hover:shadow-md transition-shadow">
-              <span className="text-sm font-medium text-primary">Total Bugs Fixed</span>
+            <div className="flex items-center justify-between p-3 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg border border-border hover:shadow-md transition-shadow">
+              <span className="text-sm font-medium text-muted-foreground">Total Bugs Fixed</span>
               <span className="text-lg font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 {getMetricNumber(monthlyMetrics, "bugs_fixed") || "-"}
               </span>

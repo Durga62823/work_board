@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { ImSpinner2 } from "react-icons/im";
 
 import { createUser } from "@/app/actions/admin-users";
 import {
@@ -169,7 +169,7 @@ export function CreateUserForm() {
 
           <div className="flex gap-2">
             <Button type="submit" disabled={loading}>
-              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {loading && <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />}
               Create User
             </Button>
             <Button

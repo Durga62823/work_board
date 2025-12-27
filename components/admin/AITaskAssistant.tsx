@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { Bot, Sparkles, CheckCircle2 } from "lucide-react";
+import { HiChatBubbleLeftRight, HiSparkles, HiCheckCircle } from "react-icons/hi2";
 
 interface AITaskAssistantProps {
   onClose?: () => void;
@@ -96,9 +96,9 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <Bot className="h-6 w-6 text-purple-600" />
+        <HiChatBubbleLeftRight className="h-6 w-6 text-purple-600" />
         <h3 className="text-lg font-semibold">AI Task Assistant</h3>
-        <Sparkles className="h-4 w-4 text-yellow-500" />
+        <HiSparkles className="h-4 w-4 text-yellow-500" />
       </div>
 
       <div className="space-y-4">
@@ -143,7 +143,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
       {result && activeFeature === "breakdown" && (
         <Card className="p-4 bg-purple-50">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
-            <CheckCircle2 className="h-5 w-5 text-green-600" />
+            <HiCheckCircle className="h-5 w-5 text-green-600" />
             Subtasks Generated
           </h4>
           <div className="space-y-3">
@@ -180,7 +180,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
       {result && activeFeature === "timeline" && (
         <Card className="p-4 bg-blue-50">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
-            <CheckCircle2 className="h-5 w-5 text-green-600" />
+            <HiCheckCircle className="h-5 w-5 text-green-600" />
             Timeline Estimate
           </h4>
           <div className="space-y-3">
@@ -226,7 +226,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
       {result && activeFeature === "testcases" && (
         <Card className="p-4 bg-green-50">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
-            <CheckCircle2 className="h-5 w-5 text-green-600" />
+            <HiCheckCircle className="h-5 w-5 text-green-600" />
             Test Cases Generated
           </h4>
           <div className="space-y-3">

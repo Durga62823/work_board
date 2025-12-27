@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Building2, Users, Calendar, Activity, Shield } from "lucide-react";
+import { HiArrowLeft, HiEnvelope, HiPhone, HiBuildingOffice2, HiUserGroup, HiCalendar, HiChartBarSquare, HiShieldCheck } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getUserById } from "@/app/actions/admin-users";
@@ -46,11 +46,11 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                 size="icon"
                 className="hover:bg-muted/50"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <HiArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
             <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-              <Shield className="h-6 w-6 text-primary-foreground" />
+              <HiShieldCheck className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-primary">
@@ -109,29 +109,29 @@ export default async function UserDetailPage({ params }: { params: { id: string 
 
             <div className="space-y-3 pt-4 border-t">
               <div className="flex items-center gap-2 text-sm">
-                <Mail className="h-4 w-4 text-muted-foreground" />
+                <HiEnvelope className="h-4 w-4 text-muted-foreground" />
                 <span className="text-muted-foreground">{user.email}</span>
               </div>
               {user.phoneNumber && (
                 <div className="flex items-center gap-2 text-sm">
-                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <HiPhone className="h-4 w-4 text-muted-foreground" />
                   <span className="text-muted-foreground">{user.phoneNumber}</span>
                 </div>
               )}
               {user.department && (
                 <div className="flex items-center gap-2 text-sm">
-                  <Building2 className="h-4 w-4 text-muted-foreground" />
+                  <HiBuildingOffice2 className="h-4 w-4 text-muted-foreground" />
                   <span className="text-muted-foreground">{user.department.name}</span>
                 </div>
               )}
               {user.team && (
                 <div className="flex items-center gap-2 text-sm">
-                  <Users className="h-4 w-4 text-muted-foreground" />
+                  <HiUserGroup className="h-4 w-4 text-muted-foreground" />
                   <span className="text-muted-foreground">{user.team.name}</span>
                 </div>
               )}
               <div className="flex items-center gap-2 text-sm">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
+                <HiCalendar className="h-4 w-4 text-muted-foreground" />
                 <span className="text-muted-foreground">
                   Joined {new Date(user.createdAt).toLocaleDateString()}
                 </span>
@@ -156,7 +156,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                   <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">Manager</CardTitle>
-                      <Users className="h-4 w-4 text-primary" />
+                      <HiUserGroup className="h-4 w-4 text-primary" />
                     </CardHeader>
                     <CardContent>
                       {user.manager ? (
@@ -175,7 +175,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                   <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">Direct Reports</CardTitle>
-                      <Users className="h-4 w-4 text-primary" />
+                      <HiUserGroup className="h-4 w-4 text-primary" />
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">{user.employees?.length || 0}</div>
@@ -188,7 +188,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                   <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">Email Verified</CardTitle>
-                      <Mail className="h-4 w-4 text-primary" />
+                      <HiEnvelope className="h-4 w-4 text-primary" />
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">
@@ -205,7 +205,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                   <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">Last Updated</CardTitle>
-                      <Calendar className="h-4 w-4 text-primary" />
+                      <HiCalendar className="h-4 w-4 text-primary" />
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { FileText, Star, TrendingUp } from "lucide-react";
+import { HiDocumentText, HiStar, HiArrowTrendingUp } from "react-icons/hi2";
 
 export function AIPerformanceReview() {
   const [formData, setFormData] = useState({
@@ -53,7 +53,7 @@ export function AIPerformanceReview() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <FileText className="h-6 w-6 text-indigo-600" />
+        <HiDocumentText className="h-6 w-6 text-indigo-600" />
         <h3 className="text-lg font-semibold">Performance Review Assistant</h3>
       </div>
 
@@ -150,7 +150,7 @@ export function AIPerformanceReview() {
                 Performance Review: {formData.name}
               </h4>
               <div className="flex items-center gap-2">
-                <Star className="h-5 w-5 text-yellow-500 fill-yellow-500" />
+                <HiStar className="h-5 w-5 text-yellow-500 fill-yellow-500" />
                 <span className="text-2xl font-bold text-indigo-600">
                   {result.overallScore}/10
                 </span>
@@ -164,7 +164,7 @@ export function AIPerformanceReview() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="p-4">
               <h5 className="font-semibold mb-2 flex items-center gap-2 text-green-700">
-                <TrendingUp className="h-4 w-4" />
+                <HiArrowTrendingUp className="h-4 w-4" />
                 Strengths
               </h5>
               <ul className="space-y-1">

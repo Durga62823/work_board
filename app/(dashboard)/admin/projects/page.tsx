@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { FolderKanban, TrendingUp, TrendingDown, AlertTriangle, Shield } from "lucide-react";
+import { HiFolder, HiArrowTrendingUp, HiArrowTrendingDown, HiExclamationTriangle, HiShieldCheck, HiRectangleGroup } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getAllProjects, getProjectStats } from "@/app/actions/admin-projects";
@@ -36,7 +36,7 @@ export default async function ProjectsPage() {
         {/* Header with gradient badge */}
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-            <Shield className="h-6 w-6 text-primary-foreground" />
+            <HiShieldCheck className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-primary">
@@ -53,7 +53,7 @@ export default async function ProjectsPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Projects</CardTitle>
-              <FolderKanban className="h-4 w-4 text-primary" />
+              <HiRectangleGroup className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-primary">
@@ -65,7 +65,7 @@ export default async function ProjectsPage() {
           <Card className="border-primary/20 bg-primary/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">On Track</CardTitle>
-              <TrendingUp className="h-4 w-4 text-primary" />
+              <HiArrowTrendingUp className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-primary">{stats.onTrack}</div>
@@ -75,7 +75,7 @@ export default async function ProjectsPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">At Risk</CardTitle>
-              <AlertTriangle className="h-4 w-4 text-primary" />
+              <HiExclamationTriangle className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-foreground">{stats.atRisk}</div>
@@ -85,7 +85,7 @@ export default async function ProjectsPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Delayed</CardTitle>
-              <TrendingDown className="h-4 w-4 text-primary" />
+              <HiArrowTrendingDown className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-foreground">{stats.delayed}</div>
@@ -95,7 +95,7 @@ export default async function ProjectsPage() {
           <Card className="border-primary/20 bg-primary/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Completed</CardTitle>
-              <FolderKanban className="h-4 w-4 text-primary" />
+              <HiRectangleGroup className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-primary">{stats.completed}</div>

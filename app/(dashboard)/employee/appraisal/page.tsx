@@ -6,14 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
-  FileText,
-  Clock,
-  CheckCircle,
-  AlertCircle,
-  Loader2,
-  Save,
-  Sparkles,
-} from "lucide-react";
+  HiDocumentText,
+  HiClock,
+  HiCheckCircle,
+  HiExclamationCircle,
+  HiSparkles,
+} from "react-icons/hi2";
+import { ImSpinner2 } from "react-icons/im";
 import {
   getMyAppraisals,
   getCurrentAppraisal,
@@ -124,21 +123,21 @@ export default function AppraisalPage() {
 
   const getStatusBadge = (status: string) => {
     const config = {
-      DRAFT: { variant: "secondary" as const, label: "Draft", icon: FileText },
+      DRAFT: { variant: "secondary" as const, label: "Draft", icon: HiDocumentText },
       IN_PROGRESS: {
         variant: "default" as const,
         label: "In Progress",
-        icon: Clock,
+        icon: HiClock,
       },
       UNDER_REVIEW: {
         variant: "default" as const,
         label: "Under Review",
-        icon: AlertCircle,
+        icon: HiExclamationCircle,
       },
       COMPLETED: {
         variant: "default" as const,
         label: "Completed",
-        icon: CheckCircle,
+        icon: HiCheckCircle,
       },
     };
     return config[status as keyof typeof config] || config.DRAFT;
@@ -147,7 +146,7 @@ export default function AppraisalPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <ImSpinner2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -158,7 +157,7 @@ export default function AppraisalPage() {
         {/* Header */}
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-xl bg-primary shadow-lg">
-            <Sparkles className="h-6 w-6 text-primary-foreground" />
+            <HiSparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
             <h1 className="text-3xl font-bold text-foreground">
@@ -175,7 +174,7 @@ export default function AppraisalPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <FileText className="h-6 w-6 text-primary-foreground" />
+                <HiDocumentText className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
                 <p className="text-sm text-muted-foreground font-medium">Total Reviews</p>
@@ -189,7 +188,7 @@ export default function AppraisalPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <Clock className="h-6 w-6 text-primary-foreground" />
+                <HiClock className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
                 <p className="text-sm text-muted-foreground font-medium">Pending</p>
@@ -203,7 +202,7 @@ export default function AppraisalPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <CheckCircle className="h-6 w-6 text-primary-foreground" />
+                <HiCheckCircle className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
                 <p className="text-sm text-muted-foreground font-medium">Completed</p>
@@ -217,7 +216,7 @@ export default function AppraisalPage() {
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <FileText className="h-6 w-6 text-primary-foreground" />
+                <HiDocumentText className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
                 <p className="text-sm text-muted-foreground font-medium">Avg Rating</p>
@@ -287,14 +286,11 @@ export default function AppraisalPage() {
                 <Button onClick={handleSaveDraft} disabled={saving}>
                   {saving ? (
                     <>
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      <ImSpinner2 className="h-4 w-4 mr-2 animate-spin" />
                       Saving...
                     </>
                   ) : (
-                    <>
-                      <Save className="h-4 w-4 mr-2" />
-                      Save Draft
-                    </>
+                    "Save Draft"
                   )}
                 </Button>
                 <Button
@@ -304,7 +300,7 @@ export default function AppraisalPage() {
                 >
                   {submitting ? (
                     <>
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      <ImSpinner2 className="h-4 w-4 mr-2 animate-spin" />
                       Submitting...
                     </>
                   ) : (
@@ -356,7 +352,7 @@ export default function AppraisalPage() {
         {!currentAppraisal && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
           <div className="text-center py-12">
-            <FileText className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <HiDocumentText className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <h3 className="font-semibold text-lg mb-2 text-foreground">
               No Active Appraisal Cycle
             </h3>

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Trash2 } from "lucide-react";
+import { HiTrash } from "react-icons/hi2";
+import { ImSpinner2 } from "react-icons/im";
 import { toast } from "sonner";
 
 import { deleteDepartment } from "@/app/actions/admin-organization";
@@ -68,8 +69,8 @@ export function DeleteDepartmentDialog({ open, onOpenChange, department }: Delet
             onClick={handleDelete}
             disabled={loading}
           >
-            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            <Trash2 className="mr-2 h-4 w-4" />
+            {loading && <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />}
+            <HiTrash className="mr-2 h-4 w-4" />
             Delete
           </Button>
         </DialogFooter>

@@ -11,13 +11,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  Loader2,
-  Calendar as CalendarIcon,
-  ChevronLeft,
-  ChevronRight,
-  Clock,
-  Sparkles,
-} from "lucide-react";
+  HiCalendar,
+  HiChevronLeft,
+  HiChevronRight,
+  HiClock,
+  HiSparkles,
+} from "react-icons/hi2";
+import { ImSpinner2 } from "react-icons/im";
 import {
   getMyCalendarEvents,
   getUpcomingEvents,
@@ -188,7 +188,7 @@ export default function CalendarPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin" />
+        <ImSpinner2 className="h-8 w-8 animate-spin" />
       </div>
     );
   }
@@ -198,7 +198,7 @@ export default function CalendarPage() {
       <div className="container mx-auto p-6 space-y-6">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-xl bg-primary shadow-lg">
-            <Sparkles className="h-6 w-6 text-primary-foreground" />
+            <HiSparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
@@ -212,7 +212,7 @@ export default function CalendarPage() {
 
         {/* Upcoming Events */}
         {upcomingEvents.length > 0 && (
-          <Card className="border-blue-300/60 bg-gradient-to-br from-blue-50/70 to-indigo-50/70 backdrop-blur-sm shadow-lg">
+          <Card className="border-blue-300/60 dark:border-blue-700/60 bg-gradient-to-br from-blue-50/70 to-indigo-50/70 dark:from-blue-900/30 dark:to-indigo-900/30 backdrop-blur-sm shadow-lg">
             <CardHeader>
               <CardTitle className="bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
                 Upcoming Events
@@ -253,7 +253,7 @@ export default function CalendarPage() {
             </CardTitle>
               <div className="flex gap-2">
                 <Button size="sm" variant="outline" onClick={previousMonth} className="hover:bg-primary/10 transition-colors">
-                  <ChevronLeft className="h-4 w-4" />
+                  <HiChevronLeft className="h-4 w-4" />
                 </Button>
                 <Button
                   size="sm"
@@ -264,7 +264,7 @@ export default function CalendarPage() {
                   Today
                 </Button>
                 <Button size="sm" variant="outline" onClick={nextMonth} className="hover:bg-primary/10 transition-colors">
-                  <ChevronRight className="h-4 w-4" />
+                  <HiChevronRight className="h-4 w-4" />
                 </Button>
               </div>
           </div>
@@ -293,7 +293,7 @@ export default function CalendarPage() {
                       !day
                         ? "bg-primary/10/50"
                         : isToday(day)
-                        ? "bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-300 shadow-md"
+                        ? "bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 border-blue-300 dark:border-blue-700 shadow-md"
                         : "bg-card/50 hover:bg-card/80 hover:shadow-lg hover:-translate-y-0.5"
                     } ${isSelected ? "ring-2 ring-blue-500 shadow-xl" : ""}`}
                     onClick={() => day && setSelectedDate(day)}
@@ -374,7 +374,7 @@ export default function CalendarPage() {
                         </div>
                         {event.time && (
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Clock className="h-4 w-4" />
+                            <HiClock className="h-4 w-4" />
                             {event.time}
                           </div>
                         )}

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
-import { FileText, Download } from "lucide-react";
+import { HiDocumentText, HiArrowDownTray } from "react-icons/hi2";
 
 interface FormData {
   reportType: string;
@@ -208,7 +208,7 @@ export function ReportGeneration() {
             </>
           ) : (
             <>
-              <FileText className="mr-2 h-4 w-4" />
+              <HiDocumentText className="mr-2 h-4 w-4" />
               Generate Report
             </>
           )}
@@ -228,7 +228,7 @@ export function ReportGeneration() {
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-bold">Generated Report</h3>
             <Button onClick={handleDownload} variant="outline" size="sm">
-              <Download className="mr-2 h-4 w-4" />
+              <HiArrowDownTray className="mr-2 h-4 w-4" />
               Download
             </Button>
           </div>
