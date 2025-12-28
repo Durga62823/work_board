@@ -72,11 +72,11 @@ export default function NewSprintPage() {
               Back to Sprints
             </Link>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-primary-foreground rounded-full shadow-lg w-fit mb-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
             <HiSparkles className="h-4 w-4" />
             <span className="text-sm font-semibold">New Sprint</span>
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold text-primary">
             Create New Sprint
           </h1>
           <p className="text-primary mt-2">Set up a new sprint for your team</p>
@@ -162,7 +162,7 @@ export default function NewSprintPage() {
               <Button
                 type="submit"
                 disabled={isPending}
-                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="bg-primary hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 {isPending ? "Creating..." : "Create Sprint"}
               </Button>
@@ -171,7 +171,7 @@ export default function NewSprintPage() {
                 variant="outline"
                 onClick={() => router.push("/lead/sprints")}
                 disabled={isPending}
-                className="border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 dark:hover:from-purple-900/30 dark:hover:to-indigo-900/30 transition-all duration-300"
+                className="border-primary/50 hover:bg-primary/10 transition-all duration-300"
               >
                 Cancel
               </Button>
@@ -182,7 +182,7 @@ export default function NewSprintPage() {
         {/* Tips */}
         <div className="mt-6 border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-5 border-2 border-primary/20 hover:shadow-xl transition-all duration-300">
           <div className="flex items-center gap-2 mb-3">
-            <div className="p-2 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-full">
+            <div className="p-2 bg-primary/10 rounded-full">
               <HiCalendar className="h-5 w-5 text-primary" />
             </div>
             <h3 className="font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">

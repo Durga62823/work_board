@@ -68,12 +68,12 @@ export function AIMeetingSummary() {
 
       {result && (
         <div className="space-y-4 mt-6">
-          <Card className="p-4 bg-teal-50">
+          <Card className="p-4 bg-primary/10 border-primary/20">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
               <HiClipboardDocumentList className="h-5 w-5 text-teal-600" />
               Meeting Summary
             </h4>
-            <p className="text-sm text-gray-700 bg-white p-3 rounded">
+            <p className="text-sm text-foreground bg-card p-3 rounded">
               {result.summary}
             </p>
           </Card>
@@ -100,10 +100,10 @@ export function AIMeetingSummary() {
                 {result.actionItems.map((item: any, idx: number) => (
                   <div
                     key={idx}
-                    className="bg-white p-3 rounded border border-amber-200"
+                    className="bg-card p-3 rounded border border-amber-200"
                   >
                     <p className="font-medium text-sm">{item.task}</p>
-                    <div className="flex gap-4 mt-1 text-xs text-gray-600">
+                    <div className="flex gap-4 mt-1 text-xs text-muted-foreground">
                       {item.assignee && (
                         <span>
                           Assignee: <strong>{item.assignee}</strong>
@@ -127,7 +127,7 @@ export function AIMeetingSummary() {
               <ul className="space-y-2">
                 {result.decisions.map((decision: string, idx: number) => (
                   <li key={idx} className="text-sm flex items-start gap-2">
-                    <span className="text-green-600 font-bold mt-1">✓</span>
+                    <span className="text-primary font-bold mt-1">✓</span>
                     <span>{decision}</span>
                   </li>
                 ))}

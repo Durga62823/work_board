@@ -237,17 +237,17 @@ export default function EmployeeDashboardPage() {
                 <Badge variant="secondary">To Do</Badge>
               </div>
 
-              <div className="flex items-center justify-between p-4 rounded-xl bg-destructive/10 border border-destructive/30 hover:shadow-md transition-all group">
+              <div className="flex items-center justify-between p-4 rounded-xl bg-primary/10 border border-primary/30 hover:shadow-md transition-all group">
                 <div className="flex items-center gap-4">
-                  <div className="p-2 rounded-lg bg-destructive/20">
-                    <HiExclamationCircle className="h-5 w-5 text-destructive" />
+                  <div className="p-2 rounded-lg bg-primary/20">
+                    <HiExclamationCircle className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Fix critical bug in payment module</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Project Gamma  Overdue</p>
                   </div>
                 </div>
-                <Badge variant="destructive">Overdue</Badge>
+                <Badge variant="secondary">Overdue</Badge>
               </div>
             </div>
 

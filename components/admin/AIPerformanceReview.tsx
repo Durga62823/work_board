@@ -53,7 +53,7 @@ export function AIPerformanceReview() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <HiDocumentText className="h-6 w-6 text-indigo-600" />
+        <HiDocumentText className="h-6 w-6 text-primary" />
         <h3 className="text-lg font-semibold">Performance Review Assistant</h3>
       </div>
 
@@ -144,33 +144,33 @@ export function AIPerformanceReview() {
 
       {result && (
         <div className="space-y-4 mt-6">
-          <Card className="p-4 bg-indigo-50">
+          <Card className="p-4 bg-primary/10 border-primary/20">
             <div className="flex items-center justify-between mb-4">
               <h4 className="font-semibold text-lg">
                 Performance Review: {formData.name}
               </h4>
               <div className="flex items-center gap-2">
                 <HiStar className="h-5 w-5 text-yellow-500 fill-yellow-500" />
-                <span className="text-2xl font-bold text-indigo-600">
+                <span className="text-2xl font-bold text-primary">
                   {result.overallScore}/10
                 </span>
               </div>
             </div>
-            <p className="text-sm text-gray-700 bg-white p-3 rounded">
+            <p className="text-sm text-foreground bg-card p-3 rounded">
               {result.summary}
             </p>
           </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="p-4">
-              <h5 className="font-semibold mb-2 flex items-center gap-2 text-green-700">
+              <h5 className="font-semibold mb-2 flex items-center gap-2 text-foreground">
                 <HiArrowTrendingUp className="h-4 w-4" />
                 Strengths
               </h5>
               <ul className="space-y-1">
                 {result.strengths?.map((strength: string, idx: number) => (
                   <li key={idx} className="text-sm flex items-start gap-2">
-                    <span className="text-green-600 mt-1">✓</span>
+                    <span className="text-primary mt-1">✓</span>
                     <span>{strength}</span>
                   </li>
                 ))}
@@ -178,14 +178,14 @@ export function AIPerformanceReview() {
             </Card>
 
             <Card className="p-4">
-              <h5 className="font-semibold mb-2 text-orange-700">
+              <h5 className="font-semibold mb-2 text-foreground">
                 Areas for Improvement
               </h5>
               <ul className="space-y-1">
                 {result.areasForImprovement?.map(
                   (area: string, idx: number) => (
                     <li key={idx} className="text-sm flex items-start gap-2">
-                      <span className="text-orange-600 mt-1">→</span>
+                      <span className="text-primary mt-1">→</span>
                       <span>{area}</span>
                     </li>
                   )
@@ -200,7 +200,7 @@ export function AIPerformanceReview() {
               {result.accomplishments?.map(
                 (accomplishment: string, idx: number) => (
                   <li key={idx} className="text-sm flex items-start gap-2">
-                    <span className="text-blue-600 mt-1">★</span>
+                    <span className="text-primary mt-1">★</span>
                     <span>{accomplishment}</span>
                   </li>
                 )
@@ -214,7 +214,7 @@ export function AIPerformanceReview() {
               {result.recommendations?.map(
                 (recommendation: string, idx: number) => (
                   <li key={idx} className="text-sm flex items-start gap-2">
-                    <span className="text-purple-600 mt-1">•</span>
+                    <span className="text-primary mt-1">•</span>
                     <span>{recommendation}</span>
                   </li>
                 )

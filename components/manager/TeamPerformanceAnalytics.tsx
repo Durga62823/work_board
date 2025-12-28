@@ -78,7 +78,7 @@ export function TeamPerformanceAnalytics() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-2">Team Performance Analytics</h2>
-        <p className="text-gray-600">Analyze team productivity, identify trends, and detect burnout risks</p>
+        <p className="text-muted-foreground">Analyze team productivity, identify trends, and detect burnout risks</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -289,7 +289,7 @@ export function TeamPerformanceAnalytics() {
             {result.recommendations && result.recommendations.length > 0 && (
               <div>
                 <h4 className="font-semibold mb-3">💡 Recommendations</h4>
-                <ul className="list-disc list-inside space-y-1 text-gray-700">
+                <ul className="list-disc list-inside space-y-1 text-foreground">
                   {result.recommendations.map((rec: string, index: number) => (
                     <li key={index}>{rec}</li>
                   ))}

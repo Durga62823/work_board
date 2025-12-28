@@ -120,7 +120,7 @@ export function ResourceOptimization() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">Resource Optimization</h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           Optimize team allocation, identify conflicts, and get hiring recommendations
         </p>
       </div>
@@ -150,7 +150,7 @@ export function ResourceOptimization() {
           </div>
 
           {formData.projects.map((project, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-lg bg-gray-50">
+            <div key={index} className="mb-4 p-4 border rounded-lg bg-muted">
               <div className="flex items-center justify-between mb-3">
                 <span className="font-medium">Project {index + 1}</span>
                 {formData.projects.length > 1 && (
@@ -213,7 +213,7 @@ export function ResourceOptimization() {
           </div>
 
           {formData.teamMembers.map((member, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-lg bg-blue-50">
+            <div key={index} className="mb-4 p-4 border rounded-lg bg-primary/10 border-primary/20">
               <div className="flex items-center justify-between mb-3">
                 <span className="font-medium">Member {index + 1}</span>
                 {formData.teamMembers.length > 1 && (
@@ -314,14 +314,14 @@ export function ResourceOptimization() {
             <h4 className="font-semibold mb-3">Recommended Allocation</h4>
             <div className="space-y-3">
               {result.allocation.map((alloc, index) => (
-                <div key={index} className="p-4 border rounded-lg bg-white">
+                <div key={index} className="p-4 border rounded-lg bg-card">
                   <div className="flex items-center justify-between mb-2">
                     <p className="font-medium">{alloc.project}</p>
                     <Badge variant={alloc.capacityUtilization <= 80 ? 'default' : 'destructive'}>
                       {alloc.capacityUtilization}% Capacity
                     </Badge>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Users className="h-4 w-4" />
                     <span>{alloc.assignedMembers.join(', ')}</span>
                   </div>
@@ -352,7 +352,7 @@ export function ResourceOptimization() {
                     <div className="flex items-start justify-between">
                       <div>
                         <p className="font-medium text-sm">{conflict.type}</p>
-                        <p className="text-sm text-gray-600 mt-1">{conflict.description}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{conflict.description}</p>
                       </div>
                       <Badge
                         variant={conflict.severity === 'high' ? 'destructive' : 'secondary'}

@@ -72,7 +72,7 @@ export function ApprovalAssistant() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">Approval Assistant</h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           Get AI-powered recommendations for timesheet and PTO approval decisions
         </p>
       </div>
@@ -229,7 +229,7 @@ export function ApprovalAssistant() {
                         {risk.severity.toUpperCase()}
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-600">{risk.description}</p>
+                    <p className="text-sm text-muted-foreground">{risk.description}</p>
                   </div>
                 ))}
               </div>
@@ -237,9 +237,9 @@ export function ApprovalAssistant() {
           )}
 
           {/* Impact Analysis */}
-          <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+          <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
             <h4 className="font-semibold mb-2">Impact Analysis</h4>
-            <p className="text-sm text-gray-700">{result.impactAnalysis}</p>
+            <p className="text-sm text-foreground">{result.impactAnalysis}</p>
           </div>
 
           {/* Alternatives */}
@@ -248,9 +248,9 @@ export function ApprovalAssistant() {
               <h4 className="font-semibold mb-3">Alternative Solutions</h4>
               <ul className="space-y-2">
                 {result.alternatives.map((alt, index) => (
-                  <li key={index} className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg">
-                    <span className="text-gray-600 font-bold mt-0.5">•</span>
-                    <span className="text-sm text-gray-700">{alt}</span>
+                  <li key={index} className="flex items-start gap-2 p-3 bg-muted rounded-lg">
+                    <span className="text-muted-foreground font-bold mt-0.5">•</span>
+                    <span className="text-sm text-foreground">{alt}</span>
                   </li>
                 ))}
               </ul>

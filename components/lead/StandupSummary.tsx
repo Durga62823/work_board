@@ -93,7 +93,7 @@ export function StandupSummary() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">Daily Standup Summary</h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           Generate AI-powered summaries and insights from daily standup meetings
         </p>
       </div>
@@ -120,7 +120,7 @@ export function StandupSummary() {
           </div>
 
           {formData.teamUpdates.map((update, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-lg bg-gray-50">
+            <div key={index} className="mb-4 p-4 border rounded-lg bg-muted">
               <div className="flex items-center justify-between mb-3">
                 <span className="font-medium">Member {index + 1}</span>
                 {formData.teamUpdates.length > 1 && (
@@ -261,7 +261,7 @@ export function StandupSummary() {
                         {item.severity.toUpperCase()}
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       <span className="font-medium">Suggestion:</span> {item.suggestion}
                     </p>
                   </div>

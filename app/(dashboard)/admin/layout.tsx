@@ -13,7 +13,6 @@ const adminNavigation = [
   { name: "Analytics", href: "/admin/analytics", icon: HiPresentationChartBar },
   { name: "AI Features", href: "/admin/ai-features", icon: HiCpuChip },
   { name: "Audit Logs", href: "/admin/audit", icon: HiClipboardDocumentList },
-  { name: "Settings", href: "/admin/settings", icon: HiCog6Tooth },
 ];
 
 export default async function AdminLayout({

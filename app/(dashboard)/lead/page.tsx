@@ -167,15 +167,15 @@ export default async function LeadOverviewPage() {
           </Card>
 
           <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-destructive/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardContent className="relative pt-6">
               <div className="flex items-center justify-between mb-3">
-                <div className="p-2 rounded-lg bg-destructive/10">
-                  <HiExclamationTriangle className="h-5 w-5 text-destructive" />
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <HiExclamationTriangle className="h-5 w-5 text-primary" />
                 </div>
               </div>
               <p className="text-xs font-semibold text-muted-foreground mb-1">Blocked</p>
-              <p className="text-3xl font-bold text-destructive">{tasksByStatus.blocked}</p>
+              <p className="text-3xl font-bold text-primary">{tasksByStatus.blocked}</p>
             </CardContent>
           </Card>
         </div>
@@ -264,18 +264,18 @@ export default async function LeadOverviewPage() {
           <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg">
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600">
+                <div className="p-2 rounded-lg bg-primary">
                   <HiArrowTrendingUp className="h-5 w-5 text-white" />
                 </div>
-                <CardTitle className="text-xl font-bold text-slate-900">Sprint Velocity</CardTitle>
+                <CardTitle className="text-xl font-bold text-foreground">Sprint Velocity</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
               {velocityData.velocities.length > 0 ? (
                 <div className="space-y-4">
-                  <div className="p-6 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 border border-green-200/50 dark:border-green-700/50">
+                  <div className="p-6 rounded-xl bg-primary/10 border border-primary/20">
                     <p className="text-sm text-muted-foreground font-medium mb-2">Average Velocity</p>
-                    <p className="text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                    <p className="text-5xl font-bold text-primary">
                       {velocityData.avgVelocity.toFixed(1)}
                     </p>
                     <p className="text-sm text-muted-foreground mt-1">points per sprint</p>
@@ -303,18 +303,18 @@ export default async function LeadOverviewPage() {
 
         {/* Blocked Tasks */}
         {blockedTasks.length > 0 && (
-          <Card className="border-destructive/30 bg-destructive/5 backdrop-blur-sm shadow-lg">
+          <Card className="border-primary/30 bg-primary/5 backdrop-blur-sm shadow-lg">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-gradient-to-br from-destructive to-destructive/80">
-                  <HiExclamationTriangle className="h-5 w-5 text-white" />
+                  <div className="p-2 rounded-lg bg-primary">
+                  <HiExclamationTriangle className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <CardTitle className="text-xl font-bold text-foreground">Blocked Tasks</CardTitle>
                 </div>
                 <Link
                   href="/lead/team-board?filter=blocked"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-destructive hover:text-destructive/80 transition-colors"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
                 >
                   View All
                   <HiArrowUpRight className="h-4 w-4" />
@@ -326,11 +326,11 @@ export default async function LeadOverviewPage() {
                 {blockedTasks.slice(0, 5).map((task) => (
                   <div
                     key={task.id}
-                    className="p-4 bg-card rounded-xl border-2 border-destructive/30 hover:shadow-md transition-all"
+                    className="p-4 bg-card rounded-xl border-2 border-primary/30 hover:shadow-md transition-all"
                   >
                     <h4 className="font-bold text-foreground mb-1">{task.title}</h4>
                     {task.blockedReason && (
-                      <p className="text-sm text-destructive mb-2">
+                      <p className="text-sm text-primary mb-2">
                         <HiExclamationTriangle className="h-3 w-3 inline mr-1" />
                         {task.blockedReason}
                       </p>

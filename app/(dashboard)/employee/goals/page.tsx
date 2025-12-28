@@ -198,7 +198,7 @@ export default function MyGoalsPage() {
               </p>
             </div>
           </div>
-          <Button onClick={() => setShowCreateDialog(true)} className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
+          <Button onClick={() => setShowCreateDialog(true)} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300">
             <HiPlus className="mr-2 h-4 w-4" />
             New Goal
           </Button>
@@ -210,25 +210,25 @@ export default function MyGoalsPage() {
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium">Total Goals</CardDescription>
-                <CardTitle className="text-3xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{stats.total}</CardTitle>
+                <CardTitle className="text-3xl text-primary">{stats.total}</CardTitle>
               </CardHeader>
             </Card>
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium">Active Goals</CardDescription>
-                <CardTitle className="text-3xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{stats.active}</CardTitle>
+                <CardTitle className="text-3xl text-primary">{stats.active}</CardTitle>
               </CardHeader>
             </Card>
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium">Completed</CardDescription>
-                <CardTitle className="text-3xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{stats.completed}</CardTitle>
+                <CardTitle className="text-3xl text-primary">{stats.completed}</CardTitle>
               </CardHeader>
             </Card>
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium">Average Progress</CardDescription>
-                <CardTitle className="text-3xl bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{stats.avgProgress}%</CardTitle>
+                <CardTitle className="text-3xl text-primary">{stats.avgProgress}%</CardTitle>
               </CardHeader>
             </Card>
           </div>
@@ -236,7 +236,7 @@ export default function MyGoalsPage() {
 
         {/* Create/Edit Goal Dialog */}
         {(showCreateDialog || editingGoal) && (
-          <Card className="border-2 border-blue-400 dark:border-blue-700 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-900/30 dark:to-indigo-900/30 backdrop-blur-sm shadow-xl">
+          <Card className="border-2 border-primary/50 bg-primary/5 backdrop-blur-sm shadow-xl">
           <CardHeader>
             <CardTitle>
               {editingGoal ? "Edit Goal" : "Create New Goal"}

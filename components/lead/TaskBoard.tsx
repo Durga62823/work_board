@@ -61,14 +61,14 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
   return (
     <div className="space-y-4">
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
+      <div className="bg-card rounded-lg shadow p-4">
         <div className="flex flex-wrap gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Sprint</label>
+            <label className="block text-sm font-medium text-foreground mb-1">Sprint</label>
             <select
               value={filter.sprint || ""}
               onChange={(e) => setFilter({ ...filter, sprint: e.target.value || undefined })}
-              className="block w-48 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="block w-48 rounded-md border-input shadow-sm focus:border-ring focus:ring-ring"
             >
               <option value="">All Sprints</option>
               {sprints.map((sprint) => (
@@ -80,7 +80,7 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Project</label>
+            <label className="block text-sm font-medium text-foreground mb-1">Project</label>
             <select
               value={filter.project || ""}
               onChange={(e) => setFilter({ ...filter, project: e.target.value || undefined })}
@@ -96,7 +96,7 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Assignee</label>
+            <label className="block text-sm font-medium text-foreground mb-1">Assignee</label>
             <select
               value={filter.assignee || ""}
               onChange={(e) => setFilter({ ...filter, assignee: e.target.value || undefined })}
@@ -115,7 +115,7 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
             <div className="flex items-end">
               <button
                 onClick={() => setFilter({})}
-                className="px-3 py-2 text-sm text-gray-600 hover:text-gray-900"
+                className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground"
               >
                 Clear Filters
               </button>
@@ -130,10 +130,10 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
           const columnTasks = filteredTasks.filter((task) => task.status === column.key);
 
           return (
-            <div key={column.key} className="bg-gray-50 rounded-lg p-4 min-h-96">
+            <div key={column.key} className="bg-muted rounded-lg p-4 min-h-96">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-gray-900">{column.label}</h3>
-                <span className="text-sm font-medium text-gray-600 bg-gray-200 px-2 py-1 rounded">
+                <h3 className="font-semibold text-foreground">{column.label}</h3>
+                <span className="text-sm font-medium text-muted-foreground bg-secondary px-2 py-1 rounded">
                   {columnTasks.length}
                 </span>
               </div>
@@ -151,10 +151,10 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                   return (
                     <div
                       key={task.id}
-                      className="bg-white rounded-lg shadow p-3 hover:shadow-md transition-shadow cursor-pointer"
+                      className="bg-card rounded-lg shadow p-3 hover:shadow-md transition-shadow cursor-pointer"
                     >
                       <div className="flex items-start justify-between mb-2">
-                        <h4 className="font-medium text-gray-900 text-sm line-clamp-2">
+                        <h4 className="font-medium text-foreground text-sm line-clamp-2">
                           {task.title}
                         </h4>
                         <span
@@ -167,12 +167,12 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                       </div>
 
                       {task.description && (
-                        <p className="text-xs text-gray-600 mb-2 line-clamp-2">
+                        <p className="text-xs text-muted-foreground mb-2 line-clamp-2">
                           {task.description}
                         </p>
                       )}
 
-                      <div className="flex items-center justify-between text-xs text-gray-500">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <div className="flex items-center gap-2">
                           {task.storyPoints && (
                             <span className="font-medium">{task.storyPoints} pts</span>
@@ -191,7 +191,7 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                                 className="w-5 h-5 rounded-full"
                               />
                             ) : (
-                              <div className="w-5 h-5 rounded-full bg-gray-300 flex items-center justify-center text-xs">
+                              <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-xs">
                                 {assignee.name?.charAt(0)}
                               </div>
                             )}
@@ -200,12 +200,12 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                       </div>
 
                       {/* Quick Actions */}
-                      <div className="mt-3 pt-3 border-t border-gray-100 flex gap-2">
+                      <div className="mt-3 pt-3 border-t border-border flex gap-2">
                         {column.key !== "TODO" && column.key !== "DONE" && (
                           <select
                             value={task.status}
                             onChange={(e) => handleMoveTask(task.id, e.target.value)}
-                            className="text-xs flex-1 rounded border-gray-300"
+                            className="text-xs flex-1 rounded border-input"
                           >
                             {statusColumns.map((col) => (
                               <option key={col.key} value={col.key}>
@@ -217,7 +217,7 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                         <select
                           value={task.assigneeId || ""}
                           onChange={(e) => handleAssignTask(task.id, e.target.value)}
-                          className="text-xs flex-1 rounded border-gray-300"
+                          className="text-xs flex-1 rounded border-input"
                         >
                           <option value="">Unassigned</option>
                           {teamMembers.map((member) => (

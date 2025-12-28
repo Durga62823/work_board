@@ -14,7 +14,7 @@ export default async function AppraisalsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50">
+    <div className="min-h-screen bg-muted">
       <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
         {/* Header with gradient badge */}
         <div className="flex items-center justify-between">
@@ -39,7 +39,7 @@ export default async function AppraisalsPage() {
 
         {/* Appraisal Stats */}
         <div className="grid gap-4 md:grid-cols-3">
-          <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Active Cycles</CardTitle>
               <HiCalendar className="h-4 w-4 text-red-500" />
@@ -50,7 +50,7 @@ export default async function AppraisalsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Pending Reviews</CardTitle>
               <HiTrophy className="h-4 w-4 text-orange-500" />
@@ -61,7 +61,7 @@ export default async function AppraisalsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
               <HiTrophy className="h-4 w-4 text-red-500" />
@@ -74,7 +74,7 @@ export default async function AppraisalsPage() {
         </div>
 
         {/* Appraisal Cycles */}
-        <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+        <Card className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-2xl">Appraisal Cycles</CardTitle>
             <CardDescription className="text-base">
@@ -97,7 +97,7 @@ export default async function AppraisalsPage() {
         </Card>
 
         {/* Recent Appraisals */}
-        <Card className="border-slate-200/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+        <Card className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-2xl">Recent Appraisals</CardTitle>
             <CardDescription className="text-base">

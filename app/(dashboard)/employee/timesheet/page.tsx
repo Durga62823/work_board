@@ -295,7 +295,7 @@ export default function TimesheetPage() {
           <Button
             onClick={() => setShowAddDialog(true)}
             disabled={timesheet && timesheet.status !== "DRAFT"}
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <HiPlus className="h-4 w-4 mr-2" />
             Add Entry
@@ -312,7 +312,7 @@ export default function TimesheetPage() {
             </div>
               <div>
                 <p className="text-sm text-primary font-medium">Total Hours</p>
-                <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                <p className="text-3xl font-bold text-primary">
                   {stats.totalHours}h
                 </p>
               </div>
@@ -326,7 +326,7 @@ export default function TimesheetPage() {
             </div>
               <div>
                 <p className="text-sm text-primary font-medium">Submitted Hours</p>
-                <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                <p className="text-3xl font-bold text-primary">
                   {stats.submittedHours}h
                 </p>
               </div>
@@ -340,7 +340,7 @@ export default function TimesheetPage() {
             </div>
               <div>
                 <p className="text-sm text-primary font-medium">Approved Hours</p>
-                <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <p className="text-3xl font-bold text-primary">
                   {stats.approvedHours}h
                 </p>
               </div>
@@ -380,7 +380,7 @@ export default function TimesheetPage() {
 
         {/* Add/Edit Entry Dialog */}
         {showAddDialog && (
-          <Card className="p-6 border-2 border-blue-400 dark:border-blue-700 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-900/30 dark:to-indigo-900/30 backdrop-blur-sm shadow-xl">
+          <Card className="p-6 border-2 border-primary/50 bg-primary/5 backdrop-blur-sm shadow-xl">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-lg">
               {editingEntry ? "Edit Time Entry" : "Add Time Entry"}

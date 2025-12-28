@@ -28,7 +28,7 @@ export function SocialAuthButtons() {
       <Button
         type="button"
         variant="outline"
-        className="w-full justify-center gap-3 border-slate-200 bg-white text-slate-900 shadow-sm"
+        className="w-full justify-center gap-3 border-border bg-card text-foreground shadow-sm"
         onClick={() => handleSignIn("google")}
         disabled={isPending}
       >

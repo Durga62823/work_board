@@ -35,9 +35,9 @@ export function UserMenu({ name, email, image }: UserMenuProps) {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
       >
-        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-semibold overflow-hidden">
+        <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold overflow-hidden">
           {image ? (
             <img
               src={image}
@@ -49,15 +49,15 @@ export function UserMenu({ name, email, image }: UserMenuProps) {
           )}
         </div>
         <HiChevronDown
-          className={`h-4 w-4 text-gray-600 dark:text-gray-400 transition-transform ${
+          className={`h-4 w-4 text-muted-foreground transition-transform ${
             isOpen ? "rotate-180" : ""
           }`}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50">
-          <div className="p-4 border-b border-gray-100 dark:border-gray-800">
+        <div className="absolute right-0 mt-2 w-64 bg-card rounded-lg shadow-lg border border-border z-50">
+          <div className="p-4 border-b border-border">
             <UserProfile name={name} email={email} image={image} />
           </div>
 
@@ -65,7 +65,7 @@ export function UserMenu({ name, email, image }: UserMenuProps) {
             <Link
               href="/profile"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              className="flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
             >
               <HiUser className="h-4 w-4" />
               View Profile
@@ -73,14 +73,14 @@ export function UserMenu({ name, email, image }: UserMenuProps) {
             <Link
               href="/settings"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              className="flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
             >
               <HiCog6Tooth className="h-4 w-4" />
               Settings
             </Link>
           </nav>
 
-          <div className="p-2 border-t border-gray-100 dark:border-gray-800">
+          <div className="p-2 border-t border-border">
             <LogoutButton
               variant="ghost"
               size="sm"

@@ -57,16 +57,16 @@ export function AIRiskAssessment() {
       case "medium":
         return "text-yellow-600 bg-yellow-100";
       case "low":
-        return "text-green-600 bg-green-100";
+        return "text-primary bg-primary/10";
       default:
-        return "text-gray-600 bg-gray-100";
+        return "text-muted-foreground bg-muted";
     }
   };
 
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <HiShieldCheck className="h-6 w-6 text-blue-600" />
+        <HiShieldCheck className="h-6 w-6 text-primary" />
         <h3 className="text-lg font-semibold">Smart Risk Assessment</h3>
       </div>
 
@@ -145,20 +145,20 @@ export function AIRiskAssessment() {
 
       {result && (
         <div className="space-y-4 mt-6">
-          <Card className="p-4 bg-gradient-to-r from-blue-50 to-purple-50">
+          <Card className="p-4 bg-primary/10">
             <h4 className="font-semibold mb-3 flex items-center gap-2">
               <HiExclamationTriangle className="h-5 w-5 text-orange-600" />
               Risk Analysis
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-white p-4 rounded">
-                <p className="text-sm text-gray-600 mb-1">Risk Score</p>
-                <p className="text-3xl font-bold text-blue-600">
+              <div className="bg-card p-4 rounded">
+                <p className="text-sm text-muted-foreground mb-1">Risk Score</p>
+                <p className="text-3xl font-bold text-primary">
                   {result.riskScore}/10
                 </p>
               </div>
-              <div className="bg-white p-4 rounded">
-                <p className="text-sm text-gray-600 mb-1">Risk Level</p>
+              <div className="bg-card p-4 rounded">
+                <p className="text-sm text-muted-foreground mb-1">Risk Level</p>
                 <span
                   className={`inline-block px-3 py-1 rounded font-semibold ${getRiskColor(
                     result.riskLevel
@@ -185,10 +185,10 @@ export function AIRiskAssessment() {
                         {bottleneck.severity}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-700 mb-2">
+                    <p className="text-sm text-foreground mb-2">
                       <strong>Impact:</strong> {bottleneck.impact}
                     </p>
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-foreground">
                       <strong>Mitigation:</strong> {bottleneck.mitigation}
                     </p>
                   </div>
@@ -201,7 +201,7 @@ export function AIRiskAssessment() {
             result.resourceSuggestions.length > 0 && (
               <Card className="p-4">
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
-                  <HiCheckCircle className="h-5 w-5 text-green-600" />
+                  <HiCheckCircle className="h-5 w-5 text-primary" />
                   Resource Allocation Suggestions
                 </h4>
                 <div className="space-y-3">
@@ -209,17 +209,17 @@ export function AIRiskAssessment() {
                     (suggestion: any, idx: number) => (
                       <div
                         key={idx}
-                        className="bg-green-50 p-3 rounded border border-green-200"
+                        className="bg-primary/10 p-3 rounded border border-primary/20"
                       >
                         <div className="flex justify-between items-start mb-1">
-                          <h5 className="font-medium text-green-900">
+                          <h5 className="font-medium text-foreground">
                             {suggestion.role}
                           </h5>
-                          <span className="text-sm font-semibold text-green-700">
+                          <span className="text-sm font-semibold text-primary">
                             {suggestion.hours}h
                           </span>
                         </div>
-                        <p className="text-sm text-gray-700">
+                        <p className=\"text-sm text-foreground\">
                           {suggestion.reasoning}
                         </p>
                       </div>

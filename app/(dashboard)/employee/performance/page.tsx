@@ -128,7 +128,7 @@ export default function PerformancePage() {
             <HiSparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-foreground">
               My Performance
             </h1>
             <p className="text-primary mt-1">
@@ -151,7 +151,7 @@ export default function PerformancePage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  <div className="text-3xl font-bold text-primary">
                     {taskStats.completionRate}%
                   </div>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -170,7 +170,7 @@ export default function PerformancePage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  <div className="text-3xl font-bold text-primary">
                     {taskStats.onTimeRate}%
                   </div>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -192,7 +192,7 @@ export default function PerformancePage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <div className="text-3xl font-bold text-primary">
                   {Math.round(timeAccuracy.accuracy)}%
                 </div>
               <p className="text-xs text-muted-foreground mt-1">

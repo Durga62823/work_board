@@ -280,11 +280,32 @@ export async function getTeamCodeReviews(teamId: string, status?: string) {
     where.status = status;
   }
 
-  return await prisma.codeReview.findMany({
+  const reviews = await prisma.codeReview.findMany({
     where,
     orderBy: { createdAt: "desc" },
     take: 50,
   });
+
+  // Manually fetch author and reviewer data
+  const allUserIds = [...new Set([...reviews.map(r => r.authorId), ...reviews.filter(r => r.reviewerId).map(r => r.reviewerId!)])];
+  const users = await prisma.user.findMany({
+    where: { id: { in: allUserIds } },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      image: true,
+    },
+  });
+
+  const userMap = new Map(users.map(u => [u.id, u]));
+
+  // Attach user data to reviews
+  return reviews.map(review => ({
+    ...review,
+    author: userMap.get(review.authorId) || null,
+    reviewer: review.reviewerId ? userMap.get(review.reviewerId) || null : null,
+  }));
 }
 
 /**

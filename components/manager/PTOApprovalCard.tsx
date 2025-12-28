@@ -107,8 +107,8 @@ export function PTOApprovalCard({ request }: { request: PTORequest }) {
       </div>
 
       {showRejectDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+          <div className="w-full max-w-md rounded-xl bg-card p-6 shadow-xl">
             <h3 className="text-lg font-semibold text-slate-900">Reject PTO Request</h3>
             <p className="mt-1 text-sm text-slate-500">
               Please provide a reason for rejecting this request

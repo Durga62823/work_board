@@ -67,7 +67,7 @@ export function AISprintPlanning() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <HiCalendar className="h-6 w-6 text-purple-600" />
+        <HiCalendar className="h-6 w-6 text-primary" />
         <h3 className="text-lg font-semibold">Smart Sprint Planning</h3>
       </div>
 
@@ -199,31 +199,31 @@ export function AISprintPlanning() {
 
       {result && (
         <div className="space-y-4 mt-6">
-          <Card className="p-4 bg-purple-50">
+          <Card className="p-4 bg-primary/10 border-primary/20">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
-              <HiFlag className="h-5 w-5 text-purple-600" />
+              <HiFlag className="h-5 w-5 text-primary" />
               Sprint Goal
             </h4>
-            <p className="text-sm bg-white p-3 rounded">{result.sprintGoal}</p>
+            <p className="text-sm bg-card p-3 rounded">{result.sprintGoal}</p>
           </Card>
 
           <Card className="p-4">
             <h5 className="font-semibold mb-3">Capacity Analysis</h5>
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
-                <p className="text-sm text-gray-600">Total Capacity</p>
-                <p className="text-2xl font-bold text-blue-600">
+                <p className="text-sm text-muted-foreground">Total Capacity</p>
+                <p className="text-2xl font-bold text-primary">
                   {result.capacity?.totalHours}h
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-600">Allocated</p>
-                <p className="text-2xl font-bold text-green-600">
+                <p className="text-sm text-muted-foreground">Allocated</p>
+                <p className="text-2xl font-bold text-primary">
                   {result.capacity?.allocatedHours}h
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-600">Buffer</p>
+                <p className="text-sm text-muted-foreground">Buffer</p>
                 <p className="text-2xl font-bold text-orange-600">
                   {result.capacity?.bufferHours}h
                 </p>
@@ -235,11 +235,11 @@ export function AISprintPlanning() {
             <h5 className="font-semibold mb-3">Task Allocation</h5>
             <div className="space-y-2">
               {result.taskAllocation?.map((allocation: any, idx: number) => (
-                <div key={idx} className="bg-gray-50 p-3 rounded border">
+                <div key={idx} className="bg-muted p-3 rounded border">
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="font-medium">{allocation.taskName}</p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         Assignee: {allocation.assignee}
                       </p>
                     </div>
@@ -247,7 +247,7 @@ export function AISprintPlanning() {
                       <p className="text-sm font-semibold">
                         {allocation.estimatedHours}h
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-muted-foreground">
                         P{allocation.priority}
                       </p>
                     </div>
@@ -280,7 +280,7 @@ export function AISprintPlanning() {
               <ul className="space-y-1">
                 {result.recommendations.map((rec: string, idx: number) => (
                   <li key={idx} className="text-sm flex items-start gap-2">
-                    <span className="text-purple-600 mt-1">→</span>
+                    <span className="text-primary mt-1">→</span>
                     <span>{rec}</span>
                   </li>
                 ))}

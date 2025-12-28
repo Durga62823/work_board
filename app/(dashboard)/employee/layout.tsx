@@ -31,20 +31,68 @@ export default async function EmployeeDashboardLayout({
   const userRole = (session.user as any).role || "EMPLOYEE";
 
   return (
-    <div className="min-h-screen bg-muted">
-      {/* Header */}
-      <header className="bg-card border-b border-border sticky top-0 z-10">
-        <div className="px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <h1 className="text-2xl font-bold text-foreground">
-                Project Management Tool
+    <div className="min-h-screen bg-muted flex flex-col">
+      {/* Top Navigation Bar */}
+      <header className="border-b border-border bg-card shadow-sm sticky top-0 z-40">
+        <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-8 flex-1">
+              <h1 className="text-lg font-bold text-foreground whitespace-nowrap">
+                Employee Dashboard
               </h1>
-              <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                Employee
-              </span>
+              <nav className="hidden md:flex gap-1">
+                <Link
+                  href="/employee"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
+                >
+                  <HiHome className="h-4 w-4" />
+                  Dashboard
+                </Link>
+                <Link
+                  href="/employee/my-work"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
+                >
+                  <HiCheckCircle className="h-4 w-4" />
+                  My Tasks
+                </Link>
+                <Link
+                  href="/employee/timesheet"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
+                >
+                  <HiClock className="h-4 w-4" />
+                  Timesheet
+                </Link>
+                <Link
+                  href="/employee/performance"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
+                >
+                  <HiArrowTrendingUp className="h-4 w-4" />
+                  Performance
+                </Link>
+                <Link
+                  href="/employee/goals"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
+                >
+                  <HiFlag className="h-4 w-4" />
+                  Goals
+                </Link>
+                <Link
+                  href="/employee/calendar"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
+                >
+                  <HiCalendar className="h-4 w-4" />
+                  Calendar
+                </Link>
+                <Link
+                  href="/employee/appraisal"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
+                >
+                  <HiDocumentText className="h-4 w-4" />
+                  Appraisals
+                </Link>
+              </nav>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <ModeToggle />
               <ColorPicker />
               <UserMenu />
@@ -53,85 +101,12 @@ export default async function EmployeeDashboardLayout({
         </div>
       </header>
 
-      <div className="flex">
-        {/* Sidebar */}
-        <aside className="w-64 bg-card border-r border-border min-h-[calc(100vh-73px)]">
-          <nav className="p-4 space-y-2">
-            <Link
-              href="/employee"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-            >
-              <HiHome className="h-5 w-5 text-muted-foreground" />
-              <span className="font-medium text-foreground">Dashboard</span>
-            </Link>
-
-            <Link
-              href="/employee/my-work"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-            >
-              <HiCheckCircle className="h-5 w-5 text-muted-foreground" />
-              <span className="font-medium text-foreground">My Tasks</span>
-            </Link>
-
-            <Link
-              href="/employee/timesheet"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-            >
-              <HiClock className="h-5 w-5 text-muted-foreground" />
-              <span className="font-medium text-foreground">Timesheet</span>
-            </Link>
-
-            <Link
-              href="/employee/performance"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-            >
-              <HiArrowTrendingUp className="h-5 w-5 text-muted-foreground" />
-              <span className="font-medium text-foreground">Performance</span>
-            </Link>
-
-            <Link
-              href="/employee/goals"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-            >
-              <HiFlag className="h-5 w-5 text-muted-foreground" />
-              <span className="font-medium text-foreground">My Goals</span>
-            </Link>
-
-            <Link
-              href="/employee/calendar"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-            >
-              <HiCalendar className="h-5 w-5 text-muted-foreground" />
-              <span className="font-medium text-foreground">Calendar</span>
-            </Link>
-
-            <Link
-              href="/employee/appraisal"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-            >
-              <HiDocumentText className="h-5 w-5 text-muted-foreground" />
-              <span className="font-medium text-foreground">Appraisals</span>
-            </Link>
-
-            <div className="pt-4 mt-4 border-t border-border">
-              <Link
-                href="/settings"
-                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-              >
-                <HiCog6Tooth className="h-5 w-5 text-muted-foreground" />
-                <span className="font-medium text-foreground">Settings</span>
-              </Link>
-
-              <div className="px-4 py-3">
-                <LogoutButton />
-              </div>
-            </div>
-          </nav>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1">{children}</main>
-      </div>
+      {/* Main Content */}
+      <main className="flex-1 overflow-y-auto">
+        <div className="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
+          {children}
+        </div>
+      </main>
     </div>
   );
 }

@@ -264,7 +264,7 @@ export default function MyWorkPage() {
               </div>
             </div>
           </div>
-          <Button onClick={() => setCreateTaskDialog(true)} className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
+          <Button onClick={() => setCreateTaskDialog(true)} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300">
             <HiPlus className="h-4 w-4 mr-2" />
             Create Task
           </Button>
@@ -307,7 +307,7 @@ export default function MyWorkPage() {
               </div>
               <div>
                 <p className="text-sm text-primary font-medium">In Progress</p>
-                <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                <p className="text-2xl font-bold text-primary">
                   {stats?.inProgress || 0}
                 </p>
               </div>
@@ -321,7 +321,7 @@ export default function MyWorkPage() {
               </div>
               <div>
                 <p className="text-sm text-primary font-medium">Total Tasks</p>
-                <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <p className="text-2xl font-bold text-primary">
                   {stats?.total || 0}
                 </p>
               </div>
@@ -335,7 +335,7 @@ export default function MyWorkPage() {
               </div>
               <div>
                 <p className="text-sm text-primary font-medium">Overdue</p>
-                <p className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                <p className="text-2xl font-bold text-primary">
                   {stats?.overdue || 0}
                 </p>
               </div>
@@ -349,7 +349,7 @@ export default function MyWorkPage() {
               </div>
               <div>
                 <p className="text-sm text-primary font-medium">Completed</p>
-                <p className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                <p className="text-2xl font-bold text-primary">
                   {stats?.completed || 0}
                 </p>
               </div>
@@ -382,7 +382,7 @@ export default function MyWorkPage() {
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="font-semibold text-lg">{task.title}</h3>
                       {isOverdue(task.dueDate) && task.status !== "DONE" && (
-                        <Badge variant="destructive" className="text-xs">
+                        <Badge variant="secondary" className="text-xs">
                           Overdue
                         </Badge>
                       )}
@@ -513,7 +513,7 @@ export default function MyWorkPage() {
 
         {/* Create Task Dialog */}
         {createTaskDialog && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
             <Card className="w-full max-w-2xl p-6 max-h-[90vh] overflow-y-auto border-border bg-card shadow-2xl animate-in fade-in duration-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Create New Task</h3>

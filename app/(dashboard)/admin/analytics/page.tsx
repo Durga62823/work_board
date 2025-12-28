@@ -79,11 +79,6 @@ function AnimatedProgressBar({
         className={`${color} h-3 rounded-full transition-all duration-1200 ease-out shadow-lg`}
         style={{
           width: `${displayPercentage}%`,
-          boxShadow: `0 0 10px ${
-            color === "bg-blue-600"
-              ? "rgba(59, 130, 246, 0.5)"
-              : "rgba(34, 197, 94, 0.5)"
-          }`,
         }}
       />
     </div>

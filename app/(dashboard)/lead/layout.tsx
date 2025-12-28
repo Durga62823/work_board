@@ -69,18 +69,6 @@ export default async function LeadLayout({
                 Code Reviews
               </Link>
               <Link
-                href="/lead/profile"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
-              >
-                Profile
-              </Link>
-              <Link
-                href="/lead/settings"
-                className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
-              >
-                Settings
-              </Link>
-              <Link
                 href="/lead/ai-features"
                 className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground"
               >

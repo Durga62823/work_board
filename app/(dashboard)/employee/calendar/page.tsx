@@ -212,9 +212,9 @@ export default function CalendarPage() {
 
         {/* Upcoming Events */}
         {upcomingEvents.length > 0 && (
-          <Card className="border-blue-300/60 dark:border-blue-700/60 bg-gradient-to-br from-blue-50/70 to-indigo-50/70 dark:from-blue-900/30 dark:to-indigo-900/30 backdrop-blur-sm shadow-lg">
+          <Card className="border-primary/50 bg-primary/5 backdrop-blur-sm shadow-lg">
             <CardHeader>
-              <CardTitle className="bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
+              <CardTitle className="text-primary">
                 Upcoming Events
               </CardTitle>
             </CardHeader>
@@ -293,9 +293,9 @@ export default function CalendarPage() {
                       !day
                         ? "bg-primary/10/50"
                         : isToday(day)
-                        ? "bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 border-blue-300 dark:border-blue-700 shadow-md"
+                        ? "bg-primary/10 border-primary/50 shadow-md"
                         : "bg-card/50 hover:bg-card/80 hover:shadow-lg hover:-translate-y-0.5"
-                    } ${isSelected ? "ring-2 ring-blue-500 shadow-xl" : ""}`}
+                    } ${isSelected ? "ring-2 ring-primary shadow-xl" : ""}`}
                     onClick={() => day && setSelectedDate(day)}
                   >
                   {day && (

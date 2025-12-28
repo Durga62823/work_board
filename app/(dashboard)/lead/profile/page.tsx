@@ -92,7 +92,7 @@ export default async function LeadProfilePage() {
                     {format(new Date(user.createdAt), "MMM d, yyyy")}
                   </p>
                 </div>
-                <div className="h-8 w-px bg-gray-300" />
+                <div className="h-8 w-px bg-border" />
                 <div>
                   <p className="text-sm text-muted-foreground">Status</p>
                   <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary">

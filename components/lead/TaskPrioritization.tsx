@@ -97,7 +97,7 @@ export function TaskPrioritization() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">Task Prioritization</h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           AI-powered task prioritization based on urgency, impact, and dependencies
         </p>
       </div>
@@ -136,7 +136,7 @@ export function TaskPrioritization() {
           </div>
 
           {formData.tasks.map((task, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-lg bg-gray-50">
+            <div key={index} className="mb-4 p-4 border rounded-lg bg-muted">
               <div className="flex items-center justify-between mb-3">
                 <span className="font-medium">Task {index + 1}</span>
                 {formData.tasks.length > 1 && (
@@ -237,7 +237,7 @@ export function TaskPrioritization() {
               {result.prioritizedTasks
                 .sort((a, b) => a.recommendedOrder - b.recommendedOrder)
                 .map((task, index) => (
-                  <div key={index} className="p-4 border rounded-lg bg-white">
+                  <div key={index} className="p-4 border rounded-lg bg-card">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-3">
                         <Badge variant="default" className="text-lg">
@@ -249,7 +249,7 @@ export function TaskPrioritization() {
                         Priority: {task.priority}/100
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-600 mt-2">{task.reasoning}</p>
+                    <p className="text-sm text-muted-foreground mt-2">{task.reasoning}</p>
                   </div>
                 ))}
             </div>
@@ -289,7 +289,7 @@ export function TaskPrioritization() {
                     <div className="flex items-start justify-between">
                       <div>
                         <p className="font-medium text-sm">{risk.task}</p>
-                        <p className="text-sm text-gray-600 mt-1">{risk.risk}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{risk.risk}</p>
                       </div>
                       <Badge variant={risk.severity === 'high' ? 'destructive' : 'secondary'}>
                         {risk.severity.toUpperCase()}

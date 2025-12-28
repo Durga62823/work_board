@@ -101,7 +101,7 @@ export function RoleSwitcher({ currentRole }: { currentRole: string }) {
           </Button>
         </div>
         {message && (
-          <p className={`text-sm ${message.includes("success") ? "text-green-600" : "text-amber-600"}`}>
+          <p className={`text-sm ${message.includes("success") ? "text-primary" : "text-muted-foreground"}`}>
             {message}
           </p>
         )}

@@ -44,18 +44,18 @@ export default async function LeadSprintsPage() {
     <div className="min-h-screen bg-background space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-primary-foreground rounded-full shadow-lg w-fit mb-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
             <HiSparkles className="h-4 w-4" />
             <span className="text-sm font-semibold">Sprint Management</span>
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold text-primary">
             Sprint Planning
           </h1>
           <p className="text-primary mt-2">Manage sprints and track team velocity</p>
         </div>
         <Link
           href="/lead/sprints/new"
-          className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-primary-foreground rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
+          className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
         >
           <HiPlus className="h-4 w-4" />
           Create Sprint
@@ -69,10 +69,10 @@ export default async function LeadSprintsPage() {
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-500 text-primary-foreground text-xs font-semibold rounded-full shadow-md">
+                  <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full shadow-md">
                     ACTIVE
                   </span>
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold text-primary">
                     {activeSprint.name}
                   </h2>
                 </div>
@@ -87,26 +87,26 @@ export default async function LeadSprintsPage() {
             </div>
 
             <div className="grid grid-cols-4 gap-4 mt-6">
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
                 <p className="text-sm text-muted-foreground mb-1">Duration</p>
                 <p className="text-lg font-semibold text-foreground">
                   {format(new Date(activeSprint.startDate), "MMM d")} -{" "}
                   {format(new Date(activeSprint.endDate), "MMM d")}
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
                 <p className="text-sm text-muted-foreground mb-1">Story Points</p>
                 <p className="text-lg font-semibold text-foreground">
                   {activeSprint._count?.tasks || 0} tasks
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
                 <p className="text-sm text-muted-foreground mb-1">Capacity</p>
                 <p className="text-lg font-semibold text-foreground">
                   {activeSprint.capacityHours}h
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
                 <p className="text-sm text-muted-foreground mb-1">Velocity</p>
                 <p className="text-lg font-semibold text-foreground">
                   {activeSprint.velocity || "-"} pts
@@ -116,9 +116,9 @@ export default async function LeadSprintsPage() {
 
             {/* Burndown Chart Placeholder */}
             {burndownData && burndownData.ideal && burndownData.actual && (
-              <div className="mt-6 p-4 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg border border-border">
+              <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-border">
                 <h3 className="text-sm font-semibold text-foreground mb-3">Sprint Burndown</h3>
-                <div className="h-48 flex items-center justify-center border-2 border-dashed border-purple-300 dark:border-purple-700 rounded-lg bg-card/50">
+                <div className="h-48 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-lg bg-card/50">
                   <div className="text-center text-muted-foreground">
                     <p className="text-sm">Ideal: {burndownData.ideal.join(", ")}</p>
                     <p className="text-sm mt-1">Actual: {burndownData.actual.join(", ")}</p>
@@ -138,10 +138,10 @@ export default async function LeadSprintsPage() {
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-primary-foreground text-xs font-semibold rounded-full shadow-md">
+                  <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full shadow-md">
                     PLANNING
                   </span>
-                  <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                  <h2 className="text-xl font-bold text-primary">
                     {planningSprint.name}
                   </h2>
                 </div>
@@ -156,19 +156,19 @@ export default async function LeadSprintsPage() {
             </div>
 
             <div className="flex gap-4 mt-4">
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-3 flex-1 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-lg p-3 flex-1 border border-border hover:shadow-md transition-shadow">
                 <p className="text-sm text-muted-foreground mb-1">Start Date</p>
                 <p className="font-semibold text-foreground">
                   {format(new Date(planningSprint.startDate), "MMM d, yyyy")}
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-3 flex-1 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-lg p-3 flex-1 border border-border hover:shadow-md transition-shadow">
                 <p className="text-sm text-muted-foreground mb-1">End Date</p>
                 <p className="font-semibold text-foreground">
                   {format(new Date(planningSprint.endDate), "MMM d, yyyy")}
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg p-3 flex-1 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-lg p-3 flex-1 border border-border hover:shadow-md transition-shadow">
                 <p className="text-sm text-muted-foreground mb-1">Capacity</p>
                 <p className="font-semibold text-foreground">{planningSprint.capacityHours}h</p>
               </div>
@@ -181,18 +181,18 @@ export default async function LeadSprintsPage() {
       {completedSprints.length > 0 && (
         <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
           <div className="p-6">
-            <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-xl font-bold text-primary mb-4">
               Recent Sprints
             </h2>
             <div className="space-y-3">
               {completedSprints.map((sprint) => (
                 <div
                   key={sprint.id}
-                  className="flex items-center justify-between p-4 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg border border-border hover:shadow-md hover:scale-[1.01] transition-all duration-300"
+                  className="flex items-center justify-between p-4 bg-primary/10 rounded-lg border border-border hover:shadow-md hover:scale-[1.01] transition-all duration-300"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="px-3 py-1 bg-gradient-to-r from-gray-500 to-slate-500 text-primary-foreground text-xs font-semibold rounded-full shadow-md">
+                      <span className="px-3 py-1 bg-muted text-muted-foreground text-xs font-semibold rounded-full shadow-md">
                         COMPLETED
                       </span>
                       <h3 className="font-semibold text-foreground">{sprint.name}</h3>
@@ -226,7 +226,7 @@ export default async function LeadSprintsPage() {
       {!activeSprint && !planningSprint && completedSprints.length === 0 && (
         <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-12 text-center hover:shadow-xl transition-all duration-300">
           <div className="max-w-md mx-auto">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
               <svg
                 className="w-8 h-8 text-primary"
                 fill="none"
@@ -241,7 +241,7 @@ export default async function LeadSprintsPage() {
                 />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+            <h2 className="text-xl font-semibold text-primary mb-2">
               No Sprints Yet
             </h2>
             <p className="text-muted-foreground mb-6">
@@ -249,7 +249,7 @@ export default async function LeadSprintsPage() {
             </p>
             <Link
               href="/lead/sprints/new"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-primary-foreground rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
             >
               <HiPlus className="h-4 w-4" />
               Create First Sprint
@@ -260,3 +260,4 @@ export default async function LeadSprintsPage() {
     </div>
   );
 }
+

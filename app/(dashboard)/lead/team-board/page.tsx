@@ -64,12 +64,12 @@ export default async function TeamBoardPage() {
     <div className="min-h-screen bg-background">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-3">
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-primary-foreground rounded-full shadow-lg">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg">
             <HiSparkles className="h-4 w-4" />
             <span className="text-sm font-semibold">Tech Lead</span>
           </div>
         </div>
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+        <h2 className="text-3xl font-bold text-primary">
           {user.team.name} - Task Board
         </h2>
         <p className="text-primary mt-2">Manage and coordinate team tasks with intelligent tracking</p>

@@ -38,8 +38,21 @@ export function SettingsClient({
   const [preferencesPending, startPreferencesTransition] = useTransition();
   const [notificationsPending, startNotificationsTransition] = useTransition();
 
-  // Preferences state
-  const [theme, setTheme] = useState(initialPreferences.theme || "light");
+  // Preferences state - Read current theme from localStorage or DOM
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      // First check localStorage
+      const stored = localStorage.getItem('theme');
+      if (stored) return stored;
+      
+      // Then check if dark mode is active
+      if (document.documentElement.classList.contains('dark')) {
+        return 'dark';
+      }
+    }
+    // Only use initialPreferences if no current theme is set
+    return initialPreferences.theme || 'light';
+  });
   const [language, setLanguage] = useState(
     initialPreferences.language || "English"
   );

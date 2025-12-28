@@ -96,7 +96,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <HiChatBubbleLeftRight className="h-6 w-6 text-purple-600" />
+        <HiChatBubbleLeftRight className="h-6 w-6 text-primary" />
         <h3 className="text-lg font-semibold">AI Task Assistant</h3>
         <HiSparkles className="h-4 w-4 text-yellow-500" />
       </div>
@@ -141,14 +141,14 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
       </div>
 
       {result && activeFeature === "breakdown" && (
-        <Card className="p-4 bg-purple-50">
+        <Card className="p-4 bg-primary/10 border-primary/20">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
-            <HiCheckCircle className="h-5 w-5 text-green-600" />
+            <HiCheckCircle className="h-5 w-5 text-primary" />
             Subtasks Generated
           </h4>
           <div className="space-y-3">
             {result.subtasks?.map((subtask: any, idx: number) => (
-              <div key={idx} className="bg-white p-3 rounded border">
+              <div key={idx} className="bg-card p-3 rounded border">
                 <div className="flex justify-between items-start mb-1">
                   <h5 className="font-medium">
                     {idx + 1}. {subtask.title}
@@ -159,16 +159,16 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
                         ? "bg-red-100 text-red-700"
                         : subtask.priority === "medium"
                         ? "bg-yellow-100 text-yellow-700"
-                        : "bg-blue-100 text-blue-700"
+                        : "bg-primary/10 text-primary"
                     }`}
                   >
                     {subtask.priority}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600 mb-2">
+                <p className="text-sm text-muted-foreground mb-2">
                   {subtask.description}
                 </p>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   Est: {subtask.estimatedHours}h
                 </p>
               </div>
@@ -178,40 +178,40 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
       )}
 
       {result && activeFeature === "timeline" && (
-        <Card className="p-4 bg-blue-50">
+        <Card className="p-4 bg-primary/10 border-primary/20">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
-            <HiCheckCircle className="h-5 w-5 text-green-600" />
+            <HiCheckCircle className="h-5 w-5 text-primary" />
             Timeline Estimate
           </h4>
           <div className="space-y-3">
-            <div className="bg-white p-3 rounded">
-              <p className="text-sm text-gray-600">Estimated Duration</p>
-              <p className="text-2xl font-bold text-blue-600">
+            <div className="bg-card p-3 rounded">
+              <p className="text-sm text-muted-foreground">Estimated Duration</p>
+              <p className="text-2xl font-bold text-primary">
                 {result.estimatedDays} days
               </p>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                 Complexity:{" "}
                 <span className="font-medium">{result.complexity}</span>
               </p>
             </div>
-            <div className="bg-white p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <h5 className="font-medium mb-2">Key Factors:</h5>
               <ul className="list-disc list-inside text-sm space-y-1">
                 {result.factors?.map((factor: string, idx: number) => (
-                  <li key={idx} className="text-gray-600">
+                  <li key={idx} className="text-muted-foreground">
                     {factor}
                   </li>
                 ))}
               </ul>
             </div>
             {result.milestones && result.milestones.length > 0 && (
-              <div className="bg-white p-3 rounded">
+              <div className="bg-card p-3 rounded">
                 <h5 className="font-medium mb-2">Milestones:</h5>
                 <div className="space-y-2">
                   {result.milestones.map((milestone: any, idx: number) => (
                     <div key={idx} className="flex justify-between text-sm">
-                      <span className="text-gray-700">{milestone.title}</span>
-                      <span className="text-gray-500">
+                      <span className="text-foreground">{milestone.title}</span>
+                      <span className="text-muted-foreground">
                         Day {milestone.daysFromStart}
                       </span>
                     </div>
@@ -224,36 +224,36 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
       )}
 
       {result && activeFeature === "testcases" && (
-        <Card className="p-4 bg-green-50">
+        <Card className="p-4 bg-primary/10 border-primary/20">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
-            <HiCheckCircle className="h-5 w-5 text-green-600" />
+            <HiCheckCircle className="h-5 w-5 text-primary" />
             Test Cases Generated
           </h4>
           <div className="space-y-3">
             {result.testCases?.map((testCase: any, idx: number) => (
-              <div key={idx} className="bg-white p-3 rounded border">
+              <div key={idx} className="bg-card p-3 rounded border">
                 <div className="flex justify-between items-start mb-2">
                   <h5 className="font-medium">
                     {idx + 1}. {testCase.scenario}
                   </h5>
-                  <span className="text-xs px-2 py-1 rounded bg-gray-100 text-gray-700">
+                  <span className="text-xs px-2 py-1 rounded bg-secondary text-secondary-foreground">
                     {testCase.type}
                   </span>
                 </div>
                 <div className="text-sm space-y-2">
                   <div>
-                    <p className="font-medium text-gray-700">Steps:</p>
-                    <ol className="list-decimal list-inside text-gray-600 ml-2">
+                    <p className="font-medium text-foreground">Steps:</p>
+                    <ol className="list-decimal list-inside text-muted-foreground ml-2">
                       {testCase.steps?.map((step: string, stepIdx: number) => (
                         <li key={stepIdx}>{step}</li>
                       ))}
                     </ol>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-700">
+                    <p className="font-medium text-foreground">
                       Expected Result:
                     </p>
-                    <p className="text-gray-600">{testCase.expectedResult}</p>
+                    <p className="text-muted-foreground">{testCase.expectedResult}</p>
                   </div>
                 </div>
               </div>

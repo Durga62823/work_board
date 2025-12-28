@@ -24,7 +24,6 @@ export default async function SettingsPage() {
   });
 
   const preferences = (user?.preferences as any) || {
-    theme: "light",
     language: "English",
     timezone: "UTC",
   };

@@ -109,7 +109,7 @@ export function ReportGeneration() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">Smart Report Generator</h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           Generate comprehensive project reports with AI-powered insights
         </p>
       </div>
@@ -234,9 +234,9 @@ export function ReportGeneration() {
           </div>
 
           {/* Report Header */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg">
+          <div className="bg-primary/10 p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-3">{result.title}</h2>
-            <p className="text-gray-700">{result.summary}</p>
+            <p className="text-foreground">{result.summary}</p>
           </div>
 
           {/* Key Metrics */}
@@ -244,9 +244,9 @@ export function ReportGeneration() {
             <h4 className="font-semibold mb-3">Key Metrics</h4>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {result.keyMetrics.map((metric, index) => (
-                <div key={index} className="p-4 bg-white border rounded-lg">
-                  <p className="text-sm text-gray-600 mb-1">{metric.name}</p>
-                  <p className="text-2xl font-bold text-blue-900">
+                <div key={index} className="p-4 bg-card border rounded-lg">
+                  <p className="text-sm text-muted-foreground mb-1">{metric.name}</p>
+                <p className="text-3xl font-bold text-primary">
                     {metric.value}
                   </p>
                 </div>
@@ -256,9 +256,9 @@ export function ReportGeneration() {
 
           {/* Report Sections */}
           {result.sections.map((section, index) => (
-            <div key={index} className="p-5 bg-gray-50 rounded-lg">
+            <div key={index} className="p-5 bg-muted rounded-lg">
               <h4 className="font-semibold mb-3 text-lg">{section.heading}</h4>
-              <div className="text-gray-700 whitespace-pre-line">
+              <div className="text-foreground whitespace-pre-line">
                 {section.content}
               </div>
             </div>
@@ -271,12 +271,12 @@ export function ReportGeneration() {
               {result.recommendations.map((rec, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-2 p-3 bg-green-50 rounded-lg"
+                  className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg border border-primary/20"
                 >
-                  <span className="text-green-600 font-bold mt-0.5">
+                  <span className="text-primary font-bold mt-0.5">
                     {index + 1}.
                   </span>
-                  <span className="text-sm text-gray-700">{rec}</span>
+                  <span className="text-sm text-foreground">{rec}</span>
                 </li>
               ))}
             </ul>
