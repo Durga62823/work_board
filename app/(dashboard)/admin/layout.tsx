@@ -4,6 +4,7 @@ import { HiUserGroup, HiBuildingOffice2, HiBriefcase, HiPresentationChartBar, Hi
 
 import { auth } from "@/lib/auth";
 import { UserMenu, LogoutButton, ModeToggle, ColorPicker } from "@/components/common";
+import { MobileMenu } from "@/components/common/MobileMenu";
 
 const adminNavigation = [
   { name: "Dashboard", href: "/admin", icon: HiChartPie },
@@ -33,25 +34,26 @@ export default async function AdminLayout({
       {/* Top Navigation Bar */}
       <header className="border-b border-border bg-card shadow-sm sticky top-0 z-40">
         <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center gap-8 flex-1">
-              <h1 className="text-lg font-bold text-foreground whitespace-nowrap">
+          <div className="flex h-16 items-center justify-between gap-4">
+            <div className="flex items-center gap-4 md:gap-8 flex-1 min-w-0">
+              <MobileMenu navigation={adminNavigation} />
+              <h1 className="text-base sm:text-lg font-bold text-foreground whitespace-nowrap truncate">
                 {userName}
               </h1>
-              <nav className="hidden md:flex gap-1">
+              <nav className="hidden md:flex gap-1 flex-1 overflow-x-auto">
                 {adminNavigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
+                    className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2 whitespace-nowrap"
                   >
                     <item.icon className="h-4 w-4" />
-                    {item.name}
+                    <span className="hidden lg:inline">{item.name}</span>
                   </Link>
                 ))}
               </nav>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <ModeToggle />
               <ColorPicker />
               <UserMenu />

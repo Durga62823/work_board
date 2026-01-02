@@ -36,7 +36,7 @@ export default async function ManagerAppraisalsPage() {
             <h1 className="text-3xl font-bold text-primary">
               Manager - Appraisals
             </h1>
-            <p className="mt-1 text-muted-foreground">
+            <p className="mt-1 text-primary">
               Conduct performance reviews and manage team appraisals
             </p>
           </div>
@@ -45,18 +45,18 @@ export default async function ManagerAppraisalsPage() {
         {/* Stats */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
-            <div className="text-sm font-medium text-muted-foreground">Draft</div>
-            <div className="mt-2 text-3xl font-bold text-foreground">
+            <div className="text-sm font-medium text-primary">Draft</div>
+            <div className="mt-2 text-3xl font-bold text-primary">
               {draft.length}
             </div>
           </div>
-          <div className="rounded-2xl border border-primary/20 bg-primary/10 backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
             <div className="text-sm font-medium text-primary">In Progress</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {inProgress.length}
             </div>
           </div>
-          <div className="rounded-2xl border border-primary/20 bg-primary/10 backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
             <div className="text-sm font-medium text-primary">Completed</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {completed.length}
@@ -66,16 +66,16 @@ export default async function ManagerAppraisalsPage() {
 
         {/* Active Cycle */}
         {activeCycle && (
-          <div className="rounded-2xl border border-primary/20 bg-primary/10 backdrop-blur-sm shadow-lg p-6">
+          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-lg font-semibold text-foreground">
                   {activeCycle.name}
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <p className="mt-1 text-sm text-primary">
                   {activeCycle.description}
                 </p>
-                <div className="mt-2 text-sm text-muted-foreground">
+                <div className="mt-2 text-sm text-primary">
                   {new Date(activeCycle.startDate).toLocaleDateString()} -{" "}
                   {new Date(activeCycle.endDate).toLocaleDateString()}
                 </div>
@@ -103,7 +103,7 @@ export default async function ManagerAppraisalsPage() {
                       <div className="font-medium text-foreground">
                         {review.user.firstName} {review.user.lastName}
                       </div>
-                      <div className="mt-1 text-sm text-muted-foreground">
+                      <div className="mt-1 text-sm text-primary">
                         {review.user.position} • {review.cycle.name}
                       </div>
                       {review.selfReview && (
@@ -143,7 +143,7 @@ export default async function ManagerAppraisalsPage() {
                       <div className="font-medium text-foreground">
                         {review.user.firstName} {review.user.lastName}
                       </div>
-                      <div className="mt-1 text-sm text-muted-foreground">
+                      <div className="mt-1 text-sm text-primary">
                         {review.user.position} • {review.cycle.name}
                       </div>
                     </div>
@@ -176,12 +176,12 @@ export default async function ManagerAppraisalsPage() {
                       <div className="font-medium text-foreground">
                         {review.user.firstName} {review.user.lastName}
                       </div>
-                      <div className="mt-1 text-sm text-muted-foreground">
+                      <div className="mt-1 text-sm text-primary">
                         {review.user.position} • {review.cycle.name}
                       </div>
                       {review.finalRating && (
                         <div className="mt-2 text-sm">
-                          <span className="text-muted-foreground">Final Rating:</span>{" "}
+                          <span className="text-primary">Final Rating:</span>{" "}
                           <span className="font-semibold text-primary">
                             {review.finalRating.toFixed(1)}/5.0
                           </span>
@@ -204,7 +204,7 @@ export default async function ManagerAppraisalsPage() {
         )}
 
         {teamAppraisals.length === 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-muted-foreground">
+          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-primary">
             No appraisals available
           </div>
         )}

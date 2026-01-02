@@ -75,7 +75,7 @@ export default function ManagerAIFeaturesPage() {
             <h1 className="text-3xl font-bold text-primary">
               Manager - AI Features
             </h1>
-            <p className="mt-1 text-muted-foreground">
+            <p className="mt-1 text-primary">
               AI-powered tools to enhance team management and decision-making
             </p>
           </div>
@@ -100,7 +100,7 @@ export default function ManagerAIFeaturesPage() {
                     <h3 className="font-semibold text-lg mb-2 text-foreground">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-4 flex-1">
+                    <p className="text-sm text-primary mb-4 flex-1">
                       {feature.description}
                     </p>
                     <Button 

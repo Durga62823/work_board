@@ -45,7 +45,7 @@ export default async function AdminDashboardPage() {
           <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">Total Users</CardTitle>
+              <CardTitle className="text-sm font-semibold text-primary">Total Users</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
                 <HiUsers className="h-4 w-4 text-primary" />
               </div>
@@ -59,7 +59,7 @@ export default async function AdminDashboardPage() {
           <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">Departments</CardTitle>
+              <CardTitle className="text-sm font-semibold text-primary">Departments</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
                 <HiBuildingOffice2 className="h-4 w-4 text-primary" />
               </div>
@@ -73,7 +73,7 @@ export default async function AdminDashboardPage() {
           <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">Active Projects</CardTitle>
+              <CardTitle className="text-sm font-semibold text-primary">Active Projects</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
                 <HiRocketLaunch className="h-4 w-4 text-primary" />
               </div>
@@ -87,7 +87,7 @@ export default async function AdminDashboardPage() {
           <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">Completion Rate</CardTitle>
+              <CardTitle className="text-sm font-semibold text-primary">Completion Rate</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
                 <HiTrophy className="h-4 w-4 text-primary" />
               </div>

@@ -57,7 +57,7 @@ export default async function ManagerPTOPage() {
             <h1 className="text-3xl font-bold text-primary">
               Manager - PTO
             </h1>
-            <p className="mt-1 text-muted-foreground">
+            <p className="mt-1 text-primary">
               Review and manage time-off requests from your team
             </p>
           </div>
@@ -66,20 +66,20 @@ export default async function ManagerPTOPage() {
         {/* Stats */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
-            <div className="text-sm font-medium text-muted-foreground">Pending</div>
-            <div className="mt-2 text-3xl font-bold text-foreground">
+            <div className="text-sm font-medium text-primary">Pending</div>
+            <div className="mt-2 text-3xl font-bold text-primary">
               {pending.length}
             </div>
           </div>
-          <div className="rounded-2xl border border-primary/20 bg-primary/10 backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
             <div className="text-sm font-medium text-primary">Approved</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {approved.length}
             </div>
           </div>
           <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
-            <div className="text-sm font-medium text-muted-foreground">Rejected</div>
-            <div className="mt-2 text-3xl font-bold text-foreground">
+            <div className="text-sm font-medium text-primary">Rejected</div>
+            <div className="mt-2 text-3xl font-bold text-primary">
               {rejected.length}
             </div>
           </div>
@@ -93,7 +93,7 @@ export default async function ManagerPTOPage() {
                 Pending Requests ({pending.length})
               </h3>
             </div>
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-border">
               {pending.map((request) => (
                 <PTOApprovalCard key={request.id} request={request} />
               ))}
@@ -117,10 +117,10 @@ export default async function ManagerPTOPage() {
                       <div className="font-medium text-foreground">
                         {request.user.firstName} {request.user.lastName}
                       </div>
-                      <div className="mt-1 text-sm text-muted-foreground">
+                      <div className="mt-1 text-sm text-primary">
                         {request.type.replace("_", " ")} • {request.days} days
                       </div>
-                      <div className="mt-1 text-sm text-muted-foreground">
+                      <div className="mt-1 text-sm text-primary">
                         {new Date(request.startDate).toLocaleDateString()} -{" "}
                         {new Date(request.endDate).toLocaleDateString()}
                       </div>
@@ -130,7 +130,7 @@ export default async function ManagerPTOPage() {
                         Approved
                       </span>
                       {request.approver && (
-                        <div className="mt-2 text-muted-foreground">
+                        <div className="mt-2 text-primary">
                           by {request.approver.firstName} {request.approver.lastName}
                         </div>
                       )}
@@ -145,7 +145,7 @@ export default async function ManagerPTOPage() {
         {/* Rejected Requests */}
         {rejected.length > 0 && (
           <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-            <div className="border-b border-border bg-card px-6 py-4">
+            <div className="border-b border-border bg-primary/10 px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Rejected Requests ({rejected.length})
               </h3>
@@ -158,15 +158,15 @@ export default async function ManagerPTOPage() {
                       <div className="font-medium text-foreground">
                         {request.user.firstName} {request.user.lastName}
                       </div>
-                      <div className="mt-1 text-sm text-muted-foreground">
+                      <div className="mt-1 text-sm text-primary">
                         {request.type.replace("_", " ")} • {request.days} days
                       </div>
-                      <div className="mt-1 text-sm text-muted-foreground">
+                      <div className="mt-1 text-sm text-primary">
                         {new Date(request.startDate).toLocaleDateString()} -{" "}
                         {new Date(request.endDate).toLocaleDateString()}
                       </div>
-                      {request.rejectionReason && (
-                        <div className="mt-2 text-sm text-muted-foreground">
+                      {request.comments && (
+                        <div className="mt-2 text-sm text-primary">
                           Reason: {request.rejectionReason}
                         </div>
                       )}
@@ -182,7 +182,7 @@ export default async function ManagerPTOPage() {
         )}
 
         {requests.length === 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-muted-foreground">
+          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-primary">
             No PTO requests from your team
           </div>
         )}

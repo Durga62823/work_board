@@ -201,7 +201,7 @@ export default function CalendarPage() {
             <HiSparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-foreground">
               My Calendar
             </h1>
             <p className="text-primary mt-1">
@@ -291,7 +291,7 @@ export default function CalendarPage() {
                     key={index}
                     className={`min-h-[100px] p-2 border rounded-xl cursor-pointer transition-all duration-300 ${
                       !day
-                        ? "bg-primary/10/50"
+                        ? "bg-muted/50"
                         : isToday(day)
                         ? "bg-primary/10 border-primary/50 shadow-md"
                         : "bg-card/50 hover:bg-card/80 hover:shadow-lg hover:-translate-y-0.5"
@@ -349,7 +349,7 @@ export default function CalendarPage() {
           </CardHeader>
           <CardContent>
             {selectedEvents.length === 0 ? (
-              <p className="text-muted-foreground text-center py-4">
+              <p className="text-primary text-center py-4">
                 No events on this day
               </p>
             ) : (

@@ -177,7 +177,7 @@ export default function AppraisalPage() {
                 <HiDocumentText className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
-                <p className="text-sm text-muted-foreground font-medium">Total Reviews</p>
+                <p className="text-sm text-primary font-medium">Total Reviews</p>
                 <p className="text-3xl font-bold text-primary">
                   {stats.total}
                 </p>
@@ -191,7 +191,7 @@ export default function AppraisalPage() {
                 <HiClock className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
-                <p className="text-sm text-muted-foreground font-medium">Pending</p>
+                <p className="text-sm text-primary font-medium">Pending</p>
                 <p className="text-3xl font-bold text-primary">
                   {stats.draft + stats.inProgress}
                 </p>
@@ -205,7 +205,7 @@ export default function AppraisalPage() {
                 <HiCheckCircle className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
-                <p className="text-sm text-muted-foreground font-medium">Completed</p>
+                <p className="text-sm text-primary font-medium">Completed</p>
                 <p className="text-3xl font-bold text-primary">
                   {stats.completed}
                 </p>
@@ -219,7 +219,7 @@ export default function AppraisalPage() {
                 <HiDocumentText className="h-6 w-6 text-primary-foreground" />
             </div>
               <div>
-                <p className="text-sm text-muted-foreground font-medium">Avg Rating</p>
+                <p className="text-sm text-primary font-medium">Avg Rating</p>
                 <p className="text-3xl font-bold text-primary">
                   {stats.avgRating > 0 ? stats.avgRating.toFixed(1) : "N/A"}
                 </p>
@@ -313,7 +313,7 @@ export default function AppraisalPage() {
             <div className="space-y-4">
               <div>
                 <h4 className="font-semibold mb-2 text-foreground">Your Self-Review</h4>
-                <p className="text-muted-foreground whitespace-pre-wrap">
+                <p className="text-foreground whitespace-pre-wrap">
                   {currentAppraisal.selfReview || "No self-review submitted"}
                 </p>
               </div>
@@ -330,7 +330,7 @@ export default function AppraisalPage() {
               {currentAppraisal.managerFeedback && (
                 <div className="mt-6 pt-6 border-t">
                   <h4 className="font-semibold mb-2 text-foreground">Manager Feedback</h4>
-                  <p className="text-muted-foreground whitespace-pre-wrap">
+                  <p className="text-foreground whitespace-pre-wrap">
                     {currentAppraisal.managerFeedback}
                   </p>
                 </div>
@@ -352,11 +352,11 @@ export default function AppraisalPage() {
         {!currentAppraisal && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
           <div className="text-center py-12">
-            <HiDocumentText className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-            <h3 className="font-semibold text-lg mb-2 text-foreground">
+            <HiDocumentText className="h-16 w-16 text-primary/50 mx-auto mb-4" />
+            <h3 className="font-semibold text-lg mb-2 text-primary">
               No Active Appraisal Cycle
             </h3>
-            <p className="text-muted-foreground">
+            <p className="text-primary">
               There is no active appraisal cycle at the moment. Check back
               later.
             </p>
@@ -389,22 +389,22 @@ export default function AppraisalPage() {
                           {getStatusBadge(appraisal.status).label}
                         </Badge>
                       </div>
-                      <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
+                      <div className="grid grid-cols-2 gap-4 text-sm text-primary/80">
                         {appraisal.rating && (
                           <div>
-                            <span className="font-medium">Self Rating:</span>{" "}
+                            <span className="font-medium text-foreground">Self Rating:</span>{" "}
                             {appraisal.rating}/5
                           </div>
                         )}
                         {appraisal.finalRating && (
                           <div>
-                            <span className="font-medium">Final Rating:</span>{" "}
+                            <span className="font-medium text-foreground">Final Rating:</span>{" "}
                             {appraisal.finalRating}/5
                           </div>
                         )}
                         {appraisal.submittedAt && (
                           <div>
-                            <span className="font-medium">Submitted:</span>{" "}
+                            <span className="font-medium text-foreground">Submitted:</span>{" "}
                             {new Date(
                               appraisal.submittedAt
                             ).toLocaleDateString()}
@@ -412,7 +412,7 @@ export default function AppraisalPage() {
                         )}
                         {appraisal.completedAt && (
                           <div>
-                            <span className="font-medium">Completed:</span>{" "}
+                            <span className="font-medium text-foreground">Completed:</span>{" "}
                             {new Date(
                               appraisal.completedAt
                             ).toLocaleDateString()}
@@ -421,7 +421,7 @@ export default function AppraisalPage() {
                       </div>
                       {appraisal.selfReview && (
                         <div className="mt-3 pt-3 border-t">
-                          <p className="text-sm text-muted-foreground line-clamp-2">
+                          <p className="text-sm text-foreground line-clamp-2">
                             {appraisal.selfReview}
                           </p>
                         </div>
@@ -433,7 +433,7 @@ export default function AppraisalPage() {
               })}
             </div>
           ) : (
-            <div className="text-center py-8 text-muted-foreground">
+            <div className="text-center py-8 text-primary">
               No appraisal history found
             </div>
           )}

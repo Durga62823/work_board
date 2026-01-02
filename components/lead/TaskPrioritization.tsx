@@ -97,7 +97,7 @@ export function TaskPrioritization() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">Task Prioritization</h2>
-        <p className="text-muted-foreground mb-6">
+        <p className="text-primary mb-6">
           AI-powered task prioritization based on urgency, impact, and dependencies
         </p>
       </div>
@@ -136,9 +136,9 @@ export function TaskPrioritization() {
           </div>
 
           {formData.tasks.map((task, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-lg bg-muted">
+            <div key={index} className="mb-4 p-4 border border-border rounded-lg bg-card">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-medium">Task {index + 1}</span>
+                <span className="font-medium text-foreground">Task {index + 1}</span>
                 {formData.tasks.length > 1 && (
                   <Button
                     onClick={() => removeTask(index)}
@@ -249,7 +249,7 @@ export function TaskPrioritization() {
                         Priority: {task.priority}/100
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground mt-2">{task.reasoning}</p>
+                    <p className="text-sm text-primary mt-2">{task.reasoning}</p>
                   </div>
                 ))}
             </div>
@@ -261,7 +261,7 @@ export function TaskPrioritization() {
               <h4 className="font-semibold mb-2">Key Dependencies</h4>
               <ul className="space-y-1">
                 {result.dependencies.map((dep, index) => (
-                  <li key={index} className="text-sm text-muted-foreground">• {dep}</li>
+                  <li key={index} className="text-sm text-primary">• {dep}</li>
                 ))}
               </ul>
             </div>
@@ -283,13 +283,13 @@ export function TaskPrioritization() {
                         ? 'bg-destructive/10 border-destructive/30'
                         : risk.severity === 'medium'
                         ? 'bg-destructive/5 border-destructive/20'
-                        : 'bg-muted border-border'
+                        : 'bg-primary/5 border-border'
                     }`}
                   >
                     <div className="flex items-start justify-between">
                       <div>
                         <p className="font-medium text-sm">{risk.task}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{risk.risk}</p>
+                        <p className="text-sm text-primary mt-1">{risk.risk}</p>
                       </div>
                       <Badge variant={risk.severity === 'high' ? 'destructive' : 'secondary'}>
                         {risk.severity.toUpperCase()}

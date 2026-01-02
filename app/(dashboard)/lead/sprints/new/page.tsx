@@ -103,7 +103,7 @@ export default function NewSprintPage() {
             <textarea
               id="goal"
               rows={3}
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
               placeholder="e.g., Complete user authentication and dashboard redesign"
               {...register("goal")}
             />
@@ -152,7 +152,7 @@ export default function NewSprintPage() {
             {errors.capacityHours && (
               <p className="text-sm text-primary">{errors.capacityHours.message}</p>
             )}
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-primary">
               Estimate total available hours for the sprint (e.g., 4 people × 40h/week × 2 weeks = 320h)
             </p>
           </div>
@@ -185,7 +185,7 @@ export default function NewSprintPage() {
             <div className="p-2 bg-primary/10 rounded-full">
               <HiCalendar className="h-5 w-5 text-primary" />
             </div>
-            <h3 className="font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            <h3 className="font-semibold text-foreground">
               Sprint Planning Tips
             </h3>
           </div>

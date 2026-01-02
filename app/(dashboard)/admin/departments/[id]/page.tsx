@@ -147,7 +147,7 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
                   ))}
                 </div>
               ) : (
-                <p className="text-center text-muted-foreground py-8">
+                <p className="text-center text-primary py-8">
                   No teams in this department
                 </p>
               )}
@@ -214,7 +214,7 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
                   </TableBody>
                 </Table>
               ) : (
-                <p className="text-center text-muted-foreground py-8">
+                <p className="text-center text-primary py-8">
                   No members in this department
                 </p>
               )}

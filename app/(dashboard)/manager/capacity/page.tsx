@@ -37,7 +37,7 @@ export default async function ManagerCapacityPage() {
             <h1 className="text-3xl font-bold text-primary">
               Manager - Capacity
             </h1>
-            <p className="mt-1 text-muted-foreground">
+            <p className="mt-1 text-primary">
               Monitor workload and resource allocation across your team
             </p>
           </div>
@@ -46,26 +46,26 @@ export default async function ManagerCapacityPage() {
         {/* Stats */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
           <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
-            <div className="text-sm font-medium text-muted-foreground">Avg Utilization</div>
+            <div className="text-sm font-medium text-primary">Avg Utilization</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {(avgUtilization * 100).toFixed(0)}%
             </div>
           </div>
-          <div className="rounded-2xl border border-primary/20 bg-primary/10 backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
             <div className="text-sm font-medium text-primary">Team Size</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {capacity.length}
             </div>
           </div>
           <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
-            <div className="text-sm font-medium text-muted-foreground">Over-utilized</div>
-            <div className="mt-2 text-3xl font-bold text-foreground">
+            <div className="text-sm font-medium text-primary">Over-utilized</div>
+            <div className="mt-2 text-3xl font-bold text-primary">
               {overUtilized}
             </div>
           </div>
           <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
-            <div className="text-sm font-medium text-muted-foreground">Under-utilized</div>
-            <div className="mt-2 text-3xl font-bold text-foreground">
+            <div className="text-sm font-medium text-primary">Under-utilized</div>
+            <div className="mt-2 text-3xl font-bold text-primary">
               {underUtilized}
             </div>
           </div>
@@ -87,7 +87,7 @@ export default async function ManagerCapacityPage() {
                   <div className="font-medium text-foreground">
                     {member.user.firstName} {member.user.lastName}
                   </div>
-                  <div className="mt-1 text-sm text-muted-foreground">
+                  <div className="mt-1 text-sm text-primary">
                     {member.activeProjects} projects • {member.avgWeeklyHours.toFixed(1)}h/week
                   </div>
                 </div>
@@ -120,19 +120,19 @@ export default async function ManagerCapacityPage() {
                 </div>
               </div>
               {member.utilization > 1 && (
-                <div className="mt-3 rounded-lg bg-card px-3 py-2 text-sm text-foreground">
+                <div className="mt-3 rounded-lg bg-card px-3 py-2 text-sm text-primary">
                   ⚠️ Over-utilized: Consider redistributing workload or extending deadlines
                 </div>
               )}
               {member.utilization < 0.5 && (
-                <div className="mt-3 rounded-lg bg-card px-3 py-2 text-sm text-foreground">
+                <div className="mt-3 rounded-lg bg-card px-3 py-2 text-sm text-primary">
                   💡 Under-utilized: Available capacity for new projects
                 </div>
               )}
             </div>
           ))}
             {capacity.length === 0 && (
-              <div className="px-6 py-12 text-center text-muted-foreground">
+              <div className="px-6 py-12 text-center text-primary">
                 No team capacity data available
               </div>
             )}
@@ -153,7 +153,7 @@ export default async function ManagerCapacityPage() {
                   <div className="font-medium text-foreground">
                     {pto.user.firstName} {pto.user.lastName}
                   </div>
-                  <div className="mt-1 text-sm text-muted-foreground">
+                  <div className="mt-1 text-sm text-primary">
                     {new Date(pto.startDate).toLocaleDateString()} -{" "}
                     {new Date(pto.endDate).toLocaleDateString()}
                   </div>
@@ -162,7 +162,7 @@ export default async function ManagerCapacityPage() {
                   <div className="text-sm font-medium text-foreground">
                     {pto.days} days
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-primary">
                     {pto.type.replace("_", " ")}
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export default async function ManagerCapacityPage() {
             </div>
             ))}
             {calendar.ptoRequests.length === 0 && (
-              <div className="px-6 py-12 text-center text-muted-foreground">
+              <div className="px-6 py-12 text-center text-primary">
                 No upcoming time off scheduled
               </div>
             )}
