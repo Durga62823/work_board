@@ -1,5 +1,7 @@
-import { ReactNode } from "react";
-import { auth } from "@/lib/auth";
+"use client";
+
+import { ReactNode, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { SettingsProvider } from "@/components/providers/settings-provider";
@@ -15,15 +17,25 @@ const leadNavigation = [
   { name: "✨ AI Features", href: "/lead/ai-features" },
 ];
 
-export default async function LeadLayout({
+export default function LeadLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  const session = await auth();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      redirect("/auth/login");
+    }
+  }, [status]);
+
+  if (status === "loading") {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
 
   if (!session?.user) {
-    redirect("/auth/login");
+    return null;
   }
 
   return (
@@ -49,7 +61,7 @@ export default async function LeadLayout({
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-border hover:text-foreground whitespace-nowrap"
+                  className="border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-muted-foreground hover:border-primary hover:text-primary whitespace-nowrap transition-all"
                 >
                   {item.name}
                 </Link>

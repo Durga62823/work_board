@@ -12,7 +12,7 @@ import {
   HiShieldCheck,
   HiChartBar,
   HiBolt,
-  HiEnvelope
+  HiEnvelope,
 } from "react-icons/hi2";
 import { FaGithub } from "react-icons/fa";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -255,11 +255,11 @@ export default async function Home() {
                       User & role management
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Organization settings
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Audit logs & security
                     </li>
                   </ul>
@@ -279,15 +279,15 @@ export default async function Home() {
                   </p>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Timesheet & PTO approvals
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Team performance analytics
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       AI-powered insights
                     </li>
                   </ul>
@@ -307,15 +307,15 @@ export default async function Home() {
                   </p>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Sprint planning & tracking
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Task prioritization AI
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Code review management
                     </li>
                   </ul>
@@ -335,15 +335,15 @@ export default async function Home() {
                   </p>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Task management
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Time tracking & calendar
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <HiCheckCircle className="h-4 w-4 text-primary" />
                       Goals & performance
                     </li>
                   </ul>

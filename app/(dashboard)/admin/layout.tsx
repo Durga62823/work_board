@@ -1,10 +1,13 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { HiUserGroup, HiBuildingOffice2, HiBriefcase, HiPresentationChartBar, HiClipboardDocumentList, HiCog6Tooth, HiChartPie, HiCpuChip } from "react-icons/hi2";
 
-import { auth } from "@/lib/auth";
 import { UserMenu, LogoutButton, ModeToggle, ColorPicker } from "@/components/common";
 import { MobileMenu } from "@/components/common/MobileMenu";
+import { useSession } from "next-auth/react";
 
 const adminNavigation = [
   { name: "Dashboard", href: "/admin", icon: HiChartPie },
@@ -16,15 +19,25 @@ const adminNavigation = [
   { name: "Audit Logs", href: "/admin/audit", icon: HiClipboardDocumentList },
 ];
 
-export default async function AdminLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      redirect("/auth/login");
+    }
+  }, [status]);
+
+  if (status === "loading") {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
 
   if (!session?.user) {
-    redirect("/auth/login");
+    return null;
   }
 
   const userName = session.user?.name || session.user?.email || "Admin";
@@ -45,7 +58,7 @@ export default async function AdminLayout({
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2 whitespace-nowrap"
+                    className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-primary border-2 border-transparent hover:border-primary transition-all flex items-center gap-2 whitespace-nowrap"
                   >
                     <item.icon className="h-4 w-4" />
                     <span className="hidden lg:inline">{item.name}</span>

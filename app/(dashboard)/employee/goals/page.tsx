@@ -186,14 +186,12 @@ export default function MyGoalsPage() {
       <div className="container mx-auto p-6 space-y-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-primary shadow-lg">
-              <HiSparkles className="h-6 w-6 text-primary-foreground" />
-            </div>
+          
             <div>
-              <h1 className="text-3xl font-bold text-foreground">
+              <h1 className="text-3xl font-bold text-primary">
                 My Goals
               </h1>
-              <p className="text-primary mt-1">
+              <p className="text-foreground mt-1">
                 Track and manage your professional goals
               </p>
             </div>
@@ -207,28 +205,28 @@ export default function MyGoalsPage() {
         {/* Stats Overview */}
         {stats && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium text-primary">Total Goals</CardDescription>
-                <CardTitle className="text-3xl text-primary">{stats.total}</CardTitle>
+                <CardTitle className="text-3xl text-foreground">{stats.total}</CardTitle>
               </CardHeader>
             </Card>
-            <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium text-primary">Active Goals</CardDescription>
-                <CardTitle className="text-3xl text-primary">{stats.active}</CardTitle>
+                <CardTitle className="text-3xl text-foreground">{stats.active}</CardTitle>
               </CardHeader>
             </Card>
-            <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium text-primary">Completed</CardDescription>
-                <CardTitle className="text-3xl text-primary">{stats.completed}</CardTitle>
+                <CardTitle className="text-3xl text-foreground">{stats.completed}</CardTitle>
               </CardHeader>
             </Card>
-            <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium text-primary">Average Progress</CardDescription>
-                <CardTitle className="text-3xl text-primary">{stats.avgProgress}%</CardTitle>
+                <CardTitle className="text-3xl text-foreground">{stats.avgProgress}%</CardTitle>
               </CardHeader>
             </Card>
           </div>
@@ -236,7 +234,7 @@ export default function MyGoalsPage() {
 
         {/* Create/Edit Goal Dialog */}
         {(showCreateDialog || editingGoal) && (
-          <Card className="border-2 border-primary/50 bg-primary/5 backdrop-blur-sm shadow-xl">
+          <Card className="border-2  border-primary/50 bg-primary/5 backdrop-blur-sm shadow-xl">
           <CardHeader>
             <CardTitle>
               {editingGoal ? "Edit Goal" : "Create New Goal"}
@@ -346,7 +344,7 @@ export default function MyGoalsPage() {
           </Card>
           ) : (
             goals.map((goal) => (
-              <Card key={goal.id} className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <Card key={goal.id} className="border-border hover:border-primary cursor-pointer bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div className="flex-1">

@@ -1,4 +1,7 @@
-import { auth } from "@/lib/auth";
+"use client";
+
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { UserMenu, LogoutButton, ModeToggle, ColorPicker } from "@/components/common";
@@ -14,15 +17,25 @@ const managerNavigation = [
   { name: "✨ AI Features", href: "/manager/ai-features" },
 ];
 
-export default async function ManagerLayout({
+export default function ManagerLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      redirect("/auth/login");
+    }
+  }, [status]);
+
+  if (status === "loading") {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
 
   if (!session?.user) {
-    redirect("/auth/login");
+    return null;
   }
 
   return (
@@ -41,7 +54,7 @@ export default async function ManagerLayout({
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors whitespace-nowrap"
+                    className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-primary border-2 border-transparent hover:border-primary transition-all whitespace-nowrap"
                   >
                     {item.name}
                   </Link>

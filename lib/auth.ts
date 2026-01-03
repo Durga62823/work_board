@@ -39,11 +39,11 @@ const authConfig: NextAuthConfig = {
 
       if (existingAccount) {
         // Account already linked, return it
-        return existingAccount;
+        return existingAccount as any;
       }
 
       // Create new account link
-      return await prisma.account.create({
+      const newAccount = await prisma.account.create({
         data: {
           userId: account.userId,
           type: account.type,
@@ -55,9 +55,10 @@ const authConfig: NextAuthConfig = {
           token_type: account.token_type,
           scope: account.scope,
           id_token: account.id_token,
-          session_state: account.session_state,
+          session_state: account.session_state as string | null,
         },
       });
+      return newAccount as any;
     },
   },
   session: {
@@ -121,6 +122,16 @@ const authConfig: NextAuthConfig = {
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
       allowDangerousEmailAccountLinking: true,
+      profile(profile) {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+          emailVerified: profile.email_verified ? new Date() : null,
+          role: "EMPLOYEE" as any,
+        };
+      },
     }),
     GitHub({
       clientId: process.env.GITHUB_CLIENT_ID ?? "",
@@ -140,13 +151,14 @@ const authConfig: NextAuthConfig = {
           where: { email },
         });
 
-        if (existingUser && !existingUser.emailVerified) {
+        if (existingUser) {
+          // Update user with OAuth profile data
           await prisma.user.update({
             where: { id: existingUser.id },
             data: {
               emailVerified: new Date(),
-              image: user.image || existingUser.image,
-              name: user.name || existingUser.name,
+              image: user.image || profile?.image || existingUser.image,
+              name: user.name || profile?.name || existingUser.name,
             },
           });
         }

@@ -273,14 +273,12 @@ export default function TimesheetPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-primary shadow-lg">
-              <HiSparkles className="h-6 w-6 text-primary-foreground" />
-            </div>
+        
             <div>
-              <h1 className="text-3xl font-bold text-foreground">
+              <h1 className="text-3xl font-bold text-primary">
                 Timesheet
               </h1>
-              <p className="text-primary">Log and track your work hours</p>
+              <p className="text-foreground">Log and track your work hours</p>
             </div>
           </div>
         <div className="flex gap-2">
@@ -305,11 +303,9 @@ export default function TimesheetPage() {
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiClock className="h-6 w-6 text-primary-foreground" />
-            </div>
+      
               <div>
                 <p className="text-sm text-primary font-medium">Total Hours</p>
                 <p className="text-3xl font-bold text-primary">
@@ -319,11 +315,9 @@ export default function TimesheetPage() {
             </div>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiClock className="h-6 w-6 text-primary-foreground" />
-            </div>
+              
               <div>
                 <p className="text-sm text-primary font-medium">Submitted Hours</p>
                 <p className="text-3xl font-bold text-primary">
@@ -333,11 +327,9 @@ export default function TimesheetPage() {
             </div>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiClock className="h-6 w-6 text-primary-foreground" />
-            </div>
+             
               <div>
                 <p className="text-sm text-primary font-medium">Approved Hours</p>
                 <p className="text-3xl font-bold text-primary">

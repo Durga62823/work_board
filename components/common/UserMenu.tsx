@@ -2,19 +2,22 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { HiUser, HiCog6Tooth, HiArrowRightOnRectangle, HiChevronDown } from "react-icons/hi2";
 import { UserProfile } from "./UserProfile";
 import { LogoutButton } from "./LogoutButton";
+import Image from "next/image";
 
-interface UserMenuProps {
-  name?: string | null;
-  email?: string | null;
-  image?: string | null;
-}
-
-export function UserMenu({ name, email, image }: UserMenuProps) {
+export function UserMenu() {
+  const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const [imageError, setImageError] = useState(false);
+
+  const user = session?.user;
+  const name = user?.name;
+  const email = user?.email;
+  const image = user?.image;
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -38,14 +41,18 @@ export function UserMenu({ name, email, image }: UserMenuProps) {
         className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
       >
         <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold overflow-hidden">
-          {image ? (
-            <img
+          {image && !imageError ? (
+            <Image
               src={image}
-              alt={name || "User"}
+              alt={name || email || "User"}
+              width={32}
+              height={32}
               className="w-full h-full object-cover"
+              unoptimized
+              onError={() => setImageError(true)}
             />
           ) : (
-            <HiUser className="h-4 w-4" />
+            <span className="text-sm">{(name || email)?.charAt(0).toUpperCase() || "U"}</span>
           )}
         </div>
         <HiChevronDown

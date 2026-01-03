@@ -197,14 +197,12 @@ export default function CalendarPage() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-6 space-y-6">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-primary shadow-lg">
-            <HiSparkles className="h-6 w-6 text-primary-foreground" />
-          </div>
+         
           <div>
-            <h1 className="text-3xl font-bold text-foreground">
+            <h1 className="text-3xl font-bold text-primary">
               My Calendar
             </h1>
-            <p className="text-primary mt-1">
+            <p className="text-foreground mt-1">
               View your schedule and upcoming events
             </p>
           </div>
@@ -245,7 +243,7 @@ export default function CalendarPage() {
         <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle>
+            <CardTitle className="text-primary">
               {currentDate.toLocaleDateString("en-US", {
                 month: "long",
                 year: "numeric",
@@ -259,7 +257,7 @@ export default function CalendarPage() {
                   size="sm"
                   variant="outline"
                   onClick={() => setCurrentDate(new Date())}
-                  className="hover:bg-primary/10 transition-colors"
+                  className="hover:bg-primary/10 transition-colors text-primary"
                 >
                   Today
                 </Button>
@@ -289,7 +287,7 @@ export default function CalendarPage() {
               return (
                   <div
                     key={index}
-                    className={`min-h-[100px] p-2 border rounded-xl cursor-pointer transition-all duration-300 ${
+                    className={`min-h-[100px] p-2 border rounded-xl hover:border-primary cursor-pointer transition-all duration-300 ${
                       !day
                         ? "bg-muted/50"
                         : isToday(day)

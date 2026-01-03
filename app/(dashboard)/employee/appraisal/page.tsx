@@ -156,11 +156,9 @@ export default function AppraisalPage() {
       <div className="p-6 max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-primary shadow-lg">
-            <HiSparkles className="h-6 w-6 text-primary-foreground" />
-          </div>
+          
           <div>
-            <h1 className="text-3xl font-bold text-foreground">
+            <h1 className="text-3xl font-bold text-primary">
               Performance Appraisals
             </h1>
             <p className="text-muted-foreground">
@@ -171,11 +169,9 @@ export default function AppraisalPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiDocumentText className="h-6 w-6 text-primary-foreground" />
-            </div>
+             
               <div>
                 <p className="text-sm text-primary font-medium">Total Reviews</p>
                 <p className="text-3xl font-bold text-primary">
@@ -185,11 +181,9 @@ export default function AppraisalPage() {
             </div>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiClock className="h-6 w-6 text-primary-foreground" />
-            </div>
+          
               <div>
                 <p className="text-sm text-primary font-medium">Pending</p>
                 <p className="text-3xl font-bold text-primary">
@@ -199,11 +193,9 @@ export default function AppraisalPage() {
             </div>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiCheckCircle className="h-6 w-6 text-primary-foreground" />
-            </div>
+          
               <div>
                 <p className="text-sm text-primary font-medium">Completed</p>
                 <p className="text-3xl font-bold text-primary">
@@ -213,11 +205,9 @@ export default function AppraisalPage() {
             </div>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiDocumentText className="h-6 w-6 text-primary-foreground" />
-            </div>
+          
               <div>
                 <p className="text-sm text-primary font-medium">Avg Rating</p>
                 <p className="text-3xl font-bold text-primary">
@@ -352,7 +342,7 @@ export default function AppraisalPage() {
         {!currentAppraisal && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
           <div className="text-center py-12">
-            <HiDocumentText className="h-16 w-16 text-primary/50 mx-auto mb-4" />
+            <HiDocumentText className="h-16 w-16 text-primary mx-auto mb-4" />
             <h3 className="font-semibold text-lg mb-2 text-primary">
               No Active Appraisal Cycle
             </h3>
@@ -365,8 +355,8 @@ export default function AppraisalPage() {
       )}
 
         {/* Past Appraisals */}
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
-          <h3 className="font-semibold text-lg mb-4 text-foreground">Appraisal History</h3>
+        <Card className="border-border bg-card   backdrop-blur-sm shadow-lg p-6">
+          <h3 className="font-semibold text-lg mb-4 text-primary">Appraisal History</h3>
           {pastAppraisals.length > 0 ? (
             <div className="space-y-3">
               {pastAppraisals.map((appraisal) => {
@@ -374,7 +364,7 @@ export default function AppraisalPage() {
                 return (
                   <div
                     key={appraisal.id}
-                    className="p-4 border border-border rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    className="p-4 border border-border rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:border-primary hover:-translate-y-0.5 transition-all duration-300"
                   >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -420,8 +410,8 @@ export default function AppraisalPage() {
                         )}
                       </div>
                       {appraisal.selfReview && (
-                        <div className="mt-3 pt-3 border-t">
-                          <p className="text-sm text-foreground line-clamp-2">
+                        <div className="mt-3 pt-3  border-t">
+                          <p className="text-sm text-primary line-clamp-2">
                             {appraisal.selfReview}
                           </p>
                         </div>

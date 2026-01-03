@@ -1,6 +1,8 @@
-import { ReactNode } from "react";
+"use client";
+
+import { ReactNode, useEffect } from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { LogoutButton } from "@/components/common/LogoutButton";
 import { UserMenu } from "@/components/common/UserMenu";
@@ -27,15 +29,25 @@ const employeeNavigation = [
   { name: "Appraisal", href: "/employee/appraisal", icon: HiDocumentText },
 ];
 
-export default async function EmployeeDashboardLayout({
+export default function EmployeeDashboardLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  const session = await auth();
+  const { data: session, status } = useSession();
 
-  if (!session) {
-    redirect("/auth/login");
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      redirect("/auth/login");
+    }
+  }, [status]);
+
+  if (status === "loading") {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+
+  if (!session?.user) {
+    return null;
   }
 
   // Allow EMPLOYEE and other roles to access dashboard
@@ -50,7 +62,7 @@ export default async function EmployeeDashboardLayout({
             <div className="flex items-center gap-4 md:gap-8 flex-1 min-w-0">
               <MobileMenu navigation={employeeNavigation} />
               <h1 className="text-base sm:text-lg font-bold text-foreground whitespace-nowrap truncate">
-                Employee Dashboard
+                Dashboard
               </h1>
               <nav className="hidden md:flex gap-1 flex-1 overflow-x-auto">
                 {employeeNavigation.map((item) => {
@@ -59,9 +71,9 @@ export default async function EmployeeDashboardLayout({
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2 whitespace-nowrap"
+                      className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-primary border-2 border-transparent hover:border-primary transition-all flex items-center gap-2 whitespace-nowrap"
                     >
-                      <Icon className="h-4 w-4" />
+                     
                       <span className="hidden lg:inline">{item.name}</span>
                     </Link>
                   );

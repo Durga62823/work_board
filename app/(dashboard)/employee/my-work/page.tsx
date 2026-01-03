@@ -222,12 +222,12 @@ export default function MyWorkPage() {
     return priorityConfig[priority] || priorityConfig["MEDIUM"];
   };
 
-  const isOverdue = (dueDate: Date | null) => {
+  const isOverdue = (dueDate: Date | null | undefined) => {
     if (!dueDate) return false;
     return new Date(dueDate) < new Date();
   };
 
-  const formatDate = (date: Date | null) => {
+  const formatDate = (date: Date | null | undefined) => {
     if (!date) return "No deadline";
     return new Date(date).toLocaleDateString("en-US", {
       year: "numeric",
@@ -246,19 +246,17 @@ export default function MyWorkPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="p-6 max-w-7xl mx-auto space-y-6">
+      <div className="p-6 max-w-8xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 rounded-xl bg-primary shadow-lg">
-                <HiSparkles className="h-6 w-6 text-primary-foreground" />
-              </div>
+        
               <div>
-                <h1 className="text-3xl font-bold text-foreground">
+                <h1 className="text-3xl font-bold text-primary">
                   My Tasks
                 </h1>
-                <p className="text-primary">
+                <p className="text-foreground">
                   Manage your assigned tasks and track progress
                 </p>
               </div>
@@ -300,11 +298,9 @@ export default function MyWorkPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiCheckCircle className="h-5 w-5 text-primary-foreground" />
-              </div>
+            
               <div>
                 <p className="text-sm text-primary font-medium">In Progress</p>
                 <p className="text-2xl font-bold text-primary">
@@ -314,11 +310,9 @@ export default function MyWorkPage() {
             </div>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiClock className="h-5 w-5 text-primary-foreground" />
-              </div>
+              
               <div>
                 <p className="text-sm text-primary font-medium">Total Tasks</p>
                 <p className="text-2xl font-bold text-primary">
@@ -328,11 +322,9 @@ export default function MyWorkPage() {
             </div>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiExclamationCircle className="h-5 w-5 text-primary-foreground" />
-              </div>
+            
               <div>
                 <p className="text-sm text-primary font-medium">Overdue</p>
                 <p className="text-2xl font-bold text-primary">
@@ -342,11 +334,9 @@ export default function MyWorkPage() {
             </div>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-primary shadow-lg">
-                <HiCheckCircle className="h-5 w-5 text-primary-foreground" />
-              </div>
+            
               <div>
                 <p className="text-sm text-primary font-medium">Completed</p>
                 <p className="text-2xl font-bold text-primary">
@@ -361,7 +351,7 @@ export default function MyWorkPage() {
         <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
           {loading ? (
             <div className="flex items-center justify-center py-12">
-              <ImSpinner2 className="h-8 w-8 animate-spin text-primary" />
+           
             </div>
           ) : filteredTasks.length === 0 ? (
             <div className="text-center py-12 text-primary">
@@ -375,7 +365,7 @@ export default function MyWorkPage() {
               {filteredTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="p-4 border border-border rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                  className="p-4 border-2 border-border rounded-xl bg-card/50 backdrop-blur-sm hover:border-primary hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                 >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">

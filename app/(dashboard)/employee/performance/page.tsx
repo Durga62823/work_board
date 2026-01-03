@@ -124,14 +124,12 @@ export default function PerformancePage() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-6 space-y-6">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-primary shadow-lg">
-            <HiSparkles className="h-6 w-6 text-primary-foreground" />
-          </div>
+      
           <div>
-            <h1 className="text-3xl font-bold text-foreground">
+            <h1 className="text-3xl font-bold text-primary">
               My Performance
             </h1>
-            <p className="text-primary mt-1">
+            <p className="text-foreground mt-1">
               Track your performance metrics and productivity
             </p>
           </div>
@@ -141,13 +139,11 @@ export default function PerformancePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {taskStats && (
             <>
-              <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardDescription className="font-medium text-primary">Task Completion</CardDescription>
-                    <div className="p-2 rounded-lg bg-primary shadow-md">
-                      <HiCheckCircle className="h-4 w-4 text-primary-foreground" />
-                    </div>
+                 
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -160,13 +156,11 @@ export default function PerformancePage() {
               </CardContent>
             </Card>
 
-              <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardDescription className="font-medium text-primary">On-Time Delivery</CardDescription>
-                    <div className="p-2 rounded-lg bg-primary shadow-md">
-                      <HiClock className="h-4 w-4 text-primary-foreground" />
-                    </div>
+              
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -182,13 +176,10 @@ export default function PerformancePage() {
         )}
 
           {timeAccuracy && (
-            <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardDescription className="font-medium text-primary">Estimation Accuracy</CardDescription>
-                  <div className="p-2 rounded-lg bg-primary shadow-md">
-                    <HiFlag className="h-4 w-4 text-primary-foreground" />
-                  </div>
                 </div>
               </CardHeader>
               <CardContent>
@@ -208,8 +199,8 @@ export default function PerformancePage() {
         {timeAccuracy && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
           <CardHeader>
-            <CardTitle>Time Estimation Analysis</CardTitle>
-            <CardDescription className="text-primary">
+            <CardTitle className="text-primary">Time Estimation Analysis</CardTitle>
+            <CardDescription className="text-foreground">
               How accurately you estimate task durations
             </CardDescription>
           </CardHeader>
@@ -255,7 +246,7 @@ export default function PerformancePage() {
         {metrics.length > 0 && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
           <CardHeader>
-            <CardTitle>Recent Metrics</CardTitle>
+            <CardTitle className="text-primary">Recent Metrics</CardTitle>
             <CardDescription>
               Detailed performance metrics by project
             </CardDescription>
@@ -265,15 +256,15 @@ export default function PerformancePage() {
                 {metrics.map((metric) => (
                   <div
                     key={metric.id}
-                    className="flex items-center justify-between p-3 border border-border rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    className="flex items-center justify-between p-3 border-2 border-border hover:border-primary rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                   >
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <p className="font-medium text-foreground">
+                      <p className="font-medium text-card-foreground text-foreground">
                         {(metric.metricType || metric.metric).replace("_", " ")}
                       </p>
                       {metric.project && (
-                        <Badge variant="outline">{metric.project.name}</Badge>
+                        <Badge variant="outline" className="text-primary">{metric.project.name}</Badge>
                       )}
                     </div>
                     <p className="text-sm text-primary/80 mt-1">

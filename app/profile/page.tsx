@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { UserProfile } from "@/components/common";
+import { UserProfile, UserAvatar } from "@/components/common";
 
 export const metadata = {
   title: "Profile | Make It Possible",
@@ -30,35 +30,31 @@ export default async function ProfilePage() {
         <div className="relative max-w-7xl mx-auto">
           <div className="flex items-center gap-6">
             {/* Avatar */}
-            <div className="relative">
-              <div className="h-24 w-24 md:h-32 md:w-32 rounded-full bg-primary-foreground/20 backdrop-blur-sm border-4 border-primary-foreground/30 flex items-center justify-center text-primary-foreground text-3xl md:text-4xl font-bold overflow-hidden shadow-2xl">
-                {user.image ? (
-                  <img
-                    src={user.image}
-                    alt={user.name || "User"}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <span>{user.name?.charAt(0).toUpperCase()}</span>
-                )}
-              </div>
-              <div className="absolute -bottom-2 -right-2 bg-primary rounded-full p-2 border-4 border-background shadow-lg">
-                <div className="w-3 h-3 bg-white rounded-full" />
-              </div>
-            </div>
+            <UserAvatar
+              image={user.image}
+              name={user.name}
+              email={user.email}
+              size="lg"
+            />
             
             {/* User Info */}
             <div className="flex-1">
               <h1 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">
-                {user.name || "User"}
+                {user.name || user.email?.split('@')[0] || "User"}
               </h1>
-              <p className="text-primary-foreground/80 text-lg mb-3">{user.email}</p>
-              <div className="flex items-center gap-3">
+              <p className="text-primary-foreground/80 text-lg mb-1">
+                {user.email}
+              </p>
+              <p className="text-primary-foreground/60 text-sm mb-3">
+                @{user.email?.split('@')[0] || "username"}
+              </p>
+              <div className="flex items-center gap-3 flex-wrap">
                 <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-primary-foreground/20 backdrop-blur-sm text-primary-foreground border border-primary-foreground/30">
                   {user.role || "User"}
                 </span>
-                <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-primary/20 backdrop-blur-sm text-primary-foreground border border-primary/30">
-                  ✓ Active
+                <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-green-500/20 backdrop-blur-sm text-primary-foreground border border-green-500/30">
+                  <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                  Active
                 </span>
               </div>
             </div>
