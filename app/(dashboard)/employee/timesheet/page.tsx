@@ -277,7 +277,7 @@ export default function TimesheetPage() {
               <HiSparkles className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold text-foreground">
                 Timesheet
               </h1>
               <p className="text-primary">Log and track your work hours</p>
@@ -559,8 +559,8 @@ export default function TimesheetPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-muted-foreground">
-            <HiClock className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+          <div className="text-center py-12 text-primary">
+            <HiClock className="h-16 w-16 text-primary/50 mx-auto mb-4" />
             <p>No time entries for this week yet</p>
             <p className="text-sm mt-2">
               Click "Add Entry" to log your work hours

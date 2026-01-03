@@ -128,7 +128,7 @@ export default async function ProjectsPage() {
                 <TableBody>
                   {projects.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={7} className="text-center py-8 text-primary">
                         No projects found
                       </TableCell>
                     </TableRow>

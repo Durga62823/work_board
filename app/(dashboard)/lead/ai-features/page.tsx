@@ -74,7 +74,7 @@ export default function LeadAIFeaturesPage() {
         <h1 className="text-3xl font-bold text-primary">
           Lead AI Features
         </h1>
-        <p className="text-muted-foreground mt-2">
+        <p className="text-primary mt-2">
           AI-powered tools to enhance team leadership and sprint management
         </p>
       </div>
@@ -96,7 +96,7 @@ export default function LeadAIFeaturesPage() {
                   <h3 className="font-semibold text-lg mb-2 text-primary">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4 flex-grow">{feature.description}</p>
+                  <p className="text-sm text-primary mb-4 flex-grow">{feature.description}</p>
                   <Button 
                     className="w-full hover:shadow-lg hover:scale-105 transition-all duration-300" 
                     variant="default"

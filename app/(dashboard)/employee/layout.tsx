@@ -5,6 +5,7 @@ import Link from "next/link";
 import { LogoutButton } from "@/components/common/LogoutButton";
 import { UserMenu } from "@/components/common/UserMenu";
 import { ModeToggle, ColorPicker } from "@/components/common";
+import { MobileMenu } from "@/components/common/MobileMenu";
 import {
   HiHome,
   HiCheckCircle,
@@ -15,6 +16,16 @@ import {
   HiDocumentText,
   HiCog6Tooth,
 } from "react-icons/hi2";
+
+const employeeNavigation = [
+  { name: "Dashboard", href: "/employee", icon: HiHome },
+  { name: "My Tasks", href: "/employee/my-work", icon: HiCheckCircle },
+  { name: "Timesheet", href: "/employee/timesheet", icon: HiClock },
+  { name: "Performance", href: "/employee/performance", icon: HiArrowTrendingUp },
+  { name: "Goals", href: "/employee/goals", icon: HiFlag },
+  { name: "Calendar", href: "/employee/calendar", icon: HiCalendar },
+  { name: "Appraisal", href: "/employee/appraisal", icon: HiDocumentText },
+];
 
 export default async function EmployeeDashboardLayout({
   children,
@@ -35,64 +46,29 @@ export default async function EmployeeDashboardLayout({
       {/* Top Navigation Bar */}
       <header className="border-b border-border bg-card shadow-sm sticky top-0 z-40">
         <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center gap-8 flex-1">
-              <h1 className="text-lg font-bold text-foreground whitespace-nowrap">
+          <div className="flex h-16 items-center justify-between gap-4">
+            <div className="flex items-center gap-4 md:gap-8 flex-1 min-w-0">
+              <MobileMenu navigation={employeeNavigation} />
+              <h1 className="text-base sm:text-lg font-bold text-foreground whitespace-nowrap truncate">
                 Employee Dashboard
               </h1>
-              <nav className="hidden md:flex gap-1">
-                <Link
-                  href="/employee"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  <HiHome className="h-4 w-4" />
-                  Dashboard
-                </Link>
-                <Link
-                  href="/employee/my-work"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  <HiCheckCircle className="h-4 w-4" />
-                  My Tasks
-                </Link>
-                <Link
-                  href="/employee/timesheet"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  <HiClock className="h-4 w-4" />
-                  Timesheet
-                </Link>
-                <Link
-                  href="/employee/performance"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  <HiArrowTrendingUp className="h-4 w-4" />
-                  Performance
-                </Link>
-                <Link
-                  href="/employee/goals"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  <HiFlag className="h-4 w-4" />
-                  Goals
-                </Link>
-                <Link
-                  href="/employee/calendar"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  <HiCalendar className="h-4 w-4" />
-                  Calendar
-                </Link>
-                <Link
-                  href="/employee/appraisal"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  <HiDocumentText className="h-4 w-4" />
-                  Appraisals
-                </Link>
+              <nav className="hidden md:flex gap-1 flex-1 overflow-x-auto">
+                {employeeNavigation.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2 whitespace-nowrap"
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span className="hidden lg:inline">{item.name}</span>
+                    </Link>
+                  );
+                })}
               </nav>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <ModeToggle />
               <ColorPicker />
               <UserMenu />

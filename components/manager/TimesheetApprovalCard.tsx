@@ -83,19 +83,19 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
         <div className="flex-1">
           <div className="flex items-center justify-between">
             <div>
-              <div className="font-medium text-slate-900">
+              <div className="font-medium text-foreground">
                 {timesheet.user.firstName} {timesheet.user.lastName}
               </div>
-              <div className="mt-1 text-sm text-slate-500">
+              <div className="mt-1 text-sm text-primary">
                 Week of {new Date(timesheet.weekStart).toLocaleDateString()} -{" "}
                 {new Date(timesheet.weekEnd).toLocaleDateString()}
               </div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-semibold text-slate-900">
+              <div className="text-2xl font-semibold text-foreground">
                 {timesheet.totalHours}h
               </div>
-              <div className="text-sm text-slate-500">
+              <div className="text-sm text-primary">
                 {timesheet.entries.length} entries
               </div>
             </div>
@@ -103,24 +103,24 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
 
           <button
             onClick={() => setExpanded(!expanded)}
-            className="mt-3 text-sm font-medium text-primary hover:text-primary/80"
+            className="mt-3 text-sm font-medium text-primary hover:text-primary/80 transition-colors bg-transparent border-none cursor-pointer"
           >
             {expanded ? "Hide" : "Show"} details
           </button>
 
           {expanded && (
             <div className="mt-4 space-y-2">
-              <div className="text-sm font-medium text-slate-900">Time Entries:</div>
+              <div className="text-sm font-medium text-foreground">Time Entries:</div>
               {timesheet.entries.map((entry) => (
                 <div
                   key={entry.id}
-                  className="flex items-center justify-between rounded-lg border border-slate-100 p-3 text-sm"
+                  className="flex items-center justify-between rounded-lg border border-border bg-card p-3 text-sm"
                 >
                   <div>
-                    <div className="font-medium text-slate-900">
+                    <div className="font-medium text-foreground">
                       {new Date(entry.date).toLocaleDateString()}
                     </div>
-                    <div className="text-slate-500">
+                    <div className="text-primary">
                       {entry.project?.name || "No project"} • {entry.description || "No description"}
                     </div>
                   </div>
@@ -130,7 +130,7 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
                         Billable
                       </span>
                     )}
-                    <div className="font-medium text-slate-900">{entry.hours}h</div>
+                    <div className="font-medium text-foreground">{entry.hours}h</div>
                   </div>
                 </div>
               ))}
@@ -138,8 +138,8 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
           )}
 
           {timesheet.comments && (
-            <div className="mt-3 rounded-lg bg-slate-50 p-3 text-sm text-slate-700">
-              <div className="mb-1 font-medium text-slate-900">Comments:</div>
+            <div className="mt-3 rounded-lg bg-muted/50 p-3 text-sm text-foreground">
+              <div className="mb-1 font-medium text-primary">Comments:</div>
               {timesheet.comments}
             </div>
           )}
@@ -155,14 +155,14 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
           <button
             onClick={() => setShowDialog("correction")}
             disabled={isProcessing}
-            className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50"
+            className="rounded-lg border border-primary/30 bg-card px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 disabled:opacity-50 transition-colors"
           >
             Request Changes
           </button>
           <button
             onClick={() => setShowDialog("reject")}
             disabled={isProcessing}
-            className="rounded-lg border border-destructive/30 bg-card px-4 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50"
+            className="rounded-lg border border-destructive/30 bg-card px-4 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50 transition-colors"
           >
             Reject
           </button>
@@ -171,11 +171,11 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
 
       {showDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-xl bg-card p-6 shadow-xl">
-            <h3 className="text-lg font-semibold text-slate-900">
+          <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-xl">
+            <h3 className="text-lg font-semibold text-foreground">
               {showDialog === "reject" ? "Reject Timesheet" : "Request Correction"}
             </h3>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-primary">
               {showDialog === "reject"
                 ? "Please provide a reason for rejecting this timesheet"
                 : "Specify what needs to be corrected"}
@@ -183,7 +183,7 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
             <textarea
               value={comments}
               onChange={(e) => setComments(e.target.value)}
-              className="mt-4 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+              className="mt-4 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
               rows={4}
               placeholder="Enter comments..."
             />
@@ -194,7 +194,7 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
                   setComments("");
                 }}
                 disabled={isProcessing}
-                className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50"
               >
                 Cancel
               </button>

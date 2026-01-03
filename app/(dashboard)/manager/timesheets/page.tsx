@@ -23,7 +23,7 @@ export default async function ManagerTimesheetsPage() {
             <h1 className="text-3xl font-bold text-primary">
               Manager - Timesheets
             </h1>
-            <p className="mt-1 text-muted-foreground">
+            <p className="mt-1 text-primary">
               Review and approve timesheets from your team
             </p>
           </div>
@@ -41,7 +41,7 @@ export default async function ManagerTimesheetsPage() {
               <TimesheetApprovalCard key={timesheet.id} timesheet={timesheet} />
             ))}
             {timesheets.length === 0 && (
-              <div className="px-6 py-12 text-center text-muted-foreground">
+              <div className="px-6 py-12 text-center text-primary">
                 No pending timesheets to review
               </div>
             )}

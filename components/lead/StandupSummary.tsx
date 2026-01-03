@@ -93,7 +93,7 @@ export function StandupSummary() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">Daily Standup Summary</h2>
-        <p className="text-muted-foreground mb-6">
+        <p className="text-primary mb-6">
           Generate AI-powered summaries and insights from daily standup meetings
         </p>
       </div>
@@ -216,7 +216,7 @@ export function StandupSummary() {
           <div className="bg-primary/10 border border-primary/30 p-6 rounded-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Team Morale Score</p>
+                <p className="text-sm text-primary mb-1">Team Morale Score</p>
                 <p className="text-4xl font-bold text-primary">{result.teamMorale.score}/100</p>
               </div>
               <TrendingUp className="h-12 w-12 text-primary" />
@@ -261,7 +261,7 @@ export function StandupSummary() {
                         {item.severity.toUpperCase()}
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-primary">
                       <span className="font-medium">Suggestion:</span> {item.suggestion}
                     </p>
                   </div>

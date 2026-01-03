@@ -179,7 +179,7 @@ export default async function LeadCodeReviewsPage() {
                         </span>
                         <h3 className="font-semibold text-foreground">{review.prTitle}</h3>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-3">
+                      <p className="text-sm text-primary mb-3">
                         by {review.author?.name || "Unknown"} •{" "}
                         {formatDistanceToNow(new Date(review.createdAt), { addSuffix: true })}
                       </p>
@@ -228,13 +228,13 @@ export default async function LeadCodeReviewsPage() {
                         </span>
                         <h3 className="font-semibold text-foreground">{review.prTitle}</h3>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-3">
+                      <p className="text-sm text-primary mb-3">
                         by {review.author?.name || "Unknown"} • Reviewed{" "}
                         {review.reviewedAt
                           ? formatDistanceToNow(new Date(review.reviewedAt), { addSuffix: true })
                           : "recently"}
                       </p>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-4 text-sm text-primary">
                         <span>{review.filesChanged} files</span>
                         <span>{review.linesChanged} lines</span>
                         <span>{review.comments} comments</span>
@@ -279,13 +279,13 @@ export default async function LeadCodeReviewsPage() {
                         </span>
                         <h3 className="font-semibold text-foreground">{review.prTitle}</h3>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-3">
+                      <p className="text-sm text-primary mb-3">
                         by {review.author?.name || "Unknown"} • Approved{" "}
                         {review.reviewedAt
                           ? formatDistanceToNow(new Date(review.reviewedAt), { addSuffix: true })
                           : "recently"}
                       </p>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-4 text-sm text-primary">
                         <span>{review.filesChanged} files</span>
                         <span>{review.linesChanged} lines</span>
                         {review.comments > 0 && <span>{review.comments} comments</span>}
@@ -295,7 +295,7 @@ export default async function LeadCodeReviewsPage() {
                       href={review.prUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-4 text-primary hover:text-primary font-medium text-sm hover:scale-105 transition-transform"
+                      className="ml-4 text-primary hover:text-foreground font-medium text-sm hover:scale-105 transition-all"
                     >
                       View PR →
                     </a>
@@ -329,7 +329,7 @@ export default async function LeadCodeReviewsPage() {
             <h2 className="text-xl font-semibold text-primary mb-2">
               No Code Reviews Yet
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-primary">
               Pull requests from your team will appear here for review.
             </p>
           </div>

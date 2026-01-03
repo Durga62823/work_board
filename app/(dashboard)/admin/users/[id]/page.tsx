@@ -220,7 +220,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
               </TabsContent>
 
               <TabsContent value="team">
-                <Card className="border-red-100 bg-gradient-to-br from-white to-red-50/20">
+                <Card className="border-primary/20 bg-card/50 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle>Direct Reports</CardTitle>
                     <CardDescription>
@@ -256,7 +256,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                         </TableBody>
                       </Table>
                     ) : (
-                      <p className="text-center text-muted-foreground py-8">
+                      <p className="text-center text-primary py-8">
                         No direct reports
                       </p>
                     )}
@@ -265,7 +265,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
               </TabsContent>
 
               <TabsContent value="performance">
-                <Card className="border-orange-100 bg-gradient-to-br from-white to-orange-50/20">
+                <Card className="border-primary/20 bg-card/50 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle>Performance Metrics</CardTitle>
                     <CardDescription>
@@ -299,7 +299,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                         </TableBody>
                       </Table>
                     ) : (
-                      <p className="text-center text-muted-foreground py-8">
+                      <p className="text-center text-primary py-8">
                         No performance metrics recorded
                       </p>
                     )}
@@ -308,7 +308,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
               </TabsContent>
 
               <TabsContent value="accounts">
-                <Card className="border-red-100 bg-gradient-to-br from-white to-red-50/20">
+                <Card className="border-primary/20 bg-card/50 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle>Linked Accounts</CardTitle>
                     <CardDescription>
@@ -340,7 +340,7 @@ export default async function UserDetailPage({ params }: { params: { id: string 
                         </TableBody>
                       </Table>
                     ) : (
-                      <p className="text-center text-muted-foreground py-8">
+                      <p className="text-center text-primary py-8">
                         No linked accounts
                       </p>
                     )}

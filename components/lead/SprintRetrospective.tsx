@@ -78,7 +78,7 @@ export function SprintRetrospective() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">Sprint Retrospective</h2>
-        <p className="text-muted-foreground mb-6">
+        <p className="text-primary mb-6">
           AI-powered sprint retrospective analysis and improvement recommendations
         </p>
       </div>
@@ -195,7 +195,7 @@ export function SprintRetrospective() {
                 {result.metrics.map((metric, index) => (
                   <div key={index} className="p-4 bg-card border rounded-lg">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm text-muted-foreground">{metric.name}</p>
+                      <p className="text-sm text-primary">{metric.name}</p>
                       {metric.trend === 'up' && <TrendingUp className="h-4 w-4 text-primary" />}
                       {metric.trend === 'down' && <TrendingDown className="h-4 w-4 text-destructive" />}
                     </div>
@@ -256,7 +256,7 @@ export function SprintRetrospective() {
                       {item.priority.toUpperCase()}
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">Owner: {item.owner}</p>
+                  <p className="text-sm text-primary">Owner: {item.owner}</p>
                 </div>
               ))}
             </div>

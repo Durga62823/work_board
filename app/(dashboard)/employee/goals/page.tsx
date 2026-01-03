@@ -190,7 +190,7 @@ export default function MyGoalsPage() {
               <HiSparkles className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold text-foreground">
                 My Goals
               </h1>
               <p className="text-primary mt-1">
@@ -209,25 +209,25 @@ export default function MyGoalsPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
-                <CardDescription className="font-medium">Total Goals</CardDescription>
+                <CardDescription className="font-medium text-primary">Total Goals</CardDescription>
                 <CardTitle className="text-3xl text-primary">{stats.total}</CardTitle>
               </CardHeader>
             </Card>
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
-                <CardDescription className="font-medium">Active Goals</CardDescription>
+                <CardDescription className="font-medium text-primary">Active Goals</CardDescription>
                 <CardTitle className="text-3xl text-primary">{stats.active}</CardTitle>
               </CardHeader>
             </Card>
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
-                <CardDescription className="font-medium">Completed</CardDescription>
+                <CardDescription className="font-medium text-primary">Completed</CardDescription>
                 <CardTitle className="text-3xl text-primary">{stats.completed}</CardTitle>
               </CardHeader>
             </Card>
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
-                <CardDescription className="font-medium">Average Progress</CardDescription>
+                <CardDescription className="font-medium text-primary">Average Progress</CardDescription>
                 <CardTitle className="text-3xl text-primary">{stats.avgProgress}%</CardTitle>
               </CardHeader>
             </Card>
@@ -338,8 +338,8 @@ export default function MyGoalsPage() {
           {goals.length === 0 ? (
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
               <CardContent className="flex flex-col items-center justify-center py-12">
-              <HiFlag className="h-12 w-12 text-muted-foreground mb-4" />
-              <p className="text-muted-foreground text-center">
+              <HiFlag className="h-12 w-12 text-primary/50 mb-4" />
+              <p className="text-primary text-center">
                 No goals yet. Create your first goal to get started!
               </p>
             </CardContent>

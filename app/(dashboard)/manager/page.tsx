@@ -70,7 +70,7 @@ export default async function ManagerPage() {
           <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">Team Members</CardTitle>
+              <CardTitle className="text-sm font-semibold text-primary">Team Members</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
                 <HiUserGroup className="h-4 w-4 text-primary" />
               </div>
@@ -90,7 +90,7 @@ export default async function ManagerPage() {
           <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">Pending PTO</CardTitle>
+              <CardTitle className="text-sm font-semibold text-primary">Pending PTO</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
                 <HiCalendar className="h-4 w-4 text-primary" />
               </div>
@@ -110,7 +110,7 @@ export default async function ManagerPage() {
           <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">Pending Timesheets</CardTitle>
+              <CardTitle className="text-sm font-semibold text-primary">Pending Timesheets</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
                 <HiDocumentText className="h-4 w-4 text-primary" />
               </div>
@@ -130,7 +130,7 @@ export default async function ManagerPage() {
           <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">Team Utilization</CardTitle>
+              <CardTitle className="text-sm font-semibold text-primary">Team Utilization</CardTitle>
               <div className="p-2 rounded-lg bg-primary/10">
                 <HiChartBarSquare className="h-4 w-4 text-primary" />
               </div>
@@ -180,13 +180,13 @@ export default async function ManagerPage() {
                       <div className="font-semibold text-foreground">
                         {request.user.firstName} {request.user.lastName}
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                      <div className="flex items-center gap-2 text-sm text-primary mt-1">
                         <span>{request.type.replace("_", " ")}</span>
                         <span>•</span>
                         <span>{request.days} days</span>
                       </div>
                     </div>
-                    <div className="text-sm text-muted-foreground font-medium">
+                    <div className="text-sm text-primary font-medium">
                       {new Date(request.startDate).toLocaleDateString()}
                     </div>
                   </div>
@@ -196,7 +196,7 @@ export default async function ManagerPage() {
                     <div className="inline-flex p-4 rounded-full bg-primary/10 mb-3">
                       <HiCalendar className="h-6 w-6 text-primary" />
                     </div>
-                    <p className="text-sm text-muted-foreground">No pending PTO requests</p>
+                    <p className="text-sm text-primary">No pending PTO requests</p>
                   </div>
                 )}
               </div>
@@ -231,7 +231,7 @@ export default async function ManagerPage() {
                       <div className="font-semibold text-foreground">
                         {timesheet.user.firstName} {timesheet.user.lastName}
                       </div>
-                      <div className="text-sm text-muted-foreground mt-1">
+                      <div className="text-sm text-primary mt-1">
                         Week of {new Date(timesheet.weekStart).toLocaleDateString()}
                       </div>
                     </div>
@@ -245,7 +245,7 @@ export default async function ManagerPage() {
                     <div className="inline-flex p-4 rounded-full bg-primary/10 mb-3">
                       <HiDocumentText className="h-6 w-6 text-primary" />
                     </div>
-                    <p className="text-sm text-muted-foreground">No pending timesheets</p>
+                    <p className="text-sm text-primary">No pending timesheets</p>
                   </div>
                 )}
               </div>
@@ -270,7 +270,7 @@ export default async function ManagerPage() {
                     <div className="font-semibold text-foreground">
                       {member.user.firstName} {member.user.lastName}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                    <div className="flex items-center gap-2 text-sm text-primary mt-1">
                       <span>{member.activeProjects} active projects</span>
                       <span>•</span>
                       <span>{member.avgWeeklyHours.toFixed(1)}h/week avg</span>
@@ -281,10 +281,10 @@ export default async function ManagerPage() {
                       <div
                         className={`h-full transition-all ${
                           member.utilization > 1
-                            ? "bg-gradient-to-r from-red-500 to-red-600"
+                            ? "bg-destructive"
                             : member.utilization > 0.8
-                            ? "bg-gradient-to-r from-yellow-500 to-orange-500"
-                            : "bg-gradient-to-r from-green-500 to-emerald-500"
+                            ? "bg-primary"
+                            : "bg-primary"
                         }`}
                         style={{ width: `${Math.min(member.utilization * 100, 100)}%` }}
                       />
@@ -305,7 +305,7 @@ export default async function ManagerPage() {
                   <div className="inline-flex p-4 rounded-full bg-primary/10 mb-3">
                     <HiUserGroup className="h-6 w-6 text-primary" />
                   </div>
-                  <p className="text-sm text-muted-foreground">No team members assigned</p>
+                  <p className="text-sm text-primary">No team members assigned</p>
                 </div>
               )}
             </div>

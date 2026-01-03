@@ -51,7 +51,7 @@ export default function EmployeeDashboardPage() {
                   <HiListBullet className="h-6 w-6 text-primary" />
                 </div>
               </div>
-              <p className="text-sm font-semibold text-muted-foreground mb-1">Active Tasks</p>
+              <p className="text-sm font-semibold text-primary mb-1">Active Tasks</p>
               <p className="text-4xl font-bold text-foreground">12</p>
             </CardContent>
           </Card>
@@ -64,7 +64,7 @@ export default function EmployeeDashboardPage() {
                   <HiClock className="h-6 w-6 text-primary" />
                 </div>
               </div>
-              <p className="text-sm font-semibold text-muted-foreground mb-1">Due This Week</p>
+              <p className="text-sm font-semibold text-primary mb-1">Due This Week</p>
               <p className="text-4xl font-bold text-foreground">5</p>
             </CardContent>
           </Card>
@@ -77,7 +77,7 @@ export default function EmployeeDashboardPage() {
                   <HiExclamationCircle className="h-6 w-6 text-primary" />
                 </div>
               </div>
-              <p className="text-sm font-semibold text-muted-foreground mb-1">Overdue</p>
+              <p className="text-sm font-semibold text-primary mb-1">Overdue</p>
               <p className="text-4xl font-bold text-foreground">2</p>
             </CardContent>
           </Card>
@@ -90,7 +90,7 @@ export default function EmployeeDashboardPage() {
                   <HiArrowTrendingUp className="h-6 w-6 text-primary" />
                 </div>
               </div>
-              <p className="text-sm font-semibold text-muted-foreground mb-1">Completed</p>
+              <p className="text-sm font-semibold text-primary mb-1">Completed</p>
               <p className="text-4xl font-bold text-foreground">45</p>
             </CardContent>
           </Card>
