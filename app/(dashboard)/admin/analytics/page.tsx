@@ -130,132 +130,104 @@ export default function AnalyticsPage() {
       : 0;
 
   return (
-    <div className="p-6 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header */}
-        <div>
-          <div className="flex items-center gap-4 mb-2">
-            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-              <span className="text-2xl">📊</span>
-            </div>
-            <h1 className="text-3xl font-bold text-foreground">
-              Analytics Dashboard
-            </h1>
+    <div className="min-h-screen bg-background">
+      <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
+        {/* Header with gradient badge */}
+        <div className="flex items-center gap-4">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-primary">
+              Admin - Analytics Dashboard
+            </h2>
+            <p className="text-muted-foreground mt-1">
+              Real-time organization performance metrics
+            </p>
           </div>
-          <p className="text-muted-foreground ml-16">
-            Real-time organization performance metrics
-          </p>
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {/* Users Card */}
-          <Card className="p-6 bg-primary border-0 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className="text-5xl">
-                👥
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+            <div className="p-6">
+              <div className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <p className="text-sm font-medium text-muted-foreground">Total Users</p>
               </div>
-              <div className="text-xs font-bold bg-primary-foreground/20 px-3 py-1 rounded-full">
-                Users
+              <div className="text-2xl font-bold text-primary">
+                <AnimatedCounter
+                  value={analytics.summary.totalUsers}
+                  duration={1200}
+                />
               </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Active: {analytics.summary.activeUsers}
+              </p>
             </div>
-            <p className="text-primary-foreground/80 text-sm font-semibold mb-2">
-              Total Users
-            </p>
-            <p className="text-4xl font-black">
-              <AnimatedCounter
-                value={analytics.summary.totalUsers}
-                duration={1200}
-              />
-            </p>
-            <p className="text-xs text-primary-foreground/70 mt-2">
-              Active: {analytics.summary.activeUsers}
-            </p>
           </Card>
 
           {/* Projects Card */}
-          <Card className="p-6 bg-primary border-0 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className="text-5xl">
-                📁
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+            <div className="p-6">
+              <div className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <p className="text-sm font-medium text-muted-foreground">Total Projects</p>
               </div>
-              <div className="text-xs font-bold bg-primary-foreground/20 px-3 py-1 rounded-full">
-                Projects
+              <div className="text-2xl font-bold text-primary">
+                <AnimatedCounter
+                  value={analytics.summary.totalProjects}
+                  duration={1200}
+                />
               </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Completed: {analytics.summary.completedProjects}
+              </p>
             </div>
-            <p className="text-primary-foreground/80 text-sm font-semibold mb-2">
-              Total Projects
-            </p>
-            <p className="text-4xl font-black">
-              <AnimatedCounter
-                value={analytics.summary.totalProjects}
-                duration={1200}
-              />
-            </p>
-            <p className="text-xs text-primary-foreground/70 mt-2">
-              Completed: {analytics.summary.completedProjects}
-            </p>
           </Card>
 
           {/* Appraisals Card */}
-          <Card className="p-6 bg-primary border-0 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className="text-5xl">
-                ⭐
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+            <div className="p-6">
+              <div className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <p className="text-sm font-medium text-muted-foreground">Appraisals</p>
               </div>
-              <div className="text-xs font-bold bg-primary-foreground/20 px-3 py-1 rounded-full">
-                Reviews
+              <div className="text-2xl font-bold text-primary">
+                <AnimatedCounter
+                  value={analytics.summary.totalAppraisals}
+                  duration={1200}
+                />
               </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Avg Rating: {analytics.summary.averageRating.toFixed(1)}
+              </p>
             </div>
-            <p className="text-primary-foreground/80 text-sm font-semibold mb-2">
-              Appraisals
-            </p>
-            <p className="text-4xl font-black">
-              <AnimatedCounter
-                value={analytics.summary.totalAppraisals}
-                duration={1200}
-              />
-            </p>
-            <p className="text-xs text-primary-foreground/70 mt-2">
-              Avg Rating: {analytics.summary.averageRating.toFixed(1)}
-            </p>
           </Card>
 
           {/* Engagement Card */}
-          <Card className="p-6 bg-primary border-0 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className="text-5xl">
-                📈
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+            <div className="p-6">
+              <div className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <p className="text-sm font-medium text-muted-foreground">Engagement</p>
               </div>
-              <div className="text-xs font-bold bg-primary-foreground/20 px-3 py-1 rounded-full">
-                Metric
-              </div>
+              <div className="text-2xl font-bold text-primary">
+                <AnimatedCounter
+                  value={Math.round(
+                    (analytics.summary.activeUsers /
+                      analytics.summary.totalUsers) *
+                      100
+                    )}
+                    duration={1200}
+                  />
+                  %
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">Active participation</p>
             </div>
-            <p className="text-primary-foreground/80 text-sm font-semibold mb-2">
-              Engagement
-            </p>
-            <p className="text-4xl font-black">
-              <AnimatedCounter
-                value={Math.round(
-                  (analytics.summary.activeUsers /
-                    analytics.summary.totalUsers) *
-                    100
-                  )}
-                  duration={1200}
-                />
-                %
-              </p>
-              <p className="text-xs text-primary-foreground/70 mt-2">Active participation</p>
           </Card>
         </div>
 
         {/* Users by Role & Projects by Status */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Users by Role */}
-          <Card className="p-6 border-border bg-card shadow-lg h-full">
+          <Card className="p-6 border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 h-full">
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-3xl">👤</span>
-              <h3 className="text-xl font-bold text-foreground">Users by Role</h3>
+              <h3 className="text-2xl font-bold text-primary">Users by Role</h3>
             </div>
             <div className="space-y-4">
               {analytics.usersByRole.map((item, idx) => (
@@ -282,15 +254,9 @@ export default function AnalyticsPage() {
           </Card>
 
           {/* Projects by Status */}
-          <Card className="p-6 border-border bg-card shadow-lg h-full">
+          <Card className="p-6 border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 h-full">
               <div className="flex items-center gap-3 mb-6">
-                <span
-                  className="text-4xl animate-float"
-                  style={{ animationDelay: "1s" }}
-                >
-                  📊
-                </span>
-                <h3 className="text-2xl font-bold text-foreground">Projects by Status</h3>
+                <h3 className="text-2xl font-bold text-primary">Projects by Status</h3>
               </div>
               <div className="space-y-4">
                 {analytics.projectsByStatus.map((item) => (
@@ -316,34 +282,31 @@ export default function AnalyticsPage() {
               </div>
             </Card>
           </div>
-        </div>
 
         {/* PTO Statistics */}
         <div className="mb-12">
-          <Card className="p-6 border-border bg-card shadow-lg">
+          <Card className="p-6 border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-4xl">🏖️</span>
-              <h3 className="text-2xl font-bold text-foreground">PTO Requests</h3>
+              <h3 className="text-2xl font-bold text-primary">PTO Requests</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {analytics.ptoStats.map((item) => (
-                <div
+                <Card
                   key={item.status}
-                  className="p-6 rounded-lg bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-shadow"
+                  className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-3xl">✈️</span>
-                    <span className="text-xs font-bold bg-primary-foreground/20 px-2 py-1 rounded-full">
-                      {item.status}
-                    </span>
+                  <div className="p-6">
+                    <div className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <p className="text-sm font-medium text-muted-foreground">{item.status}</p>
+                    </div>
+                    <div className="text-2xl font-bold text-primary">
+                      <AnimatedCounter value={item.count} duration={1200} />
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      requests
+                    </p>
                   </div>
-                  <p className="text-4xl font-bold mb-1">
-                    <AnimatedCounter value={item.count} duration={1200} />
-                  </p>
-                  <p className="text-xs text-primary-foreground/70 font-semibold">
-                    requests
-                  </p>
-                </div>
+                </Card>
               ))}
             </div>
           </Card>
@@ -351,41 +314,42 @@ export default function AnalyticsPage() {
 
         {/* Timesheet Statistics */}
         <div>
-          <Card className="p-6 border-border bg-card shadow-lg">
+          <Card className="p-6 border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-4xl">⏱️</span>
-              <h3 className="text-2xl font-bold text-foreground">Timesheet Status</h3>
+              <h3 className="text-2xl font-bold text-primary">Timesheet Status</h3>
             </div>
             <div className="space-y-4">
               {analytics.timesheetStats.map((item) => (
-                <div
+                <Card
                   key={item.status}
-                  className="p-4 rounded-lg bg-muted flex items-center justify-between hover:bg-muted/80 hover:shadow-lg transition-all border border-border"
+                  className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
                 >
-                  <div className="flex items-center gap-4">
-                    <span className="text-2xl">📋</span>
-                    <div>
-                      <p className="font-bold text-foreground">{item.status}</p>
-                      <p className="text-sm text-muted-foreground font-semibold">
-                        <span className="text-primary font-bold">
-                          <AnimatedCounter value={item.count} duration={1200} />
-                        </span>{" "}
-                        submitted
+                  <div className="p-4 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div>
+                        <p className="font-bold text-foreground">{item.status}</p>
+                        <p className="text-sm text-muted-foreground">
+                          <span className="text-primary font-bold">
+                            <AnimatedCounter value={item.count} duration={1200} />
+                          </span>{" "}
+                          submitted
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-muted-foreground">Total Hours</p>
+                      <p className="text-2xl font-bold text-primary">
+                        {item.totalHours}h
                       </p>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-xs text-muted-foreground">Total Hours</p>
-                    <p className="text-2xl font-bold text-primary">
-                      {item.totalHours}h
-                    </p>
-                  </div>
-                </div>
+                </Card>
               ))}
             </div>
           </Card>
         </div>
       </div>
-    
+    </div>
   );
 }
+

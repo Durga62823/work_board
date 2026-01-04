@@ -210,7 +210,7 @@ export function SettingsClient({
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              className="w-full px-4 py-2 border border-input rounded-lg text-sm bg-background text-foreground cursor-pointer hover:border-ring transition-colors"
+              className="w-full px-4 py-2 border-2 border-transparent rounded-lg text-sm bg-background text-foreground cursor-pointer hover:border-primary transition-colors"
             >
               <option>English</option>
               <option>Spanish</option>
@@ -227,7 +227,7 @@ export function SettingsClient({
             <select
               value={timezone}
               onChange={(e) => setTimezone(e.target.value)}
-              className="w-full px-4 py-2 border border-input rounded-lg text-sm bg-background text-foreground cursor-pointer hover:border-ring transition-colors"
+              className="w-full px-4 py-2 border-2 border-transparent rounded-lg text-sm bg-background text-foreground cursor-pointer hover:border-primary transition-colors"
             >
               <option>UTC</option>
               <option>EST (UTC-5)</option>

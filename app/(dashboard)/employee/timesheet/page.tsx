@@ -273,39 +273,35 @@ export default function TimesheetPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-        
             <div>
-              <h1 className="text-3xl font-bold text-primary">
-                Timesheet
-              </h1>
+              <h1 className="text-3xl font-bold text-primary">Timesheet</h1>
               <p className="text-foreground">Log and track your work hours</p>
             </div>
           </div>
-        <div className="flex gap-2">
-          {timesheet && (
-            <Badge
-              variant={getStatusBadge(timesheet.status).variant}
-              className="text-lg px-4 py-2"
+          <div className="flex gap-2">
+            {timesheet && (
+              <Badge
+                variant={getStatusBadge(timesheet.status).variant}
+                className="text-lg px-4 py-2"
+              >
+                {getStatusBadge(timesheet.status).label}
+              </Badge>
+            )}
+            <Button
+              onClick={() => setShowAddDialog(true)}
+              disabled={timesheet && timesheet.status !== "DRAFT"}
+              className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              {getStatusBadge(timesheet.status).label}
-            </Badge>
-          )}
-          <Button
-            onClick={() => setShowAddDialog(true)}
-            disabled={timesheet && timesheet.status !== "DRAFT"}
-            className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <HiPlus className="h-4 w-4 mr-2" />
-            Add Entry
-          </Button>
+              <HiPlus className="h-4 w-4 mr-2" />
+              Add Entry
+            </Button>
+          </div>
         </div>
-      </div>
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-      
               <div>
                 <p className="text-sm text-primary font-medium">Total Hours</p>
                 <p className="text-3xl font-bold text-primary">
@@ -315,11 +311,12 @@ export default function TimesheetPage() {
             </div>
           </Card>
 
-          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-              
               <div>
-                <p className="text-sm text-primary font-medium">Submitted Hours</p>
+                <p className="text-sm text-primary font-medium">
+                  Submitted Hours
+                </p>
                 <p className="text-3xl font-bold text-primary">
                   {stats.submittedHours}h
                 </p>
@@ -327,11 +324,12 @@ export default function TimesheetPage() {
             </div>
           </Card>
 
-          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
-             
               <div>
-                <p className="text-sm text-primary font-medium">Approved Hours</p>
+                <p className="text-sm text-primary font-medium">
+                  Approved Hours
+                </p>
                 <p className="text-3xl font-bold text-primary">
                   {stats.approvedHours}h
                 </p>
@@ -343,290 +341,295 @@ export default function TimesheetPage() {
         {/* Current Week Info */}
         {timesheet && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-semibold text-lg mb-1">
-                Week{" "}
-                {timesheet.weekNumber ||
-                  getWeekNumber(new Date(timesheet.startDate))}
-                , {new Date(timesheet.startDate).getFullYear()}
-              </h3>
-              <p className="text-sm text-primary">
-                {formatDate(timesheet.startDate)} -{" "}
-                {formatDate(timesheet.endDate)}
-              </p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-lg mb-1">
+                  Week{" "}
+                  {timesheet.weekNumber ||
+                    getWeekNumber(new Date(timesheet.startDate))}
+                  , {new Date(timesheet.startDate).getFullYear()}
+                </h3>
+                <p className="text-sm text-primary">
+                  {formatDate(timesheet.startDate)} -{" "}
+                  {formatDate(timesheet.endDate)}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm text-primary">Total Hours This Week</p>
+                <p className="text-3xl font-bold">
+                  {timesheet.entries?.reduce(
+                    (sum: number, e: any) => sum + e.hours,
+                    0
+                  ) || 0}
+                  h
+                </p>
+              </div>
             </div>
-            <div className="text-right">
-              <p className="text-sm text-primary">Total Hours This Week</p>
-              <p className="text-3xl font-bold">
-                {timesheet.entries?.reduce(
-                  (sum: number, e: any) => sum + e.hours,
-                  0
-                ) || 0}
-                h
-              </p>
-            </div>
-          </div>
-        </Card>
-      )}
+          </Card>
+        )}
 
         {/* Add/Edit Entry Dialog */}
         {showAddDialog && (
           <Card className="p-6 border-2 border-primary/50 bg-primary/5 backdrop-blur-sm shadow-xl">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-lg">
-              {editingEntry ? "Edit Time Entry" : "Add Time Entry"}
-            </h3>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowAddDialog(false);
-                setEditingEntry(null);
-                setFormData({
-                  date: new Date().toISOString().split("T")[0],
-                  projectId: "",
-                  taskId: "",
-                  hours: "",
-                  description: "",
-                });
-              }}
-            >
-              Cancel
-            </Button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="date">Date *</Label>
-              <Input
-                type="date"
-                id="date"
-                value={formData.date}
-                onChange={(e) =>
-                  setFormData({ ...formData, date: e.target.value })
-                }
-                disabled={!!editingEntry}
-              />
-            </div>
-            <div>
-              <Label htmlFor="hours">Hours *</Label>
-              <Input
-                type="number"
-                id="hours"
-                placeholder="8"
-                step="0.5"
-                min="0"
-                max="24"
-                value={formData.hours}
-                onChange={(e) =>
-                  setFormData({ ...formData, hours: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <Label htmlFor="project">Project *</Label>
-              <select
-                id="project"
-                className="w-full p-2 border rounded bg-card"
-                value={formData.projectId}
-                onChange={(e) =>
-                  setFormData({ ...formData, projectId: e.target.value })
-                }
-                disabled={!!editingEntry}
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-lg">
+                {editingEntry ? "Edit Time Entry" : "Add Time Entry"}
+              </h3>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setShowAddDialog(false);
+                  setEditingEntry(null);
+                  setFormData({
+                    date: new Date().toISOString().split("T")[0],
+                    projectId: "",
+                    taskId: "",
+                    hours: "",
+                    description: "",
+                  });
+                }}
               >
-                <option value="">Select project...</option>
-                {projects.length > 0 ? (
-                  projects.map((project) => (
-                    <option key={project.id} value={project.id}>
-                      {project.name}
-                    </option>
-                  ))
-                ) : (
-                  <option value="" disabled>
-                    No projects available
-                  </option>
-                )}
-              </select>
-              {projects.length === 0 && (
-                <p className="text-xs text-primary mt-1">
-                  No projects found. Please contact your manager.
-                </p>
-              )}
+                Cancel
+              </Button>
             </div>
-            <div>
-              <Label htmlFor="task">Task (Optional)</Label>
-              <Input
-                id="task"
-                placeholder="Task ID or name"
-                value={formData.taskId}
-                onChange={(e) =>
-                  setFormData({ ...formData, taskId: e.target.value })
-                }
-                disabled={!!editingEntry}
-              />
-            </div>
-            <div className="md:col-span-2">
-              <Label htmlFor="description">Description</Label>
-              <textarea
-                id="description"
-                className="w-full p-2 border rounded min-h-20"
-                placeholder="What did you work on?"
-                value={formData.description}
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
-              />
-            </div>
-          </div>
-          <div className="flex gap-2 mt-4">
-            <Button
-              onClick={editingEntry ? handleUpdateEntry : handleAddEntry}
-              disabled={saving}
-            >
-              {saving ? (
-                <>
-                  <ImSpinner2 className="h-4 w-4 mr-2 animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                editingEntry ? "Update Entry" : "Save Entry"
-              )}
-            </Button>
-          </div>
-        </Card>
-      )}
-
-        {/* Time Entries List */}
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
-        <h3 className="font-semibold text-lg mb-4">Time Entries</h3>
-        {timesheet?.entries && timesheet.entries.length > 0 ? (
-          <div className="space-y-3">
-            {timesheet.entries.map((entry: any) => (
-              <div
-                key={entry.id}
-                className="p-4 border border-border rounded-xl bg-card/50 backdrop-blur-sm flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="font-medium">
-                      {formatDate(entry.date)}
-                    </span>
-                    <Badge variant="outline">
-                      {entry.project?.name || "Unknown Project"}
-                    </Badge>
-                    {entry.task && (
-                      <span className="text-sm text-primary">
-                        Task: {entry.taskId}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-sm text-primary">
-                    {entry.description || "No description"}
-                  </p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="text-right">
-                    <p className="font-semibold text-lg">{entry.hours}h</p>
-                  </div>
-                  {timesheet.status === "DRAFT" && (
-                    <div className="flex gap-2">
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => startEdit(entry)}
-                      >
-                        <HiPencil className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleDeleteEntry(entry.id)}
-                      >
-                        <HiTrash className="h-4 w-4 text-primary" />
-                      </Button>
-                    </div>
-                  )}
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="date">Date *</Label>
+                <Input
+                  type="date"
+                  id="date"
+                  value={formData.date}
+                  onChange={(e) =>
+                    setFormData({ ...formData, date: e.target.value })
+                  }
+                  disabled={!!editingEntry}
+                />
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 text-primary">
-            <HiClock className="h-16 w-16 text-primary/50 mx-auto mb-4" />
-            <p>No time entries for this week yet</p>
-            <p className="text-sm mt-2">
-              Click "Add Entry" to log your work hours
-            </p>
-          </div>
-        )}
-
-        {timesheet &&
-          timesheet.status === "DRAFT" &&
-          timesheet.entries?.length > 0 && (
-            <div className="mt-6 pt-6 border-t flex items-center justify-between">
-              <p className="text-sm text-primary">
-                {timesheet.entries.length} entries •{" "}
-                {timesheet.entries.reduce(
-                  (sum: number, e: any) => sum + e.hours,
-                  0
-                )}{" "}
-                total hours
-              </p>
-              <Button onClick={handleSubmit} disabled={submitting}>
-                {submitting ? (
+              <div>
+                <Label htmlFor="hours">Hours *</Label>
+                <Input
+                  type="number"
+                  id="hours"
+                  placeholder="8"
+                  step="0.5"
+                  min="0"
+                  max="24"
+                  value={formData.hours}
+                  onChange={(e) =>
+                    setFormData({ ...formData, hours: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <Label htmlFor="project">Project *</Label>
+                <select
+                  id="project"
+                  className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded bg-card"
+                  value={formData.projectId}
+                  onChange={(e) =>
+                    setFormData({ ...formData, projectId: e.target.value })
+                  }
+                  disabled={!!editingEntry}
+                >
+                  <option value="">Select project...</option>
+                  {projects.length > 0 ? (
+                    projects.map((project) => (
+                      <option key={project.id} value={project.id}>
+                        {project.name}
+                      </option>
+                    ))
+                  ) : (
+                    <option value="" disabled>
+                      No projects available
+                    </option>
+                  )}
+                </select>
+                {projects.length === 0 && (
+                  <p className="text-xs text-primary mt-1">
+                    No projects found. Please contact your manager.
+                  </p>
+                )}
+              </div>
+              <div>
+                <Label htmlFor="task">Task (Optional)</Label>
+                <Input
+                  id="task"
+                  placeholder="Task ID or name"
+                  value={formData.taskId}
+                  onChange={(e) =>
+                    setFormData({ ...formData, taskId: e.target.value })
+                  }
+                  disabled={!!editingEntry}
+                />
+              </div>
+              <div className="md:col-span-2">
+                <Label htmlFor="description">Description</Label>
+                <textarea
+                  id="description"
+                  className="w-full p-2 border rounded min-h-20"
+                  placeholder="What did you work on?"
+                  value={formData.description}
+                  onChange={(e) =>
+                    setFormData({ ...formData, description: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="flex gap-2 mt-4">
+              <Button
+                onClick={editingEntry ? handleUpdateEntry : handleAddEntry}
+                disabled={saving}
+              >
+                {saving ? (
                   <>
                     <ImSpinner2 className="h-4 w-4 mr-2 animate-spin" />
-                    Submitting...
+                    Saving...
                   </>
+                ) : editingEntry ? (
+                  "Update Entry"
                 ) : (
-                  <>
-                    <HiPaperAirplane className="h-4 w-4 mr-2" />
-                    Submit Timesheet
-                  </>
+                  "Save Entry"
                 )}
               </Button>
             </div>
-          )}
-
-        {timesheet && timesheet.status === "SUBMITTED" && (
-          <div className="mt-6 pt-6 border-t">
-            <p className="text-center text-primary">
-              Timesheet submitted on{" "}
-              {timesheet.submittedAt
-                ? formatDate(timesheet.submittedAt)
-                : "N/A"}
-              . Awaiting manager approval.
-            </p>
-          </div>
+          </Card>
         )}
 
-        {timesheet && timesheet.status === "APPROVED" && (
-          <div className="mt-6 pt-6 border-t">
-            <div className="bg-primary/10 border border-primary/20 rounded p-4">
-              <p className="text-primary font-medium">
-                ✓ Timesheet approved on{" "}
-                {timesheet.approvedAt
-                  ? formatDate(timesheet.approvedAt)
-                  : "N/A"}
+        {/* Time Entries List */}
+        <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
+          <h3 className="font-semibold text-lg mb-4">Time Entries</h3>
+          {timesheet?.entries && timesheet.entries.length > 0 ? (
+            <div className="space-y-3">
+              {timesheet.entries.map((entry: any) => (
+                <div
+                  key={entry.id}
+                  className="p-4 border-2 border-transparent hover:border-primary transition-all duration-300 rounded-xl bg-card/50 backdrop-blur-sm flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="font-medium">
+                        {formatDate(entry.date)}
+                      </span>
+                      <Badge variant="outline">
+                        {entry.project?.name || "Unknown Project"}
+                      </Badge>
+                      {entry.task && (
+                        <span className="text-sm text-primary">
+                          Task: {entry.taskId}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-primary">
+                      {entry.description || "No description"}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="text-right">
+                      <p className="font-semibold text-lg">{entry.hours}h</p>
+                    </div>
+                    {timesheet.status === "DRAFT" && (
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => startEdit(entry)}
+                        >
+                          <HiPencil className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => handleDeleteEntry(entry.id)}
+                        >
+                          <HiTrash className="h-4 w-4 text-primary" />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 text-primary">
+              <HiClock className="h-16 w-16 text-primary/50 mx-auto mb-4" />
+              <p>No time entries for this week yet</p>
+              <p className="text-sm mt-2">
+                Click "Add Entry" to log your work hours
               </p>
             </div>
-          </div>
-        )}
+          )}
 
-        {timesheet && timesheet.status === "REJECTED" && (
-          <div className="mt-6 pt-6 border-t">
-            <div className="bg-destructive/10 border border-destructive/20 rounded p-4">
-              <p className="text-destructive font-medium">Timesheet rejected</p>
-              {timesheet.rejectionReason && (
-                <p className="text-sm text-destructive/80 mt-2">
-                  Reason: {timesheet.rejectionReason}
+          {timesheet &&
+            timesheet.status === "DRAFT" &&
+            timesheet.entries?.length > 0 && (
+              <div className="mt-6 pt-6 border-t flex items-center justify-between">
+                <p className="text-sm text-primary">
+                  {timesheet.entries.length} entries •{" "}
+                  {timesheet.entries.reduce(
+                    (sum: number, e: any) => sum + e.hours,
+                    0
+                  )}{" "}
+                  total hours
                 </p>
-              )}
+                <Button onClick={handleSubmit} disabled={submitting}>
+                  {submitting ? (
+                    <>
+                      <ImSpinner2 className="h-4 w-4 mr-2 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <HiPaperAirplane className="h-4 w-4 mr-2" />
+                      Submit Timesheet
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
+
+          {timesheet && timesheet.status === "SUBMITTED" && (
+            <div className="mt-6 pt-6 border-t">
+              <p className="text-center text-primary">
+                Timesheet submitted on{" "}
+                {timesheet.submittedAt
+                  ? formatDate(timesheet.submittedAt)
+                  : "N/A"}
+                . Awaiting manager approval.
+              </p>
             </div>
-          </div>
+          )}
+
+          {timesheet && timesheet.status === "APPROVED" && (
+            <div className="mt-6 pt-6 border-t">
+              <div className="bg-primary/10 border border-primary rounded p-4">
+                <p className="text-primary font-medium">
+                  ✓ Timesheet approved on{" "}
+                  {timesheet.approvedAt
+                    ? formatDate(timesheet.approvedAt)
+                    : "N/A"}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {timesheet && timesheet.status === "REJECTED" && (
+            <div className="mt-6 pt-6 border-t">
+              <div className="bg-destructive/10 border border-destructive/20 rounded p-4">
+                <p className="text-destructive font-medium">
+                  Timesheet rejected
+                </p>
+                {timesheet.rejectionReason && (
+                  <p className="text-sm text-destructive/80 mt-2">
+                    Reason: {timesheet.rejectionReason}
+                  </p>
+                )}
+              </div>
+            </div>
           )}
         </Card>
       </div>
     </div>
   );
 }
+

@@ -4,7 +4,6 @@ import { addHours } from "date-fns";
 import { revalidatePath } from "next/cache";
 
 import { prisma } from "@/lib/prisma";
-import { sendPasswordResetEmail } from "@/lib/email-smtp";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { forgotPasswordSchema, resetPasswordSchema } from "@/lib/validations/auth";
 import { ActionResponse } from "@/app/actions/auth";
@@ -37,6 +36,7 @@ export async function sendPasswordResetEmailAction(payload: unknown): Promise<Ac
     },
   });
 
+  const { sendPasswordResetEmail } = await import("@/lib/email-smtp");
   await sendPasswordResetEmail({ email, token, firstName: user.firstName });
   return { success: true, message: "Password reset instructions sent" };
 }

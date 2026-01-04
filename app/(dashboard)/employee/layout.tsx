@@ -1,32 +1,25 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { LogoutButton } from "@/components/common/LogoutButton";
 import { UserMenu } from "@/components/common/UserMenu";
 import { ModeToggle, ColorPicker } from "@/components/common";
 import { MobileMenu } from "@/components/common/MobileMenu";
-import {
-  HiHome,
-  HiCheckCircle,
-  HiClock,
-  HiArrowTrendingUp,
-  HiFlag,
-  HiCalendar,
-  HiDocumentText,
-  HiCog6Tooth,
-} from "react-icons/hi2";
 
 const employeeNavigation = [
-  { name: "Dashboard", href: "/employee", icon: HiHome },
-  { name: "My Tasks", href: "/employee/my-work", icon: HiCheckCircle },
-  { name: "Timesheet", href: "/employee/timesheet", icon: HiClock },
-  { name: "Performance", href: "/employee/performance", icon: HiArrowTrendingUp },
-  { name: "Goals", href: "/employee/goals", icon: HiFlag },
-  { name: "Calendar", href: "/employee/calendar", icon: HiCalendar },
-  { name: "Appraisal", href: "/employee/appraisal", icon: HiDocumentText },
+  { name: "Dashboard", href: "/employee" },
+  { name: "My Tasks", href: "/employee/my-work" },
+  { name: "Timesheet", href: "/employee/timesheet" },
+  {
+    name: "Performance",
+    href: "/employee/performance",
+  },
+  { name: "Goals", href: "/employee/goals" },
+  { name: "Calendar", href: "/employee/calendar" },
+  { name: "Appraisal", href: "/employee/appraisal" },
 ];
 
 export default function EmployeeDashboardLayout({
@@ -35,15 +28,20 @@ export default function EmployeeDashboardLayout({
   children: ReactNode;
 }) {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      redirect("/auth/login");
+      router.push("/auth/login");
     }
-  }, [status]);
+  }, [status, router]);
 
   if (status === "loading") {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    );
   }
 
   if (!session?.user) {
@@ -65,19 +63,15 @@ export default function EmployeeDashboardLayout({
                 Dashboard
               </h1>
               <nav className="hidden md:flex gap-1 flex-1 overflow-x-auto">
-                {employeeNavigation.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-primary border-2 border-transparent hover:border-primary transition-all flex items-center gap-2 whitespace-nowrap"
-                    >
-                     
-                      <span className="hidden lg:inline">{item.name}</span>
-                    </Link>
-                  );
-                })}
+                {employeeNavigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary border-2 border-transparent hover:border-primary transition-all duration-200 whitespace-nowrap"
+                  >
+                    <span className="hidden lg:inline">{item.name}</span>
+                  </Link>
+                ))}
               </nav>
             </div>
             <div className="flex items-center gap-2 sm:gap-3">

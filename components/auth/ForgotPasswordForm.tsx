@@ -36,7 +36,7 @@ export function ForgotPasswordForm() {
       <div className="space-y-2">
         <Label htmlFor="email">Email address</Label>
         <Input id="email" type="email" placeholder="you@company.com" {...register("email")} />
-        {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
+        {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
       </div>
       <Button type="submit" className="w-full" disabled={isPending}>
         {isPending ? "Sending instructions..." : "Send reset link"}

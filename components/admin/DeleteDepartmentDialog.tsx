@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { HiTrash } from "react-icons/hi2";
 import { ImSpinner2 } from "react-icons/im";
 import { toast } from "sonner";
 
@@ -70,8 +69,7 @@ export function DeleteDepartmentDialog({ open, onOpenChange, department }: Delet
             disabled={loading}
           >
             {loading && <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />}
-            <HiTrash className="mr-2 h-4 w-4" />
-            Delete
+            🗑️ Delete
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -217,7 +217,11 @@ export default function MyWorkPage() {
         LOW: { label: "Low", className: "bg-primary/10 text-primary" },
         MEDIUM: { label: "Medium", className: "bg-primary/10 text-primary" },
         HIGH: { label: "High", className: "bg-primary/10 text-primary" },
-        URGENT: { label: "Urgent", className: "bg-destructive/20 text-destructive dark:bg-destructive/30" },
+        URGENT: {
+          label: "Urgent",
+          className:
+            "bg-destructive/20 text-destructive dark:bg-destructive/30",
+        },
       };
     return priorityConfig[priority] || priorityConfig["MEDIUM"];
   };
@@ -251,56 +255,58 @@ export default function MyWorkPage() {
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-3 mb-3">
-        
               <div>
-                <h1 className="text-3xl font-bold text-primary">
-                  My Tasks
-                </h1>
+                <h1 className="text-3xl font-bold text-primary">My Tasks</h1>
                 <p className="text-foreground">
                   Manage your assigned tasks and track progress
                 </p>
               </div>
             </div>
           </div>
-          <Button onClick={() => setCreateTaskDialog(true)} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300">
+          <Button
+            onClick={() => setCreateTaskDialog(true)}
+            className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+          >
             <HiPlus className="h-4 w-4 mr-2" />
             Create Task
           </Button>
         </div>
 
-      {/* Filters */}
-      <div className="flex items-center gap-4">
-        <div className="flex-1 relative">
-          <HiMagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            type="text"
-            placeholder="Search tasks..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10"
-          />
-        </div>
-        <div className="flex gap-2">
-          {(["all", "today", "week", "overdue", "blocked"] as FilterType[]).map(
-            (f) => (
-              <Button
+        {/* Filters */}
+        <div className="flex items-center gap-4">
+          <div className="flex-1 relative">
+            <HiMagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search tasks..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <div className="flex gap-2">
+            {(
+              ["all", "today", "week", "overdue", "blocked"] as FilterType[]
+            ).map((f) => (
+              <button
                 key={f}
-                variant={filter === f ? "default" : "outline"}
-                size="sm"
                 onClick={() => setFilter(f)}
+                className={`rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 border-2 ${
+                  filter === f
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "text-muted-foreground hover:text-primary border-border hover:border-primary"
+                }`}
               >
                 {f.charAt(0).toUpperCase() + f.slice(1)}
-              </Button>
-            )
-          )}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+          <Card className="rounded-xl border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
-            
               <div>
                 <p className="text-sm text-primary font-medium">In Progress</p>
                 <p className="text-2xl font-bold text-primary">
@@ -310,9 +316,8 @@ export default function MyWorkPage() {
             </div>
           </Card>
 
-          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+          <Card className="rounded-xl border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
-              
               <div>
                 <p className="text-sm text-primary font-medium">Total Tasks</p>
                 <p className="text-2xl font-bold text-primary">
@@ -322,9 +327,8 @@ export default function MyWorkPage() {
             </div>
           </Card>
 
-          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+          <Card className="rounded-xl border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
-            
               <div>
                 <p className="text-sm text-primary font-medium">Overdue</p>
                 <p className="text-2xl font-bold text-primary">
@@ -334,9 +338,8 @@ export default function MyWorkPage() {
             </div>
           </Card>
 
-          <Card className="border-2 border-border bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+          <Card className="rounded-xl border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 p-4">
             <div className="flex items-center gap-3">
-            
               <div>
                 <p className="text-sm text-primary font-medium">Completed</p>
                 <p className="text-2xl font-bold text-primary">
@@ -350,9 +353,7 @@ export default function MyWorkPage() {
         {/* Tasks List */}
         <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
           {loading ? (
-            <div className="flex items-center justify-center py-12">
-           
-            </div>
+            <div className="flex items-center justify-center py-12"></div>
           ) : filteredTasks.length === 0 ? (
             <div className="text-center py-12 text-primary">
               <p className="text-lg font-medium">No tasks found</p>
@@ -367,73 +368,76 @@ export default function MyWorkPage() {
                   key={task.id}
                   className="p-4 border-2 border-border rounded-xl bg-card/50 backdrop-blur-sm hover:border-primary hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                 >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="font-semibold text-lg">{task.title}</h3>
-                      {isOverdue(task.dueDate) && task.status !== "DONE" && (
-                        <Badge variant="secondary" className="text-xs">
-                          Overdue
-                        </Badge>
-                      )}
-                    </div>
-                    <p className="text-sm text-primary mb-2">
-                      {task.project?.name || "No project"}
-                    </p>
-                    {task.description && (
-                      <p className="text-sm text-muted-foreground mb-2">
-                        {task.description}
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="font-semibold text-lg">{task.title}</h3>
+                        {isOverdue(task.dueDate) && task.status !== "DONE" && (
+                          <Badge variant="secondary" className="text-xs">
+                            Overdue
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-sm text-primary mb-2">
+                        {task.project?.name || "No project"}
                       </p>
-                    )}
-                    <div className="flex items-center gap-4 text-sm text-primary">
-                      <span>Due: {formatDate(task.dueDate)}</span>
-                      <span>
-                        Time: {task.actualHours || 0}h /{" "}
-                        {task.estimatedHours || 0}h
-                      </span>
+                      {task.description && (
+                        <p className="text-sm text-muted-foreground mb-2">
+                          {task.description}
+                        </p>
+                      )}
+                      <div className="flex items-center gap-4 text-sm text-primary">
+                        <span>Due: {formatDate(task.dueDate)}</span>
+                        <span>
+                          Time: {task.actualHours || 0}h /{" "}
+                          {task.estimatedHours || 0}h
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2 items-end">
+                      <Badge variant={getStatusBadge(task.status).variant}>
+                        {getStatusBadge(task.status).label}
+                      </Badge>
+                      <Badge
+                        className={getPriorityBadge(task.priority).className}
+                      >
+                        {getPriorityBadge(task.priority).label}
+                      </Badge>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-2 items-end">
-                    <Badge variant={getStatusBadge(task.status).variant}>
-                      {getStatusBadge(task.status).label}
-                    </Badge>
-                    <Badge
-                      className={getPriorityBadge(task.priority).className}
-                    >
-                      {getPriorityBadge(task.priority).label}
-                    </Badge>
-                  </div>
-                </div>
 
-                <div className="flex items-center gap-2 pt-3 border-t">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() =>
-                      setLogTimeDialog({ open: true, taskId: task.id })
-                    }
-                    disabled={actionLoading === task.id}
-                  >
-                    {actionLoading === task.id ? (
-                      <ImSpinner2 className="h-3 w-3 animate-spin mr-1" />
-                    ) : null}
-                    Log Time
-                  </Button>
-                  <select
-                    className="px-3 py-1 border rounded text-sm"
-                    value={task.status}
-                    onChange={(e) =>
-                      handleStatusChange(task.id, e.target.value as TaskStatus)
-                    }
-                    disabled={actionLoading === task.id}
-                  >
-                    <option value="TODO">To Do</option>
-                    <option value="IN_PROGRESS">In Progress</option>
-                    <option value="IN_REVIEW">In Review</option>
-                    <option value="BLOCKED">Blocked</option>
-                    <option value="DONE">Done</option>
-                  </select>
-                </div>
+                  <div className="flex items-center gap-2 pt-3 border-t">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() =>
+                        setLogTimeDialog({ open: true, taskId: task.id })
+                      }
+                      disabled={actionLoading === task.id}
+                    >
+                      {actionLoading === task.id ? (
+                        <ImSpinner2 className="h-3 w-3 animate-spin mr-1" />
+                      ) : null}
+                      Log Time
+                    </Button>
+                    <select
+                      className="px-3 py-1 border-2 border-transparent hover:border-primary transition-colors rounded text-sm"
+                      value={task.status}
+                      onChange={(e) =>
+                        handleStatusChange(
+                          task.id,
+                          e.target.value as TaskStatus
+                        )
+                      }
+                      disabled={actionLoading === task.id}
+                    >
+                      <option value="TODO">To Do</option>
+                      <option value="IN_PROGRESS">In Progress</option>
+                      <option value="IN_REVIEW">In Review</option>
+                      <option value="BLOCKED">Blocked</option>
+                      <option value="DONE">Done</option>
+                    </select>
+                  </div>
                 </div>
               ))}
             </div>
@@ -444,59 +448,59 @@ export default function MyWorkPage() {
         {logTimeDialog.open && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
             <Card className="w-full max-w-md p-6 border-border bg-card shadow-2xl animate-in fade-in duration-200">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold">Log Time</h3>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setLogTimeDialog({ open: false, taskId: null });
-                  setHoursToLog("");
-                }}
-              >
-                <HiXMark className="h-4 w-4" />
-              </Button>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="hours">Hours worked</Label>
-                <Input
-                  id="hours"
-                  type="number"
-                  step="0.5"
-                  min="0"
-                  placeholder="Enter hours (e.g., 2.5)"
-                  value={hoursToLog}
-                  onChange={(e) => setHoursToLog(e.target.value)}
-                />
-              </div>
-
-              <div className="flex gap-2">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold">Log Time</h3>
                 <Button
-                  onClick={handleLogTime}
-                  disabled={
-                    !hoursToLog || actionLoading === logTimeDialog.taskId
-                  }
-                  className="flex-1"
-                >
-                  {actionLoading === logTimeDialog.taskId ? (
-                    <ImSpinner2 className="h-4 w-4 animate-spin mr-2" />
-                  ) : null}
-                  Log Time
-                </Button>
-                <Button
-                  variant="outline"
+                  variant="ghost"
+                  size="sm"
                   onClick={() => {
                     setLogTimeDialog({ open: false, taskId: null });
                     setHoursToLog("");
                   }}
-                  className="flex-1"
                 >
-                  Cancel
+                  <HiXMark className="h-4 w-4" />
                 </Button>
               </div>
-            </div>
+
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="hours">Hours worked</Label>
+                  <Input
+                    id="hours"
+                    type="number"
+                    step="0.5"
+                    min="0"
+                    placeholder="Enter hours (e.g., 2.5)"
+                    value={hoursToLog}
+                    onChange={(e) => setHoursToLog(e.target.value)}
+                  />
+                </div>
+
+                <div className="flex gap-2">
+                  <Button
+                    onClick={handleLogTime}
+                    disabled={
+                      !hoursToLog || actionLoading === logTimeDialog.taskId
+                    }
+                    className="flex-1"
+                  >
+                    {actionLoading === logTimeDialog.taskId ? (
+                      <ImSpinner2 className="h-4 w-4 animate-spin mr-2" />
+                    ) : null}
+                    Log Time
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setLogTimeDialog({ open: false, taskId: null });
+                      setHoursToLog("");
+                    }}
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </div>
             </Card>
           </div>
         )}
@@ -505,138 +509,11 @@ export default function MyWorkPage() {
         {createTaskDialog && (
           <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
             <Card className="w-full max-w-2xl p-6 max-h-[90vh] overflow-y-auto border-border bg-card shadow-2xl animate-in fade-in duration-200">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold">Create New Task</h3>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setCreateTaskDialog(false);
-                  setNewTask({
-                    title: "",
-                    description: "",
-                    priority: "MEDIUM",
-                    projectId: "",
-                    dueDate: "",
-                    estimatedHours: "",
-                  });
-                }}
-              >
-                <HiXMark className="h-4 w-4" />
-              </Button>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="task-title">Title *</Label>
-                <Input
-                  id="task-title"
-                  placeholder="Enter task title"
-                  value={newTask.title}
-                  onChange={(e) =>
-                    setNewTask({ ...newTask, title: e.target.value })
-                  }
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="task-description">Description</Label>
-                <textarea
-                  id="task-description"
-                  className="w-full p-2 border rounded min-h-24"
-                  placeholder="Enter task description"
-                  value={newTask.description}
-                  onChange={(e) =>
-                    setNewTask({ ...newTask, description: e.target.value })
-                  }
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="task-priority">Priority</Label>
-                  <select
-                    id="task-priority"
-                    className="w-full p-2 border rounded"
-                    value={newTask.priority}
-                    onChange={(e) =>
-                      setNewTask({
-                        ...newTask,
-                        priority: e.target.value as any,
-                      })
-                    }
-                  >
-                    <option value="LOW">Low</option>
-                    <option value="MEDIUM">Medium</option>
-                    <option value="HIGH">High</option>
-                    <option value="URGENT">Urgent</option>
-                  </select>
-                </div>
-
-                <div>
-                  <Label htmlFor="task-project">Project (Optional)</Label>
-                  <select
-                    id="task-project"
-                    className="w-full p-2 border rounded"
-                    value={newTask.projectId}
-                    onChange={(e) =>
-                      setNewTask({ ...newTask, projectId: e.target.value })
-                    }
-                  >
-                    <option value="">No Project</option>
-                    {availableProjects.map((project) => (
-                      <option key={project.id} value={project.id}>
-                        {project.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="task-duedate">Due Date (Optional)</Label>
-                  <Input
-                    id="task-duedate"
-                    type="date"
-                    value={newTask.dueDate}
-                    onChange={(e) =>
-                      setNewTask({ ...newTask, dueDate: e.target.value })
-                    }
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="task-estimated">
-                    Estimated Hours (Optional)
-                  </Label>
-                  <Input
-                    id="task-estimated"
-                    type="number"
-                    step="0.5"
-                    min="0"
-                    placeholder="e.g., 8"
-                    value={newTask.estimatedHours}
-                    onChange={(e) =>
-                      setNewTask({ ...newTask, estimatedHours: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="flex gap-2 pt-4">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold">Create New Task</h3>
                 <Button
-                  onClick={handleCreateTask}
-                  disabled={!newTask.title.trim() || actionLoading === "create"}
-                  className="flex-1"
-                >
-                  {actionLoading === "create" ? (
-                    <ImSpinner2 className="h-4 w-4 animate-spin mr-2" />
-                  ) : null}
-                  Create Task
-                </Button>
-                <Button
-                  variant="outline"
+                  variant="ghost"
+                  size="sm"
                   onClick={() => {
                     setCreateTaskDialog(false);
                     setNewTask({
@@ -648,11 +525,143 @@ export default function MyWorkPage() {
                       estimatedHours: "",
                     });
                   }}
-                  className="flex-1"
                 >
-                  Cancel
+                  <HiXMark className="h-4 w-4" />
                 </Button>
               </div>
+
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="task-title">Title *</Label>
+                  <Input
+                    id="task-title"
+                    placeholder="Enter task title"
+                    value={newTask.title}
+                    onChange={(e) =>
+                      setNewTask({ ...newTask, title: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="task-description">Description</Label>
+                  <textarea
+                    id="task-description"
+                    className="w-full p-2 border rounded min-h-24"
+                    placeholder="Enter task description"
+                    value={newTask.description}
+                    onChange={(e) =>
+                      setNewTask({ ...newTask, description: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="task-priority">Priority</Label>
+                    <select
+                      id="task-priority"
+                      className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded"
+                      value={newTask.priority}
+                      onChange={(e) =>
+                        setNewTask({
+                          ...newTask,
+                          priority: e.target.value as any,
+                        })
+                      }
+                    >
+                      <option value="LOW">Low</option>
+                      <option value="MEDIUM">Medium</option>
+                      <option value="HIGH">High</option>
+                      <option value="URGENT">Urgent</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="task-project">Project (Optional)</Label>
+                    <select
+                      id="task-project"
+                      className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded"
+                      value={newTask.projectId}
+                      onChange={(e) =>
+                        setNewTask({ ...newTask, projectId: e.target.value })
+                      }
+                    >
+                      <option value="">No Project</option>
+                      {availableProjects.map((project) => (
+                        <option key={project.id} value={project.id}>
+                          {project.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="task-duedate">Due Date (Optional)</Label>
+                    <Input
+                      id="task-duedate"
+                      type="date"
+                      value={newTask.dueDate}
+                      onChange={(e) =>
+                        setNewTask({ ...newTask, dueDate: e.target.value })
+                      }
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="task-estimated">
+                      Estimated Hours (Optional)
+                    </Label>
+                    <Input
+                      id="task-estimated"
+                      type="number"
+                      step="0.5"
+                      min="0"
+                      placeholder="e.g., 8"
+                      value={newTask.estimatedHours}
+                      onChange={(e) =>
+                        setNewTask({
+                          ...newTask,
+                          estimatedHours: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-2 pt-4">
+                  <Button
+                    onClick={handleCreateTask}
+                    disabled={
+                      !newTask.title.trim() || actionLoading === "create"
+                    }
+                    className="flex-1"
+                  >
+                    {actionLoading === "create" ? (
+                      <ImSpinner2 className="h-4 w-4 animate-spin mr-2" />
+                    ) : null}
+                    Create Task
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setCreateTaskDialog(false);
+                      setNewTask({
+                        title: "",
+                        description: "",
+                        priority: "MEDIUM",
+                        projectId: "",
+                        dueDate: "",
+                        estimatedHours: "",
+                      });
+                    }}
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+                </div>
               </div>
             </Card>
           </div>

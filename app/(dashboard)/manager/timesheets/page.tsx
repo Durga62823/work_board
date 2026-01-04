@@ -1,7 +1,6 @@
 import { requireManager } from "@/lib/guards";
 import { getPendingTimesheets } from "@/lib/manager-helpers";
 import { TimesheetApprovalCard } from "@/components/manager/TimesheetApprovalCard";
-import { HiSparkles } from "react-icons/hi2";
 
 export const metadata = {
   title: "Timesheets | Manager Dashboard",
@@ -16,9 +15,6 @@ export default async function ManagerTimesheetsPage() {
       <div className="mx-auto max-w-7xl space-y-6">
         {/* Header */}
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg">
-            <HiSparkles className="h-6 w-6 text-primary-foreground" />
-          </div>
           <div>
             <h1 className="text-3xl font-bold text-primary">
               Manager - Timesheets
@@ -30,7 +26,7 @@ export default async function ManagerTimesheetsPage() {
         </div>
 
         {/* Pending Timesheets */}
-        <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
+        <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
           <div className="border-b border-border bg-primary/10 px-6 py-4">
             <h3 className="text-lg font-semibold text-foreground">
               Pending Timesheets ({timesheets.length})
@@ -51,3 +47,4 @@ export default async function ManagerTimesheetsPage() {
     </div>
   );
 }
+

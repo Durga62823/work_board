@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
-import { Badge } from '@/components/ui/badge';
-import { MessageSquare, Plus, Trash2, TrendingUp, AlertCircle } from 'lucide-react';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Spinner } from "@/components/ui/spinner";
+import { Badge } from "@/components/ui/badge";
+import {
+  MessageSquare,
+  Plus,
+  Trash2,
+  TrendingUp,
+  AlertCircle,
+} from "lucide-react";
 
 interface TeamUpdate {
   memberName: string;
@@ -25,7 +31,7 @@ interface StandupSummary {
   keyAchievements: string[];
   blockers: Array<{
     blocker: string;
-    severity: 'high' | 'medium' | 'low';
+    severity: "high" | "medium" | "low";
     suggestion: string;
   }>;
   teamMorale: {
@@ -39,16 +45,19 @@ export function StandupSummary() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<StandupSummary | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [formData, setFormData] = useState<FormData>({
-    teamUpdates: [{ memberName: '', yesterday: '', today: '', blockers: '' }],
-    sprintGoals: ''
+    teamUpdates: [{ memberName: "", yesterday: "", today: "", blockers: "" }],
+    sprintGoals: "",
   });
 
   const addUpdate = () => {
     setFormData({
       ...formData,
-      teamUpdates: [...formData.teamUpdates, { memberName: '', yesterday: '', today: '', blockers: '' }]
+      teamUpdates: [
+        ...formData.teamUpdates,
+        { memberName: "", yesterday: "", today: "", blockers: "" },
+      ],
     });
   };
 
@@ -57,7 +66,11 @@ export function StandupSummary() {
     setFormData({ ...formData, teamUpdates: newUpdates });
   };
 
-  const updateTeamUpdate = (index: number, field: keyof TeamUpdate, value: string) => {
+  const updateTeamUpdate = (
+    index: number,
+    field: keyof TeamUpdate,
+    value: string
+  ) => {
     const newUpdates = [...formData.teamUpdates];
     newUpdates[index][field] = value;
     setFormData({ ...formData, teamUpdates: newUpdates });
@@ -69,21 +82,21 @@ export function StandupSummary() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/lead/standup-summary', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/lead/standup-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to generate standup summary');
+        throw new Error(data.error || "Failed to generate standup summary");
       }
 
       setResult(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -105,7 +118,9 @@ export function StandupSummary() {
           <Input
             id="sprintGoals"
             value={formData.sprintGoals}
-            onChange={(e) => setFormData({ ...formData, sprintGoals: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, sprintGoals: e.target.value })
+            }
             placeholder="e.g., Complete user authentication, Deploy API v2"
           />
         </div>
@@ -139,7 +154,9 @@ export function StandupSummary() {
                   <Label>Member Name</Label>
                   <Input
                     value={update.memberName}
-                    onChange={(e) => updateTeamUpdate(index, 'memberName', e.target.value)}
+                    onChange={(e) =>
+                      updateTeamUpdate(index, "memberName", e.target.value)
+                    }
                     placeholder="Team member name"
                   />
                 </div>
@@ -147,7 +164,9 @@ export function StandupSummary() {
                   <Label>What did you do yesterday?</Label>
                   <textarea
                     value={update.yesterday}
-                    onChange={(e) => updateTeamUpdate(index, 'yesterday', e.target.value)}
+                    onChange={(e) =>
+                      updateTeamUpdate(index, "yesterday", e.target.value)
+                    }
                     placeholder="Yesterday's accomplishments"
                     className="w-full p-2 border rounded-md min-h-20"
                   />
@@ -156,7 +175,9 @@ export function StandupSummary() {
                   <Label>What will you do today?</Label>
                   <textarea
                     value={update.today}
-                    onChange={(e) => updateTeamUpdate(index, 'today', e.target.value)}
+                    onChange={(e) =>
+                      updateTeamUpdate(index, "today", e.target.value)
+                    }
                     placeholder="Today's planned work"
                     className="w-full p-2 border rounded-md min-h-20"
                   />
@@ -165,7 +186,9 @@ export function StandupSummary() {
                   <Label>Any blockers?</Label>
                   <textarea
                     value={update.blockers}
-                    onChange={(e) => updateTeamUpdate(index, 'blockers', e.target.value)}
+                    onChange={(e) =>
+                      updateTeamUpdate(index, "blockers", e.target.value)
+                    }
                     placeholder="Blockers or challenges (optional)"
                     className="w-full p-2 border rounded-md min-h-16"
                   />
@@ -177,7 +200,12 @@ export function StandupSummary() {
 
         <Button
           onClick={handleAnalyze}
-          disabled={loading || formData.teamUpdates.some(u => !u.memberName || !u.yesterday || !u.today)}
+          disabled={
+            loading ||
+            formData.teamUpdates.some(
+              (u) => !u.memberName || !u.yesterday || !u.today
+            )
+          }
           className="w-full"
         >
           {loading ? (
@@ -217,11 +245,15 @@ export function StandupSummary() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-primary mb-1">Team Morale Score</p>
-                <p className="text-4xl font-bold text-primary">{result.teamMorale.score}/100</p>
+                <p className="text-4xl font-bold text-primary">
+                  {result.teamMorale.score}/100
+                </p>
               </div>
               <TrendingUp className="h-12 w-12 text-primary" />
             </div>
-            <p className="text-sm text-foreground mt-3">{result.teamMorale.assessment}</p>
+            <p className="text-sm text-foreground mt-3">
+              {result.teamMorale.assessment}
+            </p>
           </div>
 
           {/* Key Achievements */}
@@ -229,7 +261,10 @@ export function StandupSummary() {
             <h4 className="font-semibold mb-3">Key Achievements</h4>
             <div className="grid gap-2">
               {result.keyAchievements.map((achievement, index) => (
-                <div key={index} className="p-3 bg-primary/10 border border-primary/30 rounded-lg">
+                <div
+                  key={index}
+                  className="p-3 bg-primary/10 border border-primary/30 rounded-lg"
+                >
                   <p className="text-sm text-foreground">✓ {achievement}</p>
                 </div>
               ))}
@@ -248,21 +283,26 @@ export function StandupSummary() {
                   <div
                     key={index}
                     className={`p-4 rounded-lg border ${
-                      item.severity === 'high'
-                        ? 'bg-destructive/10 border-destructive/30'
-                        : item.severity === 'medium'
-                        ? 'bg-destructive/5 border-destructive/20'
-                        : 'bg-muted border-border'
+                      item.severity === "high"
+                        ? "bg-destructive/10 border-destructive/30"
+                        : item.severity === "medium"
+                        ? "bg-destructive/5 border-destructive/20"
+                        : "bg-muted border-border"
                     }`}
                   >
                     <div className="flex items-start justify-between mb-2">
                       <p className="font-medium text-sm">{item.blocker}</p>
-                      <Badge variant={item.severity === 'high' ? 'destructive' : 'secondary'}>
+                      <Badge
+                        variant={
+                          item.severity === "high" ? "destructive" : "secondary"
+                        }
+                      >
                         {item.severity.toUpperCase()}
                       </Badge>
                     </div>
                     <p className="text-sm text-primary">
-                      <span className="font-medium">Suggestion:</span> {item.suggestion}
+                      <span className="font-medium">Suggestion:</span>{" "}
+                      {item.suggestion}
                     </p>
                   </div>
                 ))}
@@ -275,8 +315,13 @@ export function StandupSummary() {
             <h4 className="font-semibold mb-3">Action Items</h4>
             <ul className="space-y-2">
               {result.actionItems.map((item, index) => (
-                <li key={index} className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg">
-                  <span className="text-primary font-bold mt-0.5">{index + 1}.</span>
+                <li
+                  key={index}
+                  className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg"
+                >
+                  <span className="text-primary font-bold mt-0.5">
+                    {index + 1}.
+                  </span>
                   <span className="text-sm text-foreground">{item}</span>
                 </li>
               ))}

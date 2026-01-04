@@ -6,19 +6,14 @@ import {
   getPendingPTORequests,
   getPendingTimesheets,
 } from "@/lib/manager-helpers";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
 import {
-  HiUserGroup,
-  HiClock,
-  HiDocumentText,
-  HiChartBarSquare,
-  HiSparkles,
-  HiArrowUpRight,
-  HiCalendar,
-  HiArrowTrendingUp,
-  HiExclamationCircle,
-} from "react-icons/hi2";
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Link from "next/link";
 
 export const metadata = {
   title: "Manager Dashboard | Make It Possible",
@@ -26,21 +21,24 @@ export const metadata = {
 
 export default async function ManagerPage() {
   const session = await auth();
-  
+
   if (!session?.user) {
     redirect("/auth/login");
   }
-  
-  const [directReports, pendingPTO, pendingTimesheets, teamCapacity] = await Promise.all([
-    getDirectReports(session.user.id),
-    getPendingPTORequests(session.user.id),
-    getPendingTimesheets(session.user.id),
-    getTeamCapacity(session.user.id),
-  ]);
 
-  const avgUtilization = teamCapacity.length > 0
-    ? teamCapacity.reduce((sum, m) => sum + m.utilization, 0) / teamCapacity.length
-    : 0;
+  const [directReports, pendingPTO, pendingTimesheets, teamCapacity] =
+    await Promise.all([
+      getDirectReports(session.user.id),
+      getPendingPTORequests(session.user.id),
+      getPendingTimesheets(session.user.id),
+      getTeamCapacity(session.user.id),
+    ]);
+
+  const avgUtilization =
+    teamCapacity.length > 0
+      ? teamCapacity.reduce((sum, m) => sum + m.utilization, 0) /
+        teamCapacity.length
+      : 0;
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -50,11 +48,12 @@ export default async function ManagerPage() {
           <div className="absolute inset-0 bg-grid-white/5" />
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary-foreground/10 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-foreground/10 rounded-full blur-3xl" />
-          
+
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-4">
-              <HiSparkles className="h-4 w-4 text-primary-foreground" />
-              <span className="text-sm font-medium text-primary-foreground">Manager Dashboard</span>
+              <span className="text-sm font-medium text-primary-foreground">
+                Manager Dashboard
+              </span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
               Welcome, {session.user.name || "Manager"}
@@ -67,73 +66,72 @@ export default async function ManagerPage() {
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm hover:border-primary hover:shadow-xl transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-primary">Team Members</CardTitle>
-              <div className="p-2 rounded-lg bg-primary/10">
-                <HiUserGroup className="h-4 w-4 text-primary" />
-              </div>
+              <CardTitle className="text-sm font-semibold text-primary">
+                Team Members
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-foreground">{directReports.length}</div>
+              <div className="text-3xl font-bold text-foreground">
+                {directReports.length}
+              </div>
               <Link
                 href="/manager/team"
                 className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
               >
                 View team
-                <HiArrowUpRight className="h-3 w-3" />
               </Link>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm hover:border-primary hover:shadow-xl transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-primary">Pending PTO</CardTitle>
-              <div className="p-2 rounded-lg bg-primary/10">
-                <HiCalendar className="h-4 w-4 text-primary" />
-              </div>
+              <CardTitle className="text-sm font-semibold text-primary">
+                Pending PTO
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-foreground">{pendingPTO.length}</div>
+              <div className="text-3xl font-bold text-foreground">
+                {pendingPTO.length}
+              </div>
               <Link
                 href="/manager/pto"
                 className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
               >
                 Review requests
-                <HiArrowUpRight className="h-3 w-3" />
               </Link>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm hover:border-primary hover:shadow-xl transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-primary">Pending Timesheets</CardTitle>
-              <div className="p-2 rounded-lg bg-primary/10">
-                <HiDocumentText className="h-4 w-4 text-primary" />
-              </div>
+              <CardTitle className="text-sm font-semibold text-primary">
+                Pending Timesheets
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-foreground">{pendingTimesheets.length}</div>
+              <div className="text-3xl font-bold text-foreground">
+                {pendingTimesheets.length}
+              </div>
               <Link
                 href="/manager/timesheets"
                 className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
               >
                 Review timesheets
-                <HiArrowUpRight className="h-3 w-3" />
               </Link>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm hover:border-primary hover:shadow-xl transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-primary">Team Utilization</CardTitle>
-              <div className="p-2 rounded-lg bg-primary/10">
-                <HiChartBarSquare className="h-4 w-4 text-primary" />
-              </div>
+              <CardTitle className="text-sm font-semibold text-primary">
+                Team Utilization
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-foreground">
@@ -144,7 +142,6 @@ export default async function ManagerPage() {
                 className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
               >
                 View capacity
-                <HiArrowUpRight className="h-3 w-3" />
               </Link>
             </CardContent>
           </Card>
@@ -153,19 +150,22 @@ export default async function ManagerPage() {
         {/* Pending Actions */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* Recent PTO Requests */}
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-xl font-bold text-foreground">Recent PTO Requests</CardTitle>
-                  <CardDescription className="mt-1">Pending time-off approvals</CardDescription>
+                  <CardTitle className="text-xl font-bold text-foreground">
+                    Recent PTO Requests
+                  </CardTitle>
+                  <CardDescription className="mt-1">
+                    Pending time-off approvals
+                  </CardDescription>
                 </div>
                 <Link
                   href="/manager/pto"
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
                 >
                   View all
-                  <HiArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
             </CardHeader>
@@ -174,7 +174,7 @@ export default async function ManagerPage() {
                 {pendingPTO.slice(0, 5).map((request) => (
                   <div
                     key={request.id}
-                    className="flex items-center justify-between rounded-xl border border-border bg-card p-4 hover:shadow-md transition-shadow"
+                    className="flex items-center justify-between rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card p-4 hover:shadow-md transition-shadow"
                   >
                     <div>
                       <div className="font-semibold text-foreground">
@@ -193,10 +193,9 @@ export default async function ManagerPage() {
                 ))}
                 {pendingPTO.length === 0 && (
                   <div className="py-12 text-center">
-                    <div className="inline-flex p-4 rounded-full bg-primary/10 mb-3">
-                      <HiCalendar className="h-6 w-6 text-primary" />
-                    </div>
-                    <p className="text-sm text-primary">No pending PTO requests</p>
+                    <p className="text-sm text-primary">
+                      No pending PTO requests
+                    </p>
                   </div>
                 )}
               </div>
@@ -204,19 +203,22 @@ export default async function ManagerPage() {
           </Card>
 
           {/* Recent Timesheets */}
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-xl font-bold text-foreground">Pending Timesheets</CardTitle>
-                  <CardDescription className="mt-1">Awaiting your review</CardDescription>
+                  <CardTitle className="text-xl font-bold text-foreground">
+                    Pending Timesheets
+                  </CardTitle>
+                  <CardDescription className="mt-1">
+                    Awaiting your review
+                  </CardDescription>
                 </div>
                 <Link
                   href="/manager/timesheets"
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
                 >
                   View all
-                  <HiArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
             </CardHeader>
@@ -225,14 +227,15 @@ export default async function ManagerPage() {
                 {pendingTimesheets.slice(0, 5).map((timesheet) => (
                   <div
                     key={timesheet.id}
-                    className="flex items-center justify-between rounded-xl border border-border bg-card p-4 hover:shadow-md transition-shadow"
+                    className="flex items-center justify-between rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card p-4 hover:shadow-md transition-shadow"
                   >
                     <div>
                       <div className="font-semibold text-foreground">
                         {timesheet.user.firstName} {timesheet.user.lastName}
                       </div>
                       <div className="text-sm text-primary mt-1">
-                        Week of {new Date(timesheet.weekStart).toLocaleDateString()}
+                        Week of{" "}
+                        {new Date(timesheet.weekStart).toLocaleDateString()}
                       </div>
                     </div>
                     <div className="text-lg font-bold text-foreground">
@@ -242,10 +245,9 @@ export default async function ManagerPage() {
                 ))}
                 {pendingTimesheets.length === 0 && (
                   <div className="py-12 text-center">
-                    <div className="inline-flex p-4 rounded-full bg-primary/10 mb-3">
-                      <HiDocumentText className="h-6 w-6 text-primary" />
-                    </div>
-                    <p className="text-sm text-primary">No pending timesheets</p>
+                    <p className="text-sm text-primary">
+                      No pending timesheets
+                    </p>
                   </div>
                 )}
               </div>
@@ -256,15 +258,19 @@ export default async function ManagerPage() {
         {/* Team Capacity Overview */}
         <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
           <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground">Team Capacity</CardTitle>
-            <CardDescription>Current workload and utilization metrics</CardDescription>
+            <CardTitle className="text-xl font-bold text-foreground">
+              Team Capacity
+            </CardTitle>
+            <CardDescription>
+              Current workload and utilization metrics
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {teamCapacity.map((member) => (
-                <div 
-                  key={member.user.id} 
-                  className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card hover:shadow-md transition-shadow"
+                <div
+                  key={member.user.id}
+                  className="flex items-center gap-4 p-4 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card hover:shadow-md transition-shadow"
                 >
                   <div className="flex-1">
                     <div className="font-semibold text-foreground">
@@ -286,7 +292,9 @@ export default async function ManagerPage() {
                             ? "bg-primary"
                             : "bg-primary"
                         }`}
-                        style={{ width: `${Math.min(member.utilization * 100, 100)}%` }}
+                        style={{
+                          width: `${Math.min(member.utilization * 100, 100)}%`,
+                        }}
                       />
                     </div>
                     <div className="flex items-center gap-1 min-w-[60px]">
@@ -294,7 +302,7 @@ export default async function ManagerPage() {
                         {(member.utilization * 100).toFixed(0)}%
                       </span>
                       {member.utilization > 1 && (
-                        <HiExclamationTriangle className="h-4 w-4 text-destructive" />
+                        <span className="text-destructive text-lg">⚠</span>
                       )}
                     </div>
                   </div>
@@ -302,10 +310,9 @@ export default async function ManagerPage() {
               ))}
               {teamCapacity.length === 0 && (
                 <div className="py-12 text-center">
-                  <div className="inline-flex p-4 rounded-full bg-primary/10 mb-3">
-                    <HiUserGroup className="h-6 w-6 text-primary" />
-                  </div>
-                  <p className="text-sm text-primary">No team members assigned</p>
+                  <p className="text-sm text-primary">
+                    No team members assigned
+                  </p>
                 </div>
               )}
             </div>
@@ -315,3 +322,4 @@ export default async function ManagerPage() {
     </div>
   );
 }
+

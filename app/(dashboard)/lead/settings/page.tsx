@@ -131,7 +131,7 @@ export default function LeadSettingsPage() {
         </div>
       </div>
 
-      <div className="bg-card rounded-lg shadow-sm border border-border">
+      <div className="bg-card rounded-xl shadow-sm border-2 border-transparent hover:border-primary transition-all duration-300>
         {/* Tabs */}
         <div className="border-b border-border">
           <div className="flex">
@@ -198,7 +198,7 @@ export default function LeadSettingsPage() {
                       id="timezone"
                       value={preferences.timezone}
                       onChange={(e) => setPreferences({ ...preferences, timezone: e.target.value })}
-                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border-2 border-transparent hover:border-primary transition-all duration-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       <option>UTC (GMT+0:00)</option>
                       <option>Eastern Time (GMT-5:00)</option>
@@ -214,7 +214,7 @@ export default function LeadSettingsPage() {
                       id="language"
                       value={preferences.language}
                       onChange={(e) => setPreferences({ ...preferences, language: e.target.value })}
-                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border-2 border-transparent hover:border-primary transition-all duration-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       <option>English</option>
                       <option>Spanish</option>
@@ -386,7 +386,7 @@ export default function LeadSettingsPage() {
               </div>
 
               <div className="pt-6 border-t">
-                <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-4">
+                <div className="bg-destructive/10 border border-destructive/30 rounded-xl p-4>
                   <h4 className="text-sm font-semibold text-destructive mb-2">Danger Zone</h4>
                   <p className="text-sm text-destructive/80 mb-3">
                     Once you delete your account, there is no going back. Please be certain.
@@ -403,3 +403,4 @@ export default function LeadSettingsPage() {
     </div>
   );
 }
+

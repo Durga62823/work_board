@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import { HiEnvelope, HiKey, HiBolt, HiShieldCheck } from "react-icons/hi2";
 import { FaGithub, FaSlack } from "react-icons/fa";
 
 import { auth } from "@/lib/auth";
@@ -8,12 +7,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-const integrationIcons: Record<string, any> = {
-  github: FaGithub,
-  slack: FaSlack,
-  email: HiEnvelope,
-  sso: HiKey,
-  ai: HiBolt,
+const integrationIcons: Record<string, string> = {
+  github: "💻",
+  slack: "💬",
+  email: "📬",
+  sso: 🔐",
+  ai: "⚡",
 };
 
 export default async function IntegrationsPage() {
@@ -50,10 +49,9 @@ export default async function IntegrationsPage() {
         {/* Header with gradient badge */}
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-            <HiShieldCheck className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl font-bold tracking-tight text-primary">
               Admin - Integrations
             </h2>
             <p className="text-muted-foreground mt-1">
@@ -64,16 +62,16 @@ export default async function IntegrationsPage() {
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {displayIntegrations.map((integration) => {
-            const Icon = integrationIcons[integration.type] || HiBolt;
+            const emoji = integrationIcons[integration.type] || "⚡";
             
             return (
               <Card 
                 key={integration.name}
-                className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <Icon className="h-8 w-8 text-primary" />
+                    <span className="text-2xl">{emoji}</span>
                     <Badge 
                       variant={integration.enabled ? "default" : "secondary"}
                       className={integration.enabled ? "bg-primary text-primary-foreground" : ""}

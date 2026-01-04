@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { HiExclamationTriangle, HiShieldCheck, HiCheckCircle } from "react-icons/hi2";
 
 export function AIRiskAssessment() {
   const [projectName, setProjectName] = useState("");
@@ -51,11 +50,11 @@ export function AIRiskAssessment() {
   const getRiskColor = (level: string) => {
     switch (level) {
       case "critical":
-        return "text-red-600 bg-red-100";
+        return "text-destructive bg-destructive/10";
       case "high":
-        return "text-orange-600 bg-orange-100";
+        return "text-accent-foreground bg-accent/10";
       case "medium":
-        return "text-yellow-600 bg-yellow-100";
+        return "text-muted-foreground bg-muted";
       case "low":
         return "text-primary bg-primary/10";
       default:
@@ -201,7 +200,6 @@ export function AIRiskAssessment() {
             result.resourceSuggestions.length > 0 && (
               <Card className="p-4">
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
-                  <HiCheckCircle className="h-5 w-5 text-primary" />
                   Resource Allocation Suggestions
                 </h4>
                 <div className="space-y-3">
@@ -219,7 +217,7 @@ export function AIRiskAssessment() {
                             {suggestion.hours}h
                           </span>
                         </div>
-                        <p className=\"text-sm text-foreground\">
+                        <p className="text-sm text-foreground">
                           {suggestion.reasoning}
                         </p>
                       </div>

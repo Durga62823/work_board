@@ -42,7 +42,7 @@ export default function RootLayout({
         var configs = {
           yellow: { 
             light: { primary: 'oklch(0.852 0.199 91.936)', primaryForeground: 'oklch(0.421 0.095 57.708)', ring: 'oklch(0.852 0.199 91.936)' }, 
-            dark: { primary: 'oklch(0.795 0.184 86.047)', primaryForeground: 'oklch(0.421 0.095 57.708)', ring: 'oklch(0.421 0.095 57.708)' } 
+            dark: { primary: 'oklch(0.795 0.184 86.047)', primaryForeground: 'oklch(0.98 0.02 86)', ring: 'oklch(0.421 0.095 57.708)' } 
           },
           blue: { 
             light: { primary: 'oklch(0.546 0.245 262)', primaryForeground: 'oklch(0.98 0.02 262)', ring: 'oklch(0.546 0.245 262)' }, 
@@ -62,7 +62,7 @@ export default function RootLayout({
           },
           orange: { 
             light: { primary: 'oklch(0.705 0.213 47.604)', primaryForeground: 'oklch(0.21 0.034 45)', ring: 'oklch(0.705 0.213 47.604)' }, 
-            dark: { primary: 'oklch(0.75 0.183 55.934)', primaryForeground: 'oklch(0.21 0.034 50)', ring: 'oklch(0.5 0.17 50)' } 
+            dark: { primary: 'oklch(0.75 0.183 55.934)', primaryForeground: 'oklch(0.98 0.02 50)', ring: 'oklch(0.5 0.17 50)' } 
           },
           pink: { 
             light: { primary: 'oklch(0.592 0.249 0)', primaryForeground: 'oklch(0.98 0.02 0)', ring: 'oklch(0.592 0.249 0)' }, 
@@ -70,7 +70,7 @@ export default function RootLayout({
           },
           cyan: { 
             light: { primary: 'oklch(0.628 0.185 205)', primaryForeground: 'oklch(0.15 0.03 205)', ring: 'oklch(0.628 0.185 205)' }, 
-            dark: { primary: 'oklch(0.628 0.185 205)', primaryForeground: 'oklch(0.15 0.03 205)', ring: 'oklch(0.54 0.17 205)' } 
+            dark: { primary: 'oklch(0.628 0.185 205)', primaryForeground: 'oklch(0.98 0.02 205)', ring: 'oklch(0.54 0.17 205)' } 
           }
         };
         

@@ -1,22 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { HiUserGroup, HiBuildingOffice2, HiBriefcase, HiPresentationChartBar, HiClipboardDocumentList, HiCog6Tooth, HiChartPie, HiCpuChip } from "react-icons/hi2";
 
-import { UserMenu, LogoutButton, ModeToggle, ColorPicker } from "@/components/common";
+import {
+  UserMenu,
+  LogoutButton,
+  ModeToggle,
+  ColorPicker,
+} from "@/components/common";
 import { MobileMenu } from "@/components/common/MobileMenu";
 import { useSession } from "next-auth/react";
 
 const adminNavigation = [
-  { name: "Dashboard", href: "/admin", icon: HiChartPie },
-  { name: "Users", href: "/admin/users", icon: HiUserGroup },
-  { name: "Departments", href: "/admin/departments", icon: HiBuildingOffice2 },
-  { name: "Projects", href: "/admin/projects", icon: HiBriefcase },
-  { name: "Analytics", href: "/admin/analytics", icon: HiPresentationChartBar },
-  { name: "AI Features", href: "/admin/ai-features", icon: HiCpuChip },
-  { name: "Audit Logs", href: "/admin/audit", icon: HiClipboardDocumentList },
+  { name: "Dashboard", href: "/admin" },
+  { name: "Users", href: "/admin/users" },
+  { name: "Departments", href: "/admin/departments" },
+  { name: "Projects", href: "/admin/projects" },
+  { name: "Analytics", href: "/admin/analytics" },
+  { name: "AI Features", href: "/admin/ai-features" },
+  { name: "Audit Logs", href: "/admin/audit" },
 ];
 
 export default function AdminLayout({
@@ -25,15 +29,20 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      redirect("/auth/login");
+      router.push("/auth/login");
     }
-  }, [status]);
+  }, [status, router]);
 
   if (status === "loading") {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    );
   }
 
   if (!session?.user) {
@@ -58,9 +67,8 @@ export default function AdminLayout({
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-primary border-2 border-transparent hover:border-primary transition-all flex items-center gap-2 whitespace-nowrap"
+                    className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary border-2 border-transparent hover:border-primary transition-all duration-200 whitespace-nowrap"
                   >
-                    <item.icon className="h-4 w-4" />
                     <span className="hidden lg:inline">{item.name}</span>
                   </Link>
                 ))}
@@ -76,9 +84,7 @@ export default function AdminLayout({
       </header>
 
       {/* Main content area */}
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
     </div>
   );
 }

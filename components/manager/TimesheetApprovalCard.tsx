@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { approveTimesheet, rejectTimesheet, requestTimesheetCorrection } from "@/app/actions/manager-approvals";
+import {
+  approveTimesheet,
+  rejectTimesheet,
+  requestTimesheetCorrection,
+} from "@/app/actions/manager-approvals";
 
 type TimesheetEntry = {
   id: string;
@@ -32,7 +36,9 @@ type Timesheet = {
 
 export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
   const [isProcessing, setIsProcessing] = useState(false);
-  const [showDialog, setShowDialog] = useState<"reject" | "correction" | null>(null);
+  const [showDialog, setShowDialog] = useState<"reject" | "correction" | null>(
+    null
+  );
   const [comments, setComments] = useState("");
   const [expanded, setExpanded] = useState(false);
 
@@ -110,7 +116,9 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
 
           {expanded && (
             <div className="mt-4 space-y-2">
-              <div className="text-sm font-medium text-foreground">Time Entries:</div>
+              <div className="text-sm font-medium text-foreground">
+                Time Entries:
+              </div>
               {timesheet.entries.map((entry) => (
                 <div
                   key={entry.id}
@@ -121,7 +129,8 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
                       {new Date(entry.date).toLocaleDateString()}
                     </div>
                     <div className="text-primary">
-                      {entry.project?.name || "No project"} • {entry.description || "No description"}
+                      {entry.project?.name || "No project"} •{" "}
+                      {entry.description || "No description"}
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -130,7 +139,9 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
                         Billable
                       </span>
                     )}
-                    <div className="font-medium text-foreground">{entry.hours}h</div>
+                    <div className="font-medium text-foreground">
+                      {entry.hours}h
+                    </div>
                   </div>
                 </div>
               ))}
@@ -173,7 +184,9 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
           <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-xl">
             <h3 className="text-lg font-semibold text-foreground">
-              {showDialog === "reject" ? "Reject Timesheet" : "Request Correction"}
+              {showDialog === "reject"
+                ? "Reject Timesheet"
+                : "Request Correction"}
             </h3>
             <p className="mt-1 text-sm text-primary">
               {showDialog === "reject"
@@ -199,7 +212,11 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
                 Cancel
               </button>
               <button
-                onClick={showDialog === "reject" ? handleReject : handleRequestCorrection}
+                onClick={
+                  showDialog === "reject"
+                    ? handleReject
+                    : handleRequestCorrection
+                }
                 disabled={isProcessing}
                 className={`rounded-lg px-4 py-2 text-sm font-medium text-primary-foreground ${
                   showDialog === "reject"

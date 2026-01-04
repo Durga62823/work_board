@@ -1,63 +1,78 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ListTodo, MessageSquare, BarChart, FileText, Sparkles, ArrowLeft } from 'lucide-react';
-import { TaskPrioritization } from '@/components/lead/TaskPrioritization';
-import { StandupSummary } from '@/components/lead/StandupSummary';
-import { SprintRetrospective } from '@/components/lead/SprintRetrospective';
-import { ReportGeneration } from '@/components/shared/ReportGeneration';
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  ListTodo,
+  MessageSquare,
+  BarChart,
+  FileText,
+  Sparkles,
+  ArrowLeft,
+} from "lucide-react";
+import { TaskPrioritization } from "@/components/lead/TaskPrioritization";
+import { StandupSummary } from "@/components/lead/StandupSummary";
+import { SprintRetrospective } from "@/components/lead/SprintRetrospective";
+import { ReportGeneration } from "@/components/shared/ReportGeneration";
 
-type AIFeature = 'task-prioritization' | 'standup-summary' | 'retrospective' | 'report-generation' | null;
+type AIFeature =
+  | "task-prioritization"
+  | "standup-summary"
+  | "retrospective"
+  | "report-generation"
+  | null;
 
 export default function LeadAIFeaturesPage() {
   const [activeFeature, setActiveFeature] = useState<AIFeature>(null);
 
   const features = [
     {
-      id: 'task-prioritization' as const,
-      title: 'Smart Task Prioritization',
-      description: 'Auto-prioritize backlog, suggest assignments, and identify dependencies',
+      id: "task-prioritization" as const,
+      title: "Smart Task Prioritization",
+      description:
+        "Auto-prioritize backlog, suggest assignments, and identify dependencies",
       icon: ListTodo,
-      gradient: 'from-purple-500 to-indigo-500',
-      bgGradient: 'from-purple-50 to-indigo-50',
+      gradient: "from-purple-500 to-indigo-500",
+      bgGradient: "from-purple-50 to-indigo-50",
     },
     {
-      id: 'standup-summary' as const,
-      title: 'Daily Standup Summary',
-      description: 'Analyze team updates, identify blockers, and generate action items',
+      id: "standup-summary" as const,
+      title: "Daily Standup Summary",
+      description:
+        "Analyze team updates, identify blockers, and generate action items",
       icon: MessageSquare,
-      gradient: 'from-teal-500 to-cyan-500',
-      bgGradient: 'from-teal-50 to-cyan-50',
+      gradient: "from-teal-500 to-cyan-500",
+      bgGradient: "from-teal-50 to-cyan-50",
     },
     {
-      id: 'retrospective' as const,
-      title: 'Sprint Retrospective Assistant',
-      description: 'Analyze sprint metrics and generate improvement suggestions',
+      id: "retrospective" as const,
+      title: "Sprint Retrospective Assistant",
+      description:
+        "Analyze sprint metrics and generate improvement suggestions",
       icon: BarChart,
-      gradient: 'from-indigo-500 to-purple-500',
-      bgGradient: 'from-indigo-50 to-purple-50',
+      gradient: "from-indigo-500 to-purple-500",
+      bgGradient: "from-indigo-50 to-purple-50",
     },
     {
-      id: 'report-generation' as const,
-      title: 'Smart Report Generator',
-      description: 'Generate comprehensive project reports with insights',
+      id: "report-generation" as const,
+      title: "Smart Report Generator",
+      description: "Generate comprehensive project reports with insights",
       icon: FileText,
-      gradient: 'from-orange-500 to-rose-500',
-      bgGradient: 'from-orange-50 to-rose-50',
+      gradient: "from-orange-500 to-rose-500",
+      bgGradient: "from-orange-50 to-rose-50",
     },
   ];
 
   const renderFeature = () => {
     switch (activeFeature) {
-      case 'task-prioritization':
+      case "task-prioritization":
         return <TaskPrioritization />;
-      case 'standup-summary':
+      case "standup-summary":
         return <StandupSummary />;
-      case 'retrospective':
+      case "retrospective":
         return <SprintRetrospective />;
-      case 'report-generation':
+      case "report-generation":
         return <ReportGeneration />;
       default:
         return null;
@@ -68,12 +83,10 @@ export default function LeadAIFeaturesPage() {
     <div className="min-h-screen bg-background p-6 max-w-7xl mx-auto">
       <div className="mb-8">
         <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
-          <Sparkles className="h-4 w-4" />
+          {/* <Sparkles className="h-4 w-4" /> */}
           <span className="text-sm font-semibold">AI Powered</span>
         </div>
-        <h1 className="text-3xl font-bold text-primary">
-          Lead AI Features
-        </h1>
+        <h1 className="text-3xl font-bold text-primary">Lead AI Features</h1>
         <p className="text-primary mt-2">
           AI-powered tools to enhance team leadership and sprint management
         </p>
@@ -86,7 +99,7 @@ export default function LeadAIFeaturesPage() {
             return (
               <Card
                 key={feature.id}
-                className="p-6 cursor-pointer border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border-2 hover:border-primary/50"
+                className="p-6 cursor-pointer border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
                 onClick={() => setActiveFeature(feature.id)}
               >
                 <div className="flex flex-col">
@@ -96,9 +109,11 @@ export default function LeadAIFeaturesPage() {
                   <h3 className="font-semibold text-lg mb-2 text-primary">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-primary mb-4 flex-grow">{feature.description}</p>
-                  <Button 
-                    className="w-full hover:shadow-lg hover:scale-105 transition-all duration-300" 
+                  <p className="text-sm text-primary mb-4 flex-grow">
+                    {feature.description}
+                  </p>
+                  <Button
+                    className="w-full hover:shadow-lg hover:scale-105 transition-all duration-300"
                     variant="default"
                   >
                     Open Feature
@@ -118,7 +133,7 @@ export default function LeadAIFeaturesPage() {
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Features
           </Button>
-          <Card className="p-6 border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="p-6 border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             {renderFeature()}
           </Card>
         </div>

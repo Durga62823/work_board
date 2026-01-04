@@ -124,7 +124,7 @@ export function ReportGeneration() {
             onChange={(e) =>
               setFormData({ ...formData, reportType: e.target.value })
             }
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded-md"
           >
             <option value="project-status">Project Status Report</option>
             <option value="team-performance">Team Performance Report</option>
@@ -217,8 +217,8 @@ export function ReportGeneration() {
 
       {/* Error Display */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-800">{error}</p>
+        <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+          <p className="text-destructive">{error}</p>
         </div>
       )}
 

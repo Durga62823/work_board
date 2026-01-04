@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { HiSparkles, HiArrowLeft, HiCalendar } from "react-icons/hi2";
 
 const sprintSchema = z.object({
   name: z.string().min(1, "Sprint name is required"),
@@ -27,7 +26,7 @@ type SprintFormData = z.infer<typeof sprintSchema>;
 export default function NewSprintPage() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  
+
   const {
     register,
     handleSubmit,
@@ -68,94 +67,89 @@ export default function NewSprintPage() {
               href="/lead/sprints"
               className="flex items-center gap-2 text-primary hover:text-primary font-medium transition-colors"
             >
-              <HiArrowLeft className="h-4 w-4" />
               Back to Sprints
             </Link>
           </div>
           <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
-            <HiSparkles className="h-4 w-4" />
             <span className="text-sm font-semibold">New Sprint</span>
           </div>
-          <h1 className="text-3xl font-bold text-primary">
-            Create New Sprint
-          </h1>
+          <h1 className="text-3xl font-bold text-primary">Create New Sprint</h1>
           <p className="text-primary mt-2">Set up a new sprint for your team</p>
         </div>
 
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl transition-all duration-300">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Sprint Name */}
-          <div className="space-y-2">
-            <Label htmlFor="name">Sprint Name *</Label>
-            <Input
-              id="name"
-              placeholder="e.g., Sprint 15 - Q1 2025"
-              {...register("name")}
-            />
-            {errors.name && (
-              <p className="text-sm text-primary">{errors.name.message}</p>
-            )}
-          </div>
-
-          {/* Sprint Goal */}
-          <div className="space-y-2">
-            <Label htmlFor="goal">Sprint Goal *</Label>
-            <textarea
-              id="goal"
-              rows={3}
-              className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-              placeholder="e.g., Complete user authentication and dashboard redesign"
-              {...register("goal")}
-            />
-            {errors.goal && (
-              <p className="text-sm text-primary">{errors.goal.message}</p>
-            )}
-          </div>
-
-          {/* Date Range */}
-          <div className="grid grid-cols-2 gap-4">
+            {/* Sprint Name */}
             <div className="space-y-2">
-              <Label htmlFor="startDate">Start Date *</Label>
+              <Label htmlFor="name">Sprint Name *</Label>
               <Input
-                id="startDate"
-                type="date"
-                {...register("startDate")}
+                id="name"
+                placeholder="e.g., Sprint 15 - Q1 2025"
+                {...register("name")}
               />
-              {errors.startDate && (
-                <p className="text-sm text-primary">{errors.startDate.message}</p>
+              {errors.name && (
+                <p className="text-sm text-primary">{errors.name.message}</p>
               )}
             </div>
 
+            {/* Sprint Goal */}
             <div className="space-y-2">
-              <Label htmlFor="endDate">End Date *</Label>
-              <Input
-                id="endDate"
-                type="date"
-                {...register("endDate")}
+              <Label htmlFor="goal">Sprint Goal *</Label>
+              <textarea
+                id="goal"
+                rows={3}
+                className="w-full px-3 py-2 border-2 border-transparent hover:border-primary transition-all duration-300 rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                placeholder="e.g., Complete user authentication and dashboard redesign"
+                {...register("goal")}
               />
-              {errors.endDate && (
-                <p className="text-sm text-primary">{errors.endDate.message}</p>
+              {errors.goal && (
+                <p className="text-sm text-primary">{errors.goal.message}</p>
               )}
             </div>
-          </div>
 
-          {/* Capacity */}
-          <div className="space-y-2">
-            <Label htmlFor="capacityHours">Team Capacity (hours) *</Label>
-            <Input
-              id="capacityHours"
-              type="number"
-              min="1"
-              placeholder="320"
-              {...register("capacityHours")}
-            />
-            {errors.capacityHours && (
-              <p className="text-sm text-primary">{errors.capacityHours.message}</p>
-            )}
-            <p className="text-sm text-primary">
-              Estimate total available hours for the sprint (e.g., 4 people × 40h/week × 2 weeks = 320h)
-            </p>
-          </div>
+            {/* Date Range */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="startDate">Start Date *</Label>
+                <Input id="startDate" type="date" {...register("startDate")} />
+                {errors.startDate && (
+                  <p className="text-sm text-primary">
+                    {errors.startDate.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="endDate">End Date *</Label>
+                <Input id="endDate" type="date" {...register("endDate")} />
+                {errors.endDate && (
+                  <p className="text-sm text-primary">
+                    {errors.endDate.message}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Capacity */}
+            <div className="space-y-2">
+              <Label htmlFor="capacityHours">Team Capacity (hours) *</Label>
+              <Input
+                id="capacityHours"
+                type="number"
+                min="1"
+                placeholder="320"
+                {...register("capacityHours")}
+              />
+              {errors.capacityHours && (
+                <p className="text-sm text-primary">
+                  {errors.capacityHours.message}
+                </p>
+              )}
+              <p className="text-sm text-primary">
+                Estimate total available hours for the sprint (e.g., 4 people ×
+                40h/week × 2 weeks = 320h)
+              </p>
+            </div>
 
             {/* Actions */}
             <div className="flex items-center gap-3 pt-4 border-t border-border">
@@ -180,11 +174,8 @@ export default function NewSprintPage() {
         </div>
 
         {/* Tips */}
-        <div className="mt-6 border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-5 border-2 border-primary/20 hover:shadow-xl transition-all duration-300">
+        <div className="mt-6 border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-5 hover:border-primary hover:shadow-xl transition-all duration-300">
           <div className="flex items-center gap-2 mb-3">
-            <div className="p-2 bg-primary/10 rounded-full">
-              <HiCalendar className="h-5 w-5 text-primary" />
-            </div>
             <h3 className="font-semibold text-foreground">
               Sprint Planning Tips
             </h3>
@@ -192,15 +183,21 @@ export default function NewSprintPage() {
           <ul className="text-sm text-primary space-y-2">
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">•</span>
-              <span>Keep sprints between 1-4 weeks (2 weeks is most common)</span>
+              <span>
+                Keep sprints between 1-4 weeks (2 weeks is most common)
+              </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">•</span>
-              <span>Set a clear, achievable goal that the team can rally around</span>
+              <span>
+                Set a clear, achievable goal that the team can rally around
+              </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">•</span>
-              <span>Account for holidays, meetings, and buffer time in capacity</span>
+              <span>
+                Account for holidays, meetings, and buffer time in capacity
+              </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">•</span>
@@ -212,3 +209,4 @@ export default function NewSprintPage() {
     </div>
   );
 }
+

@@ -5,7 +5,6 @@ import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
 
 import { prisma } from "@/lib/prisma";
-import { sendVerificationEmail, sendWelcomeEmail } from "@/lib/email-smtp";
 import { logger } from "@/lib/logger";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { signIn } from "@/lib/auth";
@@ -64,6 +63,7 @@ export async function registerUser(payload: unknown): Promise<ActionResponse> {
     },
   });
 
+  const { sendVerificationEmail } = await import("@/lib/email-smtp");
   await sendVerificationEmail({
     email: sanitizedEmail,
     token,
@@ -153,6 +153,7 @@ export async function resendVerificationEmail(
     },
   });
 
+  const { sendVerificationEmail } = await import("@/lib/email-smtp");
   await sendVerificationEmail({
     email: sanitizedEmail,
     token,
@@ -186,6 +187,8 @@ export async function verifyEmail(token: string): Promise<ActionResponse> {
   await prisma.verificationToken.deleteMany({
     where: { identifier: storedToken.identifier },
   });
+  
+  const { sendWelcomeEmail } = await import("@/lib/email-smtp");
   await sendWelcomeEmail(user.email, user.firstName);
   return { success: true, message: "Email verified" };
 }

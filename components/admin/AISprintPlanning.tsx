@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { HiCalendar, HiUserGroup, HiFlag, HiExclamationCircle } from "react-icons/hi2";
 
 export function AISprintPlanning() {
   const [sprintDuration, setSprintDuration] = useState("14");
@@ -67,7 +66,6 @@ export function AISprintPlanning() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <HiCalendar className="h-6 w-6 text-primary" />
         <h3 className="text-lg font-semibold">Smart Sprint Planning</h3>
       </div>
 
@@ -89,7 +87,6 @@ export function AISprintPlanning() {
       <Card className="p-4">
         <div className="flex items-center justify-between mb-3">
           <h5 className="font-semibold flex items-center gap-2">
-            <HiUserGroup className="h-4 w-4" />
             Team Members
           </h5>
           <Button
@@ -201,7 +198,7 @@ export function AISprintPlanning() {
         <div className="space-y-4 mt-6">
           <Card className="p-4 bg-primary/10 border-primary/20">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
-              <HiFlag className="h-5 w-5 text-primary" />
+              <span className="text-lg"></span>
               Sprint Goal
             </h4>
             <p className="text-sm bg-card p-3 rounded">{result.sprintGoal}</p>
@@ -258,15 +255,15 @@ export function AISprintPlanning() {
           </Card>
 
           {result.risks && result.risks.length > 0 && (
-            <Card className="p-4 bg-red-50">
-              <h5 className="font-semibold mb-2 flex items-center gap-2 text-red-700">
-                <HiExclamationCircle className="h-4 w-4" />
+            <Card className="p-4 bg-destructive/10">
+              <h5 className="font-semibold mb-2 flex items-center gap-2 text-destructive">
+                <span>⚠️</span>
                 Identified Risks
               </h5>
               <ul className="space-y-1">
                 {result.risks.map((risk: string, idx: number) => (
                   <li key={idx} className="text-sm flex items-start gap-2">
-                    <span className="text-red-600 mt-1">!</span>
+                    <span className="text-destructive mt-1">!</span>
                     <span>{risk}</span>
                   </li>
                 ))}

@@ -2,7 +2,6 @@ import { requireLead } from "@/lib/guards";
 import { prisma } from "@/lib/prisma";
 import { getTeamTechnicalMetrics, getTaskMetrics } from "@/lib/lead-helpers";
 import { subDays } from "date-fns";
-import { HiSparkles } from "react-icons/hi2";
 
 export default async function LeadMetricsPage() {
   const session = await requireLead();
@@ -21,8 +20,12 @@ export default async function LeadMetricsPage() {
       <div className="min-h-screen bg-background">
         <div className="text-center py-12">
           <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto">
-            <h2 className="text-xl font-semibold text-foreground mb-2">No Team Assigned</h2>
-            <p className="text-primary">Please contact your administrator to assign you to a team.</p>
+            <h2 className="text-xl font-semibold text-foreground mb-2">
+              No Team Assigned
+            </h2>
+            <p className="text-primary">
+              Please contact your administrator to assign you to a team.
+            </p>
           </div>
         </div>
       </div>
@@ -45,7 +48,11 @@ export default async function LeadMetricsPage() {
   const getMetricValue = (metrics: any[], type: string) => {
     if (!metrics || !Array.isArray(metrics)) return "-";
     const metric = metrics.find((m) => m.metricType === type);
-    return metric ? `${metric.value}${metric.unit === "hours" ? "h" : metric.unit === "minutes" ? "m" : ""}` : "-";
+    return metric
+      ? `${metric.value}${
+          metric.unit === "hours" ? "h" : metric.unit === "minutes" ? "m" : ""
+        }`
+      : "-";
   };
 
   const getMetricNumber = (metrics: any[], type: string) => {
@@ -58,18 +65,17 @@ export default async function LeadMetricsPage() {
     <div className="min-h-screen bg-background space-y-6">
       <div>
         <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
-          <HiSparkles className="h-4 w-4" />
           <span className="text-sm font-semibold">Team Metrics</span>
         </div>
-        <h1 className="text-3xl font-bold text-primary">
-          Technical Metrics
-        </h1>
-        <p className="text-primary mt-2">Monitor code quality and team performance</p>
+        <h1 className="text-3xl font-bold text-primary">Technical Metrics</h1>
+        <p className="text-primary mt-2">
+          Monitor code quality and team performance
+        </p>
       </div>
 
       {/* Key Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-primary">PR Merge Time</p>
             <span className="text-xs text-primary font-medium">Weekly Avg</span>
@@ -77,12 +83,10 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold text-primary">
             {getMetricValue(weeklyMetrics, "pr_merge_time")}
           </p>
-          <p className="text-xs text-primary mt-2">
-            Target: &lt;24h
-          </p>
+          <p className="text-xs text-primary mt-2">Target: &lt;24h</p>
         </div>
 
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-primary">Code Review Time</p>
             <span className="text-xs text-primary font-medium">Weekly Avg</span>
@@ -90,12 +94,10 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold text-primary">
             {getMetricValue(weeklyMetrics, "code_review_time")}
           </p>
-          <p className="text-xs text-primary mt-2">
-            Target: &lt;4h
-          </p>
+          <p className="text-xs text-primary mt-2">Target: &lt;4h</p>
         </div>
 
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-primary">Build Time</p>
             <span className="text-xs text-primary font-medium">Latest</span>
@@ -103,12 +105,10 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold text-primary">
             {getMetricValue(weeklyMetrics, "build_time")}
           </p>
-          <p className="text-xs text-primary mt-2">
-            Target: &lt;5m
-          </p>
+          <p className="text-xs text-primary mt-2">Target: &lt;5m</p>
         </div>
 
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-primary">Deployment Freq</p>
             <span className="text-xs text-primary font-medium">This Week</span>
@@ -116,56 +116,64 @@ export default async function LeadMetricsPage() {
           <p className="text-3xl font-bold text-primary">
             {getMetricNumber(weeklyMetrics, "deployment_frequency")}
           </p>
-          <p className="text-xs text-primary mt-2">
-            deploys/week
-          </p>
+          <p className="text-xs text-primary mt-2">deploys/week</p>
         </div>
       </div>
 
       {/* Task Cycle Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
-          <p className="text-sm font-medium text-primary mb-2">Average Cycle Time</p>
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+          <p className="text-sm font-medium text-primary mb-2">
+            Average Cycle Time
+          </p>
           <p className="text-3xl font-bold text-primary">
-            {taskMetrics.avgCycleTime ? `${taskMetrics.avgCycleTime.toFixed(1)}d` : "-"}
+            {taskMetrics.avgCycleTime
+              ? `${taskMetrics.avgCycleTime.toFixed(1)}d`
+              : "-"}
           </p>
           <p className="text-xs text-primary mt-2">
             Time from start to completion
           </p>
         </div>
 
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
-          <p className="text-sm font-medium text-primary mb-2">Average Lead Time</p>
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+          <p className="text-sm font-medium text-primary mb-2">
+            Average Lead Time
+          </p>
           <p className="text-3xl font-bold text-primary">
-            {taskMetrics.avgLeadTime ? `${taskMetrics.avgLeadTime.toFixed(1)}d` : "-"}
+            {taskMetrics.avgLeadTime
+              ? `${taskMetrics.avgLeadTime.toFixed(1)}d`
+              : "-"}
           </p>
           <p className="text-xs text-primary mt-2">
             Time from creation to completion
           </p>
         </div>
 
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
-          <p className="text-sm font-medium text-primary mb-2">Tasks Completed</p>
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+          <p className="text-sm font-medium text-primary mb-2">
+            Tasks Completed
+          </p>
           <p className="text-3xl font-bold text-primary">
             {taskMetrics.completedTasks || 0}
           </p>
-          <p className="text-xs text-primary mt-2">
-            This sprint
-          </p>
+          <p className="text-xs text-primary mt-2">This sprint</p>
         </div>
       </div>
 
       {/* Quality Metrics */}
-      <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
+      <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl hover:border-primary hover:shadow-xl transition-all duration-300">
         <div className="p-6">
           <h2 className="text-xl font-bold text-primary mb-4">
             Quality Metrics
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-primary/10 rounded-lg p-4 border border-border">
+            <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-primary">Bug Count</p>
-                <span className="text-xs text-primary font-medium">This Sprint</span>
+                <span className="text-xs text-primary font-medium">
+                  This Sprint
+                </span>
               </div>
               <p className="text-2xl font-bold text-primary">
                 {getMetricNumber(weeklyMetrics, "bug_count")}
@@ -175,42 +183,44 @@ export default async function LeadMetricsPage() {
               </div>
             </div>
 
-            <div className="bg-primary/10 rounded-lg p-4 border border-border">
+            <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-primary">Test Coverage</p>
-                <span className="text-xs text-primary font-medium">Current</span>
+                <p className="text-sm font-medium text-primary">
+                  Test Coverage
+                </p>
+                <span className="text-xs text-primary font-medium">
+                  Current
+                </span>
               </div>
               <p className="text-2xl font-bold text-primary">
                 {getMetricNumber(weeklyMetrics, "test_coverage")}%
               </p>
-              <div className="mt-2 text-xs text-primary">
-                Target: &gt;80%
-              </div>
+              <div className="mt-2 text-xs text-primary">Target: &gt;80%</div>
             </div>
 
-            <div className="bg-primary/10 rounded-lg p-4 border border-border">
+            <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-primary">API Response Time</p>
-                <span className="text-xs text-primary font-medium">Avg P95</span>
+                <p className="text-sm font-medium text-primary">
+                  API Response Time
+                </p>
+                <span className="text-xs text-primary font-medium">
+                  Avg P95
+                </span>
               </div>
               <p className="text-2xl font-bold text-primary">
                 {getMetricValue(weeklyMetrics, "api_response_time")}
               </p>
-              <div className="mt-2 text-xs text-primary">
-                Target: &lt;200ms
-              </div>
+              <div className="mt-2 text-xs text-primary">Target: &lt;200ms</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Trend Analysis Placeholder */}
-      <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
+      <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl hover:border-primary hover:shadow-xl transition-all duration-300">
         <div className="p-6">
-          <h2 className="text-xl font-bold text-primary mb-4">
-            30-Day Trend
-          </h2>
-          <div className="h-64 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-lg bg-primary/10">
+          <h2 className="text-xl font-bold text-primary mb-4">30-Day Trend</h2>
+          <div className="h-64 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-xl bg-primary/10">
             <div className="text-center text-primary">
               <svg
                 className="w-12 h-12 mx-auto mb-2 text-primary"
@@ -226,33 +236,41 @@ export default async function LeadMetricsPage() {
                 />
               </svg>
               <p className="text-sm font-medium">Trend Chart Visualization</p>
-              <p className="text-xs mt-1">Chart library integration coming soon</p>
+              <p className="text-xs mt-1">
+                Chart library integration coming soon
+              </p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Monthly Summary */}
-      <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
+      <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl hover:border-primary hover:shadow-xl transition-all duration-300">
         <div className="p-6">
           <h2 className="text-xl font-bold text-primary mb-4">
             Monthly Summary
           </h2>
           <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 bg-primary/10 rounded-lg border border-border hover:shadow-md transition-shadow">
-              <span className="text-sm font-medium text-primary">Total PRs Merged</span>
+            <div className="flex items-center justify-between p-3 bg-primary/10 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300">
+              <span className="text-sm font-medium text-primary">
+                Total PRs Merged
+              </span>
               <span className="text-lg font-bold text-primary">
                 {getMetricNumber(monthlyMetrics, "pr_merged_count") || "-"}
               </span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-primary/10 rounded-lg border border-border hover:shadow-md transition-shadow">
-              <span className="text-sm font-medium text-primary">Total Deployments</span>
+            <div className="flex items-center justify-between p-3 bg-primary/10 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300">
+              <span className="text-sm font-medium text-primary">
+                Total Deployments
+              </span>
               <span className="text-lg font-bold text-primary">
                 {getMetricNumber(monthlyMetrics, "deployment_frequency") || "-"}
               </span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-primary/10 rounded-lg border border-border hover:shadow-md transition-shadow">
-              <span className="text-sm font-medium text-primary">Total Bugs Fixed</span>
+            <div className="flex items-center justify-between p-3 bg-primary/10 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300">
+              <span className="text-sm font-medium text-primary">
+                Total Bugs Fixed
+              </span>
               <span className="text-lg font-bold text-primary">
                 {getMetricNumber(monthlyMetrics, "bugs_fixed") || "-"}
               </span>
@@ -263,3 +281,5 @@ export default async function LeadMetricsPage() {
     </div>
   );
 }
+
+

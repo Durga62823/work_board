@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import { HiShieldCheck, HiUserPlus } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { CreateUserForm } from "@/components/admin/CreateUserForm";
@@ -17,7 +16,6 @@ export default async function CreateUserPage() {
         {/* Header with gradient badge */}
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-            <HiShieldCheck className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-primary">
@@ -30,10 +28,11 @@ export default async function CreateUserPage() {
         </div>
 
         {/* Form Card with Glassmorphism */}
-        <div className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-6">
+        <div className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl p-6>
           <CreateUserForm />
         </div>
       </div>
     </div>
   );
 }
+

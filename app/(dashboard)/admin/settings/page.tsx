@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import { HiCog6Tooth, HiClock, HiCalendar, HiGlobeAlt, HiChatBubbleLeftRight, HiShieldCheck } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getOrganizationSettings } from "@/app/actions/admin-settings";
@@ -25,7 +24,6 @@ export default async function SettingsPage() {
         {/* Header with gradient badge */}
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-            <Shield className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-primary">
@@ -38,10 +36,9 @@ export default async function SettingsPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Globe className="h-5 w-5 text-primary" />
                 Time & Location
               </CardTitle>
               <CardDescription>
@@ -51,29 +48,29 @@ export default async function SettingsPage() {
             <CardContent className="space-y-3">
               <div className="flex justify-between">
                 <span className="text-sm font-medium text-muted-foreground">Timezone</span>
-                <Badge variant="outline" className="border-primary/20 text-primary">
+                <Badge variant="outline" className="border-primary text-primary">
                   {settings.timeZone}
                 </Badge>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm font-medium text-muted-foreground">Work Week</span>
-                <Badge variant="outline" className="border-primary/20 text-primary">
+                <Badge variant="outline" className="border-primary text-primary">
                   {settings.workWeek}
                 </Badge>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm font-medium text-muted-foreground">Working Hours</span>
-                <Badge variant="outline" className="border-primary/20 text-primary">
+                <Badge variant="outline" className="border-primary text-primary">
                   {settings.workHoursStart} - {settings.workHoursEnd}
                 </Badge>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <HiChatBubbleLeftRight className="h-5 w-5" />
+                <span></span>
                 AI Features
               </CardTitle>
               <CardDescription>
@@ -92,17 +89,17 @@ export default async function SettingsPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-sm font-medium text-muted-foreground">AI Threshold</span>
-                <Badge variant="outline" className="border-primary/20 text-primary">
+                <Badge variant="outline" className="border-primary text-primary">
                   {(settings.aiThreshold * 100).toFixed(0)}%
                 </Badge>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-primary" />
+                <span></span>
                 Holidays
               </CardTitle>
               <CardDescription>
@@ -116,10 +113,10 @@ export default async function SettingsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Settings className="h-5 w-5 text-primary" />
+                <span></span>
                 System Info
               </CardTitle>
               <CardDescription>

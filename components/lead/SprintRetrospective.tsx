@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
-import { Badge } from '@/components/ui/badge';
-import { RefreshCw, TrendingUp, TrendingDown, Lightbulb } from 'lucide-react';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Spinner } from "@/components/ui/spinner";
+import { Badge } from "@/components/ui/badge";
+import { RefreshCw, TrendingUp, TrendingDown, Lightbulb } from "lucide-react";
 
 interface FormData {
   sprintNumber: string;
@@ -23,13 +23,13 @@ interface RetrospectiveResult {
   needsImprovement: string[];
   actionItems: Array<{
     action: string;
-    priority: 'high' | 'medium' | 'low';
+    priority: "high" | "medium" | "low";
     owner: string;
   }>;
   metrics: Array<{
     name: string;
     value: string;
-    trend: 'up' | 'down' | 'stable';
+    trend: "up" | "down" | "stable";
   }>;
   recommendations: string[];
 }
@@ -38,14 +38,14 @@ export function SprintRetrospective() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<RetrospectiveResult | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [formData, setFormData] = useState<FormData>({
-    sprintNumber: '',
-    sprintGoals: '',
-    completedTasks: '',
-    incompleteTasks: '',
-    teamFeedback: '',
-    metrics: ''
+    sprintNumber: "",
+    sprintGoals: "",
+    completedTasks: "",
+    incompleteTasks: "",
+    teamFeedback: "",
+    metrics: "",
   });
 
   const handleGenerate = async () => {
@@ -54,21 +54,21 @@ export function SprintRetrospective() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/lead/retrospective', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/lead/retrospective", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to generate retrospective');
+        throw new Error(data.error || "Failed to generate retrospective");
       }
 
       setResult(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -79,7 +79,8 @@ export function SprintRetrospective() {
       <div>
         <h2 className="text-2xl font-bold mb-4">Sprint Retrospective</h2>
         <p className="text-primary mb-6">
-          AI-powered sprint retrospective analysis and improvement recommendations
+          AI-powered sprint retrospective analysis and improvement
+          recommendations
         </p>
       </div>
 
@@ -91,7 +92,9 @@ export function SprintRetrospective() {
             <Input
               id="sprintNumber"
               value={formData.sprintNumber}
-              onChange={(e) => setFormData({ ...formData, sprintNumber: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, sprintNumber: e.target.value })
+              }
               placeholder="e.g., Sprint 23"
             />
           </div>
@@ -100,7 +103,9 @@ export function SprintRetrospective() {
             <Input
               id="sprintGoals"
               value={formData.sprintGoals}
-              onChange={(e) => setFormData({ ...formData, sprintGoals: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, sprintGoals: e.target.value })
+              }
               placeholder="e.g., Complete user dashboard"
             />
           </div>
@@ -111,7 +116,9 @@ export function SprintRetrospective() {
           <textarea
             id="completedTasks"
             value={formData.completedTasks}
-            onChange={(e) => setFormData({ ...formData, completedTasks: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, completedTasks: e.target.value })
+            }
             placeholder="List all completed tasks and features"
             className="w-full p-2 border rounded-md min-h-24"
           />
@@ -122,7 +129,9 @@ export function SprintRetrospective() {
           <textarea
             id="incompleteTasks"
             value={formData.incompleteTasks}
-            onChange={(e) => setFormData({ ...formData, incompleteTasks: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, incompleteTasks: e.target.value })
+            }
             placeholder="List incomplete or carried-over tasks"
             className="w-full p-2 border rounded-md min-h-24"
           />
@@ -133,7 +142,9 @@ export function SprintRetrospective() {
           <textarea
             id="teamFeedback"
             value={formData.teamFeedback}
-            onChange={(e) => setFormData({ ...formData, teamFeedback: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, teamFeedback: e.target.value })
+            }
             placeholder="What went well? What needs improvement? Any blockers or challenges?"
             className="w-full p-2 border rounded-md min-h-28"
           />
@@ -144,7 +155,9 @@ export function SprintRetrospective() {
           <textarea
             id="metrics"
             value={formData.metrics}
-            onChange={(e) => setFormData({ ...formData, metrics: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, metrics: e.target.value })
+            }
             placeholder="e.g., Velocity: 45 points, Bugs: 3, Code reviews: 12"
             className="w-full p-2 border rounded-md min-h-20"
           />
@@ -196,10 +209,16 @@ export function SprintRetrospective() {
                   <div key={index} className="p-4 bg-card border rounded-lg">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm text-primary">{metric.name}</p>
-                      {metric.trend === 'up' && <TrendingUp className="h-4 w-4 text-primary" />}
-                      {metric.trend === 'down' && <TrendingDown className="h-4 w-4 text-destructive" />}
+                      {metric.trend === "up" && (
+                        <TrendingUp className="h-4 w-4 text-primary" />
+                      )}
+                      {metric.trend === "down" && (
+                        <TrendingDown className="h-4 w-4 text-destructive" />
+                      )}
                     </div>
-                    <p className="text-2xl font-bold text-primary">{metric.value}</p>
+                    <p className="text-2xl font-bold text-primary">
+                      {metric.value}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -214,7 +233,10 @@ export function SprintRetrospective() {
             </h4>
             <div className="space-y-2">
               {result.wentWell.map((item, index) => (
-                <div key={index} className="p-3 bg-primary/10 border border-primary/30 rounded-lg">
+                <div
+                  key={index}
+                  className="p-3 bg-primary/10 border border-primary/30 rounded-lg"
+                >
                   <p className="text-sm text-foreground">✓ {item}</p>
                 </div>
               ))}
@@ -229,7 +251,10 @@ export function SprintRetrospective() {
             </h4>
             <div className="space-y-2">
               {result.needsImprovement.map((item, index) => (
-                <div key={index} className="p-3 bg-destructive/10 border border-destructive/30 rounded-lg">
+                <div
+                  key={index}
+                  className="p-3 bg-destructive/10 border border-destructive/30 rounded-lg"
+                >
                   <p className="text-sm text-foreground">⚠ {item}</p>
                 </div>
               ))}
@@ -246,11 +271,11 @@ export function SprintRetrospective() {
                     <p className="font-medium text-sm flex-1">{item.action}</p>
                     <Badge
                       variant={
-                        item.priority === 'high'
-                          ? 'destructive'
-                          : item.priority === 'medium'
-                          ? 'secondary'
-                          : 'outline'
+                        item.priority === "high"
+                          ? "destructive"
+                          : item.priority === "medium"
+                          ? "secondary"
+                          : "outline"
                       }
                     >
                       {item.priority.toUpperCase()}
@@ -270,7 +295,10 @@ export function SprintRetrospective() {
             </h4>
             <ul className="space-y-2">
               {result.recommendations.map((rec, index) => (
-                <li key={index} className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg">
+                <li
+                  key={index}
+                  className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg"
+                >
                   <span className="text-primary font-bold mt-0.5">•</span>
                   <span className="text-sm text-foreground">{rec}</span>
                 </li>

@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import { getTeamSprints, getSprintBurndown } from "@/lib/lead-helpers";
 import { format } from "date-fns";
 import Link from "next/link";
-import { HiSparkles, HiPlus } from "react-icons/hi2";
 
 export default async function LeadSprintsPage() {
   const session = await requireLead();
@@ -45,7 +44,6 @@ export default async function LeadSprintsPage() {
       <div className="flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
-            <HiSparkles className="h-4 w-4" />
             <span className="text-sm font-semibold">Sprint Management</span>
           </div>
           <h1 className="text-3xl font-bold text-primary">
@@ -55,16 +53,15 @@ export default async function LeadSprintsPage() {
         </div>
         <Link
           href="/lead/sprints/new"
-          className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
+          className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
         >
-          <HiPlus className="h-4 w-4" />
           Create Sprint
         </Link>
       </div>
 
       {/* Active Sprint */}
       {activeSprint && (
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl border-2 border-primary/20 hover:shadow-xl transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl hover:border-primary hover:shadow-xl transition-all duration-300">
           <div className="p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -87,26 +84,26 @@ export default async function LeadSprintsPage() {
             </div>
 
             <div className="grid grid-cols-4 gap-4 mt-6">
-              <div className="bg-primary/10 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
                 <p className="text-sm text-primary mb-1">Duration</p>
                 <p className="text-lg font-semibold text-foreground">
                   {format(new Date(activeSprint.startDate), "MMM d")} -{" "}
                   {format(new Date(activeSprint.endDate), "MMM d")}
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
                 <p className="text-sm text-primary mb-1">Story Points</p>
                 <p className="text-lg font-semibold text-foreground">
                   {activeSprint._count?.tasks || 0} tasks
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
                 <p className="text-sm text-primary mb-1">Capacity</p>
                 <p className="text-lg font-semibold text-foreground">
                   {activeSprint.capacityHours}h
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-lg p-4 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
                 <p className="text-sm text-primary mb-1">Velocity</p>
                 <p className="text-lg font-semibold text-foreground">
                   {activeSprint.velocity || "-"} pts
@@ -116,9 +113,9 @@ export default async function LeadSprintsPage() {
 
             {/* Burndown Chart Placeholder */}
             {burndownData && burndownData.ideal && burndownData.actual && (
-              <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-border">
+              <div className="mt-6 p-4 bg-primary/10 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300">
                 <h3 className="text-sm font-semibold text-foreground mb-3">Sprint Burndown</h3>
-                <div className="h-48 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-lg bg-card/50">
+                <div className="h-48 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-xl bg-card/50">
                   <div className="text-center text-primary">
                     <p className="text-sm">Ideal: {burndownData.ideal.join(", ")}</p>
                     <p className="text-sm mt-1">Actual: {burndownData.actual.join(", ")}</p>
@@ -156,19 +153,19 @@ export default async function LeadSprintsPage() {
             </div>
 
             <div className="flex gap-4 mt-4">
-              <div className="bg-primary/10 rounded-lg p-3 flex-1 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-xl p-3 flex-1 border-2 border-transparent hover:border-primary transition-all duration-300">
                 <p className="text-sm text-primary mb-1">Start Date</p>
                 <p className="font-semibold text-foreground">
                   {format(new Date(planningSprint.startDate), "MMM d, yyyy")}
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-lg p-3 flex-1 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-xl p-3 flex-1 border-2 border-transparent hover:border-primary transition-all duration-300">
                 <p className="text-sm text-primary mb-1">End Date</p>
                 <p className="font-semibold text-foreground">
                   {format(new Date(planningSprint.endDate), "MMM d, yyyy")}
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-lg p-3 flex-1 border border-border hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 rounded-xl p-3 flex-1 border-2 border-transparent hover:border-primary transition-all duration-300">
                 <p className="text-sm text-primary mb-1">Capacity</p>
                 <p className="font-semibold text-foreground">{planningSprint.capacityHours}h</p>
               </div>
@@ -188,7 +185,7 @@ export default async function LeadSprintsPage() {
               {completedSprints.map((sprint) => (
                 <div
                   key={sprint.id}
-                  className="flex items-center justify-between p-4 bg-primary/10 rounded-lg border border-border hover:shadow-md hover:scale-[1.01] transition-all duration-300"
+                  className="flex items-center justify-between p-4 bg-primary/10 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 hover:shadow-md hover:scale-[1.01]"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -249,9 +246,8 @@ export default async function LeadSprintsPage() {
             </p>
             <Link
               href="/lead/sprints/new"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
             >
-              <HiPlus className="h-4 w-4" />
               Create First Sprint
             </Link>
           </div>
@@ -260,4 +256,6 @@ export default async function LeadSprintsPage() {
     </div>
   );
 }
+
+
 

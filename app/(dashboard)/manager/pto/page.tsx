@@ -2,7 +2,6 @@ import { requireManager } from "@/lib/guards";
 import { getDirectReports } from "@/lib/manager-helpers";
 import { prisma } from "@/lib/prisma";
 import { PTOApprovalCard } from "@/components/manager/PTOApprovalCard";
-import { HiSparkles } from "react-icons/hi2";
 
 export const metadata = {
   title: "PTO Requests | Manager Dashboard",
@@ -50,13 +49,8 @@ export default async function ManagerPTOPage() {
       <div className="mx-auto max-w-7xl space-y-6">
         {/* Header */}
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg">
-            <HiSparkles className="h-6 w-6 text-primary-foreground" />
-          </div>
           <div>
-            <h1 className="text-3xl font-bold text-primary">
-              Manager - PTO
-            </h1>
+            <h1 className="text-3xl font-bold text-primary">Manager - PTO</h1>
             <p className="mt-1 text-primary">
               Review and manage time-off requests from your team
             </p>
@@ -65,19 +59,19 @@ export default async function ManagerPTOPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
             <div className="text-sm font-medium text-primary">Pending</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {pending.length}
             </div>
           </div>
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
             <div className="text-sm font-medium text-primary">Approved</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {approved.length}
             </div>
           </div>
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
             <div className="text-sm font-medium text-primary">Rejected</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {rejected.length}
@@ -87,7 +81,7 @@ export default async function ManagerPTOPage() {
 
         {/* Pending Requests */}
         {pending.length > 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
             <div className="border-b border-border bg-primary/10 px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Pending Requests ({pending.length})
@@ -103,7 +97,7 @@ export default async function ManagerPTOPage() {
 
         {/* Approved Requests */}
         {approved.length > 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
             <div className="border-b border-border bg-primary/10 px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Approved Requests ({approved.length})
@@ -111,7 +105,10 @@ export default async function ManagerPTOPage() {
             </div>
             <div className="divide-y divide-border">
               {approved.slice(0, 10).map((request) => (
-                <div key={request.id} className="px-6 py-4 transition-all hover:bg-muted/50">
+                <div
+                  key={request.id}
+                  className="px-6 py-4 transition-all hover:bg-muted/50"
+                >
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="font-medium text-foreground">
@@ -131,7 +128,8 @@ export default async function ManagerPTOPage() {
                       </span>
                       {request.approver && (
                         <div className="mt-2 text-primary">
-                          by {request.approver.firstName} {request.approver.lastName}
+                          by {request.approver.firstName}{" "}
+                          {request.approver.lastName}
                         </div>
                       )}
                     </div>
@@ -144,7 +142,7 @@ export default async function ManagerPTOPage() {
 
         {/* Rejected Requests */}
         {rejected.length > 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
             <div className="border-b border-border bg-primary/10 px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Rejected Requests ({rejected.length})
@@ -152,7 +150,10 @@ export default async function ManagerPTOPage() {
             </div>
             <div className="divide-y divide-border">
               {rejected.slice(0, 10).map((request) => (
-                <div key={request.id} className="px-6 py-4 transition-all hover:bg-muted/50">
+                <div
+                  key={request.id}
+                  className="px-6 py-4 transition-all hover:bg-muted/50"
+                >
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="font-medium text-foreground">
@@ -182,7 +183,7 @@ export default async function ManagerPTOPage() {
         )}
 
         {requests.length === 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-primary">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-primary">
             No PTO requests from your team
           </div>
         )}
@@ -190,3 +191,4 @@ export default async function ManagerPTOPage() {
     </div>
   );
 }
+

@@ -1,6 +1,5 @@
 import { requireManager } from "@/lib/guards";
 import { getTeamCapacity, getTeamCalendar } from "@/lib/manager-helpers";
-import { HiSparkles } from "react-icons/hi2";
 
 export const metadata = {
   title: "Team Capacity | Manager Dashboard",
@@ -8,31 +7,29 @@ export const metadata = {
 
 export default async function ManagerCapacityPage() {
   const session = await requireManager();
-  
+
   const startDate = new Date();
   const endDate = new Date();
   endDate.setDate(endDate.getDate() + 30);
-  
+
   const [capacity, calendar] = await Promise.all([
     getTeamCapacity(session.user.id),
     getTeamCalendar(session.user.id, startDate, endDate),
   ]);
 
-  const avgUtilization = capacity.length > 0
-    ? capacity.reduce((sum, m) => sum + m.utilization, 0) / capacity.length
-    : 0;
+  const avgUtilization =
+    capacity.length > 0
+      ? capacity.reduce((sum, m) => sum + m.utilization, 0) / capacity.length
+      : 0;
 
-  const overUtilized = capacity.filter(m => m.utilization > 1).length;
-  const underUtilized = capacity.filter(m => m.utilization < 0.7).length;
+  const overUtilized = capacity.filter((m) => m.utilization > 1).length;
+  const underUtilized = capacity.filter((m) => m.utilization < 0.7).length;
 
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="mx-auto max-w-7xl space-y-6">
         {/* Header */}
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg">
-            <HiSparkles className="h-6 w-6 text-primary-foreground" />
-          </div>
           <div>
             <h1 className="text-3xl font-bold text-primary">
               Manager - Capacity
@@ -45,26 +42,32 @@ export default async function ManagerCapacityPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
-            <div className="text-sm font-medium text-primary">Avg Utilization</div>
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+            <div className="text-sm font-medium text-primary">
+              Avg Utilization
+            </div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {(avgUtilization * 100).toFixed(0)}%
             </div>
           </div>
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
             <div className="text-sm font-medium text-primary">Team Size</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {capacity.length}
             </div>
           </div>
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
-            <div className="text-sm font-medium text-primary">Over-utilized</div>
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+            <div className="text-sm font-medium text-primary">
+              Over-utilized
+            </div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {overUtilized}
             </div>
           </div>
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
-            <div className="text-sm font-medium text-primary">Under-utilized</div>
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+            <div className="text-sm font-medium text-primary">
+              Under-utilized
+            </div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {underUtilized}
             </div>
@@ -72,65 +75,75 @@ export default async function ManagerCapacityPage() {
         </div>
 
         {/* Team Capacity Details */}
-        <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
+        <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
           <div className="border-b border-border bg-primary/10 px-6 py-4">
-            <h3 className="text-lg font-semibold text-foreground">Team Workload</h3>
+            <h3 className="text-lg font-semibold text-foreground">
+              Team Workload
+            </h3>
           </div>
           <div className="divide-y divide-border">
             {capacity.map((member) => (
-              <div key={member.user.id} className="px-6 py-4 transition-all hover:bg-muted/50">
+              <div
+                key={member.user.id}
+                className="px-6 py-4 transition-all hover:bg-muted/50"
+              >
                 <div className="flex items-center gap-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
-                    {member.user.firstName?.[0]}{member.user.lastName?.[0]}
+                    {member.user.firstName?.[0]}
+                    {member.user.lastName?.[0]}
                   </div>
-                <div className="flex-1">
-                  <div className="font-medium text-foreground">
-                    {member.user.firstName} {member.user.lastName}
+                  <div className="flex-1">
+                    <div className="font-medium text-foreground">
+                      {member.user.firstName} {member.user.lastName}
+                    </div>
+                    <div className="mt-1 text-sm text-primary">
+                      {member.activeProjects} projects •{" "}
+                      {member.avgWeeklyHours.toFixed(1)}h/week
+                    </div>
                   </div>
-                  <div className="mt-1 text-sm text-primary">
-                    {member.activeProjects} projects • {member.avgWeeklyHours.toFixed(1)}h/week
+                  <div className="flex items-center gap-3">
+                    <div className="h-3 w-48 overflow-hidden rounded-full bg-muted">
+                      <div
+                        className={`h-full transition-all ${
+                          member.utilization > 1
+                            ? "bg-primary"
+                            : member.utilization > 0.8
+                            ? "bg-primary/70"
+                            : "bg-primary"
+                        }`}
+                        style={{
+                          width: `${Math.min(member.utilization * 100, 100)}%`,
+                        }}
+                      />
+                    </div>
+                    <div className="w-16 text-right">
+                      <span
+                        className={`text-sm font-semibold ${
+                          member.utilization > 1
+                            ? "text-primary"
+                            : member.utilization > 0.8
+                            ? "text-primary"
+                            : "text-primary"
+                        }`}
+                      >
+                        {(member.utilization * 100).toFixed(0)}%
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="h-3 w-48 overflow-hidden rounded-full bg-muted">
-                    <div
-                      className={`h-full transition-all ${
-                        member.utilization > 1
-                          ? "bg-primary"
-                          : member.utilization > 0.8
-                          ? "bg-primary/70"
-                          : "bg-primary"
-                      }`}
-                      style={{ width: `${Math.min(member.utilization * 100, 100)}%` }}
-                    />
+                {member.utilization > 1 && (
+                  <div className="mt-3 rounded-xl bg-card px-3 py-2 text-sm text-primary>
+                    ⚠️ Over-utilized: Consider redistributing workload or
+                    extending deadlines
                   </div>
-                  <div className="w-16 text-right">
-                    <span
-                      className={`text-sm font-semibold ${
-                        member.utilization > 1
-                          ? "text-primary"
-                          : member.utilization > 0.8
-                          ? "text-primary"
-                          : "text-primary"
-                      }`}>
-                    
-                      {(member.utilization * 100).toFixed(0)}%
-                    </span>
+                )}
+                {member.utilization < 0.5 && (
+                  <div className="mt-3 rounded-xl bg-card px-3 py-2 text-sm text-primary>
+                    💡 Under-utilized: Available capacity for new projects
                   </div>
-                </div>
+                )}
               </div>
-              {member.utilization > 1 && (
-                <div className="mt-3 rounded-lg bg-card px-3 py-2 text-sm text-primary">
-                  ⚠️ Over-utilized: Consider redistributing workload or extending deadlines
-                </div>
-              )}
-              {member.utilization < 0.5 && (
-                <div className="mt-3 rounded-lg bg-card px-3 py-2 text-sm text-primary">
-                  💡 Under-utilized: Available capacity for new projects
-                </div>
-              )}
-            </div>
-          ))}
+            ))}
             {capacity.length === 0 && (
               <div className="px-6 py-12 text-center text-primary">
                 No team capacity data available
@@ -139,7 +152,7 @@ export default async function ManagerCapacityPage() {
           </div>
         </div>
         {/* Upcoming PTO */}
-        <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
+        <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
           <div className="border-b border-border bg-primary/10 px-6 py-4">
             <h3 className="text-lg font-semibold text-foreground">
               Upcoming Time Off (Next 30 Days)
@@ -147,27 +160,30 @@ export default async function ManagerCapacityPage() {
           </div>
           <div className="divide-y divide-border">
             {calendar.ptoRequests.map((pto) => (
-              <div key={pto.id} className="px-6 py-4 transition-all hover:bg-muted/50">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="font-medium text-foreground">
-                    {pto.user.firstName} {pto.user.lastName}
+              <div
+                key={pto.id}
+                className="px-6 py-4 transition-all hover:bg-muted/50"
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-medium text-foreground">
+                      {pto.user.firstName} {pto.user.lastName}
+                    </div>
+                    <div className="mt-1 text-sm text-primary">
+                      {new Date(pto.startDate).toLocaleDateString()} -{" "}
+                      {new Date(pto.endDate).toLocaleDateString()}
+                    </div>
                   </div>
-                  <div className="mt-1 text-sm text-primary">
-                    {new Date(pto.startDate).toLocaleDateString()} -{" "}
-                    {new Date(pto.endDate).toLocaleDateString()}
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm font-medium text-foreground">
-                    {pto.days} days
-                  </div>
-                  <div className="text-sm text-primary">
-                    {pto.type.replace("_", " ")}
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-foreground">
+                      {pto.days} days
+                    </div>
+                    <div className="text-sm text-primary">
+                      {pto.type.replace("_", " ")}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             ))}
             {calendar.ptoRequests.length === 0 && (
               <div className="px-6 py-12 text-center text-primary">
@@ -180,3 +196,4 @@ export default async function ManagerCapacityPage() {
     </div>
   );
 }
+

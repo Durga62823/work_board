@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import Link from "next/link";
+import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+import { Button } from "@/components/ui/button";
 
 interface NavItem {
   name: string;
@@ -42,7 +42,9 @@ export function MobileMenu({ navigation }: MobileMenuProps) {
           />
           <div className="fixed inset-y-0 left-0 z-50 w-64 bg-card border-r border-border shadow-xl md:hidden">
             <div className="flex items-center justify-between p-4 border-b border-border">
-              <span className="text-lg font-semibold text-foreground">Menu</span>
+              <span className="text-lg font-semibold text-foreground">
+                Menu
+              </span>
               <Button
                 variant="ghost"
                 size="icon"

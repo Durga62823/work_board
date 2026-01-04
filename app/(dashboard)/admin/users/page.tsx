@@ -1,10 +1,15 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { HiPlus, HiMagnifyingGlass, HiShieldCheck } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getAllUsers } from "@/app/actions/admin-users";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -36,9 +41,6 @@ export default async function UsersPage() {
         {/* Header with gradient badge */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-              <HiShieldCheck className="h-6 w-6 text-primary-foreground" />
-            </div>
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-primary">
                 Admin - User Management
@@ -50,16 +52,15 @@ export default async function UsersPage() {
           </div>
           <Link href="/admin/users/create">
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
-              <HiPlus className="mr-2 h-4 w-4" />
               Add User
             </Button>
           </Link>
         </div>
 
         {/* Main Card with Glassmorphism */}
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
           <CardHeader>
-            <CardTitle className="text-2xl">All Users</CardTitle>
+            <CardTitle className="text-2xl text-primary">All Users</CardTitle>
             <CardDescription className="text-base">
               {users.length} user{users.length !== 1 ? "s" : ""} in the system
             </CardDescription>
@@ -67,15 +68,14 @@ export default async function UsersPage() {
           <CardContent>
             <div className="mb-4">
               <div className="relative">
-                <HiMagnifyingGlass className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input 
-                  placeholder="Search users..." 
-                  className="pl-10 border-border focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"/>
-                
+                <Input
+                  placeholder="Search users..."
+                  className="border-border focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                />
               </div>
             </div>
 
-            <div className="rounded-lg border border-border overflow-hidden bg-card backdrop-blur-sm">
+            <div className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 overflow-hidden bg-card backdrop-blur-sm">
               <Table>
                 <TableHeader>
                   <TableRow className="bg-primary/10 hover:bg-primary/20">
@@ -92,27 +92,45 @@ export default async function UsersPage() {
                 <TableBody>
                   {users.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={8} className="text-center py-8 text-primary">
+                      <TableCell
+                        colSpan={8}
+                        className="text-center py-8 text-primary"
+                      >
                         No users found
                       </TableCell>
                     </TableRow>
                   ) : (
                     users.map((user) => (
-                      <TableRow key={user.id} className="hover:bg-muted/50 transition-colors">
+                      <TableRow
+                        key={user.id}
+                        className="hover:bg-muted/50 transition-colors"
+                      >
                         <TableCell className="font-medium">
                           {user.firstName} {user.lastName}
                         </TableCell>
-                        <TableCell className="text-muted-foreground">{user.email}</TableCell>
+                        <TableCell className="text-muted-foreground">
+                          {user.email}
+                        </TableCell>
                         <TableCell>
-                          <Badge 
-                            variant={user.role === "ADMIN" ? "default" : "secondary"}
-                            className={user.role === "ADMIN" ? "bg-primary text-primary-foreground" : ""}>
-                          
+                          <Badge
+                            variant={
+                              user.role === "ADMIN" ? "default" : "secondary"
+                            }
+                            className={
+                              user.role === "ADMIN"
+                                ? "bg-primary text-primary-foreground"
+                                : ""
+                            }
+                          >
                             {user.role}
                           </Badge>
                         </TableCell>
-                        <TableCell className="text-muted-foreground">{user.department?.name || "-"}</TableCell>
-                        <TableCell className="text-muted-foreground">{user.team?.name || "-"}</TableCell>
+                        <TableCell className="text-muted-foreground">
+                          {user.department?.name || "-"}
+                        </TableCell>
+                        <TableCell className="text-muted-foreground">
+                          {user.team?.name || "-"}
+                        </TableCell>
                         <TableCell>
                           <Badge
                             variant={
@@ -122,7 +140,9 @@ export default async function UsersPage() {
                                 ? "secondary"
                                 : "destructive"
                             }
-                            className={user.status === "ACTIVE" ? "bg-primary" : ""}
+                            className={
+                              user.status === "ACTIVE" ? "bg-primary" : ""
+                            }
                           >
                             {user.status}
                           </Badge>
@@ -134,8 +154,8 @@ export default async function UsersPage() {
                         </TableCell>
                         <TableCell>
                           <Link href={`/admin/users/${user.id}`}>
-                            <Button 
-                              variant="ghost" 
+                            <Button
+                              variant="ghost"
                               size="sm"
                               className="hover:bg-muted/50 hover:text-primary transition-all"
                             >
@@ -155,3 +175,4 @@ export default async function UsersPage() {
     </div>
   );
 }
+

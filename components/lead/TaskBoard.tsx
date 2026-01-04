@@ -30,7 +30,12 @@ const statusColumns = [
   { key: "DONE", label: "Done", color: "green" },
 ];
 
-export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardProps) {
+export function TaskBoard({
+  tasks,
+  teamMembers,
+  sprints,
+  projects,
+}: TaskBoardProps) {
   const [filter, setFilter] = useState<{
     sprint?: string;
     project?: string;
@@ -64,11 +69,15 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
       <div className="bg-card rounded-lg shadow p-4">
         <div className="flex flex-wrap gap-4">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">Sprint</label>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              Sprint
+            </label>
             <select
               value={filter.sprint || ""}
-              onChange={(e) => setFilter({ ...filter, sprint: e.target.value || undefined })}
-              className="block w-48 px-3 py-2 rounded-md border border-border shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:border-primary transition-colors"
+              onChange={(e) =>
+                setFilter({ ...filter, sprint: e.target.value || undefined })
+              }
+              className="block w-48 px-3 py-2 rounded-md border-2 border-transparent shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:border-primary transition-colors"
             >
               <option value="">All Sprints</option>
               {sprints.map((sprint) => (
@@ -80,11 +89,15 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">Project</label>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              Project
+            </label>
             <select
               value={filter.project || ""}
-              onChange={(e) => setFilter({ ...filter, project: e.target.value || undefined })}
-              className="block w-48 px-3 py-2 rounded-md border border-border shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:border-primary transition-colors"
+              onChange={(e) =>
+                setFilter({ ...filter, project: e.target.value || undefined })
+              }
+              className="block w-48 px-3 py-2 rounded-md border-2 border-transparent shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:border-primary transition-colors"
             >
               <option value="">All Projects</option>
               {projects.map((project) => (
@@ -96,11 +109,15 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">Assignee</label>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              Assignee
+            </label>
             <select
               value={filter.assignee || ""}
-              onChange={(e) => setFilter({ ...filter, assignee: e.target.value || undefined })}
-              className="block w-48 px-3 py-2 rounded-md border border-border shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:border-primary transition-colors"
+              onChange={(e) =>
+                setFilter({ ...filter, assignee: e.target.value || undefined })
+              }
+              className="block w-48 px-3 py-2 rounded-md border-2 border-transparent shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:border-primary transition-colors"
             >
               <option value="">All Members</option>
               {teamMembers.map((member) => (
@@ -127,12 +144,16 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
       {/* Kanban Board */}
       <div className="grid grid-cols-5 gap-4">
         {statusColumns.map((column) => {
-          const columnTasks = filteredTasks.filter((task) => task.status === column.key);
+          const columnTasks = filteredTasks.filter(
+            (task) => task.status === column.key
+          );
 
           return (
-            <div key={column.key} className="bg-muted rounded-lg p-4 min-h-96">
+            <div key={column.key} className="bg-muted rounded-lg p-4 min-h-96 border-2 border-transparent hover:border-primary transition-all duration-300">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-foreground">{column.label}</h3>
+                <h3 className="font-semibold text-foreground">
+                  {column.label}
+                </h3>
                 <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-1 rounded">
                   {columnTasks.length}
                 </span>
@@ -140,7 +161,9 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
 
               <div className="space-y-3">
                 {columnTasks.map((task) => {
-                  const assignee = teamMembers.find((m) => m.id === task.assigneeId);
+                  const assignee = teamMembers.find(
+                    (m) => m.id === task.assigneeId
+                  );
                   const priorityColors = {
                     LOW: "bg-primary/5 text-primary",
                     MEDIUM: "bg-primary/10 text-primary",
@@ -159,7 +182,9 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                         </h4>
                         <span
                           className={`text-xs px-2 py-0.5 rounded ${
-                            priorityColors[task.priority as keyof typeof priorityColors]
+                            priorityColors[
+                              task.priority as keyof typeof priorityColors
+                            ]
                           }`}
                         >
                           {task.priority}
@@ -175,10 +200,14 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                       <div className="flex items-center justify-between text-xs text-primary">
                         <div className="flex items-center gap-2">
                           {task.storyPoints && (
-                            <span className="font-medium">{task.storyPoints} pts</span>
+                            <span className="font-medium">
+                              {task.storyPoints} pts
+                            </span>
                           )}
                           {task.project && (
-                            <span className="truncate max-w-20">{task.project.name}</span>
+                            <span className="truncate max-w-20">
+                              {task.project.name}
+                            </span>
                           )}
                         </div>
 
@@ -204,8 +233,10 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                         {column.key !== "TODO" && column.key !== "DONE" && (
                           <select
                             value={task.status}
-                            onChange={(e) => handleMoveTask(task.id, e.target.value)}
-                            className="text-xs w-full px-2 py-1.5 rounded border border-border bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 hover:border-primary transition-colors truncate"
+                            onChange={(e) =>
+                              handleMoveTask(task.id, e.target.value)
+                            }
+                            className="text-xs w-full px-2 py-1.5 rounded border-2 border-transparent bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 hover:border-primary transition-colors truncate"
                           >
                             {statusColumns.map((col) => (
                               <option key={col.key} value={col.key}>
@@ -216,8 +247,10 @@ export function TaskBoard({ tasks, teamMembers, sprints, projects }: TaskBoardPr
                         )}
                         <select
                           value={task.assigneeId || ""}
-                          onChange={(e) => handleAssignTask(task.id, e.target.value)}
-                          className="text-xs w-full px-2 py-1.5 rounded border border-border bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 hover:border-primary transition-colors truncate"
+                          onChange={(e) =>
+                            handleAssignTask(task.id, e.target.value)
+                          }
+                          className="text-xs w-full px-2 py-1.5 rounded border-2 border-transparent bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 hover:border-primary transition-colors truncate"
                         >
                           <option value="">Unassigned</option>
                           {teamMembers.map((member) => (

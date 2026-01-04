@@ -85,7 +85,7 @@ export function ApprovalAssistant() {
             id="requestType"
             value={formData.requestType}
             onChange={(e) => setFormData({ ...formData, requestType: e.target.value as 'timesheet' | 'pto' })}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded-md"
           >
             <option value="timesheet">Timesheet</option>
             <option value="pto">PTO Request</option>

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { HiChatBubbleLeft, HiClipboardDocumentList, HiCheckCircle } from "react-icons/hi2";
 
 export function AIMeetingSummary() {
   const [transcript, setTranscript] = useState("");
@@ -93,7 +92,6 @@ export function AIMeetingSummary() {
           {result.actionItems && result.actionItems.length > 0 && (
             <Card className="p-4 bg-amber-50">
               <h5 className="font-semibold mb-3 flex items-center gap-2">
-                <HiCheckCircle className="h-5 w-5 text-amber-600" />
                 Action Items
               </h5>
               <div className="space-y-2">

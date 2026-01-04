@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { useSession } from "next-auth/react";
 
 import { loginUser } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ import { signInSchema, type SignInInput } from "@/lib/validations/auth";
 
 export function LoginForm() {
   const router = useRouter();
+  const { update } = useSession();
   const [isPending, startTransition] = useTransition();
   const setAuth = useAuthStore((state) => state.setAuth);
   const {
@@ -38,6 +40,9 @@ export function LoginForm() {
 
       toast.success("Authenticated");
 
+      // Update the session to ensure it's synced
+      await update();
+
       // Get user role from result data or fetch from session
       const userRole = (result.data as any)?.role;
       let redirectPath = "/dashboard";
@@ -54,7 +59,9 @@ export function LoginForm() {
       }
 
       setAuth({ status: "authenticated", user: { email: values.email } });
-      router.push(redirectPath);
+      
+      // Use window.location for a full page navigation to ensure session is loaded
+      window.location.href = redirectPath;
     });
   };
 
@@ -70,7 +77,7 @@ export function LoginForm() {
           {...register("email")}
         />
         {errors.email && (
-          <p className="text-sm text-red-600">{errors.email.message}</p>
+          <p className="text-sm text-destructive">{errors.email.message}</p>
         )}
       </div>
       <div className="space-y-2">
@@ -89,7 +96,7 @@ export function LoginForm() {
           {...register("password")}
         />
         {errors.password && (
-          <p className="text-sm text-red-600">{errors.password.message}</p>
+          <p className="text-sm text-destructive">{errors.password.message}</p>
         )}
       </div>
       <label className="flex items-center gap-2 text-sm text-muted-foreground">

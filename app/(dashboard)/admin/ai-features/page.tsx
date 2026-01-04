@@ -3,14 +3,6 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  HiChatBubbleLeftRight,
-  HiShieldCheck,
-  HiDocumentText,
-  HiChatBubbleBottomCenterText,
-  HiCalendar,
-  HiSparkles,
-} from "react-icons/hi2";
 import { AITaskAssistant } from "@/components/admin/AITaskAssistant";
 import { AIRiskAssessment } from "@/components/admin/AIRiskAssessment";
 import { AIPerformanceReview } from "@/components/admin/AIPerformanceReview";
@@ -34,7 +26,7 @@ export default function AIFeaturesPage() {
       title: "AI Task Assistant",
       description:
         "Break down tasks, estimate timelines, and generate test cases",
-      icon: HiChatBubbleLeftRight,
+      emoji: "💬",
       gradient: "from-primary to-primary",
     },
     {
@@ -42,7 +34,7 @@ export default function AIFeaturesPage() {
       title: "Smart Risk Assessment",
       description:
         "Identify bottlenecks and get resource allocation suggestions",
-      icon: HiShieldCheck,
+      emoji: "🛡️",
       gradient: "from-primary to-primary",
     },
     {
@@ -50,21 +42,21 @@ export default function AIFeaturesPage() {
       title: "Performance Review Assistant",
       description:
         "Generate comprehensive performance reviews for team members",
-      icon: HiDocumentText,
+      emoji: "📄",
       gradient: "from-primary to-primary",
     },
     {
       id: "meeting-summary" as const,
       title: "Meeting Summary Generator",
       description: "Transform meeting transcripts into actionable summaries",
-      icon: HiChatBubbleBottomCenterText,
+      emoji: "💭",
       gradient: "from-primary to-primary",
     },
     {
       id: "sprint-planning" as const,
       title: "Smart Sprint Planning",
       description: "AI-powered sprint planning with capacity analysis",
-      icon: HiCalendar,
+      emoji: "📅",
       gradient: "from-primary to-primary",
     },
   ];
@@ -92,11 +84,8 @@ export default function AIFeaturesPage() {
         {/* Header with gradient badge */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
-            <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-primary shadow-lg">
-              <HiSparkles className="h-7 w-7 text-primary-foreground" />
-            </div>
             <div>
-              <h1 className="text-4xl font-bold text-foreground">
+              <h1 className="text-4xl font-bold text-primary">
                 Admin - AI-Powered Features
               </h1>
             </div>
@@ -108,32 +97,26 @@ export default function AIFeaturesPage() {
 
         {!activeFeature ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-              return (
-                <Card
-                  key={feature.id}
-                  className="p-6 cursor-pointer border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-primary"
-                  onClick={() => setActiveFeature(feature.id)}
-                >
-                  <div className="flex flex-col items-center text-center">
-                    <div className={`p-4 rounded-full bg-gradient-to-br ${feature.gradient} mb-4 shadow-lg`}>
-                      <Icon className="h-8 w-8 text-primary-foreground" />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2 text-foreground">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>
-                    <Button 
-                      className="mt-2 w-full bg-primary hover:bg-primary/90 text-primary-foreground" 
-                      variant="default"
-                    >
-                      Open Feature
-                    </Button>
-                  </div>
-                </Card>
-              );
-            })}
+            {features.map((feature) => (
+              <Card
+                key={feature.id}
+                className="p-6 cursor-pointer border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
+                onClick={() => setActiveFeature(feature.id)}
+              >
+                <div className="flex flex-col items-center text-center">
+                  <h3 className="font-semibold text-lg mb-2 text-primary">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>
+                  <Button 
+                    className="mt-2 w-full bg-primary hover:bg-primary/90 text-primary-foreground" 
+                    variant="default"
+                  >
+                    Open Feature
+                  </Button>
+                </div>
+              </Card>
+            ))}
           </div>
         ) : (
           <div>
@@ -144,7 +127,7 @@ export default function AIFeaturesPage() {
             >
               ← Back to Features
             </Button>
-            <Card className="p-6 border-border bg-card backdrop-blur-sm shadow-lg">
+            <Card className="p-6 border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
               {renderFeature()}
             </Card>
           </div>

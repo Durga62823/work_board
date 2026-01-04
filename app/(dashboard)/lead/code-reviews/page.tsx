@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import { getTeamCodeReviews } from "@/lib/lead-helpers";
 import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
-import { HiSparkles } from "react-icons/hi2";
 
 export default async function LeadCodeReviewsPage() {
   const session = await requireLead();
@@ -21,9 +20,13 @@ export default async function LeadCodeReviewsPage() {
     return (
       <div className="min-h-screen bg-background">
         <div className="text-center py-12">
-          <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto">
-            <h2 className="text-xl font-semibold text-foreground mb-2">No Team Assigned</h2>
-            <p className="text-primary">Please contact your administrator to assign you to a team.</p>
+          <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto hover:border-primary hover:shadow-xl transition-all duration-300">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
+              No Team Assigned
+            </h2>
+            <p className="text-primary">
+              Please contact your administrator to assign you to a team.
+            </p>
           </div>
         </div>
       </div>
@@ -33,8 +36,12 @@ export default async function LeadCodeReviewsPage() {
   const codeReviews = await getTeamCodeReviews(user.team.id);
 
   const pendingReviews = codeReviews.filter((r) => r.status === "pending");
-  const inProgressReviews = codeReviews.filter((r) => r.status === "changes_requested");
-  const approvedReviews = codeReviews.filter((r) => r.status === "approved").slice(0, 10);
+  const inProgressReviews = codeReviews.filter(
+    (r) => r.status === "changes_requested"
+  );
+  const approvedReviews = codeReviews
+    .filter((r) => r.status === "approved")
+    .slice(0, 10);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -66,21 +73,22 @@ export default async function LeadCodeReviewsPage() {
     <div className="min-h-screen bg-background space-y-6">
       <div>
         <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
-          <HiSparkles className="h-4 w-4" />
           <span className="text-sm font-semibold">Code Quality</span>
         </div>
-        <h1 className="text-3xl font-bold text-primary">
-          Code Reviews
-        </h1>
-        <p className="text-primary mt-2">Review and approve pull requests from your team</p>
+        <h1 className="text-3xl font-bold text-primary">Code Reviews</h1>
+        <p className="text-primary mt-2">
+          Review and approve pull requests from your team
+        </p>
       </div>
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl transition-all duration-300">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-primary mb-1">Pending Review</p>
+              <p className="text-sm font-medium text-primary mb-1">
+                Pending Review
+              </p>
               <p className="text-3xl font-bold text-primary">
                 {pendingReviews.length}
               </p>
@@ -103,10 +111,12 @@ export default async function LeadCodeReviewsPage() {
           </div>
         </div>
 
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl transition-all duration-300">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-primary mb-1">Changes Requested</p>
+              <p className="text-sm font-medium text-primary mb-1">
+                Changes Requested
+              </p>
               <p className="text-3xl font-bold text-primary">
                 {inProgressReviews.length}
               </p>
@@ -129,7 +139,7 @@ export default async function LeadCodeReviewsPage() {
           </div>
         </div>
 
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl transition-all duration-300">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-primary mb-1">Approved</p>
@@ -158,7 +168,7 @@ export default async function LeadCodeReviewsPage() {
 
       {/* Pending Reviews */}
       {pendingReviews.length > 0 && (
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
+        <div className="border-2 border-transparent bg-card rounded-xl hover:border-primary transition-all duration-300">
           <div className="p-6">
             <h2 className="text-xl font-bold text-primary mb-4">
               Pending Your Review ({pendingReviews.length})
@@ -167,33 +177,41 @@ export default async function LeadCodeReviewsPage() {
               {pendingReviews.map((review) => (
                 <div
                   key={review.id}
-                  className="border border-primary/20 bg-primary/10 rounded-lg p-4 hover:border-primary/50 hover:shadow-md transition-all duration-300"
+                  className="border-2 border-transparent bg-primary/10 rounded-xl p-4 hover:border-primary hover:shadow-md transition-all duration-300"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <span
-                          className={`px-2 py-1 text-xs font-semibold rounded ${getStatusBadge(review.status)}`}
+                          className={`px-2 py-1 text-xs font-semibold rounded ${getStatusBadge(
+                            review.status
+                          )}`}
                         >
                           {getStatusLabel(review.status)}
                         </span>
-                        <h3 className="font-semibold text-foreground">{review.prTitle}</h3>
+                        <h3 className="font-semibold text-foreground">
+                          {review.prTitle}
+                        </h3>
                       </div>
                       <p className="text-sm text-primary mb-3">
                         by {review.author?.name || "Unknown"} •{" "}
-                        {formatDistanceToNow(new Date(review.createdAt), { addSuffix: true })}
+                        {formatDistanceToNow(new Date(review.createdAt), {
+                          addSuffix: true,
+                        })}
                       </p>
                       <div className="flex items-center gap-4 text-sm text-primary">
                         <span>{review.filesChanged} files changed</span>
                         <span>{review.linesChanged} lines</span>
-                        {review.comments > 0 && <span>{review.comments} comments</span>}
+                        {review.comments > 0 && (
+                          <span>{review.comments} comments</span>
+                        )}
                       </div>
                     </div>
                     <a
                       href={review.prUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm font-medium"
+                      className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm font-medium"
                     >
                       Review PR →
                     </a>
@@ -207,7 +225,7 @@ export default async function LeadCodeReviewsPage() {
 
       {/* Changes Requested */}
       {inProgressReviews.length > 0 && (
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
+        <div className="border-2 border-transparent bg-card rounded-xl hover:border-primary transition-all duration-300">
           <div className="p-6">
             <h2 className="text-xl font-bold text-primary mb-4">
               Changes Requested ({inProgressReviews.length})
@@ -216,22 +234,28 @@ export default async function LeadCodeReviewsPage() {
               {inProgressReviews.map((review) => (
                 <div
                   key={review.id}
-                  className="border border-primary/20 bg-primary/10 rounded-lg p-4 hover:border-primary/50 hover:shadow-md transition-all duration-300"
+                  className="border-2 border-transparent bg-primary/10 rounded-xl p-4 hover:border-primary hover:shadow-md transition-all duration-300"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <span
-                          className={`px-2 py-1 text-xs font-semibold rounded ${getStatusBadge(review.status)}`}
+                          className={`px-2 py-1 text-xs font-semibold rounded ${getStatusBadge(
+                            review.status
+                          )}`}
                         >
                           {getStatusLabel(review.status)}
                         </span>
-                        <h3 className="font-semibold text-foreground">{review.prTitle}</h3>
+                        <h3 className="font-semibold text-foreground">
+                          {review.prTitle}
+                        </h3>
                       </div>
                       <p className="text-sm text-primary mb-3">
                         by {review.author?.name || "Unknown"} • Reviewed{" "}
                         {review.reviewedAt
-                          ? formatDistanceToNow(new Date(review.reviewedAt), { addSuffix: true })
+                          ? formatDistanceToNow(new Date(review.reviewedAt), {
+                              addSuffix: true,
+                            })
                           : "recently"}
                       </p>
                       <div className="flex items-center gap-4 text-sm text-primary">
@@ -244,7 +268,7 @@ export default async function LeadCodeReviewsPage() {
                       href={review.prUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm font-medium"
+                      className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm font-medium"
                     >
                       View PR →
                     </a>
@@ -258,7 +282,7 @@ export default async function LeadCodeReviewsPage() {
 
       {/* Recently Approved */}
       {approvedReviews.length > 0 && (
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
+        <div className="border-2 border-transparent bg-card rounded-xl hover:border-primary transition-all duration-300">
           <div className="p-6">
             <h2 className="text-xl font-bold text-primary mb-4">
               Recently Approved
@@ -267,28 +291,36 @@ export default async function LeadCodeReviewsPage() {
               {approvedReviews.map((review) => (
                 <div
                   key={review.id}
-                  className="border border-primary/20 bg-primary/10 rounded-lg p-4 hover:border-primary/50 hover:shadow-md transition-all duration-300"
+                  className="border-2 border-transparent bg-primary/10 rounded-xl p-4 hover:border-primary hover:shadow-md transition-all duration-300"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <span
-                          className={`px-2 py-1 text-xs font-semibold rounded ${getStatusBadge(review.status)}`}
+                          className={`px-2 py-1 text-xs font-semibold rounded ${getStatusBadge(
+                            review.status
+                          )}`}
                         >
                           {getStatusLabel(review.status)}
                         </span>
-                        <h3 className="font-semibold text-foreground">{review.prTitle}</h3>
+                        <h3 className="font-semibold text-foreground">
+                          {review.prTitle}
+                        </h3>
                       </div>
                       <p className="text-sm text-primary mb-3">
                         by {review.author?.name || "Unknown"} • Approved{" "}
                         {review.reviewedAt
-                          ? formatDistanceToNow(new Date(review.reviewedAt), { addSuffix: true })
+                          ? formatDistanceToNow(new Date(review.reviewedAt), {
+                              addSuffix: true,
+                            })
                           : "recently"}
                       </p>
                       <div className="flex items-center gap-4 text-sm text-primary">
                         <span>{review.filesChanged} files</span>
                         <span>{review.linesChanged} lines</span>
-                        {review.comments > 0 && <span>{review.comments} comments</span>}
+                        {review.comments > 0 && (
+                          <span>{review.comments} comments</span>
+                        )}
                       </div>
                     </div>
                     <a
@@ -309,7 +341,7 @@ export default async function LeadCodeReviewsPage() {
 
       {/* Empty State */}
       {codeReviews.length === 0 && (
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-12 text-center hover:shadow-xl transition-all duration-300">
+        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-12 text-center hover:border-primary hover:shadow-xl transition-all duration-300">
           <div className="max-w-md mx-auto">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
               <svg
@@ -338,3 +370,4 @@ export default async function LeadCodeReviewsPage() {
     </div>
   );
 }
+

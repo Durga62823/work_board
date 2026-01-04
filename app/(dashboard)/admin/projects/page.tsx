@@ -1,9 +1,14 @@
 import { redirect } from "next/navigation";
-import { HiFolder, HiArrowTrendingUp, HiArrowTrendingDown, HiExclamationTriangle, HiShieldCheck, HiRectangleGroup } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getAllProjects, getProjectStats } from "@/app/actions/admin-projects";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -35,9 +40,6 @@ export default async function ProjectsPage() {
       <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
         {/* Header with gradient badge */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-            <HiShieldCheck className="h-6 w-6 text-primary-foreground" />
-          </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-primary">
               Admin - Projects Overview
@@ -50,10 +52,11 @@ export default async function ProjectsPage() {
 
         {/* Project Stats */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Projects</CardTitle>
-              <HiRectangleGroup className="h-4 w-4 text-primary" />
+              <CardTitle className="text-sm font-medium">
+                Total Projects
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-primary">
@@ -62,57 +65,62 @@ export default async function ProjectsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-primary/20 bg-primary/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-2 border-transparent bg-primary/10 backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">On Track</CardTitle>
-              <HiArrowTrendingUp className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">{stats.onTrack}</div>
+              <div className="text-2xl font-bold text-primary">
+                {stats.onTrack}
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">At Risk</CardTitle>
-              <HiExclamationTriangle className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-foreground">{stats.atRisk}</div>
+              <div className="text-2xl font-bold text-primary">
+                {stats.atRisk}
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Delayed</CardTitle>
-              <HiArrowTrendingDown className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-foreground">{stats.delayed}</div>
+              <div className="text-2xl font-bold text-primary">
+                {stats.delayed}
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="border-primary/20 bg-primary/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Card className="border-2 border-transparent bg-primary/10 backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Completed</CardTitle>
-              <HiRectangleGroup className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">{stats.completed}</div>
+              <div className="text-2xl font-bold text-primary">
+                {stats.completed}
+              </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Projects Table */}
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
           <CardHeader>
-            <CardTitle className="text-2xl">All Projects</CardTitle>
+            <CardTitle className="text-2xl text-primary">All Projects</CardTitle>
             <CardDescription className="text-base">
-              {projects.length} project{projects.length !== 1 ? "s" : ""} in the system
+              {projects.length} project{projects.length !== 1 ? "s" : ""} in the
+              system
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="rounded-lg border border-border overflow-hidden bg-card backdrop-blur-sm">
+            <div className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 overflow-hidden bg-card backdrop-blur-sm">
               <Table>
                 <TableHeader>
                   <TableRow className="bg-primary/10 hover:bg-primary/20">
@@ -128,40 +136,53 @@ export default async function ProjectsPage() {
                 <TableBody>
                   {projects.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={7} className="text-center py-8 text-primary">
+                      <TableCell
+                        colSpan={7}
+                        className="text-center py-8 text-primary"
+                      >
                         No projects found
                       </TableCell>
                     </TableRow>
                   ) : (
                     projects.map((project) => (
-                      <TableRow key={project.id} className="hover:bg-muted/50 transition-colors">
-                        <TableCell className="font-medium">{project.name}</TableCell>
+                      <TableRow
+                        key={project.id}
+                        className="hover:bg-muted/50 transition-colors"
+                      >
+                        <TableCell className="font-medium">
+                          {project.name}
+                        </TableCell>
                         <TableCell>
-                        <Badge
-                          variant={
-                            project.status === "ON_TRACK"
-                              ? "default"
-                              : project.status === "AT_RISK"
-                              ? "secondary"
-                              : project.status === "DELAYED"
-                              ? "destructive"
-                              : "outline"
-                          }
-                        >
-                          {project.status.replace("_", " ")}
-                        </Badge>
-                      </TableCell>
+                          <Badge
+                            variant={
+                              project.status === "ON_TRACK"
+                                ? "default"
+                                : project.status === "AT_RISK"
+                                ? "secondary"
+                                : project.status === "DELAYED"
+                                ? "destructive"
+                                : "outline"
+                            }
+                          >
+                            {project.status.replace("_", " ")}
+                          </Badge>
+                        </TableCell>
                         <TableCell className="text-muted-foreground">
                           {project.owner.firstName} {project.owner.lastName}
                         </TableCell>
-                        <TableCell className="text-muted-foreground">{project.team?.name || "-"}</TableCell>
+                        <TableCell className="text-muted-foreground">
+                          {project.team?.name || "-"}
+                        </TableCell>
                         <TableCell>
                           <Badge variant="outline" className="font-medium">
                             {project._count.members}
                           </Badge>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="outline" className="font-medium text-primary">
+                          <Badge
+                            variant="outline"
+                            className="font-medium text-primary"
+                          >
                             {Math.round(project.completionRate)}%
                           </Badge>
                         </TableCell>
@@ -180,3 +201,4 @@ export default async function ProjectsPage() {
     </div>
   );
 }
+

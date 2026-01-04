@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
-import { Badge } from '@/components/ui/badge';
-import { Target, Plus, Trash2, AlertTriangle } from 'lucide-react';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Spinner } from "@/components/ui/spinner";
+import { Badge } from "@/components/ui/badge";
+import { Target, Plus, Trash2, AlertTriangle } from "lucide-react";
 
 interface Task {
   name: string;
@@ -33,7 +33,7 @@ interface PrioritizationResult {
   risks: Array<{
     task: string;
     risk: string;
-    severity: 'high' | 'medium' | 'low';
+    severity: "high" | "medium" | "low";
   }>;
   sprintRecommendation: string;
 }
@@ -42,17 +42,22 @@ export function TaskPrioritization() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<PrioritizationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [formData, setFormData] = useState<FormData>({
-    tasks: [{ name: '', urgency: '', impact: '', effort: '', dependencies: '' }],
-    teamCapacity: '',
-    sprintGoals: ''
+    tasks: [
+      { name: "", urgency: "", impact: "", effort: "", dependencies: "" },
+    ],
+    teamCapacity: "",
+    sprintGoals: "",
   });
 
   const addTask = () => {
     setFormData({
       ...formData,
-      tasks: [...formData.tasks, { name: '', urgency: '', impact: '', effort: '', dependencies: '' }]
+      tasks: [
+        ...formData.tasks,
+        { name: "", urgency: "", impact: "", effort: "", dependencies: "" },
+      ],
     });
   };
 
@@ -73,21 +78,21 @@ export function TaskPrioritization() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/ai/lead/task-prioritization', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/ai/lead/task-prioritization", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to prioritize tasks');
+        throw new Error(data.error || "Failed to prioritize tasks");
       }
 
       setResult(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -98,7 +103,8 @@ export function TaskPrioritization() {
       <div>
         <h2 className="text-2xl font-bold mb-4">Task Prioritization</h2>
         <p className="text-primary mb-6">
-          AI-powered task prioritization based on urgency, impact, and dependencies
+          AI-powered task prioritization based on urgency, impact, and
+          dependencies
         </p>
       </div>
 
@@ -111,7 +117,9 @@ export function TaskPrioritization() {
               id="teamCapacity"
               type="number"
               value={formData.teamCapacity}
-              onChange={(e) => setFormData({ ...formData, teamCapacity: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, teamCapacity: e.target.value })
+              }
               placeholder="e.g., 160"
             />
           </div>
@@ -120,7 +128,9 @@ export function TaskPrioritization() {
             <Input
               id="sprintGoals"
               value={formData.sprintGoals}
-              onChange={(e) => setFormData({ ...formData, sprintGoals: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, sprintGoals: e.target.value })
+              }
               placeholder="e.g., Complete user dashboard"
             />
           </div>
@@ -136,9 +146,14 @@ export function TaskPrioritization() {
           </div>
 
           {formData.tasks.map((task, index) => (
-            <div key={index} className="mb-4 p-4 border border-border rounded-lg bg-card">
+            <div
+              key={index}
+              className="mb-4 p-4 border border-border rounded-lg bg-card"
+            >
               <div className="flex items-center justify-between mb-3">
-                <span className="font-medium text-foreground">Task {index + 1}</span>
+                <span className="font-medium text-foreground">
+                  Task {index + 1}
+                </span>
                 {formData.tasks.length > 1 && (
                   <Button
                     onClick={() => removeTask(index)}
@@ -155,7 +170,7 @@ export function TaskPrioritization() {
                   <Label>Task Name</Label>
                   <Input
                     value={task.name}
-                    onChange={(e) => updateTask(index, 'name', e.target.value)}
+                    onChange={(e) => updateTask(index, "name", e.target.value)}
                     placeholder="Task description"
                   />
                 </div>
@@ -164,7 +179,9 @@ export function TaskPrioritization() {
                   <Input
                     type="number"
                     value={task.urgency}
-                    onChange={(e) => updateTask(index, 'urgency', e.target.value)}
+                    onChange={(e) =>
+                      updateTask(index, "urgency", e.target.value)
+                    }
                     placeholder="1-10"
                   />
                 </div>
@@ -173,7 +190,9 @@ export function TaskPrioritization() {
                   <Input
                     type="number"
                     value={task.impact}
-                    onChange={(e) => updateTask(index, 'impact', e.target.value)}
+                    onChange={(e) =>
+                      updateTask(index, "impact", e.target.value)
+                    }
                     placeholder="1-10"
                   />
                 </div>
@@ -182,7 +201,9 @@ export function TaskPrioritization() {
                   <Input
                     type="number"
                     value={task.effort}
-                    onChange={(e) => updateTask(index, 'effort', e.target.value)}
+                    onChange={(e) =>
+                      updateTask(index, "effort", e.target.value)
+                    }
                     placeholder="e.g., 8"
                   />
                 </div>
@@ -190,7 +211,9 @@ export function TaskPrioritization() {
                   <Label>Dependencies</Label>
                   <Input
                     value={task.dependencies}
-                    onChange={(e) => updateTask(index, 'dependencies', e.target.value)}
+                    onChange={(e) =>
+                      updateTask(index, "dependencies", e.target.value)
+                    }
                     placeholder="e.g., Task 1, Task 3"
                   />
                 </div>
@@ -201,7 +224,7 @@ export function TaskPrioritization() {
 
         <Button
           onClick={handlePrioritize}
-          disabled={loading || formData.tasks.some(t => !t.name)}
+          disabled={loading || formData.tasks.some((t) => !t.name)}
           className="w-full"
         >
           {loading ? (
@@ -245,11 +268,21 @@ export function TaskPrioritization() {
                         </Badge>
                         <p className="font-medium">{task.name}</p>
                       </div>
-                      <Badge variant={task.priority >= 80 ? 'destructive' : task.priority >= 60 ? 'secondary' : 'outline'}>
+                      <Badge
+                        variant={
+                          task.priority >= 80
+                            ? "destructive"
+                            : task.priority >= 60
+                            ? "secondary"
+                            : "outline"
+                        }
+                      >
                         Priority: {task.priority}/100
                       </Badge>
                     </div>
-                    <p className="text-sm text-primary mt-2">{task.reasoning}</p>
+                    <p className="text-sm text-primary mt-2">
+                      {task.reasoning}
+                    </p>
                   </div>
                 ))}
             </div>
@@ -261,7 +294,9 @@ export function TaskPrioritization() {
               <h4 className="font-semibold mb-2">Key Dependencies</h4>
               <ul className="space-y-1">
                 {result.dependencies.map((dep, index) => (
-                  <li key={index} className="text-sm text-primary">• {dep}</li>
+                  <li key={index} className="text-sm text-primary">
+                    • {dep}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -279,11 +314,11 @@ export function TaskPrioritization() {
                   <div
                     key={index}
                     className={`p-3 rounded-lg border ${
-                      risk.severity === 'high'
-                        ? 'bg-destructive/10 border-destructive/30'
-                        : risk.severity === 'medium'
-                        ? 'bg-destructive/5 border-destructive/20'
-                        : 'bg-primary/5 border-border'
+                      risk.severity === "high"
+                        ? "bg-destructive/10 border-destructive/30"
+                        : risk.severity === "medium"
+                        ? "bg-destructive/5 border-destructive/20"
+                        : "bg-primary/5 border-border"
                     }`}
                   >
                     <div className="flex items-start justify-between">
@@ -291,7 +326,11 @@ export function TaskPrioritization() {
                         <p className="font-medium text-sm">{risk.task}</p>
                         <p className="text-sm text-primary mt-1">{risk.risk}</p>
                       </div>
-                      <Badge variant={risk.severity === 'high' ? 'destructive' : 'secondary'}>
+                      <Badge
+                        variant={
+                          risk.severity === "high" ? "destructive" : "secondary"
+                        }
+                      >
                         {risk.severity.toUpperCase()}
                       </Badge>
                     </div>

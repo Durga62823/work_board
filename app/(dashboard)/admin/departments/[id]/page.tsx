@@ -1,11 +1,16 @@
 import { redirect } from "next/navigation";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { HiArrowLeft, HiUserGroup, HiBuildingOffice2, HiUserPlus, HiPlus } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getDepartmentById } from "@/app/actions/admin-organization";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -18,7 +23,11 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default async function DepartmentDetailPage({ params }: { params: { id: string } }) {
+export default async function DepartmentDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const session = await auth();
 
   if (!session?.user) {
@@ -37,11 +46,13 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         <div className="flex items-center gap-4">
           <Link href="/admin/departments">
             <Button variant="ghost" size="icon">
-              <HiArrowLeft className="h-4 w-4" />
+              ←
             </Button>
           </Link>
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">{department.name}</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-primary">
+              {department.name}
+            </h2>
             <p className="text-muted-foreground">
               {department.description || "No description"}
             </p>
@@ -49,57 +60,54 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         </div>
         <div className="flex gap-2">
           <Button variant="outline">
-            <HiPlus className="mr-2 h-4 w-4" />
-            Add Team
+            + Add Team
           </Button>
           <Button variant="outline">Edit Department</Button>
         </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">
-        <Card>
+        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-            <HiUserGroup className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{department.users.length}</div>
+            <div className="text-2xl font-bold text-primary">{department.users.length}</div>
             <p className="text-xs text-muted-foreground">
               {department.users.length === 1 ? "member" : "members"}
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Teams</CardTitle>
-            <HiBuildingOffice2 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{department.teams.length}</div>
+            <div className="text-2xl font-bold text-primary">{department.teams.length}</div>
             <p className="text-xs text-muted-foreground">
               {department.teams.length === 1 ? "team" : "teams"}
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Managers</CardTitle>
-            <HiUserPlus className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold text-primary">
               {department.users.filter((u: any) => u.role === "MANAGER").length}
             </div>
             <p className="text-xs text-muted-foreground">active managers</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Department Head</CardTitle>
-            <HiUserGroup className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">
+              Department Head
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">Not assigned</p>
@@ -114,9 +122,9 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         </TabsList>
 
         <TabsContent value="teams" className="space-y-4">
-          <Card>
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader>
-              <CardTitle>Teams in {department.name}</CardTitle>
+              <CardTitle className="text-primary">Teams in {department.name}</CardTitle>
               <CardDescription>
                 All teams within this department
               </CardDescription>
@@ -125,7 +133,7 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
               {department.teams.length > 0 ? (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {department.teams.map((team: any) => (
-                    <Card key={team.id}>
+                    <Card key={team.id} className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="text-lg">{team.name}</CardTitle>
                         <CardDescription>
@@ -135,10 +143,18 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
                       <CardContent>
                         <div className="space-y-2">
                           <div className="flex justify-between text-sm">
-                            <span className="text-muted-foreground">Members:</span>
-                            <Badge variant="secondary">{team._count.users}</Badge>
+                            <span className="text-muted-foreground">
+                              Members:
+                            </span>
+                            <Badge variant="secondary">
+                              {team._count.users}
+                            </Badge>
                           </div>
-                          <Button variant="outline" className="w-full mt-2" size="sm">
+                          <Button
+                            variant="outline"
+                            className="w-full mt-2 border-2 border-transparent hover:border-primary hover:shadow-md transition-all duration-300"
+                            size="sm"
+                          >
                             View Team
                           </Button>
                         </div>
@@ -156,9 +172,9 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
         </TabsContent>
 
         <TabsContent value="members">
-          <Card>
+          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
             <CardHeader>
-              <CardTitle>Department Members</CardTitle>
+              <CardTitle className="text-primary">Department Members</CardTitle>
               <CardDescription>
                 All users assigned to {department.name}
               </CardDescription>
@@ -185,7 +201,11 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
                         </TableCell>
                         <TableCell>{user.email}</TableCell>
                         <TableCell>
-                          <Badge variant={user.role === "ADMIN" ? "default" : "secondary"}>
+                          <Badge
+                            variant={
+                              user.role === "ADMIN" ? "default" : "secondary"
+                            }
+                          >
                             {user.role}
                           </Badge>
                         </TableCell>
@@ -206,7 +226,9 @@ export default async function DepartmentDetailPage({ params }: { params: { id: s
                         </TableCell>
                         <TableCell>
                           <Link href={`/admin/users/${user.id}`}>
-                            <Button variant="ghost" size="sm">View</Button>
+                            <Button variant="ghost" size="sm">
+                              View
+                            </Button>
                           </Link>
                         </TableCell>
                       </TableRow>

@@ -50,13 +50,13 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
       <div className="space-y-2">
         <Label htmlFor="password">New password</Label>
         <PasswordInput id="password" autoComplete="new-password" {...register("password")} />
-        {errors.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
+        {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
       </div>
       <PasswordStrengthIndicator password={password} />
       <div className="space-y-2">
         <Label htmlFor="confirmPassword">Confirm password</Label>
         <PasswordInput id="confirmPassword" autoComplete="new-password" {...register("confirmPassword")} />
-        {errors.confirmPassword && <p className="text-sm text-red-600">{errors.confirmPassword.message}</p>}
+        {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword.message}</p>}
       </div>
       <Button type="submit" className="w-full" disabled={isPending}>
         {isPending ? "Updating password..." : "Update password"}

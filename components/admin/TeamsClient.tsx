@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { HiPlus, HiUserGroup, HiPencil, HiTrash, HiEllipsisVertical } from "react-icons/hi2";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -33,7 +32,6 @@ export function TeamsClient({ initialTeams, departments }: TeamsClientProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-                <HiUserGroup className="h-6 w-6 text-primary-foreground" />
               </div>
               <div>
                 <h2 className="text-3xl font-bold tracking-tight text-foreground">
@@ -48,15 +46,14 @@ export function TeamsClient({ initialTeams, departments }: TeamsClientProps) {
               onClick={() => setOpenCreateDialog(true)}
               className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <HiPlus className="mr-2 h-4 w-4" />
-              Add Team
+              + Add Team
             </Button>
           </div>
 
           {initialTeams.length === 0 ? (
-            <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
               <CardContent className="flex flex-col items-center justify-center py-12">
-                <HiUserGroup className="h-12 w-12 text-primary mb-4" />
+                <span className="text-4xl mb-4"></span>
                 <h3 className="text-lg font-semibold mb-2">No teams yet</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   Get started by creating your first team
@@ -65,8 +62,7 @@ export function TeamsClient({ initialTeams, departments }: TeamsClientProps) {
                   onClick={() => setOpenCreateDialog(true)}
                   className="bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
-                  <HiPlus className="mr-2 h-4 w-4" />
-                  Create Team
+                  + Create Team
                 </Button>
               </CardContent>
             </Card>
@@ -75,14 +71,13 @@ export function TeamsClient({ initialTeams, departments }: TeamsClientProps) {
               {initialTeams.map((team) => (
                 <Card 
                   key={team.id}
-                  className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <CardTitle className="flex items-center gap-2">
-                          <HiUserGroup className="h-5 w-5 text-primary" />
-                          <span>{team.name}</span>
+                          👥 {team.name}
                         </CardTitle>
                       <CardDescription className="mt-1.5">
                         {team.description || "No description"}
@@ -91,20 +86,18 @@ export function TeamsClient({ initialTeams, departments }: TeamsClientProps) {
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">
-                          <HiEllipsisVertical className="h-4 w-4" />
+                          ⋮
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => setEditTeam(team)}>
-                          <HiPencil className="mr-2 h-4 w-4" />
-                          Edit
+                          ✏️ Edit
                         </DropdownMenuItem>
                         <DropdownMenuItem 
                           onClick={() => setDeleteTeam(team)}
                           className="text-destructive"
                         >
-                          <HiTrash className="mr-2 h-4 w-4" />
-                          Delete
+                          🗑️ Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>

@@ -48,7 +48,7 @@
     
     /* Primary colors (will be overridden by ColorThemeContext) */
     --primary: oklch(0.795 0.184 86.047);
-    --primary-foreground: oklch(0.421 0.095 57.708);
+    --primary-foreground: oklch(0.98 0.02 86);
     
     /* Secondary, muted, accent colors for dark mode */
     --secondary: oklch(0.1 0 0);

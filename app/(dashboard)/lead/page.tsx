@@ -8,26 +8,24 @@ import {
   getTeamWorkload,
   getSprintVelocity,
 } from "@/lib/lead-helpers";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Link from "next/link";
 import {
-  HiUserGroup,
-  HiListBullet,
-  HiClock,
-  HiExclamationTriangle,
-  HiCheckCircle,
-  HiArrowTrendingUp,
-  HiSparkles,
-  HiFlag,
   HiPlus,
-  HiCalendar,
+  HiRocketLaunch,
   HiChartBar,
-  HiArrowUpRight,
+  HiArrowTopRightOnSquare,
 } from "react-icons/hi2";
 
 export default async function LeadOverviewPage() {
   const session = await auth();
-  
+
   if (!session?.user) {
     redirect("/auth/login");
   }
@@ -52,11 +50,12 @@ export default async function LeadOverviewPage() {
       <div className="min-h-screen bg-background flex items-center justify-center p-6">
         <Card className="max-w-md w-full border-border bg-card backdrop-blur-sm shadow-xl">
           <CardContent className="pt-12 pb-12 text-center">
-            <div className="p-4 rounded-full bg-primary/10 inline-flex mb-6">
-              <HiUserGroup className="h-12 w-12 text-primary" />
-            </div>
-            <h2 className="text-2xl font-bold text-foreground mb-2">No Team Assigned</h2>
-            <p className="text-primary">Please contact your administrator to assign you to a team.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-2">
+              No Team Assigned
+            </h2>
+            <p className="text-primary">
+              Please contact your administrator to assign you to a team.
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -65,19 +64,14 @@ export default async function LeadOverviewPage() {
 
   const teamId = user.team.id;
 
-  const [
-    allTasks,
-    activeSprints,
-    blockedTasks,
-    workload,
-    velocityData,
-  ] = await Promise.all([
-    getTeamTasks(teamId),
-    getTeamSprints(teamId, false),
-    getBlockedTasks(teamId),
-    getTeamWorkload(teamId),
-    getSprintVelocity(teamId, 5),
-  ]);
+  const [allTasks, activeSprints, blockedTasks, workload, velocityData] =
+    await Promise.all([
+      getTeamTasks(teamId),
+      getTeamSprints(teamId, false),
+      getBlockedTasks(teamId),
+      getTeamWorkload(teamId),
+      getSprintVelocity(teamId, 5),
+    ]);
 
   const tasksByStatus = {
     todo: allTasks.filter((t) => t.status === "TODO").length,
@@ -97,85 +91,76 @@ export default async function LeadOverviewPage() {
           <div className="absolute inset-0 bg-grid-white/5" />
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary-foreground/10 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-foreground/10 rounded-full blur-3xl" />
-          
+
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-4">
-              <HiSparkles className="h-4 w-4 text-primary-foreground" />
-              <span className="text-sm font-medium text-primary-foreground">Tech Lead Dashboard</span>
+              <span className="text-sm font-medium text-primary-foreground">
+                Tech Lead Dashboard
+              </span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
               {user.team.name}
             </h1>
             <p className="text-lg text-primary-foreground/80">
-              {user.team._count.users} team members • {allTasks.length} total tasks
+              {user.team._count.users} team members • {allTasks.length} total
+              tasks
             </p>
           </div>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-          <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardContent className="relative pt-6">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <HiListBullet className="h-5 w-5 text-primary" />
-                </div>
-              </div>
               <p className="text-xs font-semibold text-primary mb-1">To Do</p>
-              <p className="text-3xl font-bold text-primary">{tasksByStatus.todo}</p>
+              <p className="text-3xl font-bold text-primary">
+                {tasksByStatus.todo}
+              </p>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardContent className="relative pt-6">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <HiClock className="h-5 w-5 text-primary" />
-                </div>
-              </div>
-              <p className="text-xs font-semibold text-primary mb-1">In Progress</p>
-              <p className="text-3xl font-bold text-primary">{tasksByStatus.inProgress}</p>
+              <p className="text-xs font-semibold text-primary mb-1">
+                In Progress
+              </p>
+              <p className="text-3xl font-bold text-primary">
+                {tasksByStatus.inProgress}
+              </p>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardContent className="relative pt-6">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <HiListBullet className="h-5 w-5 text-primary" />
-                </div>
-              </div>
-              <p className="text-xs font-semibold text-primary mb-1">In Review</p>
-              <p className="text-3xl font-bold text-primary">{tasksByStatus.inReview}</p>
+              <p className="text-xs font-semibold text-primary mb-1">
+                In Review
+              </p>
+              <p className="text-3xl font-bold text-primary">
+                {tasksByStatus.inReview}
+              </p>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardContent className="relative pt-6">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <HiCheckCircle className="h-5 w-5 text-primary" />
-                </div>
-              </div>
               <p className="text-xs font-semibold text-primary mb-1">Done</p>
-              <p className="text-3xl font-bold text-primary">{tasksByStatus.done}</p>
+              <p className="text-3xl font-bold text-primary">
+                {tasksByStatus.done}
+              </p>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-border bg-card backdrop-blur-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
             <CardContent className="relative pt-6">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <HiExclamationTriangle className="h-5 w-5 text-primary" />
-                </div>
-              </div>
               <p className="text-xs font-semibold text-primary mb-1">Blocked</p>
-              <p className="text-3xl font-bold text-primary">{tasksByStatus.blocked}</p>
+              <p className="text-3xl font-bold text-primary">
+                {tasksByStatus.blocked}
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -184,21 +169,22 @@ export default async function LeadOverviewPage() {
           {/* Current Sprint */}
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
             <CardHeader>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-lg bg-primary">
-                  <HiFlag className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <CardTitle className="text-xl font-bold text-foreground">Current Sprint</CardTitle>
-              </div>
+              <CardTitle className="text-xl font-bold text-foreground">
+                Current Sprint
+              </CardTitle>
             </CardHeader>
             <CardContent>
               {currentSprint ? (
                 <div className="space-y-4">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h4 className="font-bold text-foreground text-lg">{currentSprint.name}</h4>
+                      <h4 className="font-bold text-foreground text-lg">
+                        {currentSprint.name}
+                      </h4>
                       {currentSprint.goal && (
-                        <p className="text-sm text-primary mt-1">{currentSprint.goal}</p>
+                        <p className="text-sm text-primary mt-1">
+                          {currentSprint.goal}
+                        </p>
                       )}
                     </div>
                     <Link
@@ -206,14 +192,17 @@ export default async function LeadOverviewPage() {
                       className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
                     >
                       Details
-                      <HiArrowUpRight className="h-4 w-4" />
                     </Link>
                   </div>
                   <div className="space-y-3 p-4 rounded-xl bg-primary/10">
                     <div>
                       <div className="flex justify-between text-sm mb-2">
-                        <span className="text-primary font-medium">Progress</span>
-                        <span className="font-bold text-foreground">{currentSprint.progress.toFixed(0)}%</span>
+                        <span className="text-primary font-medium">
+                          Progress
+                        </span>
+                        <span className="font-bold text-foreground">
+                          {currentSprint.progress.toFixed(0)}%
+                        </span>
                       </div>
                       <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
                         <div
@@ -223,36 +212,44 @@ export default async function LeadOverviewPage() {
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="p-3 rounded-lg bg-card">
-                        <p className="text-xs text-primary font-medium mb-1">Tasks</p>
+                      <div className="p-3 rounded-xl bg-card">
+                        <p className="text-xs text-primary font-medium mb-1">
+                          Tasks
+                        </p>
                         <p className="text-2xl font-bold text-foreground">
-                          {currentSprint.completedTasks}<span className="text-base text-primary">/{currentSprint.totalTasks}</span>
+                          {currentSprint.completedTasks}
+                          <span className="text-base text-primary">
+                            /{currentSprint.totalTasks}
+                          </span>
                         </p>
                       </div>
-                      <div className="p-3 rounded-lg bg-card">
-                        <p className="text-xs text-primary font-medium mb-1">Points</p>
+                      <div className="p-3 rounded-xl bg-card">
+                        <p className="text-xs text-primary font-medium mb-1">
+                          Points
+                        </p>
                         <p className="text-2xl font-bold text-foreground">
-                          {currentSprint.completedPoints}<span className="text-base text-primary">/{currentSprint.totalPoints}</span>
+                          {currentSprint.completedPoints}
+                          <span className="text-base text-primary">
+                            /{currentSprint.totalPoints}
+                          </span>
                         </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-primary">
-                      <HiCalendar className="h-4 w-4" />
-                      <span>Ends: {new Date(currentSprint.endDate).toLocaleDateString()}</span>
+                      <span>
+                        Ends:{" "}
+                        {new Date(currentSprint.endDate).toLocaleDateString()}
+                      </span>
                     </div>
                   </div>
                 </div>
               ) : (
                 <div className="text-center py-12">
-                  <div className="p-4 rounded-full bg-primary/10 inline-flex mb-4">
-                    <HiFlag className="h-8 w-8 text-primary" />
-                  </div>
                   <p className="text-primary mb-6">No active sprint</p>
                   <Link
                     href="/lead/sprints"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
                   >
-                    <HiPlus className="h-5 w-5" />
                     Plan Sprint
                   </Link>
                 </div>
@@ -263,37 +260,42 @@ export default async function LeadOverviewPage() {
           {/* Sprint Velocity */}
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
             <CardHeader>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-lg bg-primary">
-                  <HiArrowTrendingUp className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <CardTitle className="text-xl font-bold text-foreground">Sprint Velocity</CardTitle>
-              </div>
+              <CardTitle className="text-xl font-bold text-foreground">
+                Sprint Velocity
+              </CardTitle>
             </CardHeader>
             <CardContent>
               {velocityData.velocities.length > 0 ? (
                 <div className="space-y-4">
-                  <div className="p-6 rounded-xl bg-primary/10 border border-primary/20">
-                    <p className="text-sm text-primary font-medium mb-2">Average Velocity</p>
+                  <div className="p-6 rounded-xl bg-primary/10 border border-primary">
+                    <p className="text-sm text-primary font-medium mb-2">
+                      Average Velocity
+                    </p>
                     <p className="text-5xl font-bold text-primary">
                       {velocityData.avgVelocity.toFixed(1)}
                     </p>
-                    <p className="text-sm text-primary mt-1">points per sprint</p>
+                    <p className="text-sm text-primary mt-1">
+                      points per sprint
+                    </p>
                   </div>
                   <div className="space-y-3">
                     {velocityData.velocities.slice(0, 3).map((v, idx) => (
-                      <div key={v.sprintId} className="flex justify-between items-center p-3 rounded-lg hover:bg-muted transition-colors">
-                        <span className="text-sm font-medium text-foreground">{v.sprintName}</span>
-                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold">{v.points} pts</span>
+                      <div
+                        key={v.sprintId}
+                        className="flex justify-between items-center p-3 rounded-xl hover:bg-muted transition-colors"
+                      >
+                        <span className="text-sm font-medium text-foreground">
+                          {v.sprintName}
+                        </span>
+                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold">
+                          {v.points} pts
+                        </span>
                       </div>
                     ))}
                   </div>
                 </div>
               ) : (
                 <div className="text-center py-12">
-                  <div className="p-4 rounded-full bg-primary/10 inline-flex mb-4">
-                    <HiArrowTrendingUp className="h-8 w-8 text-primary" />
-                  </div>
                   <p className="text-primary">No completed sprints yet</p>
                 </div>
               )}
@@ -306,18 +308,14 @@ export default async function LeadOverviewPage() {
           <Card className="border-primary/30 bg-primary/5 backdrop-blur-sm shadow-lg">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary">
-                  <HiExclamationTriangle className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <CardTitle className="text-xl font-bold text-foreground">Blocked Tasks</CardTitle>
-                </div>
+                <CardTitle className="text-xl font-bold text-foreground">
+                  Blocked Tasks
+                </CardTitle>
                 <Link
                   href="/lead/team-board?filter=blocked"
                   className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
                 >
                   View All
-                  <HiArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
             </CardHeader>
@@ -328,15 +326,18 @@ export default async function LeadOverviewPage() {
                     key={task.id}
                     className="p-4 bg-card rounded-xl border-2 border-primary/30 hover:shadow-md transition-all"
                   >
-                    <h4 className="font-bold text-foreground mb-1">{task.title}</h4>
+                    <h4 className="font-bold text-foreground mb-1">
+                      {task.title}
+                    </h4>
                     {task.blockedReason && (
                       <p className="text-sm text-primary mb-2">
-                        <HiExclamationTriangle className="h-3 w-3 inline mr-1" />
                         {task.blockedReason}
                       </p>
                     )}
                     {task.project && (
-                      <p className="text-xs text-primary">{task.project.name}</p>
+                      <p className="text-xs text-primary">
+                        {task.project.name}
+                      </p>
                     )}
                   </div>
                 ))}
@@ -346,33 +347,38 @@ export default async function LeadOverviewPage() {
         )}
 
         {/* Team Workload */}
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/80">
-                  <HiUserGroup className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <CardTitle className="text-xl font-bold text-foreground">Team Workload</CardTitle>
-              </div>
+              <CardTitle className="text-xl font-bold text-foreground">
+                Team Workload
+              </CardTitle>
               <Link
                 href="/lead/team-board"
                 className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
               >
                 Manage
-                <HiArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {workload.slice(0, 5).map((member) => (
-                <div key={member.userId} className="p-4 rounded-xl hover:bg-muted transition-colors">
+                <div
+                  key={member.userId}
+                  className="p-4 rounded-xl border-2 border-transparent hover:border-primary hover:bg-muted transition-all duration-300"
+                >
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-bold text-foreground">{member.userName}</span>
+                    <span className="font-bold text-foreground">
+                      {member.userName}
+                    </span>
                     <div className="flex items-center gap-4 text-sm">
-                      <span className="text-primary">{member.taskCount} tasks</span>
-                      <span className="px-2 py-1 rounded-full bg-primary/10 text-primary font-semibold">{member.storyPoints} pts</span>
+                      <span className="text-primary">
+                        {member.taskCount} tasks
+                      </span>
+                      <span className="px-2 py-1 rounded-full bg-primary/10 text-primary font-semibold">
+                        {member.storyPoints} pts
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -382,14 +388,15 @@ export default async function LeadOverviewPage() {
                         style={{
                           width: `${Math.min(
                             100,
-                            (member.storyPoints / Math.max(...workload.map((w) => w.storyPoints))) * 100
+                            (member.storyPoints /
+                              Math.max(...workload.map((w) => w.storyPoints))) *
+                              100
                           )}%`,
                         }}
                       />
                     </div>
                     {member.blocked > 0 && (
                       <span className="flex items-center gap-1 text-xs text-destructive font-bold whitespace-nowrap">
-                        <HiExclamationTriangle className="h-3 w-3" />
                         {member.blocked} blocked
                       </span>
                     )}
@@ -402,52 +409,66 @@ export default async function LeadOverviewPage() {
 
         {/* Quick Actions */}
         <div>
-          <h2 className="text-2xl font-bold text-foreground mb-6">Quick Actions</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">
+            Quick Actions
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Link href="/lead/team-board?action=create-task">
-              <Card className="group relative overflow-hidden border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+              <Card className="group relative overflow-hidden border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <HiPlus className="h-6 w-6 text-primary-foreground" />
+                    <div className="p-3 rounded-xl bg-primary/10">
+                      <HiPlus className="h-6 w-6 text-primary" />
                     </div>
-                    <HiArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowTopRightOnSquare className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Create Task</h3>
-                  <p className="text-sm text-primary">Add a new task to the board</p>
+                  <h3 className="text-lg font-bold text-primary mb-2">
+                    Create Task
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Add a new task to the board
+                  </p>
                 </CardContent>
               </Card>
             </Link>
 
             <Link href="/lead/sprints?action=create-sprint">
-              <Card className="group relative overflow-hidden border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+              <Card className="group relative overflow-hidden border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <HiCalendar className="h-6 w-6 text-primary-foreground" />
+                    <div className="p-3 rounded-xl bg-primary/10">
+                      <HiRocketLaunch className="h-6 w-6 text-primary" />
                     </div>
-                    <HiArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowTopRightOnSquare className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Plan Sprint</h3>
-                  <p className="text-sm text-primary">Create and plan a new sprint</p>
+                  <h3 className="text-lg font-bold text-primary mb-2">
+                    Plan Sprint
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Create and plan a new sprint
+                  </p>
                 </CardContent>
               </Card>
             </Link>
 
             <Link href="/lead/metrics">
-              <Card className="group relative overflow-hidden border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+              <Card className="group relative overflow-hidden border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
                 <CardContent className="relative p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-primary shadow-lg shadow-primary/30">
-                      <HiChartBar className="h-6 w-6 text-primary-foreground" />
+                    <div className="p-3 rounded-xl bg-primary/10">
+                      <HiChartBar className="h-6 w-6 text-primary" />
                     </div>
-                    <HiArrowUpRight className="h-5 w-5 text-primary/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <HiArrowTopRightOnSquare className="h-5 w-5 text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">View Metrics</h3>
-                  <p className="text-sm text-primary">Track team technical metrics</p>
+                  <h3 className="text-lg font-bold text-primary mb-2">
+                    View Metrics
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Track team technical metrics
+                  </p>
                 </CardContent>
               </Card>
             </Link>
@@ -457,3 +478,4 @@ export default async function LeadOverviewPage() {
     </div>
   );
 }
+

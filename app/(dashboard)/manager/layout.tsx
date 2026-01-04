@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { UserMenu, LogoutButton, ModeToggle, ColorPicker } from "@/components/common";
 import { MobileMenu } from "@/components/common/MobileMenu";
 
@@ -23,12 +23,13 @@ export default function ManagerLayout({
   children: React.ReactNode;
 }) {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      redirect("/auth/login");
+      router.push("/auth/login");
     }
-  }, [status]);
+  }, [status, router]);
 
   if (status === "loading") {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
@@ -54,7 +55,7 @@ export default function ManagerLayout({
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-primary border-2 border-transparent hover:border-primary transition-all whitespace-nowrap"
+                    className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary border-2 border-transparent hover:border-primary transition-all duration-200 whitespace-nowrap"
                   >
                     {item.name}
                   </Link>

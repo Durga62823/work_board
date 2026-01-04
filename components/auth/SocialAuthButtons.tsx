@@ -37,7 +37,7 @@ export function SocialAuthButtons() {
       </Button>
       <Button
         type="button"
-        className="w-full justify-center gap-3 bg-black text-white hover:bg-zinc-900"
+        className="w-full justify-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90"
         onClick={() => handleSignIn("github")}
         disabled={isPending}
       >

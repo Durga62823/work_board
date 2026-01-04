@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { HiPlus, HiBuildingOffice2, HiPencil, HiTrash, HiEllipsisVertical, HiShieldCheck } from "react-icons/hi2";
 import Link from "next/link";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,11 +31,8 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-                <HiBuildingOffice2 className="h-6 w-6 text-primary-foreground" />
-              </div>
               <div>
-                <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                <h2 className="text-3xl font-bold tracking-tight text-primary">
                   Admin - Departments
                 </h2>
                 <p className="text-muted-foreground mt-1">
@@ -48,15 +44,14 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
               onClick={() => setOpenCreateDialog(true)}
               className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <HiPlus className="mr-2 h-4 w-4" />
-              Add Department
+              + Add Department
             </Button>
           </div>
 
           {initialDepartments.length === 0 ? (
-            <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
               <CardContent className="flex flex-col items-center justify-center py-12">
-                <HiBuildingOffice2 className="h-12 w-12 text-primary mb-4" />
+                <span className="text-4xl mb-4"></span>
                 <h3 className="text-lg font-semibold mb-2">No departments yet</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   Get started by creating your first department
@@ -65,8 +60,7 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
                   onClick={() => setOpenCreateDialog(true)}
                   className="bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
-                  <HiPlus className="mr-2 h-4 w-4" />
-                  Create Department
+                  + Create Department
                 </Button>
               </CardContent>
             </Card>
@@ -75,14 +69,13 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
               {initialDepartments.map((dept) => (
                 <Card 
                   key={dept.id}
-                  className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <CardTitle className="flex items-center gap-2">
-                          <HiBuildingOffice2 className="h-5 w-5 text-primary" />
-                          <span>{dept.name}</span>
+                          🏢 {dept.name}
                         </CardTitle>
                       <CardDescription className="mt-1.5">
                         {dept.description || "No description"}
@@ -91,20 +84,18 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">
-                          <HiEllipsisVertical className="h-4 w-4" />
+                          ⋮
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => setEditDepartment(dept)}>
-                          <HiPencil className="mr-2 h-4 w-4" />
-                          Edit
+                          ✏️ Edit
                         </DropdownMenuItem>
                         <DropdownMenuItem 
                           onClick={() => setDeleteDepartment(dept)}
                           className="text-destructive"
                         >
-                          <HiTrash className="mr-2 h-4 w-4" />
-                          Delete
+                          🗑️ Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -127,7 +118,7 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
                       <Link href={`/admin/departments/${dept.id}`}>
                         <Button 
                           variant="outline" 
-                          className="w-full mt-2 border-border hover:bg-muted hover:text-foreground transition-all"
+                          className="w-full mt-2 border-2 border-transparent hover:border-primary hover:shadow-md transition-all duration-300"
                         >
                           View Details
                         </Button>

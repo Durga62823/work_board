@@ -197,11 +197,8 @@ export default function CalendarPage() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-6 space-y-6">
         <div className="flex items-center gap-3">
-         
           <div>
-            <h1 className="text-3xl font-bold text-primary">
-              My Calendar
-            </h1>
+            <h1 className="text-3xl font-bold text-primary">My Calendar</h1>
             <p className="text-foreground mt-1">
               View your schedule and upcoming events
             </p>
@@ -212,45 +209,48 @@ export default function CalendarPage() {
         {upcomingEvents.length > 0 && (
           <Card className="border-primary/50 bg-primary/5 backdrop-blur-sm shadow-lg">
             <CardHeader>
-              <CardTitle className="text-primary">
-                Upcoming Events
-              </CardTitle>
+              <CardTitle className="text-primary">Upcoming Events</CardTitle>
             </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              {upcomingEvents.slice(0, 5).map((event) => (
-                <div
-                  key={event.id}
-                  className="flex items-center justify-between p-2 bg-card rounded"
-                >
-                  <div className="flex items-center gap-2">
-                    <Badge className={getEventTypeBadge(event.type)}>
-                      {event.type}
-                    </Badge>
-                    <span className="font-medium">{event.title}</span>
+            <CardContent>
+              <div className="space-y-2">
+                {upcomingEvents.slice(0, 5).map((event) => (
+                  <div
+                    key={event.id}
+                    className="flex items-center justify-between p-2 bg-card rounded"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Badge className={getEventTypeBadge(event.type)}>
+                        {event.type}
+                      </Badge>
+                      <span className="font-medium">{event.title}</span>
+                    </div>
+                    <span className="text-sm text-muted-foreground">
+                      {new Date(event.date).toLocaleDateString()}
+                    </span>
                   </div>
-                  <span className="text-sm text-muted-foreground">
-                    {new Date(event.date).toLocaleDateString()}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Calendar Navigation */}
         <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle className="text-primary">
-              {currentDate.toLocaleDateString("en-US", {
-                month: "long",
-                year: "numeric",
-              })}
-            </CardTitle>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-primary">
+                {currentDate.toLocaleDateString("en-US", {
+                  month: "long",
+                  year: "numeric",
+                })}
+              </CardTitle>
               <div className="flex gap-2">
-                <Button size="sm" variant="outline" onClick={previousMonth} className="hover:bg-primary/10 transition-colors">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={previousMonth}
+                  className="hover:bg-primary/10 transition-colors"
+                >
                   <HiChevronLeft className="h-4 w-4" />
                 </Button>
                 <Button
@@ -261,30 +261,38 @@ export default function CalendarPage() {
                 >
                   Today
                 </Button>
-                <Button size="sm" variant="outline" onClick={nextMonth} className="hover:bg-primary/10 transition-colors">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={nextMonth}
+                  className="hover:bg-primary/10 transition-colors"
+                >
                   <HiChevronRight className="h-4 w-4" />
                 </Button>
               </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          {/* Calendar Grid */}
-          <div className="grid grid-cols-7 gap-2">
-            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-              <div key={day} className="text-center font-semibold text-sm py-2">
-                {day}
-              </div>
-            ))}
+            </div>
+          </CardHeader>
+          <CardContent>
+            {/* Calendar Grid */}
+            <div className="grid grid-cols-7 gap-2">
+              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+                <div
+                  key={day}
+                  className="text-center font-semibold text-sm py-2"
+                >
+                  {day}
+                </div>
+              ))}
 
-            {days.map((day, index) => {
-              const dayEvents = day ? getEventsForDate(day) : [];
-              const isSelected =
-                selectedDate &&
-                day &&
-                selectedDate.getDate() === day.getDate() &&
-                selectedDate.getMonth() === day.getMonth();
+              {days.map((day, index) => {
+                const dayEvents = day ? getEventsForDate(day) : [];
+                const isSelected =
+                  selectedDate &&
+                  day &&
+                  selectedDate.getDate() === day.getDate() &&
+                  selectedDate.getMonth() === day.getMonth();
 
-              return (
+                return (
                   <div
                     key={index}
                     className={`min-h-[100px] p-2 border rounded-xl hover:border-primary cursor-pointer transition-all duration-300 ${
@@ -296,104 +304,108 @@ export default function CalendarPage() {
                     } ${isSelected ? "ring-2 ring-primary shadow-xl" : ""}`}
                     onClick={() => day && setSelectedDate(day)}
                   >
-                  {day && (
-                    <>
-                      <div
-                        className={`text-sm font-semibold mb-1 ${
-                          isToday(day) ? "text-primary" : ""
-                        }`}
-                      >
-                        {day.getDate()}
-                      </div>
-                      <div className="space-y-1">
-                        {dayEvents.slice(0, 2).map((event) => (
-                          <div
-                            key={event.id}
-                            className={`text-xs p-1 rounded truncate ${getEventTypeColor(
-                              event.type
-                            )} text-primary-foreground`}
-                            title={event.title}
-                          >
-                            {event.title}
-                          </div>
-                        ))}
-                        {dayEvents.length > 2 && (
-                          <div className="text-xs text-muted-foreground">
-                            +{dayEvents.length - 2} more
-                          </div>
-                        )}
-                      </div>
-                    </>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
+                    {day && (
+                      <>
+                        <div
+                          className={`text-sm font-semibold mb-1 ${
+                            isToday(day) ? "text-primary" : ""
+                          }`}
+                        >
+                          {day.getDate()}
+                        </div>
+                        <div className="space-y-1">
+                          {dayEvents.slice(0, 2).map((event) => (
+                            <div
+                              key={event.id}
+                              className={`text-xs p-1 rounded truncate ${getEventTypeColor(
+                                event.type
+                              )} text-primary-foreground`}
+                              title={event.title}
+                            >
+                              {event.title}
+                            </div>
+                          ))}
+                          {dayEvents.length > 2 && (
+                            <div className="text-xs text-muted-foreground">
+                              +{dayEvents.length - 2} more
+                            </div>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Selected Date Events */}
         {selectedDate && (
           <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
-          <CardHeader>
-            <CardTitle>
-              Events on{" "}
-              {selectedDate.toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {selectedEvents.length === 0 ? (
-              <p className="text-primary text-center py-4">
-                No events on this day
-              </p>
-            ) : (
+            <CardHeader>
+              <CardTitle>
+                Events on{" "}
+                {selectedDate.toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {selectedEvents.length === 0 ? (
+                <p className="text-primary text-center py-4">
+                  No events on this day
+                </p>
+              ) : (
                 <div className="space-y-3">
                   {selectedEvents.map((event) => (
-                    <div key={event.id} className="border border-border rounded-xl p-4 bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className="font-semibold">{event.title}</h3>
-                          <Badge className={getEventTypeBadge(event.type)}>
-                            {event.type}
-                          </Badge>
-                          {event.priority && (
-                            <Badge
-                              variant="outline"
-                              className={getPriorityColor(event.priority)}
-                            >
-                              {event.priority}
+                    <div
+                      key={event.id}
+                      className="border-2 border-transparent hover:border-primary transition-all duration-300 rounded-xl p-4 bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <h3 className="font-semibold">{event.title}</h3>
+                            <Badge className={getEventTypeBadge(event.type)}>
+                              {event.type}
                             </Badge>
+                            {event.priority && (
+                              <Badge
+                                variant="outline"
+                                className={getPriorityColor(event.priority)}
+                              >
+                                {event.priority}
+                              </Badge>
+                            )}
+                          </div>
+                          {event.time && (
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <HiClock className="h-4 w-4" />
+                              {event.time}
+                            </div>
+                          )}
+                          {event.description && (
+                            <p className="text-sm text-muted-foreground mt-2">
+                              {event.description}
+                            </p>
                           )}
                         </div>
-                        {event.time && (
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <HiClock className="h-4 w-4" />
-                            {event.time}
-                          </div>
-                        )}
-                        {event.description && (
-                          <p className="text-sm text-muted-foreground mt-2">
-                            {event.description}
-                          </p>
+                        {event.status && (
+                          <Badge variant="outline">{event.status}</Badge>
                         )}
                       </div>
-                      {event.status && (
-                        <Badge variant="outline">{event.status}</Badge>
-                      )}
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
-              </CardContent>
-            </Card>
-          )}
-        </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
+}
+

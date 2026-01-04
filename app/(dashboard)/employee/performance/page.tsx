@@ -139,7 +139,7 @@ export default function PerformancePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {taskStats && (
             <>
-              <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardDescription className="font-medium text-primary">Task Completion</CardDescription>
@@ -156,7 +156,7 @@ export default function PerformancePage() {
               </CardContent>
             </Card>
 
-              <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardDescription className="font-medium text-primary">On-Time Delivery</CardDescription>
@@ -176,7 +176,7 @@ export default function PerformancePage() {
         )}
 
           {timeAccuracy && (
-            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardDescription className="font-medium text-primary">Estimation Accuracy</CardDescription>
@@ -256,7 +256,7 @@ export default function PerformancePage() {
                 {metrics.map((metric) => (
                   <div
                     key={metric.id}
-                    className="flex items-center justify-between p-3 border-2 border-border hover:border-primary rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    className="flex items-center justify-between p-3 border-2 border-transparent hover:border-primary rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                   >
                   <div className="flex-1">
                     <div className="flex items-center gap-2">

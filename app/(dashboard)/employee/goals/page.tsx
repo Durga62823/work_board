@@ -12,7 +12,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { HiPlus, HiPencilSquare, HiTrash, HiFlag, HiArrowTrendingUp, HiSparkles } from "react-icons/hi2";
+import {
+  HiPlus,
+  HiPencilSquare,
+  HiTrash,
+  HiFlag,
+  HiArrowTrendingUp,
+  HiSparkles,
+} from "react-icons/hi2";
 import { ImSpinner2 } from "react-icons/im";
 import {
   getMyGoals,
@@ -186,47 +193,63 @@ export default function MyGoalsPage() {
       <div className="container mx-auto p-6 space-y-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
-          
             <div>
-              <h1 className="text-3xl font-bold text-primary">
-                My Goals
-              </h1>
+              <h1 className="text-3xl font-bold text-primary">My Goals</h1>
               <p className="text-foreground mt-1">
                 Track and manage your professional goals
               </p>
             </div>
           </div>
-          <Button onClick={() => setShowCreateDialog(true)} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300">
+          <Button
+            onClick={() => setShowCreateDialog(true)}
+            className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+          >
             <HiPlus className="mr-2 h-4 w-4" />
             New Goal
           </Button>
-      </div>
+        </div>
 
         {/* Stats Overview */}
         {stats && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
-                <CardDescription className="font-medium text-primary">Total Goals</CardDescription>
-                <CardTitle className="text-3xl text-foreground">{stats.total}</CardTitle>
+                <CardDescription className="font-medium text-primary">
+                  Total Goals
+                </CardDescription>
+                <CardTitle className="text-3xl text-foreground">
+                  {stats.total}
+                </CardTitle>
               </CardHeader>
             </Card>
-            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
-                <CardDescription className="font-medium text-primary">Active Goals</CardDescription>
-                <CardTitle className="text-3xl text-foreground">{stats.active}</CardTitle>
+                <CardDescription className="font-medium text-primary">
+                  Active Goals
+                </CardDescription>
+                <CardTitle className="text-3xl text-foreground">
+                  {stats.active}
+                </CardTitle>
               </CardHeader>
             </Card>
-            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
-                <CardDescription className="font-medium text-primary">Completed</CardDescription>
-                <CardTitle className="text-3xl text-foreground">{stats.completed}</CardTitle>
+                <CardDescription className="font-medium text-primary">
+                  Completed
+                </CardDescription>
+                <CardTitle className="text-3xl text-foreground">
+                  {stats.completed}
+                </CardTitle>
               </CardHeader>
             </Card>
-            <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader className="pb-2">
-                <CardDescription className="font-medium text-primary">Average Progress</CardDescription>
-                <CardTitle className="text-3xl text-foreground">{stats.avgProgress}%</CardTitle>
+                <CardDescription className="font-medium text-primary">
+                  Average Progress
+                </CardDescription>
+                <CardTitle className="text-3xl text-foreground">
+                  {stats.avgProgress}%
+                </CardTitle>
               </CardHeader>
             </Card>
           </div>
@@ -235,214 +258,218 @@ export default function MyGoalsPage() {
         {/* Create/Edit Goal Dialog */}
         {(showCreateDialog || editingGoal) && (
           <Card className="border-2  border-primary/50 bg-primary/5 backdrop-blur-sm shadow-xl">
-          <CardHeader>
-            <CardTitle>
-              {editingGoal ? "Edit Goal" : "Create New Goal"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form
-              onSubmit={editingGoal ? handleUpdateGoal : handleCreateGoal}
-              className="space-y-4"
-            >
-              <div>
-                <Label htmlFor="title">Goal Title *</Label>
-                <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) =>
-                    setFormData({ ...formData, title: e.target.value })
-                  }
-                  placeholder="e.g., Learn TypeScript"
-                  required
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="description">Description</Label>
-                <textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) =>
-                    setFormData({ ...formData, description: e.target.value })
-                  }
-                  className="w-full min-h-[100px] px-3 py-2 border rounded-md"
-                  placeholder="Describe your goal..."
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="targetDate">Target Date</Label>
-                <Input
-                  id="targetDate"
-                  type="date"
-                  value={formData.targetDate}
-                  onChange={(e) =>
-                    setFormData({ ...formData, targetDate: e.target.value })
-                  }
-                />
-              </div>
-
-              {editingGoal && (
+            <CardHeader>
+              <CardTitle>
+                {editingGoal ? "Edit Goal" : "Create New Goal"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form
+                onSubmit={editingGoal ? handleUpdateGoal : handleCreateGoal}
+                className="space-y-4"
+              >
                 <div>
-                  <Label htmlFor="progress">
-                    Progress: {formData.progress}%
-                  </Label>
-                  <input
-                    id="progress"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={formData.progress}
+                  <Label htmlFor="title">Goal Title *</Label>
+                  <Input
+                    id="title"
+                    value={formData.title}
                     onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        progress: parseInt(e.target.value),
-                      })
+                      setFormData({ ...formData, title: e.target.value })
                     }
-                    className="w-full"
+                    placeholder="e.g., Learn TypeScript"
+                    required
                   />
                 </div>
-              )}
 
-              <div className="flex gap-2">
-                <Button type="submit">
-                  {editingGoal ? "Update Goal" : "Create Goal"}
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => {
-                    setShowCreateDialog(false);
-                    setEditingGoal(null);
-                    setFormData({
-                      title: "",
-                      description: "",
-                      targetDate: "",
-                      progress: 0,
-                    });
-                  }}
-                >
-                  Cancel
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-      )}
+                <div>
+                  <Label htmlFor="description">Description</Label>
+                  <textarea
+                    id="description"
+                    value={formData.description}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
+                    className="w-full min-h-[100px] px-3 py-2 border rounded-md"
+                    placeholder="Describe your goal..."
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="targetDate">Target Date</Label>
+                  <Input
+                    id="targetDate"
+                    type="date"
+                    value={formData.targetDate}
+                    onChange={(e) =>
+                      setFormData({ ...formData, targetDate: e.target.value })
+                    }
+                  />
+                </div>
+
+                {editingGoal && (
+                  <div>
+                    <Label htmlFor="progress">
+                      Progress: {formData.progress}%
+                    </Label>
+                    <input
+                      id="progress"
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={formData.progress}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          progress: parseInt(e.target.value),
+                        })
+                      }
+                      className="w-full"
+                    />
+                  </div>
+                )}
+
+                <div className="flex gap-2">
+                  <Button type="submit">
+                    {editingGoal ? "Update Goal" : "Create Goal"}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      setShowCreateDialog(false);
+                      setEditingGoal(null);
+                      setFormData({
+                        title: "",
+                        description: "",
+                        targetDate: "",
+                        progress: 0,
+                      });
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Goals List */}
         <div className="space-y-4">
           {goals.length === 0 ? (
             <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
               <CardContent className="flex flex-col items-center justify-center py-12">
-              <HiFlag className="h-12 w-12 text-primary/50 mb-4" />
-              <p className="text-primary text-center">
-                No goals yet. Create your first goal to get started!
-              </p>
-            </CardContent>
-          </Card>
-          ) : (
-            goals.map((goal) => (
-              <Card key={goal.id} className="border-border hover:border-primary cursor-pointer bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <CardTitle className="text-xl">{goal.title}</CardTitle>
-                      <Badge className={getStatusColor(goal.status)}>
-                        {goal.status.replace("_", " ")}
-                      </Badge>
-                    </div>
-                    {goal.description && (
-                      <CardDescription className="mt-2">
-                        {goal.description}
-                      </CardDescription>
-                    )}
-                    {goal.targetDate && (
-                      <p className="text-sm text-muted-foreground mt-2">
-                        Target: {new Date(goal.targetDate).toLocaleDateString()}
-                      </p>
-                    )}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => startEditGoal(goal)}
-                    >
-                      <HiPencilSquare className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handleDeleteGoal(goal.id)}
-                    >
-                      <HiTrash className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center text-sm">
-                    <span>Progress</span>
-                    <span className="font-semibold">{goal.progress}%</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div
-                      className="bg-primary h-2 rounded-full transition-all"
-                      style={{ width: `${goal.progress}%` }}
-                    />
-                  </div>
-                  <div className="flex gap-2 mt-4">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() =>
-                        handleUpdateProgress(
-                          goal.id,
-                          Math.max(0, goal.progress - 10)
-                        )
-                      }
-                      disabled={goal.progress === 0}
-                    >
-                      -10%
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() =>
-                        handleUpdateProgress(
-                          goal.id,
-                          Math.min(100, goal.progress + 10)
-                        )
-                      }
-                      disabled={goal.progress === 100}
-                    >
-                      +10%
-                    </Button>
-                    {goal.progress === 100 && goal.status === "active" && (
-                      <Button
-                        size="sm"
-                        variant="default"
-                        onClick={() =>
-                          updateGoal(goal.id, { status: "completed" }).then(
-                            () => {
-                              loadGoals();
-                              loadStats();
-                            }
-                          )
-                        }
-                      >
-                        <HiArrowTrendingUp className="mr-2 h-4 w-4" />
-                        Mark Complete
-                      </Button>
-                    )}
-                  </div>
-                </div>
+                <HiFlag className="h-12 w-12 text-primary/50 mb-4" />
+                <p className="text-primary text-center">
+                  No goals yet. Create your first goal to get started!
+                </p>
               </CardContent>
             </Card>
+          ) : (
+            goals.map((goal) => (
+              <Card
+                key={goal.id}
+                className="border-border hover:border-primary cursor-pointer bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <CardTitle className="text-xl">{goal.title}</CardTitle>
+                        <Badge className={getStatusColor(goal.status)}>
+                          {goal.status.replace("_", " ")}
+                        </Badge>
+                      </div>
+                      {goal.description && (
+                        <CardDescription className="mt-2">
+                          {goal.description}
+                        </CardDescription>
+                      )}
+                      {goal.targetDate && (
+                        <p className="text-sm text-muted-foreground mt-2">
+                          Target:{" "}
+                          {new Date(goal.targetDate).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => startEditGoal(goal)}
+                      >
+                        <HiPencilSquare className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleDeleteGoal(goal.id)}
+                      >
+                        <HiTrash className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm">
+                      <span>Progress</span>
+                      <span className="font-semibold">{goal.progress}%</span>
+                    </div>
+                    <div className="w-full bg-muted rounded-full h-2">
+                      <div
+                        className="bg-primary h-2 rounded-full transition-all"
+                        style={{ width: `${goal.progress}%` }}
+                      />
+                    </div>
+                    <div className="flex gap-2 mt-4">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() =>
+                          handleUpdateProgress(
+                            goal.id,
+                            Math.max(0, goal.progress - 10)
+                          )
+                        }
+                        disabled={goal.progress === 0}
+                      >
+                        -10%
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() =>
+                          handleUpdateProgress(
+                            goal.id,
+                            Math.min(100, goal.progress + 10)
+                          )
+                        }
+                        disabled={goal.progress === 100}
+                      >
+                        +10%
+                      </Button>
+                      {goal.progress === 100 && goal.status === "active" && (
+                        <Button
+                          size="sm"
+                          variant="default"
+                          onClick={() =>
+                            updateGoal(goal.id, { status: "completed" }).then(
+                              () => {
+                                loadGoals();
+                                loadStats();
+                              }
+                            )
+                          }
+                        >
+                          <HiArrowTrendingUp className="mr-2 h-4 w-4" />
+                          Mark Complete
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))
           )}
         </div>

@@ -51,31 +51,31 @@ export function SignupForm() {
         <div className="space-y-2">
           <Label htmlFor="firstName">First name</Label>
           <Input id="firstName" placeholder="Avery" {...register("firstName")} />
-          {errors.firstName && <p className="text-sm text-red-600">{errors.firstName.message}</p>}
+          {errors.firstName && <p className="text-sm text-destructive">{errors.firstName.message}</p>}
         </div>
         <div className="space-y-2">
           <Label htmlFor="lastName">Last name</Label>
           <Input id="lastName" placeholder="Chen" {...register("lastName")} />
-          {errors.lastName && <p className="text-sm text-red-600">{errors.lastName.message}</p>}
+          {errors.lastName && <p className="text-sm text-destructive">{errors.lastName.message}</p>}
         </div>
       </div>
       <div className="space-y-2">
         <Label htmlFor="email">Work email</Label>
         <Input id="email" type="email" placeholder="you@company.com" {...register("email")} />
-        {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
+        {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
       </div>
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="password">Password</Label>
           <PasswordInput id="password" {...register("password")} autoComplete="new-password" />
-          {errors.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
+          {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
         </div>
         <PasswordStrengthIndicator password={password} />
       </div>
       <div className="space-y-2">
         <Label htmlFor="confirmPassword">Confirm password</Label>
         <PasswordInput id="confirmPassword" {...register("confirmPassword")} autoComplete="new-password" />
-        {errors.confirmPassword && <p className="text-sm text-red-600">{errors.confirmPassword.message}</p>}
+        {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword.message}</p>}
       </div>
       <Button type="submit" className="w-full" disabled={isPending}>
         {isPending ? "Creating account..." : "Create account"}

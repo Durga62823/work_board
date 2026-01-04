@@ -169,7 +169,7 @@ export default function AppraisalPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
              
               <div>
@@ -181,7 +181,7 @@ export default function AppraisalPage() {
             </div>
           </Card>
 
-          <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
           
               <div>
@@ -193,7 +193,7 @@ export default function AppraisalPage() {
             </div>
           </Card>
 
-          <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
           
               <div>
@@ -205,7 +205,7 @@ export default function AppraisalPage() {
             </div>
           </Card>
 
-          <Card className="border-2 border-border hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
             <div className="flex items-center gap-3">
           
               <div>
@@ -253,7 +253,7 @@ export default function AppraisalPage() {
                 <Label>Overall Self-Rating</Label>
                 <div className="flex items-center gap-4 mt-2">
                   <select
-                    className="p-2 border rounded"
+                    className="p-2 border-2 border-transparent hover:border-primary transition-colors rounded"
                     value={rating || ""}
                     onChange={(e) =>
                       setRating(
@@ -364,7 +364,7 @@ export default function AppraisalPage() {
                 return (
                   <div
                     key={appraisal.id}
-                    className="p-4 border border-border rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:border-primary hover:-translate-y-0.5 transition-all duration-300"
+                    className="p-4 border-2 border-transparent hover:border-primary transition-all duration-300 rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:border-primary hover:-translate-y-0.5 transition-all duration-300"
                   >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -432,3 +432,4 @@ export default function AppraisalPage() {
     </div>
   );
 }
+

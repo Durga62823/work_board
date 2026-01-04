@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { approvePTORequest, rejectPTORequest } from "@/app/actions/manager-approvals";
+import {
+  approvePTORequest,
+  rejectPTORequest,
+} from "@/app/actions/manager-approvals";
 
 type PTORequest = {
   id: string;
@@ -66,7 +69,9 @@ export function PTOApprovalCard({ request }: { request: PTORequest }) {
             </div>
             <div>
               <span className="text-primary">Duration:</span>{" "}
-              <span className="font-medium text-foreground">{request.days} days</span>
+              <span className="font-medium text-foreground">
+                {request.days} days
+              </span>
             </div>
             <div>
               <span className="text-primary">Start Date:</span>{" "}
@@ -109,7 +114,9 @@ export function PTOApprovalCard({ request }: { request: PTORequest }) {
       {showRejectDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
           <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-xl">
-            <h3 className="text-lg font-semibold text-foreground">Reject PTO Request</h3>
+            <h3 className="text-lg font-semibold text-foreground">
+              Reject PTO Request
+            </h3>
             <p className="mt-1 text-sm text-primary">
               Please provide a reason for rejecting this request
             </p>

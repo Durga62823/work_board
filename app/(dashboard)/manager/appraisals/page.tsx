@@ -2,7 +2,6 @@ import { requireManager } from "@/lib/guards";
 import { getTeamAppraisals } from "@/lib/manager-helpers";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { HiSparkles } from "react-icons/hi2";
 
 export const metadata = {
   title: "Appraisals | Manager Dashboard",
@@ -10,7 +9,7 @@ export const metadata = {
 
 export default async function ManagerAppraisalsPage() {
   const session = await requireManager();
-  
+
   const [cycles, teamAppraisals] = await Promise.all([
     prisma.appraisalCycle.findMany({
       orderBy: { startDate: "desc" },
@@ -19,19 +18,16 @@ export default async function ManagerAppraisalsPage() {
     getTeamAppraisals(session.user.id),
   ]);
 
-  const activeCycle = cycles.find(c => c.status === "IN_PROGRESS");
-  const draft = teamAppraisals.filter(a => a.status === "DRAFT");
-  const inProgress = teamAppraisals.filter(a => a.status === "IN_PROGRESS");
-  const completed = teamAppraisals.filter(a => a.status === "COMPLETED");
+  const activeCycle = cycles.find((c) => c.status === "IN_PROGRESS");
+  const draft = teamAppraisals.filter((a) => a.status === "DRAFT");
+  const inProgress = teamAppraisals.filter((a) => a.status === "IN_PROGRESS");
+  const completed = teamAppraisals.filter((a) => a.status === "COMPLETED");
 
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="mx-auto max-w-7xl space-y-6">
         {/* Header */}
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg">
-            <HiSparkles className="h-6 w-6 text-primary-foreground" />
-          </div>
           <div>
             <h1 className="text-3xl font-bold text-primary">
               Manager - Appraisals
@@ -44,19 +40,19 @@ export default async function ManagerAppraisalsPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
             <div className="text-sm font-medium text-primary">Draft</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {draft.length}
             </div>
           </div>
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
             <div className="text-sm font-medium text-primary">In Progress</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {inProgress.length}
             </div>
           </div>
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6 transition-all hover:shadow-xl hover:scale-105">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
             <div className="text-sm font-medium text-primary">Completed</div>
             <div className="mt-2 text-3xl font-bold text-primary">
               {completed.length}
@@ -66,7 +62,7 @@ export default async function ManagerAppraisalsPage() {
 
         {/* Active Cycle */}
         {activeCycle && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg p-6">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-lg font-semibold text-foreground">
@@ -89,7 +85,7 @@ export default async function ManagerAppraisalsPage() {
 
         {/* In Progress Reviews */}
         {inProgress.length > 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
             <div className="border-b border-border bg-primary/10 px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 In Progress ({inProgress.length})
@@ -97,7 +93,10 @@ export default async function ManagerAppraisalsPage() {
             </div>
             <div className="divide-y divide-border">
               {inProgress.map((review) => (
-                <div key={review.id} className="px-6 py-4 transition-all hover:bg-muted/50">
+                <div
+                  key={review.id}
+                  className="px-6 py-4 transition-all hover:bg-muted/50"
+                >
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="font-medium text-foreground">
@@ -116,8 +115,8 @@ export default async function ManagerAppraisalsPage() {
                     </div>
                     <Link
                       href={`/manager/appraisals/${review.id}`}
-                      className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all">
-                    
+                      className="rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all"
+                    >
                       Conduct Review
                     </Link>
                   </div>
@@ -129,7 +128,7 @@ export default async function ManagerAppraisalsPage() {
 
         {/* Draft Reviews */}
         {draft.length > 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
             <div className="border-b border-border bg-card px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Draft ({draft.length})
@@ -137,7 +136,10 @@ export default async function ManagerAppraisalsPage() {
             </div>
             <div className="divide-y divide-border">
               {draft.map((review) => (
-                <div key={review.id} className="px-6 py-4 transition-all hover:bg-muted/50">
+                <div
+                  key={review.id}
+                  className="px-6 py-4 transition-all hover:bg-muted/50"
+                >
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="font-medium text-foreground">
@@ -149,8 +151,8 @@ export default async function ManagerAppraisalsPage() {
                     </div>
                     <Link
                       href={`/manager/appraisals/${review.id}`}
-                      className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50 transition-all">
-                    
+                      className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
+                    >
                       Start Review
                     </Link>
                   </div>
@@ -162,7 +164,7 @@ export default async function ManagerAppraisalsPage() {
 
         {/* Completed Reviews */}
         {completed.length > 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="rounded-2xl border-2 border-transparent bg-card backdrop-blur-sm shadow-lg overflow-hidden hover:border-primary hover:shadow-xl transition-all duration-300">
             <div className="border-b border-border bg-primary/10 px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Completed ({completed.length})
@@ -170,7 +172,10 @@ export default async function ManagerAppraisalsPage() {
             </div>
             <div className="divide-y divide-border">
               {completed.slice(0, 10).map((review) => (
-                <div key={review.id} className="px-6 py-4 transition-all hover:bg-muted/50">
+                <div
+                  key={review.id}
+                  className="px-6 py-4 transition-all hover:bg-muted/50"
+                >
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="font-medium text-foreground">
@@ -191,8 +196,8 @@ export default async function ManagerAppraisalsPage() {
                     <div className="flex gap-2">
                       <Link
                         href={`/manager/appraisals/${review.id}`}
-                        className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50 transition-all">
-                      
+                        className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
+                      >
                         View
                       </Link>
                     </div>
@@ -204,7 +209,7 @@ export default async function ManagerAppraisalsPage() {
         )}
 
         {teamAppraisals.length === 0 && (
-          <div className="rounded-2xl border border-border bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-primary">
+          <div className="rounded-2xl border-2 border-transparent bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-primary hover:border-primary hover:shadow-xl transition-all duration-300">
             No appraisals available
           </div>
         )}
@@ -212,3 +217,4 @@ export default async function ManagerAppraisalsPage() {
     </div>
   );
 }
+

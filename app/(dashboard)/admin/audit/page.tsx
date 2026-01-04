@@ -1,9 +1,14 @@
 import { redirect } from "next/navigation";
-import { HiArrowDownTray, HiShieldCheck } from "react-icons/hi2";
 
 import { auth } from "@/lib/auth";
 import { getAuditLogs } from "@/app/actions/admin-audit";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -35,11 +40,8 @@ export default async function AuditLogsPage() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-destructive shadow-lg">
-              <HiShieldCheck className="h-6 w-6 text-destructive-foreground" />
-            </div>
             <div>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground">
+              <h2 className="text-3xl font-bold tracking-tight text-primary">
                 Admin - Audit Logs
               </h2>
               <p className="text-muted-foreground mt-1">
@@ -47,29 +49,27 @@ export default async function AuditLogsPage() {
               </p>
             </div>
           </div>
-          <Button 
+          <Button
             variant="outline"
             className="border-border hover:bg-muted hover:text-foreground transition-all"
           >
-            <HiArrowDownTray className="mr-2 h-4 w-4" />
-            Export Logs
+            ↓ Export Logs
           </Button>
         </div>
 
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-2xl">Recent Activity</CardTitle>
+                <CardTitle className="text-2xl text-primary">Recent Activity</CardTitle>
                 <CardDescription className="text-base">
                   Showing {logs.length} of {total} total log entries
                 </CardDescription>
               </div>
-              <HiShieldCheck className="h-8 w-8 text-destructive" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="rounded-lg border border-border overflow-hidden bg-card/50 backdrop-blur-sm">
+            <div className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm">
               <Table>
                 <TableHeader>
                   <TableRow className="bg-muted hover:bg-muted/80">
@@ -84,16 +84,22 @@ export default async function AuditLogsPage() {
                 <TableBody>
                   {logs.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-8 text-primary">
+                      <TableCell
+                        colSpan={6}
+                        className="text-center py-8 text-primary"
+                      >
                         No audit logs found
                       </TableCell>
                     </TableRow>
                   ) : (
                     logs.map((log) => (
-                      <TableRow key={log.id} className="hover:bg-muted/50 transition-colors">
+                      <TableRow
+                        key={log.id}
+                        className="hover:bg-muted/50 transition-colors"
+                      >
                         <TableCell className="text-sm">
-                        {new Date(log.createdAt).toLocaleString()}
-                      </TableCell>
+                          {new Date(log.createdAt).toLocaleString()}
+                        </TableCell>
                         <TableCell>
                           <div className="text-sm">
                             {log.user ? (
@@ -101,19 +107,28 @@ export default async function AuditLogsPage() {
                                 <div className="font-medium">
                                   {log.user.firstName} {log.user.lastName}
                                 </div>
-                                <div className="text-muted-foreground">{log.user.email}</div>
+                                <div className="text-muted-foreground">
+                                  {log.user.email}
+                                </div>
                               </>
                             ) : (
-                              <span className="text-muted-foreground">System</span>
+                              <span className="text-muted-foreground">
+                                System
+                              </span>
                             )}
                           </div>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="outline" className="border-destructive/50 text-destructive">
+                          <Badge
+                            variant="outline"
+                            className="border-destructive/50 text-destructive"
+                          >
                             {log.action.replace(/_/g, " ")}
                           </Badge>
                         </TableCell>
-                        <TableCell className="font-medium">{log.entity}</TableCell>
+                        <TableCell className="font-medium">
+                          {log.entity}
+                        </TableCell>
                         <TableCell className="max-w-md truncate text-sm text-muted-foreground">
                           {log.details || "-"}
                         </TableCell>
@@ -132,3 +147,4 @@ export default async function AuditLogsPage() {
     </div>
   );
 }
+

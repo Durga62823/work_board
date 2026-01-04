@@ -7,11 +7,23 @@ const isEdgeRuntime = typeof EdgeRuntime !== "undefined";
 
 export const prisma = isEdgeRuntime
   ? ({} as PrismaClient) // Return empty object in edge runtime
-  : (globalForPrisma.prisma ??
+  : globalForPrisma.prisma ??
     new PrismaClient({
       log: ["error"],
-    }));
+      datasources: {
+        db: {
+          url: process.env.DATABASE_URL,
+        },
+      },
+    });
 
 if (process.env.NODE_ENV !== "production" && !isEdgeRuntime) {
   globalForPrisma.prisma = prisma;
+}
+
+// Gracefully disconnect on process termination
+if (!isEdgeRuntime) {
+  process.on("beforeExit", async () => {
+    await prisma.$disconnect();
+  });
 }
