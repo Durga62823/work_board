@@ -28,7 +28,7 @@ export default async function CreateUserPage() {
         </div>
 
         {/* Form Card with Glassmorphism */}
-        <div className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl p-6>
+        <div className="border-border/60 bg-card/70 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl p-6">
           <CreateUserForm />
         </div>
       </div>

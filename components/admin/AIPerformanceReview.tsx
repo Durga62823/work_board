@@ -136,7 +136,7 @@ export function AIPerformanceReview() {
         disabled={loading}
         className="w-full md:w-auto"
       >
-        {loading && <Spinner size="sm" className="mr-2" />}
+        {loading && <Spinner  className="mr-2 h-4 w-4" />}
         Generate Review
       </Button>
 

@@ -174,7 +174,7 @@ export default async function ManagerPage() {
                 {pendingPTO.slice(0, 5).map((request) => (
                   <div
                     key={request.id}
-                    className="flex items-center justify-between rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card p-4 hover:shadow-md transition-shadow"
+                    className="flex items-center justify-between rounded-xl border-2 border-transparent hover:border-primary bg-card p-4 hover:shadow-md transition-all duration-300"
                   >
                     <div>
                       <div className="font-semibold text-foreground">
@@ -227,7 +227,7 @@ export default async function ManagerPage() {
                 {pendingTimesheets.slice(0, 5).map((timesheet) => (
                   <div
                     key={timesheet.id}
-                    className="flex items-center justify-between rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card p-4 hover:shadow-md transition-shadow"
+                    className="flex items-center justify-between rounded-xl border-2 border-transparent hover:border-primary bg-card p-4 hover:shadow-md transition-all duration-300"
                   >
                     <div>
                       <div className="font-semibold text-foreground">
@@ -270,7 +270,7 @@ export default async function ManagerPage() {
               {teamCapacity.map((member) => (
                 <div
                   key={member.user.id}
-                  className="flex items-center gap-4 p-4 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card hover:shadow-md transition-shadow"
+                  className="flex items-center gap-4 p-4 rounded-xl border-2 border-transparent hover:border-primary bg-card hover:shadow-md transition-all duration-300"
                 >
                   <div className="flex-1">
                     <div className="font-semibold text-foreground">

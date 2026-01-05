@@ -215,7 +215,7 @@ export async function getMonthlyPerformanceTrend(months: number = 12) {
 
       monthlyData[monthKey].total++;
 
-      if (task.status === "done") {
+      if (task.status === "DONE") {
         monthlyData[monthKey].completed++;
 
         if (task.dueDate && task.updatedAt <= task.dueDate) {
@@ -355,9 +355,9 @@ export async function getProjectPerformance() {
 
       projectData[projectId].total++;
 
-      if (task.status === "done") {
+      if (task.status === "DONE") {
         projectData[projectId].completed++;
-      } else if (task.status === "in-progress") {
+      } else if (task.status === "IN_PROGRESS") {
         projectData[projectId].inProgress++;
       }
 

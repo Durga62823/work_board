@@ -98,7 +98,7 @@ export default function NewSprintPage() {
               <textarea
                 id="goal"
                 rows={3}
-                className="w-full px-3 py-2 border-2 border-transparent hover:border-primary transition-all duration-300 rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                className="w-full px-3 py-2 border-2 border-transparent hover:border-primary rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
                 placeholder="e.g., Complete user authentication and dashboard redesign"
                 {...register("goal")}
               />

@@ -260,7 +260,7 @@ export default function PerformancePage() {
                   >
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <p className="font-medium text-card-foreground text-foreground">
+                      <p className="font-medium text-foreground">
                         {(metric.metricType || metric.metric).replace("_", " ")}
                       </p>
                       {metric.project && (

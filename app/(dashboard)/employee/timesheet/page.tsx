@@ -34,8 +34,8 @@ export default function TimesheetPage() {
   const [projects, setProjects] = useState<any[]>([]);
   const [stats, setStats] = useState({
     totalHours: 0,
-    submittedHours: 0,
-    approvedHours: 0,
+    billableHours: 0,
+    nonBillableHours: 0,
   });
 
   // Form state
@@ -146,8 +146,10 @@ export default function TimesheetPage() {
     try {
       const result = await updateTimesheetEntry(
         editingEntry.id,
-        Number(formData.hours),
-        formData.description
+        {
+          hours: Number(formData.hours),
+          description: formData.description,
+        }
       );
 
       if (result.success) {
@@ -315,10 +317,10 @@ export default function TimesheetPage() {
             <div className="flex items-center gap-3">
               <div>
                 <p className="text-sm text-primary font-medium">
-                  Submitted Hours
+                  Billable Hours
                 </p>
                 <p className="text-3xl font-bold text-primary">
-                  {stats.submittedHours}h
+                  {stats.billableHours}h
                 </p>
               </div>
             </div>
@@ -328,10 +330,10 @@ export default function TimesheetPage() {
             <div className="flex items-center gap-3">
               <div>
                 <p className="text-sm text-primary font-medium">
-                  Approved Hours
+                  Non-Billable Hours
                 </p>
                 <p className="text-3xl font-bold text-primary">
-                  {stats.approvedHours}h
+                  {stats.nonBillableHours}h
                 </p>
               </div>
             </div>
@@ -504,7 +506,7 @@ export default function TimesheetPage() {
               {timesheet.entries.map((entry: any) => (
                 <div
                   key={entry.id}
-                  className="p-4 border-2 border-transparent hover:border-primary transition-all duration-300 rounded-xl bg-card/50 backdrop-blur-sm flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                  className="p-4 border-2 border-transparent hover:border-primary rounded-xl bg-card/50 backdrop-blur-sm flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">

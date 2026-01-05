@@ -364,7 +364,7 @@ export default function AppraisalPage() {
                 return (
                   <div
                     key={appraisal.id}
-                    className="p-4 border-2 border-transparent hover:border-primary transition-all duration-300 rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:border-primary hover:-translate-y-0.5 transition-all duration-300"
+                    className="p-4 border-2 border-transparent hover:border-primary rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                   >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">

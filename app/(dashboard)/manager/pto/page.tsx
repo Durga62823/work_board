@@ -166,7 +166,7 @@ export default async function ManagerPTOPage() {
                         {new Date(request.startDate).toLocaleDateString()} -{" "}
                         {new Date(request.endDate).toLocaleDateString()}
                       </div>
-                      {request.comments && (
+                      {request.rejectionReason && (
                         <div className="mt-2 text-sm text-primary">
                           Reason: {request.rejectionReason}
                         </div>

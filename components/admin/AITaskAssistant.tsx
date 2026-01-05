@@ -113,7 +113,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
             disabled={loading || !input.trim()}
             className="flex items-center gap-2"
           >
-            {loading && activeFeature === "breakdown" && <Spinner size="sm" />}
+            {loading && activeFeature === "breakdown" && <Spinner className="w-4 h-4"/>}
             Break into Subtasks
           </Button>
           <Button
@@ -122,7 +122,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
             variant="outline"
             className="flex items-center gap-2"
           >
-            {loading && activeFeature === "timeline" && <Spinner size="sm" />}
+            {loading && activeFeature === "timeline" && <Spinner className="w-4 h-4"/>}
             Estimate Timeline
           </Button>
           <Button
@@ -131,7 +131,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
             variant="outline"
             className="flex items-center gap-2"
           >
-            {loading && activeFeature === "testcases" && <Spinner size="sm" />}
+            {loading && activeFeature === "testcases" && <Spinner className="w-4 h-4" />}
             Generate Test Cases
           </Button>
         </div>

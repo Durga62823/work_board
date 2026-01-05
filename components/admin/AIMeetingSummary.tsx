@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+import { HiChatBubbleLeft, HiClipboardDocumentList } from "react-icons/hi2";
 
 export function AIMeetingSummary() {
   const [transcript, setTranscript] = useState("");
@@ -61,7 +62,7 @@ export function AIMeetingSummary() {
         onClick={handleSummarize}
         disabled={loading || !transcript.trim()}
       >
-        {loading && <Spinner size="sm" className="mr-2" />}
+        {loading && <Spinner className="mr-2 h-4 w-4" />}
         Generate Summary
       </Button>
 

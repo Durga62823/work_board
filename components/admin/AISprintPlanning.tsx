@@ -190,7 +190,7 @@ export function AISprintPlanning() {
       </Card>
 
       <Button onClick={handlePlan} disabled={loading}>
-        {loading && <Spinner size="sm" className="mr-2" />}
+        {loading && <Spinner  className="mr-2 h-4 w-4" />}
         Generate Sprint Plan
       </Button>
 

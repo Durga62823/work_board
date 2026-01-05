@@ -14,7 +14,7 @@ const leadNavigation = [
   { name: "Sprints", href: "/lead/sprints" },
   { name: "Technical Metrics", href: "/lead/metrics" },
   { name: "Code Reviews", href: "/lead/code-reviews" },
-  { name: "✨ AI Features", href: "/lead/ai-features" },
+  { name: "AI Features", href: "/lead/ai-features" },
 ];
 
 export default function LeadLayout({ children }: { children: ReactNode }) {

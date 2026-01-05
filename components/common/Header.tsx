@@ -18,13 +18,7 @@ export function Header({ session, title }: HeaderProps) {
         <div className="flex items-center gap-2">
           <ModeToggle />
           <ColorPicker />
-          {session?.user && (
-            <UserMenu
-              name={session.user.name}
-              email={session.user.email}
-              image={session.user.image}
-            />
-          )}
+          {session?.user && <UserMenu />}
         </div>
       </div>
     </header>

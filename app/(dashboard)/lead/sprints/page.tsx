@@ -94,7 +94,7 @@ export default async function LeadSprintsPage() {
               <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
                 <p className="text-sm text-primary mb-1">Story Points</p>
                 <p className="text-lg font-semibold text-foreground">
-                  {activeSprint._count?.tasks || 0} tasks
+                  {activeSprint.totalTasks || 0} tasks
                 </p>
               </div>
               <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
@@ -112,13 +112,13 @@ export default async function LeadSprintsPage() {
             </div>
 
             {/* Burndown Chart Placeholder */}
-            {burndownData && burndownData.ideal && burndownData.actual && (
+            {burndownData && burndownData.idealBurndown && burndownData.actualBurndown && (
               <div className="mt-6 p-4 bg-primary/10 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300">
                 <h3 className="text-sm font-semibold text-foreground mb-3">Sprint Burndown</h3>
                 <div className="h-48 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-xl bg-card/50">
                   <div className="text-center text-primary">
-                    <p className="text-sm">Ideal: {burndownData.ideal.join(", ")}</p>
-                    <p className="text-sm mt-1">Actual: {burndownData.actual.join(", ")}</p>
+                    <p className="text-sm">Ideal: {burndownData.idealBurndown.map(d => d.ideal.toFixed(0)).join(", ")}</p>
+                    <p className="text-sm mt-1">Actual: {burndownData.actualBurndown.map(d => d.actual.toFixed(0)).join(", ")}</p>
                     <p className="text-xs mt-2 text-primary">Chart visualization to be implemented</p>
                   </div>
                 </div>
@@ -203,7 +203,7 @@ export default async function LeadSprintsPage() {
                     </div>
                     <div className="text-right">
                       <p className="text-xs text-primary">Tasks</p>
-                      <p className="text-lg font-bold text-foreground">{sprint._count?.tasks || 0}</p>
+                      <p className="text-lg font-bold text-foreground">{sprint.totalTasks || 0}</p>
                     </div>
                     <Link
                       href={`/lead/sprints/${sprint.id}`}

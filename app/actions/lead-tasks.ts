@@ -157,17 +157,28 @@ export async function assignTask(taskId: string, assigneeId: string) {
 export async function createSprint(data: {
   name: string;
   goal?: string;
-  teamId: string;
+  teamId?: string;
   startDate: Date;
   endDate: Date;
   capacityHours?: number;
 }) {
   try {
-    await requireLead();
+    const session = await requireLead();
+
+    // Get user's teamId from session
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { teamId: true },
+    });
+
+    if (!user?.teamId) {
+      return { success: false, error: "You must be assigned to a team to create sprints" };
+    }
 
     const sprint = await prisma.sprint.create({
       data: {
         ...data,
+        teamId: data.teamId || user.teamId,
         status: "PLANNING",
       },
     });
@@ -266,7 +277,7 @@ export async function recordTechnicalMetric(data: {
     const metric = await prisma.technicalMetric.create({
       data: {
         ...data,
-        metadata: data.metadata ? JSON.stringify(data.metadata) : null,
+        metadata: data.metadata ? JSON.stringify(data.metadata) : undefined,
       },
     });
 

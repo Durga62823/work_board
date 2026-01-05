@@ -22,7 +22,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const result = await adminAIService.estimateTimeline(taskDescription, teamSize);
+    const result = await adminAIService.estimateTimeline({
+      title: taskDescription.split('\n')[0] || taskDescription.substring(0, 100),
+      description: taskDescription,
+      complexity: teamSize ? undefined : undefined,
+    });
 
     return NextResponse.json(result);
   } catch (error: any) {

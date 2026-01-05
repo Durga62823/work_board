@@ -87,13 +87,13 @@ export default async function ManagerTeamPage() {
                   <div className="flex gap-2">
                     <Link
                       href={`/manager/team/${member.id}`}
-                      className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted/50 transition-all
+                      className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted/50 "
                     >
                       View Details
                     </Link>
                     <Link
                       href={`/manager/one-on-ones?userId=${member.id}`}
-                      className="rounded-xl bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all
+                      className="rounded-xl bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all"
                     >
                       Schedule 1:1
                     </Link>

@@ -100,9 +100,10 @@ export default async function AppraisalsPage() {
           <CardContent>
             <p className="text-sm text-primary text-center py-8">
               No completed appraisals yet
-          </p>
-        </CardContent>
-      </Card>
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

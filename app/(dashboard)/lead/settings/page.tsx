@@ -131,7 +131,7 @@ export default function LeadSettingsPage() {
         </div>
       </div>
 
-      <div className="bg-card rounded-xl shadow-sm border-2 border-transparent hover:border-primary transition-all duration-300>
+      <div className="bg-card rounded-xl shadow-sm border-2 border-transparent hover:border-primary transition-all duration-300">
         {/* Tabs */}
         <div className="border-b border-border">
           <div className="flex">
@@ -386,7 +386,7 @@ export default function LeadSettingsPage() {
               </div>
 
               <div className="pt-6 border-t">
-                <div className="bg-destructive/10 border border-destructive/30 rounded-xl p-4>
+                <div className="bg-destructive/10 border border-destructive/30 rounded-xl p-4">
                   <h4 className="text-sm font-semibold text-destructive mb-2">Danger Zone</h4>
                   <p className="text-sm text-destructive/80 mb-3">
                     Once you delete your account, there is no going back. Please be certain.

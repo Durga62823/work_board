@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-
+import { HiShieldCheck, HiExclamationTriangle } from "react-icons/hi2";
 export function AIRiskAssessment() {
   const [projectName, setProjectName] = useState("");
   const [deadline, setDeadline] = useState("");
@@ -138,7 +138,7 @@ export function AIRiskAssessment() {
         disabled={loading}
         className="w-full md:w-auto"
       >
-        {loading && <Spinner size="sm" className="mr-2" />}
+        {loading && <Spinner  className="mr-2 h-4 w-4" />}
         Assess Risk
       </Button>
 

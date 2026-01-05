@@ -74,7 +74,7 @@ export default async function LeadProfilePage() {
       </div>
 
       {/* Profile Card */}
-      <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300>
+      <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300" >
         <div className="p-6">
           <div className="flex items-start gap-6">
             <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center text-3xl font-bold text-primary">
@@ -107,19 +107,19 @@ export default async function LeadProfilePage() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300 p-6>
+        <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300 p-6">
           <p className="text-sm font-medium text-muted-foreground mb-2">Tasks Completed</p>
           <p className="text-3xl font-bold text-foreground">{tasksCompleted}</p>
           <p className="text-xs text-muted-foreground mt-1">This month</p>
         </div>
         
-        <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300 p-6>
+        <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300 p-6">
           <p className="text-sm font-medium text-muted-foreground mb-2">Active Tasks</p>
           <p className="text-3xl font-bold text-foreground">{tasksInProgress}</p>
           <p className="text-xs text-muted-foreground mt-1">In progress</p>
         </div>
         
-        <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300 p-6>
+        <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300 p-6">
           <p className="text-sm font-medium text-muted-foreground mb-2">Team Members</p>
           <p className="text-3xl font-bold text-foreground">{teamStats.length}</p>
           <p className="text-xs text-muted-foreground mt-1">Active members</p>
@@ -127,7 +127,7 @@ export default async function LeadProfilePage() {
       </div>
 
       {/* Team Information */}
-      <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300>
+      <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300">
         <div className="p-6">
           <h3 className="text-xl font-bold text-foreground mb-4">Team Information</h3>
           <div className="space-y-4">
@@ -165,14 +165,14 @@ export default async function LeadProfilePage() {
       </div>
 
       {/* Team Members */}
-      <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300>
+      <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300">
         <div className="p-6">
           <h3 className="text-xl font-bold text-foreground mb-4">Team Members ({teamStats.length})</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {teamStats.map((member) => (
               <div
                 key={member.id}
-                className="flex items-center gap-3 p-3 bg-muted rounded-xl hover:bg-muted transition-colors
+                className="flex items-center gap-3 p-3 bg-muted rounded-xl hover:bg-muted transition-colors"
               >
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-sm font-bold text-primary">
                   {member.name?.charAt(0).toUpperCase() || "?"}
@@ -188,7 +188,7 @@ export default async function LeadProfilePage() {
       </div>
 
       {/* Contact Information */}
-      <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300>
+      <div className="bg-card rounded-xl shadow-md border-2 border-transparent hover:border-primary transition-all duration-300">
         <div className="p-6">
           <h3 className="text-xl font-bold text-foreground mb-4">Contact Information</h3>
           <div className="space-y-3">

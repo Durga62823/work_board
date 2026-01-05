@@ -202,7 +202,7 @@ export default async function LeadCodeReviewsPage() {
                       <div className="flex items-center gap-4 text-sm text-primary">
                         <span>{review.filesChanged} files changed</span>
                         <span>{review.linesChanged} lines</span>
-                        {review.comments > 0 && (
+                        {review.comments != null && review.comments > 0 && (
                           <span>{review.comments} comments</span>
                         )}
                       </div>
@@ -261,7 +261,9 @@ export default async function LeadCodeReviewsPage() {
                       <div className="flex items-center gap-4 text-sm text-primary">
                         <span>{review.filesChanged} files</span>
                         <span>{review.linesChanged} lines</span>
-                        <span>{review.comments} comments</span>
+                        {review.comments != null && (
+                          <span>{review.comments} comments</span>
+                        )}
                       </div>
                     </div>
                     <a
@@ -318,7 +320,7 @@ export default async function LeadCodeReviewsPage() {
                       <div className="flex items-center gap-4 text-sm text-primary">
                         <span>{review.filesChanged} files</span>
                         <span>{review.linesChanged} lines</span>
-                        {review.comments > 0 && (
+                        {review.comments != null && review.comments > 0 && (
                           <span>{review.comments} comments</span>
                         )}
                       </div>

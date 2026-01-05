@@ -11,7 +11,7 @@ const integrationIcons: Record<string, string> = {
   github: "💻",
   slack: "💬",
   email: "📬",
-  sso: 🔐",
+  sso: "🔐",
   ai: "⚡",
 };
 

@@ -363,7 +363,7 @@ export default function CalendarPage() {
                   {selectedEvents.map((event) => (
                     <div
                       key={event.id}
-                      className="border-2 border-transparent hover:border-primary transition-all duration-300 rounded-xl p-4 bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                      className="border-2 border-transparent hover:border-primary rounded-xl p-4 bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
