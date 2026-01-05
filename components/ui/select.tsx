@@ -59,7 +59,7 @@ const SelectScrollDownButton = React.forwardRef<
     )}
     {...props}
   >
-    <ChevronDown className="h-4 w-4" />
+    <HiChevronDown className="h-4 w-4" />
   </SelectPrimitive.ScrollDownButton>
 ))
 SelectScrollDownButton.displayName =
