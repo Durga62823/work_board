@@ -10,15 +10,15 @@ import {
 } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Authentication Error | Make It Possible",
+  title: "Authentication Error | WorkBoard",
 };
 
-export default function AuthErrorPage({
+export default async function AuthErrorPage({
   searchParams,
 }: {
-  searchParams: { error?: string };
+  searchParams: Promise<{ error?: string }>;
 }) {
-  const error = searchParams.error;
+  const { error } = await searchParams;
 
   let errorMessage = "An error occurred during authentication.";
   let errorDetails =
