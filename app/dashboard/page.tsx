@@ -19,7 +19,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Dashboard | Make It Possible",
+  title: "Dashboard | WorkBoard",
 };
 
 export default async function DashboardPage() {
@@ -55,7 +55,7 @@ export default async function DashboardPage() {
               </div>
               <div>
                 <span className="text-lg font-bold text-primary">
-                  Make It Possible
+                  WorkBoard
                 </span>
                 <p className="text-xs text-muted-foreground">AI-Powered Workforce Platform</p>
               </div>
@@ -356,7 +356,7 @@ export default async function DashboardPage() {
               Ready to Transform Your Workforce?
             </h2>
             <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-              Join teams that are already using Make It Possible to streamline their operations
+              Join teams that are already using WorkBoard to streamline their operations
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/auth/signup">
@@ -384,7 +384,7 @@ export default async function DashboardPage() {
                 <div className="h-8 w-8 rounded-xl bg-primary flex items-center justify-center">
                   <HiSquares2X2 className="h-4 w-4 text-primary-foreground" />
                 </div>
-                <span className="font-bold text-primary">Make It Possible</span>
+                <span className="font-bold text-primary">WorkBoard</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 AI-powered workforce management platform for modern teams.
@@ -424,7 +424,7 @@ export default async function DashboardPage() {
 
           <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              � 2025 Make It Possible. All rights reserved.
+              © 2025 WorkBoard. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               <Link href="https://github.com" className="text-muted-foreground hover:text-primary transition-colors">

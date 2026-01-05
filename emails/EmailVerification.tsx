@@ -38,7 +38,7 @@ export default function EmailVerification({ firstName, actionUrl }: EmailVerific
             This link expires in 24 hours. If you didn't sign up, you can safely ignore this email.
           </Text>
           <Hr style={styles.hr} />
-          <Text style={styles.footer}>© {new Date().getFullYear()} Make It Possible</Text>
+          <Text style={styles.footer}>© {new Date().getFullYear()} WorkBoard</Text>
         </Container>
       </Body>
     </Html>

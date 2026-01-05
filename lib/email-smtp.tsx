@@ -52,7 +52,7 @@ export async function sendVerificationEmail({ email, token, firstName }: EmailPa
     const result = await smtp.sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: email,
-      subject: "Verify your Make It Possible account",
+      subject: "Verify your WorkBoard account",
       html,
     });
 
@@ -78,7 +78,7 @@ export async function sendPasswordResetEmail({ email, token, firstName }: EmailP
     const result = await smtp.sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: email,
-      subject: "Reset your Make It Possible password",
+      subject: "Reset your WorkBoard password",
       html,
     });
 
@@ -103,7 +103,7 @@ export async function sendWelcomeEmail(email: string, firstName?: string | null)
     const result = await smtp.sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: email,
-      subject: "Welcome to Make It Possible",
+      subject: "Welcome to WorkBoard",
       html,
     });
 

@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { SettingsClient } from "@/components/settings/SettingsClient";
 
 export const metadata = {
-  title: "Settings | Make It Possible",
+  title: "Settings | WorkBoard",
 };
 
 export default async function SettingsPage() {

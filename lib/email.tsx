@@ -37,7 +37,7 @@ export async function sendVerificationEmail({ email, token, firstName }: EmailPa
     const result = await resend.emails.send({
       from: process.env.EMAIL_FROM!,
       to: recipientEmail,
-      subject: "Verify your Make It Possible account",
+      subject: "Verify your WorkBoard account",
       html: render(
         <EmailVerification firstName={firstName} actionUrl={verificationUrl} />,
       ),
@@ -64,7 +64,7 @@ export async function sendPasswordResetEmail({ email, token, firstName }: EmailP
     const result = await resend.emails.send({
       from: process.env.EMAIL_FROM!,
       to: recipientEmail,
-      subject: "Reset your Make It Possible password",
+      subject: "Reset your WorkBoard password",
       html: render(<PasswordReset firstName={firstName} actionUrl={resetUrl} />),
     });
     console.log(`✓ Password reset email sent to ${recipientEmail} (intended: ${email}):`, result);
@@ -87,7 +87,7 @@ export async function sendWelcomeEmail(email: string, firstName?: string | null)
     const result = await resend.emails.send({
       from: process.env.EMAIL_FROM!,
       to: recipientEmail,
-      subject: "Welcome to Make It Possible",
+      subject: "Welcome to WorkBoard",
       html: render(<WelcomeEmail firstName={firstName} />),
     });
     console.log(`✓ Welcome email sent to ${recipientEmail} (intended: ${email}):`, result);

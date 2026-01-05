@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Make It Possible",
-    template: "%s | Make It Possible",
+    default: "WorkBoard",
+    template: "%s | WorkBoard",
   },
   description:
     "AI-powered project management platform with enterprise-grade security.",

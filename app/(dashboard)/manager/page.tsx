@@ -16,7 +16,7 @@ import {
 import Link from "next/link";
 
 export const metadata = {
-  title: "Manager Dashboard | Make It Possible",
+  title: "Manager Dashboard | WorkBoard",
 };
 
 export default async function ManagerPage() {

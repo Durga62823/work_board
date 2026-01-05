@@ -15,7 +15,7 @@ export default function WelcomeEmail({ firstName }: WelcomeEmailProps) {
         <Container style={styles.container}>
           <Text style={styles.heading}>Welcome aboard!</Text>
           <Text style={styles.paragraph}>
-            {firstName ? `Hi ${firstName},` : "Hello,"} thanks for joining Make It Possible. You now have access
+            {firstName ? `Hi ${firstName},` : "Hello,"} thanks for joining WorkBoard. You now have access
             to AI-assisted planning, automated workflows, and enterprise-grade governance.
           </Text>
           <Text style={styles.paragraph}>Start by creating your first workspace and inviting collaborators.</Text>

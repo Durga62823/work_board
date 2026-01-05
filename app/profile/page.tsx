@@ -10,7 +10,7 @@ import {
 import { UserProfile, UserAvatar } from "@/components/common";
 
 export const metadata = {
-  title: "Profile | Make It Possible",
+  title: "Profile | WorkBoard",
 };
 
 export default async function ProfilePage() {
