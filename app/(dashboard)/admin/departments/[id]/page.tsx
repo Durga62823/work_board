@@ -26,7 +26,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default async function DepartmentDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const session = await auth();
 
@@ -34,7 +34,8 @@ export default async function DepartmentDetailPage({
     redirect("/auth/login");
   }
 
-  const department = await getDepartmentById(params.id);
+  const { id } = await params;
+  const department = await getDepartmentById(id);
 
   if (!department) {
     notFound();
