@@ -1,6 +1,5 @@
 import "server-only";
 import bcrypt from "bcryptjs";
-import crypto from "crypto";
 
 const SALT_ROUNDS = 10;
 
@@ -13,5 +12,8 @@ export async function verifyPassword(password: string, hashed: string) {
 }
 
 export function generateToken(bytes = 32) {
-  return crypto.randomBytes(bytes).toString("hex");
+  // Use Web Crypto API instead of Node.js crypto for Edge Runtime compatibility
+  const array = new Uint8Array(bytes);
+  crypto.getRandomValues(array);
+  return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
 }
