@@ -18,49 +18,7 @@ const authConfig: NextAuthConfig = {
   trustHost: true,
   secret: process.env.NEXTAUTH_SECRET,
   debug: false,
-  adapter: {
-    ...PrismaAdapter(prisma),
-    // Override linkAccount to handle email account linking
-    linkAccount: async (account) => {
-      // Check if a user with this email already exists
-      const provider = account.provider;
-      const providerAccountId = account.providerAccountId;
-      
-      // Try to find existing account
-      const existingAccount = await prisma.account.findUnique({
-        where: {
-          provider_providerAccountId: {
-            provider,
-            providerAccountId,
-          },
-        },
-        include: { user: true },
-      });
-
-      if (existingAccount) {
-        // Account already linked, return it
-        return existingAccount as any;
-      }
-
-      // Create new account link
-      const newAccount = await prisma.account.create({
-        data: {
-          userId: account.userId,
-          type: account.type,
-          provider: account.provider,
-          providerAccountId: account.providerAccountId,
-          refresh_token: account.refresh_token,
-          access_token: account.access_token,
-          expires_at: account.expires_at,
-          token_type: account.token_type,
-          scope: account.scope,
-          id_token: account.id_token,
-          session_state: account.session_state as string | null,
-        },
-      });
-      return newAccount as any;
-    },
-  },
+  adapter: PrismaAdapter(prisma) as any,
   session: {
     strategy: "jwt",
     maxAge: REMEMBERED_MAX_AGE,

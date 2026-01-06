@@ -27,7 +27,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default async function UserDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const session = await auth();
 
@@ -35,7 +35,8 @@ export default async function UserDetailPage({
     redirect("/auth/login");
   }
 
-  const user = await getUserById(params.id);
+  const { id } = await params;
+  const user = await getUserById(id);
 
   if (!user) {
     notFound();

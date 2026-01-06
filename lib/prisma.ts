@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
 // Check if we're in Edge Runtime (middleware)
-const isEdgeRuntime = typeof EdgeRuntime !== "undefined";
+const isEdgeRuntime = typeof (globalThis as any).EdgeRuntime !== "undefined";
 
 export const prisma = isEdgeRuntime
   ? ({} as PrismaClient) // Return empty object in edge runtime
