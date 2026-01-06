@@ -44,30 +44,8 @@ const nextConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
   serverExternalPackages: ['@prisma/client', 'prisma'],
-  webpack: (config, { isServer, nextRuntime }) => {
-    // Exclude Prisma from Edge Runtime (middleware)
-    if (nextRuntime === 'edge') {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '.prisma/client/index-browser': false,
-        '@prisma/client': false,
-      };
-    }
-    
-    if (!isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        bcrypt: false,
-        "@mapbox/node-pre-gyp": false,
-        nodemailer: false,
-      };
-    }
-    return config;
-  },
+  turbopack: {},
   headers: async () =>
     process.env.NODE_ENV === "production"
       ? [

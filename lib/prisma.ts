@@ -17,13 +17,6 @@ export const prisma = isEdgeRuntime
       },
     });
 
-if (process.env.NODE_ENV !== "production" && !isEdgeRuntime) {
+if (typeof process !== 'undefined' && process.env?.NODE_ENV !== "production" && !isEdgeRuntime) {
   globalForPrisma.prisma = prisma;
-}
-
-// Gracefully disconnect on process termination
-if (!isEdgeRuntime) {
-  process.on("beforeExit", async () => {
-    await prisma.$disconnect();
-  });
 }
