@@ -17,7 +17,7 @@ export default async function ManagerTimesheetsPage() {
         <div className="flex items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold text-primary">
-              Manager - Timesheets
+              Timesheets
             </h1>
             <p className="mt-1 text-primary">
               Review and approve timesheets from your team

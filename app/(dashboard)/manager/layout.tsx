@@ -17,7 +17,7 @@ const managerNavigation = [
   { name: "PTO Requests", href: "/manager/pto" },
   { name: "Appraisals", href: "/manager/appraisals" },
   { name: "Capacity", href: "/manager/capacity" },
-  { name: "✨ AI Features", href: "/manager/ai-features" },
+  { name: "AI Features", href: "/manager/ai-features" },
 ];
 
 export default function ManagerLayout({

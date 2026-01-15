@@ -32,7 +32,7 @@ export default async function ManagerCapacityPage() {
         <div className="flex items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold text-primary">
-              Manager - Capacity
+              Capacity
             </h1>
             <p className="mt-1 text-primary">
               Monitor workload and resource allocation across your team

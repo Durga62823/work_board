@@ -50,7 +50,7 @@ export default async function ManagerPTOPage() {
         {/* Header */}
         <div className="flex items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-primary">Manager - PTO</h1>
+            <h1 className="text-3xl font-bold text-primary">PTO</h1>
             <p className="mt-1 text-primary">
               Review and manage time-off requests from your team
             </p>

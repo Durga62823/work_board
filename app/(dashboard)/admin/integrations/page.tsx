@@ -7,14 +7,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-const integrationIcons: Record<string, string> = {
-  github: "💻",
-  slack: "💬",
-  email: "📬",
-  sso: "🔐",
-  ai: "⚡",
-};
-
 export default async function IntegrationsPage() {
   const session = await auth();
 
@@ -52,7 +44,7 @@ export default async function IntegrationsPage() {
           </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-primary">
-              Admin - Integrations
+              Integrations
             </h2>
             <p className="text-muted-foreground mt-1">
               Connect external services and configure integrations
@@ -62,8 +54,6 @@ export default async function IntegrationsPage() {
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {displayIntegrations.map((integration) => {
-            const emoji = integrationIcons[integration.type] || "⚡";
-            
             return (
               <Card 
                 key={integration.name}
@@ -71,7 +61,6 @@ export default async function IntegrationsPage() {
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl">{emoji}</span>
                     <Badge 
                       variant={integration.enabled ? "default" : "secondary"}
                       className={integration.enabled ? "bg-primary text-primary-foreground" : ""}

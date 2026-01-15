@@ -18,12 +18,9 @@ export default async function AppraisalsPage() {
         {/* Header with gradient badge */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
-              <span className="text-lg">🛡️</span>
-            </div>
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-primary">
-                Admin - Appraisal Management
+                Appraisal Management
               </h2>
               <p className="text-muted-foreground mt-1">
                 Create and manage performance appraisal cycles

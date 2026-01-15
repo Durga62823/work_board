@@ -30,7 +30,7 @@ export default async function ManagerAppraisalsPage() {
         <div className="flex items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold text-primary">
-              Manager - Appraisals
+              Appraisals
             </h1>
             <p className="mt-1 text-primary">
               Conduct performance reviews and manage team appraisals

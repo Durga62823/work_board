@@ -120,9 +120,6 @@ export default async function AdminDashboardPage() {
               <Card className="group relative overflow-hidden border-2 border-transparent bg-card hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
                 <CardContent className="relative p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl transition-transform">↗️</span>
-                  </div>
                   <h3 className="text-lg font-bold text-primary mb-2">
                     User Management
                   </h3>
@@ -138,9 +135,6 @@ export default async function AdminDashboardPage() {
               <Card className="group relative overflow-hidden border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
                 <CardContent className="relative p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl transition-transform">↗️</span>
-                  </div>
                   <h3 className="text-lg font-bold text-primary mb-2">
                     Organization
                   </h3>
@@ -156,9 +150,6 @@ export default async function AdminDashboardPage() {
               <Card className="group relative overflow-hidden border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
                 <CardContent className="relative p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl transition-transform">↗️</span>
-                  </div>
                   <h3 className="text-lg font-bold text-primary mb-2">
                     Projects
                   </h3>
@@ -174,9 +165,6 @@ export default async function AdminDashboardPage() {
               <Card className="group relative overflow-hidden border-2 border-transparent bg-card shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
                 <CardContent className="relative p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl transition-transform">↗️</span>
-                  </div>
                   <h3 className="text-lg font-bold text-primary mb-2">
                     Performance
                   </h3>
@@ -192,9 +180,6 @@ export default async function AdminDashboardPage() {
               <Card className="group relative overflow-hidden border-2 border-transparent bg-card hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
                 <CardContent className="relative p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl transition-transform">↗️</span>
-                  </div>
                   <h3 className="text-lg font-bold text-primary mb-2">
                     Security & Audit
                   </h3>
@@ -210,9 +195,6 @@ export default async function AdminDashboardPage() {
               <Card className="group relative overflow-hidden border-2 border-transparent bg-card hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
                 <CardContent className="relative p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl transition-transform">↗️</span>
-                  </div>
                   <h3 className="text-lg font-bold text-primary mb-2">
                     Integrations & Settings
                   </h3>

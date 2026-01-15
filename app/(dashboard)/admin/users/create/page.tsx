@@ -19,7 +19,7 @@ export default async function CreateUserPage() {
           </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-primary">
-              Admin - Add New User
+              Add New User
             </h2>
             <p className="text-muted-foreground mt-1">
               Create a new user account for your organization

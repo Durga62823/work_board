@@ -27,7 +27,7 @@ export default async function SettingsPage() {
           </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-primary">
-              Admin - Organization Settings
+              Organization Settings
             </h2>
             <p className="text-muted-foreground mt-1">
               Configure global settings for your organization

@@ -65,7 +65,7 @@ export default function ManagerAIFeaturesPage() {
         <div className="mb-8 flex items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold text-primary">
-              Manager - AI Features
+              AI Features
             </h1>
             <p className="mt-1 text-primary">
               AI-powered tools to enhance team management and decision-making

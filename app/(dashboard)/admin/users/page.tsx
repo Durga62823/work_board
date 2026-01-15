@@ -43,7 +43,7 @@ export default async function UsersPage() {
           <div className="flex items-center gap-4">
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-primary">
-                Admin - User Management
+                User Management
               </h2>
               <p className="text-muted-foreground mt-1">
                 Manage users, roles, and permissions across your organization

@@ -18,7 +18,7 @@ export default async function ManagerTeamPage() {
         {/* Header */}
         <div className="flex items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-primary">Manager - Team</h1>
+            <h1 className="text-3xl font-bold text-primary">Team</h1>
             <p className="mt-1 text-primary">
               Your direct reports and extended team members
             </p>

@@ -26,7 +26,6 @@ export default function AIFeaturesPage() {
       title: "AI Task Assistant",
       description:
         "Break down tasks, estimate timelines, and generate test cases",
-      emoji: "💬",
       gradient: "from-primary to-primary",
     },
     {
@@ -34,7 +33,6 @@ export default function AIFeaturesPage() {
       title: "Smart Risk Assessment",
       description:
         "Identify bottlenecks and get resource allocation suggestions",
-      emoji: "🛡️",
       gradient: "from-primary to-primary",
     },
     {
@@ -42,21 +40,18 @@ export default function AIFeaturesPage() {
       title: "Performance Review Assistant",
       description:
         "Generate comprehensive performance reviews for team members",
-      emoji: "📄",
       gradient: "from-primary to-primary",
     },
     {
       id: "meeting-summary" as const,
       title: "Meeting Summary Generator",
       description: "Transform meeting transcripts into actionable summaries",
-      emoji: "💭",
       gradient: "from-primary to-primary",
     },
     {
       id: "sprint-planning" as const,
       title: "Smart Sprint Planning",
       description: "AI-powered sprint planning with capacity analysis",
-      emoji: "📅",
       gradient: "from-primary to-primary",
     },
   ];
@@ -86,7 +81,7 @@ export default function AIFeaturesPage() {
           <div className="flex items-center gap-4 mb-4">
             <div>
               <h1 className="text-4xl font-bold text-primary">
-                Admin - AI-Powered Features
+                AI-Powered Features
               </h1>
             </div>
           </div>
