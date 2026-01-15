@@ -28,13 +28,13 @@ export default function EmployeeDashboardPage() {
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-8xl mx-auto space-y-8">
         {/* Header */}
-        <div className="relative overflow-hidden rounded-3xl bg-card border-2 border-primary p-8 md:p-12 shadow-2xl">
+        <div className="relative overflow-hidden rounded-3xl bg-card hover:border-2 hover:border-primary p-8 md:p-12 shadow-2xl">
           <div className="absolute inset-0 bg-grid-primary/5" />
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
           <div className="relative">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm">
               <span className="text-sm font-medium text-primary">
                 Employee Dashboard
               </span>
