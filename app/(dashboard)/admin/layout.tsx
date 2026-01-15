@@ -12,6 +12,9 @@ import {
 } from "@/components/common";
 import { MobileMenu } from "@/components/common/MobileMenu";
 import { useSession } from "next-auth/react";
+import { AdminSidebar } from "@/components/admin/admin-sidebar";
+import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator";
 
 const adminNavigation = [
   { name: "Dashboard", href: "/admin" },
@@ -52,39 +55,20 @@ export default function AdminLayout({
   const userName = session.user?.name || session.user?.email || "Admin";
 
   return (
-    <div className="min-h-screen bg-muted flex flex-col">
-      {/* Top Navigation Bar */}
-      <header className="border-b border-border bg-card shadow-sm sticky top-0 z-40">
-        <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between gap-4">
-            <div className="flex items-center gap-4 md:gap-8 flex-1 min-w-0">
-              <MobileMenu navigation={adminNavigation} />
-              <h1 className="text-base sm:text-lg font-bold text-foreground whitespace-nowrap truncate">
-                {userName}
-              </h1>
-              <nav className="hidden md:flex gap-1 flex-1 overflow-x-auto">
-                {adminNavigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary border-2 border-transparent hover:border-primary transition-all duration-200 whitespace-nowrap"
-                  >
-                    <span className="hidden lg:inline">{item.name}</span>
-                  </Link>
-                ))}
-              </nav>
-            </div>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <ModeToggle />
-              <ColorPicker />
-              <UserMenu />
-            </div>
+    <SidebarProvider>
+      <AdminSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b bg-card sticky top-0 z-40">
+          <div className="flex items-center gap-2 px-4 flex-1">
+            <SidebarTrigger />
+            <Separator orientation="vertical" className="mr-2 h-4" />
+            <h1 className="text-base sm:text-lg font-bold text-foreground">
+              Workboard
+            </h1>
           </div>
-        </div>
-      </header>
-
-      {/* Main content area */}
-      <main className="flex-1">{children}</main>
-    </div>
+        </header>
+        <main className="flex-1 p-4">{children}</main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

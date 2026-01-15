@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { HiUser, HiCog6Tooth, HiArrowRightOnRectangle, HiChevronDown } from "react-icons/hi2";
+import { HiUser, HiCog6Tooth, HiArrowRightOnRectangle } from "react-icons/hi2";
 import { UserProfile } from "./UserProfile";
 import { LogoutButton } from "./LogoutButton";
 import Image from "next/image";
@@ -38,7 +38,7 @@ export function UserMenu() {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
+        className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted transition-colors"
       >
         <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold overflow-hidden">
           {image && !imageError ? (
@@ -55,15 +55,10 @@ export function UserMenu() {
             <span className="text-sm">{(name || email)?.charAt(0).toUpperCase() || "U"}</span>
           )}
         </div>
-        <HiChevronDown
-          className={`h-4 w-4 text-muted-foreground transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 bg-card rounded-lg shadow-lg border border-border z-50">
+        <div className="absolute left-12 bottom-0 mb-0 w-64 bg-card rounded-lg shadow-lg border border-border z-50">
           <div className="p-4 border-b border-border">
             <UserProfile name={name} email={email} image={image} />
           </div>
