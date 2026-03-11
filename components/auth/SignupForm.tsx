@@ -70,7 +70,7 @@ export function SignupForm() {
           <PasswordInput id="password" {...register("password")} autoComplete="new-password" />
           {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
         </div>
-        <PasswordStrengthIndicator password={password} />
+        {password && <PasswordStrengthIndicator password={password} />}
       </div>
       <div className="space-y-2">
         <Label htmlFor="confirmPassword">Confirm password</Label>

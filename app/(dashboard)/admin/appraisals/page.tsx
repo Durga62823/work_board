@@ -14,7 +14,7 @@ export default async function AppraisalsPage() {
 
   return (
     <div className="min-h-screen bg-muted">
-      <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
+      <div className="space-y-6">
         {/* Header with gradient badge */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">

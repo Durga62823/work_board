@@ -36,7 +36,7 @@ export default async function ManagerTeamPage() {
             {directReports.map((member) => (
               <div
                 key={member.id}
-                className="px-6 py-4 transition-all hover:bg-muted"
+                className="px-6 py-4 transition-colors hover:bg-muted"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -93,7 +93,7 @@ export default async function ManagerTeamPage() {
                     </Link>
                     <Link
                       href={`/manager/one-on-ones?userId=${member.id}`}
-                      className="rounded-lg bg-foreground px-3 py-1.5 text-sm font-medium text-background hover:bg-foreground/90  hover:transition-all"
+                      className="rounded-lg bg-foreground px-3 py-1.5 text-sm font-medium text-background hover:bg-foreground/90  hover:transition-colors"
                     >
                       Schedule 1:1
                     </Link>
@@ -124,7 +124,7 @@ export default async function ManagerTeamPage() {
               {extendedReports.map((member) => (
                 <div
                   key={member.id}
-                  className="px-6 py-4 transition-all hover:bg-muted"
+                  className="px-6 py-4 transition-colors hover:bg-muted"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">

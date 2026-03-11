@@ -51,7 +51,7 @@ export default async function AuditLogsPage() {
           </div>
           <Button
             variant="outline"
-            className="border-border hover:bg-muted hover:text-foreground transition-all"
+            className="border-border hover:bg-muted hover:text-foreground transition-colors"
           >
             ↓ Export Logs
           </Button>

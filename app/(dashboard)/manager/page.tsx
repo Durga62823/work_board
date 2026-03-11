@@ -264,7 +264,7 @@ export default async function ManagerPage() {
                   <div className="flex items-center gap-3">
                     <div className="h-2 w-32 overflow-hidden rounded-full bg-muted">
                       <div
-                        className={`h-full transition-all ${
+                        className={`h-full transition-colors ${
                           member.utilization > 1
                             ? "bg-destructive"
                             : member.utilization > 0.8

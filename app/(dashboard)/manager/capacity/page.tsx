@@ -85,7 +85,7 @@ export default async function ManagerCapacityPage() {
             {capacity.map((member) => (
               <div
                 key={member.user.id}
-                className="px-6 py-4 transition-all hover:bg-muted"
+                className="px-6 py-4 transition-colors hover:bg-muted"
               >
                 <div className="flex items-center gap-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-sm font-semibold text-foreground">
@@ -104,7 +104,7 @@ export default async function ManagerCapacityPage() {
                   <div className="flex items-center gap-3">
                     <div className="h-3 w-48 overflow-hidden rounded-full bg-muted">
                       <div
-                        className={`h-full transition-all ${
+                        className={`h-full transition-colors ${
                           member.utilization > 1
                             ? "bg-foreground"
                             : member.utilization > 0.8
@@ -162,7 +162,7 @@ export default async function ManagerCapacityPage() {
             {calendar.ptoRequests.map((pto) => (
               <div
                 key={pto.id}
-                className="px-6 py-4 transition-all hover:bg-muted"
+                className="px-6 py-4 transition-colors hover:bg-muted"
               >
                 <div className="flex items-center justify-between">
                   <div>

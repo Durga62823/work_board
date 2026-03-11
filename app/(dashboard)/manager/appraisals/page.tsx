@@ -95,7 +95,7 @@ export default async function ManagerAppraisalsPage() {
               {inProgress.map((review) => (
                 <div
                   key={review.id}
-                  className="px-6 py-4 transition-all hover:bg-muted"
+                  className="px-6 py-4 transition-colors hover:bg-muted"
                 >
                   <div className="flex items-start justify-between">
                     <div>
@@ -115,7 +115,7 @@ export default async function ManagerAppraisalsPage() {
                     </div>
                     <Link
                       href={`/manager/appraisals/${review.id}`}
-                      className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-foreground/90  hover:transition-all"
+                      className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-foreground/90  hover:transition-colors"
                     >
                       Conduct Review
                     </Link>
@@ -138,7 +138,7 @@ export default async function ManagerAppraisalsPage() {
               {draft.map((review) => (
                 <div
                   key={review.id}
-                  className="px-6 py-4 transition-all hover:bg-muted"
+                  className="px-6 py-4 transition-colors hover:bg-muted"
                 >
                   <div className="flex items-start justify-between">
                     <div>
@@ -174,7 +174,7 @@ export default async function ManagerAppraisalsPage() {
               {completed.slice(0, 10).map((review) => (
                 <div
                   key={review.id}
-                  className="px-6 py-4 transition-all hover:bg-muted"
+                  className="px-6 py-4 transition-colors hover:bg-muted"
                 >
                   <div className="flex items-start justify-between">
                     <div>

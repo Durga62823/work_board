@@ -329,7 +329,7 @@ export default async function LeadCodeReviewsPage() {
                       href={review.prUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-4 text-muted-foreground hover:text-foreground font-medium text-sm transition-all"
+                      className="ml-4 text-muted-foreground hover:text-foreground font-medium text-sm transition-colors"
                     >
                       View PR →
                     </a>

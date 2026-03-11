@@ -77,7 +77,7 @@ export default async function LeadSprintsPage() {
               </div>
               <Link
                 href={`/lead/sprints/${activeSprint.id}`}
-                className="text-muted-foreground hover:text-foreground font-medium transition-all"
+                className="text-muted-foreground hover:text-foreground font-medium transition-colors"
               >
                 View Details 
               </Link>
@@ -146,7 +146,7 @@ export default async function LeadSprintsPage() {
               </div>
               <Link
                 href={`/lead/sprints/${planningSprint.id}`}
-                className="text-muted-foreground hover:text-foreground font-medium transition-all"
+                className="text-muted-foreground hover:text-foreground font-medium transition-colors"
               >
                 Plan Sprint →
               </Link>
@@ -185,7 +185,7 @@ export default async function LeadSprintsPage() {
               {completedSprints.map((sprint) => (
                 <div
                   key={sprint.id}
-                  className="flex items-center justify-between p-4 bg-muted rounded-lg border border-border hover:bg-accent transition-colors hover:scale-[1.01]"
+                  className="flex items-center justify-between p-4 bg-muted rounded-lg border border-border hover:bg-accent transition-colors"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -207,7 +207,7 @@ export default async function LeadSprintsPage() {
                     </div>
                     <Link
                       href={`/lead/sprints/${sprint.id}`}
-                      className="text-muted-foreground hover:text-foreground font-medium text-sm transition-all"
+                      className="text-muted-foreground hover:text-foreground font-medium text-sm transition-colors"
                     >
                       View →
                     </Link>

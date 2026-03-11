@@ -37,7 +37,7 @@ export default async function UsersPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
+      <div className="space-y-6">
         {/* Header with gradient badge */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -70,7 +70,7 @@ export default async function UsersPage() {
               <div className="relative">
                 <Input
                   placeholder="Search users..."
-                  className="border-border focus:ring-2 focus:ring-border/20 focus:border-foreground transition-all"
+                  className="border-border focus:ring-2 focus:ring-border/20 focus:border-foreground transition-colors"
                 />
               </div>
             </div>
@@ -157,7 +157,7 @@ export default async function UsersPage() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="hover:bg-muted hover:text-foreground transition-all"
+                              className="hover:bg-muted hover:text-foreground transition-colors"
                             >
                               View
                             </Button>

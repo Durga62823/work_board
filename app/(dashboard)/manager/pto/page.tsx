@@ -107,7 +107,7 @@ export default async function ManagerPTOPage() {
               {approved.slice(0, 10).map((request) => (
                 <div
                   key={request.id}
-                  className="px-6 py-4 transition-all hover:bg-muted"
+                  className="px-6 py-4 transition-colors hover:bg-muted"
                 >
                   <div className="flex items-start justify-between">
                     <div>
@@ -152,7 +152,7 @@ export default async function ManagerPTOPage() {
               {rejected.slice(0, 10).map((request) => (
                 <div
                   key={request.id}
-                  className="px-6 py-4 transition-all hover:bg-muted"
+                  className="px-6 py-4 transition-colors hover:bg-muted"
                 >
                   <div className="flex items-start justify-between">
                     <div>

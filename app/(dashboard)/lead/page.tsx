@@ -347,7 +347,7 @@ export default async function LeadOverviewPage() {
                   <div className="flex items-center gap-3">
                     <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
                       <div
-                        className="bg-foreground h-2 rounded-full transition-all"
+                        className="bg-foreground h-2 rounded-full transition-colors"
                         style={{
                           width: `${Math.min(
                             100,

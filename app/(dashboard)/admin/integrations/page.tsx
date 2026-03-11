@@ -37,7 +37,7 @@ export default async function IntegrationsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
+      <div className="space-y-6">
         {/* Header with gradient badge */}
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-foreground ">
@@ -75,7 +75,7 @@ export default async function IntegrationsPage() {
                   <Button 
                     variant={integration.enabled ? "outline" : "default"} 
                     className={integration.enabled 
-                      ? "w-full hover:bg-muted transition-all"
+                      ? "w-full hover:bg-muted transition-colors"
                       : "w-full bg-foreground hover:bg-foreground/90 text-background"
                     }
                   >

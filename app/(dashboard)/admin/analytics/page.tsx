@@ -76,7 +76,7 @@ function AnimatedProgressBar({
   return (
     <div className="w-full bg-muted rounded-full h-3 overflow-hidden ">
       <div
-        className={`${color} h-3 rounded-full transition-all duration-1200 ease-out `}
+        className={`${color} h-3 rounded-full transition-colors duration-1200 ease-out `}
         style={{
           width: `${displayPercentage}%`,
         }}
