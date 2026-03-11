@@ -107,8 +107,8 @@ export default function PerformancePage() {
   }
 
   function getScoreBadge(score: number) {
-    if (score >= 80) return "bg-primary/10 text-primary dark:bg-primary/20";
-    if (score >= 60) return "bg-primary/10 text-primary dark:bg-primary/20";
+    if (score >= 80) return "bg-muted text-primary dark:bg-primary/20";
+    if (score >= 60) return "bg-muted text-primary dark:bg-primary/20";
     return "bg-destructive/10 text-destructive dark:bg-destructive/20";
   }
 
@@ -126,7 +126,7 @@ export default function PerformancePage() {
         <div className="flex items-center gap-3">
       
           <div>
-            <h1 className="text-3xl font-bold text-primary">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">
               My Performance
             </h1>
             <p className="text-foreground mt-1">
@@ -139,7 +139,7 @@ export default function PerformancePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {taskStats && (
             <>
-              <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardDescription className="font-medium text-primary">Task Completion</CardDescription>
@@ -147,7 +147,7 @@ export default function PerformancePage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-primary">
+                  <div className="text-2xl font-bold tracking-tight text-foreground">
                     {taskStats.completionRate}%
                   </div>
                 <p className="text-xs text-primary/80 mt-1">
@@ -156,7 +156,7 @@ export default function PerformancePage() {
               </CardContent>
             </Card>
 
-              <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardDescription className="font-medium text-primary">On-Time Delivery</CardDescription>
@@ -164,7 +164,7 @@ export default function PerformancePage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-primary">
+                  <div className="text-2xl font-bold tracking-tight text-foreground">
                     {taskStats.onTimeRate}%
                   </div>
                 <p className="text-xs text-primary/80 mt-1">
@@ -176,14 +176,14 @@ export default function PerformancePage() {
         )}
 
           {timeAccuracy && (
-            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardDescription className="font-medium text-primary">Estimation Accuracy</CardDescription>
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-primary">
+                <div className="text-2xl font-bold tracking-tight text-foreground">
                   {Math.round(timeAccuracy.accuracy)}%
                 </div>
               <p className="text-xs text-primary/80 mt-1">
@@ -197,7 +197,7 @@ export default function PerformancePage() {
 
         {/* Time Estimation Details */}
         {timeAccuracy && (
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+          <Card className="border-border ">
           <CardHeader>
             <CardTitle className="text-primary">Time Estimation Analysis</CardTitle>
             <CardDescription className="text-foreground">
@@ -244,7 +244,7 @@ export default function PerformancePage() {
 
         {/* Recent Performance Metrics */}
         {metrics.length > 0 && (
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+          <Card className="border-border ">
           <CardHeader>
             <CardTitle className="text-primary">Recent Metrics</CardTitle>
             <CardDescription>
@@ -256,7 +256,7 @@ export default function PerformancePage() {
                 {metrics.map((metric) => (
                   <div
                     key={metric.id}
-                    className="flex items-center justify-between p-3 border-2 border-transparent hover:border-primary rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    className="flex items-center justify-between p-3 border border-border hover:bg-accent rounded-lg/50 hover:hover:-translate-y-0.5 transition-colors"
                   >
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
@@ -285,7 +285,7 @@ export default function PerformancePage() {
       )}
 
         {metrics.length === 0 && taskStats?.totalTasks === 0 && (
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+          <Card className="border-border ">
           <CardContent className="flex flex-col items-center justify-center py-12">
             <HiArrowTrendingUp className="h-12 w-12 text-primary/50 mb-4" />
             <p className="text-primary text-center">

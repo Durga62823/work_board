@@ -31,7 +31,7 @@ export default async function ManagerCapacityPage() {
         {/* Header */}
         <div className="flex items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-primary">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">
               Capacity
             </h1>
             <p className="mt-1 text-primary">
@@ -42,41 +42,41 @@ export default async function ManagerCapacityPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">
               Avg Utilization
             </div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {(avgUtilization * 100).toFixed(0)}%
             </div>
           </div>
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">Team Size</div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {capacity.length}
             </div>
           </div>
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">
               Over-utilized
             </div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {overUtilized}
             </div>
           </div>
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">
               Under-utilized
             </div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {underUtilized}
             </div>
           </div>
         </div>
 
         {/* Team Capacity Details */}
-        <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-          <div className="border-b border-border bg-primary/10 px-6 py-4">
+        <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+          <div className="border-b border-border bg-muted px-6 py-4">
             <h3 className="text-lg font-semibold text-foreground">
               Team Workload
             </h3>
@@ -88,7 +88,7 @@ export default async function ManagerCapacityPage() {
                 className="px-6 py-4 transition-all hover:bg-muted/50"
               >
                 <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-sm font-semibold text-primary">
                     {member.user.firstName?.[0]}
                     {member.user.lastName?.[0]}
                   </div>
@@ -132,13 +132,13 @@ export default async function ManagerCapacityPage() {
                   </div>
                 </div>
                 {member.utilization > 1 && (
-                  <div className="mt-3 rounded-xl bg-card px-3 py-2 text-sm text-primary>
+                  <div className="mt-3 rounded-lg px-3 py-2 text-sm text-primary>
                     ⚠️ Over-utilized: Consider redistributing workload or
                     extending deadlines
                   </div>
                 )}
                 {member.utilization < 0.5 && (
-                  <div className="mt-3 rounded-xl bg-card px-3 py-2 text-sm text-primary>
+                  <div className="mt-3 rounded-lg px-3 py-2 text-sm text-primary>
                     💡 Under-utilized: Available capacity for new projects
                   </div>
                 )}
@@ -152,8 +152,8 @@ export default async function ManagerCapacityPage() {
           </div>
         </div>
         {/* Upcoming PTO */}
-        <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-          <div className="border-b border-border bg-primary/10 px-6 py-4">
+        <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+          <div className="border-b border-border bg-muted px-6 py-4">
             <h3 className="text-lg font-semibold text-foreground">
               Upcoming Time Off (Next 30 Days)
             </h3>

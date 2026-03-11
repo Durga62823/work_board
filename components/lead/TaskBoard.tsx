@@ -77,7 +77,7 @@ export function TaskBoard({
               onChange={(e) =>
                 setFilter({ ...filter, sprint: e.target.value || undefined })
               }
-              className="block w-48 px-3 py-2 rounded-md border-2 border-transparent shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:border-primary transition-colors"
+              className="block w-48 px-3 py-2 rounded-md border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:bg-accent transition-colors"
             >
               <option value="">All Sprints</option>
               {sprints.map((sprint) => (
@@ -97,7 +97,7 @@ export function TaskBoard({
               onChange={(e) =>
                 setFilter({ ...filter, project: e.target.value || undefined })
               }
-              className="block w-48 px-3 py-2 rounded-md border-2 border-transparent shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:border-primary transition-colors"
+              className="block w-48 px-3 py-2 rounded-md border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:bg-accent transition-colors"
             >
               <option value="">All Projects</option>
               {projects.map((project) => (
@@ -117,7 +117,7 @@ export function TaskBoard({
               onChange={(e) =>
                 setFilter({ ...filter, assignee: e.target.value || undefined })
               }
-              className="block w-48 px-3 py-2 rounded-md border-2 border-transparent shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:border-primary transition-colors"
+              className="block w-48 px-3 py-2 rounded-md border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background text-foreground hover:bg-accent transition-colors"
             >
               <option value="">All Members</option>
               {teamMembers.map((member) => (
@@ -149,12 +149,12 @@ export function TaskBoard({
           );
 
           return (
-            <div key={column.key} className="bg-muted rounded-lg p-4 min-h-96 border-2 border-transparent hover:border-primary transition-all duration-300">
+            <div key={column.key} className="bg-muted rounded-lg p-4 min-h-96 border border-border hover:bg-accent transition-colors">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-foreground">
                   {column.label}
                 </h3>
-                <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-1 rounded">
+                <span className="text-sm font-medium text-primary bg-muted px-2 py-1 rounded">
                   {columnTasks.length}
                 </span>
               </div>
@@ -165,8 +165,8 @@ export function TaskBoard({
                     (m) => m.id === task.assigneeId
                   );
                   const priorityColors = {
-                    LOW: "bg-primary/5 text-primary",
-                    MEDIUM: "bg-primary/10 text-primary",
+                    LOW: "bg-muted/50 text-primary",
+                    MEDIUM: "bg-muted text-primary",
                     HIGH: "bg-primary/20 text-primary",
                     URGENT: "bg-destructive/10 text-destructive",
                   };
@@ -174,7 +174,7 @@ export function TaskBoard({
                   return (
                     <div
                       key={task.id}
-                      className="bg-card rounded-lg shadow p-3 hover:shadow-md transition-shadow cursor-pointer"
+                      className="bg-card rounded-lg shadow p-3 transition-shadow cursor-pointer"
                     >
                       <div className="flex items-start justify-between mb-2">
                         <h4 className="font-medium text-foreground text-sm line-clamp-2">
@@ -220,7 +220,7 @@ export function TaskBoard({
                                 className="w-5 h-5 rounded-full"
                               />
                             ) : (
-                              <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold">
+                              <div className="w-5 h-5 rounded-full bg-muted text-primary flex items-center justify-center text-xs font-semibold">
                                 {assignee.name?.charAt(0)}
                               </div>
                             )}
@@ -236,7 +236,7 @@ export function TaskBoard({
                             onChange={(e) =>
                               handleMoveTask(task.id, e.target.value)
                             }
-                            className="text-xs w-full px-2 py-1.5 rounded border-2 border-transparent bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 hover:border-primary transition-colors truncate"
+                            className="text-xs w-full px-2 py-1.5 rounded border border-border text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 hover:bg-accent transition-colors truncate"
                           >
                             {statusColumns.map((col) => (
                               <option key={col.key} value={col.key}>
@@ -250,7 +250,7 @@ export function TaskBoard({
                           onChange={(e) =>
                             handleAssignTask(task.id, e.target.value)
                           }
-                          className="text-xs w-full px-2 py-1.5 rounded border-2 border-transparent bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 hover:border-primary transition-colors truncate"
+                          className="text-xs w-full px-2 py-1.5 rounded border border-border text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 hover:bg-accent transition-colors truncate"
                         >
                           <option value="">Unassigned</option>
                           {teamMembers.map((member) => (

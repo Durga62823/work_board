@@ -9,7 +9,6 @@ import {
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -41,105 +40,89 @@ export default async function ManagerPage() {
       : 0;
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="relative overflow-hidden rounded-3xl bg-primary p-8 md:p-12 shadow-2xl">
-          <div className="absolute inset-0 bg-grid-white/5" />
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary-foreground/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-foreground/10 rounded-full blur-3xl" />
-
-          <div className="relative">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-4">
-              <span className="text-sm font-medium text-primary-foreground">
-                Manager Dashboard
-              </span>
-            </div>
-            <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
-              Welcome, {session.user.name || "Manager"}
-            </h1>
-            <p className="text-lg text-primary-foreground/80">
-              Here's what's happening with your team
-            </p>
-          </div>
-        </div>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="space-y-1">
+        <h1 className="text-2xl font-bold text-foreground tracking-tight">
+          Welcome, {session.user.name || "Manager"}
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          Here&apos;s what&apos;s happening with your team
+        </p>
+      </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm hover:border-primary hover:shadow-xl transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
+          <Card className="border-border/50 hover:border-primary/30 transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-primary">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 Team Members
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-foreground">
+              <div className="text-2xl font-bold text-foreground">
                 {directReports.length}
               </div>
               <Link
                 href="/manager/team"
-                className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
+                className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-foreground/80 font-medium"
               >
                 View team
               </Link>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm hover:border-primary hover:shadow-xl transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
+          <Card className="border-border/50 hover:border-orange-500/30 transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-primary">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 Pending PTO
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-foreground">
+              <div className="text-2xl font-bold text-foreground">
                 {pendingPTO.length}
               </div>
               <Link
                 href="/manager/pto"
-                className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
+                className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-foreground/80 font-medium"
               >
                 Review requests
               </Link>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm hover:border-primary hover:shadow-xl transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
+          <Card className="border-border/50 hover:border-blue-500/30 transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-primary">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 Pending Timesheets
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-foreground">
+              <div className="text-2xl font-bold text-foreground">
                 {pendingTimesheets.length}
               </div>
               <Link
                 href="/manager/timesheets"
-                className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
+                className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-foreground/80 font-medium"
               >
                 Review timesheets
               </Link>
             </CardContent>
           </Card>
 
-          <Card className="relative overflow-hidden border-2 border-transparent bg-card backdrop-blur-sm hover:border-primary hover:shadow-xl transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 transition-transform duration-500" />
+          <Card className="border-border/50 hover:border-green-500/30 transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-primary">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 Team Utilization
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-foreground">
+              <div className="text-2xl font-bold text-foreground">
                 {(avgUtilization * 100).toFixed(0)}%
               </div>
               <Link
                 href="/manager/capacity"
-                className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium"
+                className="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-foreground/80 font-medium"
               >
                 View capacity
               </Link>
@@ -150,50 +133,48 @@ export default async function ManagerPage() {
         {/* Pending Actions */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* Recent PTO Requests */}
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border-border/50">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="text-xl font-bold text-foreground">
-                    Recent PTO Requests
-                  </CardTitle>
-                  <CardDescription className="mt-1">
-                    Pending time-off approvals
-                  </CardDescription>
-                </div>
+                <CardTitle className="text-lg font-semibold text-foreground">
+                  Recent PTO Requests
+                </CardTitle>
                 <Link
                   href="/manager/pto"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
+                  className="text-sm font-medium text-primary hover:text-foreground/80 transition-colors"
                 >
                   View all
                 </Link>
               </div>
+              <p className="text-sm text-muted-foreground">
+                Pending time-off approvals
+              </p>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {pendingPTO.slice(0, 5).map((request) => (
                   <div
                     key={request.id}
-                    className="flex items-center justify-between rounded-xl border-2 border-transparent hover:border-primary bg-card p-4 hover:shadow-md transition-all duration-300"
+                    className="flex items-center justify-between rounded-lg border border-border/50 p-3 hover:bg-muted/50 transition-colors"
                   >
                     <div>
-                      <div className="font-semibold text-foreground">
+                      <div className="font-medium text-foreground">
                         {request.user.firstName} {request.user.lastName}
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-primary mt-1">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                         <span>{request.type.replace("_", " ")}</span>
-                        <span>•</span>
+                        <span>&middot;</span>
                         <span>{request.days} days</span>
                       </div>
                     </div>
-                    <div className="text-sm text-primary font-medium">
+                    <div className="text-sm text-muted-foreground font-medium">
                       {new Date(request.startDate).toLocaleDateString()}
                     </div>
                   </div>
                 ))}
                 {pendingPTO.length === 0 && (
                   <div className="py-12 text-center">
-                    <p className="text-sm text-primary">
+                    <p className="text-sm text-muted-foreground">
                       No pending PTO requests
                     </p>
                   </div>
@@ -203,37 +184,35 @@ export default async function ManagerPage() {
           </Card>
 
           {/* Recent Timesheets */}
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border-border/50">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="text-xl font-bold text-foreground">
-                    Pending Timesheets
-                  </CardTitle>
-                  <CardDescription className="mt-1">
-                    Awaiting your review
-                  </CardDescription>
-                </div>
+                <CardTitle className="text-lg font-semibold text-foreground">
+                  Pending Timesheets
+                </CardTitle>
                 <Link
                   href="/manager/timesheets"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
+                  className="text-sm font-medium text-primary hover:text-foreground/80 transition-colors"
                 >
                   View all
                 </Link>
               </div>
+              <p className="text-sm text-muted-foreground">
+                Awaiting your review
+              </p>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {pendingTimesheets.slice(0, 5).map((timesheet) => (
                   <div
                     key={timesheet.id}
-                    className="flex items-center justify-between rounded-xl border-2 border-transparent hover:border-primary bg-card p-4 hover:shadow-md transition-all duration-300"
+                    className="flex items-center justify-between rounded-lg border border-border/50 p-3 hover:bg-muted/50 transition-colors"
                   >
                     <div>
-                      <div className="font-semibold text-foreground">
+                      <div className="font-medium text-foreground">
                         {timesheet.user.firstName} {timesheet.user.lastName}
                       </div>
-                      <div className="text-sm text-primary mt-1">
+                      <div className="text-sm text-muted-foreground mt-1">
                         Week of{" "}
                         {new Date(timesheet.weekStart).toLocaleDateString()}
                       </div>
@@ -245,7 +224,7 @@ export default async function ManagerPage() {
                 ))}
                 {pendingTimesheets.length === 0 && (
                   <div className="py-12 text-center">
-                    <p className="text-sm text-primary">
+                    <p className="text-sm text-muted-foreground">
                       No pending timesheets
                     </p>
                   </div>
@@ -256,29 +235,29 @@ export default async function ManagerPage() {
         </div>
 
         {/* Team Capacity Overview */}
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+        <Card className="border-border/50">
           <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground">
+            <CardTitle className="text-lg font-semibold text-foreground">
               Team Capacity
             </CardTitle>
-            <CardDescription>
+            <p className="text-sm text-muted-foreground">
               Current workload and utilization metrics
-            </CardDescription>
+            </p>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {teamCapacity.map((member) => (
                 <div
                   key={member.user.id}
-                  className="flex items-center gap-4 p-4 rounded-xl border-2 border-transparent hover:border-primary bg-card hover:shadow-md transition-all duration-300"
+                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-muted/50 transition-colors"
                 >
                   <div className="flex-1">
-                    <div className="font-semibold text-foreground">
+                    <div className="font-medium text-foreground">
                       {member.user.firstName} {member.user.lastName}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-primary mt-1">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                       <span>{member.activeProjects} active projects</span>
-                      <span>•</span>
+                      <span>&middot;</span>
                       <span>{member.avgWeeklyHours.toFixed(1)}h/week avg</span>
                     </div>
                   </div>
@@ -289,7 +268,7 @@ export default async function ManagerPage() {
                           member.utilization > 1
                             ? "bg-destructive"
                             : member.utilization > 0.8
-                            ? "bg-primary"
+                            ? "bg-orange-500"
                             : "bg-primary"
                         }`}
                         style={{
@@ -298,11 +277,11 @@ export default async function ManagerPage() {
                       />
                     </div>
                     <div className="flex items-center gap-1 min-w-[60px]">
-                      <span className="text-sm font-bold text-foreground">
+                      <span className="text-sm font-semibold text-foreground">
                         {(member.utilization * 100).toFixed(0)}%
                       </span>
                       {member.utilization > 1 && (
-                        <span className="text-destructive text-lg">⚠</span>
+                        <span className="text-destructive text-sm">!</span>
                       )}
                     </div>
                   </div>
@@ -310,7 +289,7 @@ export default async function ManagerPage() {
               ))}
               {teamCapacity.length === 0 && (
                 <div className="py-12 text-center">
-                  <p className="text-sm text-primary">
+                  <p className="text-sm text-muted-foreground">
                     No team members assigned
                   </p>
                 </div>
@@ -319,7 +298,6 @@ export default async function ManagerPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
   );
 }
 

@@ -82,11 +82,11 @@ export default function LeadAIFeaturesPage() {
   return (
     <div className="min-h-screen bg-background p-6 max-w-7xl mx-auto">
       <div className="mb-8">
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full w-fit mb-3">
           {/* <Sparkles className="h-4 w-4" /> */}
           <span className="text-sm font-semibold">AI Powered</span>
         </div>
-        <h1 className="text-3xl font-bold text-primary">Lead AI Features</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-foreground">Lead AI Features</h1>
         <p className="text-primary mt-2">
           AI-powered tools to enhance team leadership and sprint management
         </p>
@@ -99,11 +99,11 @@ export default function LeadAIFeaturesPage() {
             return (
               <Card
                 key={feature.id}
-                className="p-6 cursor-pointer border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
+                className="p-6 cursor-pointer border border-border hover:bg-accent hover:transition-colors"
                 onClick={() => setActiveFeature(feature.id)}
               >
                 <div className="flex flex-col">
-                  <div className="p-4 rounded-full bg-primary/10 w-fit mb-4 shadow-md">
+                  <div className="p-4 rounded-full bg-muted w-fit mb-4 shadow-md">
                     <Icon className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2 text-primary">
@@ -113,7 +113,7 @@ export default function LeadAIFeaturesPage() {
                     {feature.description}
                   </p>
                   <Button
-                    className="w-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+                    className="w-full hover:transition-colors"
                     variant="default"
                   >
                     Open Feature
@@ -128,12 +128,12 @@ export default function LeadAIFeaturesPage() {
           <Button
             onClick={() => setActiveFeature(null)}
             variant="outline"
-            className="mb-4 hover:bg-muted transition-all duration-300"
+            className="mb-4 hover:bg-muted transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Features
           </Button>
-          <Card className="p-6 border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="p-6 border border-border hover:bg-accent hover:transition-colors">
             {renderFeature()}
           </Card>
         </div>

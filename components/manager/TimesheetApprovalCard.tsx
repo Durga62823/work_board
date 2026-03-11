@@ -109,7 +109,7 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
 
           <button
             onClick={() => setExpanded(!expanded)}
-            className="mt-3 text-sm font-medium text-primary hover:text-primary/80 transition-colors bg-transparent border-none cursor-pointer"
+            className="mt-3 text-sm font-medium text-primary hover:text-foreground/80 transition-colors bg-transparent border-none cursor-pointer"
           >
             {expanded ? "Hide" : "Show"} details
           </button>
@@ -122,7 +122,7 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
               {timesheet.entries.map((entry) => (
                 <div
                   key={entry.id}
-                  className="flex items-center justify-between rounded-lg border border-border bg-card p-3 text-sm"
+                  className="flex items-center justify-between rounded-lg border border-border p-3 text-sm"
                 >
                   <div>
                     <div className="font-medium text-foreground">
@@ -135,7 +135,7 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
                   </div>
                   <div className="flex items-center gap-3">
                     {entry.billable && (
-                      <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                      <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium text-primary">
                         Billable
                       </span>
                     )}
@@ -166,14 +166,14 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
           <button
             onClick={() => setShowDialog("correction")}
             disabled={isProcessing}
-            className="rounded-lg border border-primary/30 bg-card px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 disabled:opacity-50 transition-colors"
+            className="rounded-lg border border-primary/30 px-4 py-2 text-sm font-medium text-primary hover:bg-muted disabled:opacity-50 transition-colors"
           >
             Request Changes
           </button>
           <button
             onClick={() => setShowDialog("reject")}
             disabled={isProcessing}
-            className="rounded-lg border border-destructive/30 bg-card px-4 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50 transition-colors"
+            className="rounded-lg border border-destructive/30 px-4 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50 transition-colors"
           >
             Reject
           </button>
@@ -181,8 +181,8 @@ export function TimesheetApprovalCard({ timesheet }: { timesheet: Timesheet }) {
       </div>
 
       {showDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 ">
+          <div className="w-full max-w-md rounded-lg border border-border p-6 ">
             <h3 className="text-lg font-semibold text-foreground">
               {showDialog === "reject"
                 ? "Reject Timesheet"

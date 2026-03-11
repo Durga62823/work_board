@@ -276,7 +276,7 @@ export default function TimesheetPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div>
-              <h1 className="text-3xl font-bold text-primary">Timesheet</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-foreground">Timesheet</h1>
               <p className="text-foreground">Log and track your work hours</p>
             </div>
           </div>
@@ -292,7 +292,7 @@ export default function TimesheetPage() {
             <Button
               onClick={() => setShowAddDialog(true)}
               disabled={timesheet && timesheet.status !== "DRAFT"}
-              className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-primary hover:bg-primary/90 hover:transition-colors"
             >
               <HiPlus className="h-4 w-4 mr-2" />
               Add Entry
@@ -302,37 +302,37 @@ export default function TimesheetPage() {
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 p-6">
+          <Card className="border border-border hover:bg-accent hover:transition-colors p-6">
             <div className="flex items-center gap-3">
               <div>
                 <p className="text-sm text-primary font-medium">Total Hours</p>
-                <p className="text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats.totalHours}h
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 p-6">
+          <Card className="border border-border hover:bg-accent hover:transition-colors p-6">
             <div className="flex items-center gap-3">
               <div>
                 <p className="text-sm text-primary font-medium">
                   Billable Hours
                 </p>
-                <p className="text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats.billableHours}h
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300 p-6">
+          <Card className="border border-border hover:bg-accent hover:transition-colors p-6">
             <div className="flex items-center gap-3">
               <div>
                 <p className="text-sm text-primary font-medium">
                   Non-Billable Hours
                 </p>
-                <p className="text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats.nonBillableHours}h
                 </p>
               </div>
@@ -342,7 +342,7 @@ export default function TimesheetPage() {
 
         {/* Current Week Info */}
         {timesheet && (
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
+          <Card className="border-border p-6">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-semibold text-lg mb-1">
@@ -372,7 +372,7 @@ export default function TimesheetPage() {
 
         {/* Add/Edit Entry Dialog */}
         {showAddDialog && (
-          <Card className="p-6 border-2 border-primary/50 bg-primary/5 backdrop-blur-sm shadow-xl">
+          <Card className="p-6 border-2 border-primary/50 bg-muted/50 ">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-lg">
                 {editingEntry ? "Edit Time Entry" : "Add Time Entry"}
@@ -427,7 +427,7 @@ export default function TimesheetPage() {
                 <Label htmlFor="project">Project *</Label>
                 <select
                   id="project"
-                  className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded bg-card"
+                  className="w-full p-2 border border-border hover:bg-accent transition-colors rounded"
                   value={formData.projectId}
                   onChange={(e) =>
                     setFormData({ ...formData, projectId: e.target.value })
@@ -499,14 +499,14 @@ export default function TimesheetPage() {
         )}
 
         {/* Time Entries List */}
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
+        <Card className="border-border p-6">
           <h3 className="font-semibold text-lg mb-4">Time Entries</h3>
           {timesheet?.entries && timesheet.entries.length > 0 ? (
             <div className="space-y-3">
               {timesheet.entries.map((entry: any) => (
                 <div
                   key={entry.id}
-                  className="p-4 border-2 border-transparent hover:border-primary rounded-xl bg-card/50 backdrop-blur-sm flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                  className="p-4 border border-border hover:bg-accent rounded-lg/50 flex items-center justify-between hover:hover:-translate-y-0.5 transition-colors"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
@@ -604,7 +604,7 @@ export default function TimesheetPage() {
 
           {timesheet && timesheet.status === "APPROVED" && (
             <div className="mt-6 pt-6 border-t">
-              <div className="bg-primary/10 border border-primary rounded p-4">
+              <div className="bg-muted border border-primary rounded p-4">
                 <p className="text-primary font-medium">
                   ✓ Timesheet approved on{" "}
                   {timesheet.approvedAt

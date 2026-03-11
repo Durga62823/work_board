@@ -45,7 +45,7 @@ export default async function AuthErrorPage({
         <div className="space-y-4">
           <Link
             href="/auth/login"
-            className="flex w-full items-center justify-center rounded-md bg-brand-primary px-4 py-2 text-sm font-medium text-white hover:bg-brand-primary/90"
+            className="flex w-full items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-foreground/90"
           >
             Back to Login
           </Link>

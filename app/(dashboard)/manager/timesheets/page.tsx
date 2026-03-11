@@ -16,7 +16,7 @@ export default async function ManagerTimesheetsPage() {
         {/* Header */}
         <div className="flex items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-primary">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">
               Timesheets
             </h1>
             <p className="mt-1 text-primary">
@@ -26,8 +26,8 @@ export default async function ManagerTimesheetsPage() {
         </div>
 
         {/* Pending Timesheets */}
-        <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-          <div className="border-b border-border bg-primary/10 px-6 py-4">
+        <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+          <div className="border-b border-border bg-muted px-6 py-4">
             <h3 className="text-lg font-semibold text-foreground">
               Pending Timesheets ({timesheets.length})
             </h3>

@@ -235,13 +235,13 @@ export function StandupSummary() {
           <h3 className="text-xl font-bold">Standup Summary</h3>
 
           {/* Summary */}
-          <div className="p-5 bg-primary/10 border border-primary/30 rounded-lg">
+          <div className="p-5 bg-muted border border-primary/30 rounded-lg">
             <h4 className="font-semibold mb-2">Meeting Summary</h4>
             <p className="text-foreground">{result.summary}</p>
           </div>
 
           {/* Team Morale */}
-          <div className="bg-primary/10 border border-primary/30 p-6 rounded-lg">
+          <div className="bg-muted border border-primary/30 p-6 rounded-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-primary mb-1">Team Morale Score</p>
@@ -263,7 +263,7 @@ export function StandupSummary() {
               {result.keyAchievements.map((achievement, index) => (
                 <div
                   key={index}
-                  className="p-3 bg-primary/10 border border-primary/30 rounded-lg"
+                  className="p-3 bg-muted border border-primary/30 rounded-lg"
                 >
                   <p className="text-sm text-foreground">✓ {achievement}</p>
                 </div>
@@ -317,7 +317,7 @@ export function StandupSummary() {
               {result.actionItems.map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg"
+                  className="flex items-start gap-2 p-3 bg-muted rounded-lg"
                 >
                   <span className="text-primary font-bold mt-0.5">
                     {index + 1}.

@@ -51,14 +51,14 @@ export default async function UsersPage() {
             </div>
           </div>
           <Link href="/admin/users/create">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground hover:transition-colors">
               Add User
             </Button>
           </Link>
         </div>
 
         {/* Main Card with Glassmorphism */}
-        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+        <Card className="border border-border hover:bg-accent hover:transition-colors">
           <CardHeader>
             <CardTitle className="text-2xl text-primary">All Users</CardTitle>
             <CardDescription className="text-base">
@@ -75,10 +75,10 @@ export default async function UsersPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 overflow-hidden bg-card backdrop-blur-sm">
+            <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden ">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-primary/10 hover:bg-primary/20">
+                  <TableRow className="bg-muted hover:bg-primary/20">
                     <TableHead className="font-semibold">Name</TableHead>
                     <TableHead className="font-semibold">Email</TableHead>
                     <TableHead className="font-semibold">Role</TableHead>
@@ -157,7 +157,7 @@ export default async function UsersPage() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="hover:bg-muted/50 hover:text-primary transition-all"
+                              className="hover:bg-muted/50 hover:text-foreground transition-all"
                             >
                               View
                             </Button>

@@ -37,10 +37,10 @@ export function MobileMenu({ navigation }: MobileMenuProps) {
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-40 bg-background/80 md:hidden"
             onClick={() => setIsOpen(false)}
           />
-          <div className="fixed inset-y-0 left-0 z-50 w-64 bg-card border-r border-border shadow-xl md:hidden">
+          <div className="fixed inset-y-0 left-0 z-50 w-64 border-r border-border md:hidden">
             <div className="flex items-center justify-between p-4 border-b border-border">
               <span className="text-lg font-semibold text-foreground">
                 Menu

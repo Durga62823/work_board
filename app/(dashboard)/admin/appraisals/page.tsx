@@ -27,46 +27,46 @@ export default async function AppraisalsPage() {
               </p>
             </div>
           </div>
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground hover:transition-colors">
             + New Appraisal Cycle
           </Button>
         </div>
 
         {/* Appraisal Stats */}
         <div className="grid gap-4 md:grid-cols-3">
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Active Cycles</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">0</div>
+              <div className="text-2xl font-bold tracking-tight text-foreground">0</div>
               <p className="text-xs text-muted-foreground">currently running</p>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Pending Reviews</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">0</div>
+              <div className="text-2xl font-bold tracking-tight text-foreground">0</div>
               <p className="text-xs text-muted-foreground">awaiting completion</p>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">0%</div>
+              <div className="text-2xl font-bold tracking-tight text-foreground">0%</div>
               <p className="text-xs text-muted-foreground">reviews completed</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Appraisal Cycles */}
-        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+        <Card className="border border-border hover:bg-accent hover:transition-colors">
           <CardHeader>
             <CardTitle className="text-2xl">Appraisal Cycles</CardTitle>
             <CardDescription className="text-base">
@@ -87,7 +87,7 @@ export default async function AppraisalsPage() {
         </Card>
 
         {/* Recent Appraisals */}
-        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+        <Card className="border border-border hover:bg-accent hover:transition-colors">
           <CardHeader>
             <CardTitle className="text-2xl">Recent Appraisals</CardTitle>
             <CardDescription className="text-base">

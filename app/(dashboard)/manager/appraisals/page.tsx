@@ -29,7 +29,7 @@ export default async function ManagerAppraisalsPage() {
         {/* Header */}
         <div className="flex items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-primary">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">
               Appraisals
             </h1>
             <p className="mt-1 text-primary">
@@ -40,21 +40,21 @@ export default async function ManagerAppraisalsPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">Draft</div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {draft.length}
             </div>
           </div>
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">In Progress</div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {inProgress.length}
             </div>
           </div>
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">Completed</div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {completed.length}
             </div>
           </div>
@@ -62,7 +62,7 @@ export default async function ManagerAppraisalsPage() {
 
         {/* Active Cycle */}
         {activeCycle && (
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-lg font-semibold text-foreground">
@@ -76,7 +76,7 @@ export default async function ManagerAppraisalsPage() {
                   {new Date(activeCycle.endDate).toLocaleDateString()}
                 </div>
               </div>
-              <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary shadow-sm">
+              <span className="rounded-full bg-muted px-3 py-1 text-sm font-semibold text-primary">
                 Active Cycle
               </span>
             </div>
@@ -85,8 +85,8 @@ export default async function ManagerAppraisalsPage() {
 
         {/* In Progress Reviews */}
         {inProgress.length > 0 && (
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-            <div className="border-b border-border bg-primary/10 px-6 py-4">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+            <div className="border-b border-border bg-muted px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 In Progress ({inProgress.length})
               </h3>
@@ -107,7 +107,7 @@ export default async function ManagerAppraisalsPage() {
                       </div>
                       {review.selfReview && (
                         <div className="mt-2 flex items-center gap-2 text-sm">
-                          <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-semibold text-primary shadow-sm">
+                          <span className="rounded-full bg-muted px-2 py-1 text-xs font-semibold text-primary">
                             Self-review submitted
                           </span>
                         </div>
@@ -115,7 +115,7 @@ export default async function ManagerAppraisalsPage() {
                     </div>
                     <Link
                       href={`/manager/appraisals/${review.id}`}
-                      className="rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all"
+                      className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-md hover:transition-all"
                     >
                       Conduct Review
                     </Link>
@@ -128,8 +128,8 @@ export default async function ManagerAppraisalsPage() {
 
         {/* Draft Reviews */}
         {draft.length > 0 && (
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-            <div className="border-b border-border bg-card px-6 py-4">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+            <div className="border-b border-border px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Draft ({draft.length})
               </h3>
@@ -151,7 +151,7 @@ export default async function ManagerAppraisalsPage() {
                     </div>
                     <Link
                       href={`/manager/appraisals/${review.id}`}
-                      className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
+                      className="rounded-lg border border-border hover:bg-accent transition-colors px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
                     >
                       Start Review
                     </Link>
@@ -164,8 +164,8 @@ export default async function ManagerAppraisalsPage() {
 
         {/* Completed Reviews */}
         {completed.length > 0 && (
-          <div className="rounded-2xl border-2 border-transparent bg-card backdrop-blur-sm shadow-lg overflow-hidden hover:border-primary hover:shadow-xl transition-all duration-300">
-            <div className="border-b border-border bg-primary/10 px-6 py-4">
+          <div className="rounded-lg border border-border overflow-hidden hover:bg-accent hover:transition-colors">
+            <div className="border-b border-border bg-muted px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Completed ({completed.length})
               </h3>
@@ -196,7 +196,7 @@ export default async function ManagerAppraisalsPage() {
                     <div className="flex gap-2">
                       <Link
                         href={`/manager/appraisals/${review.id}`}
-                        className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
+                        className="rounded-lg border border-border hover:bg-accent transition-colors px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
                       >
                         View
                       </Link>
@@ -209,7 +209,7 @@ export default async function ManagerAppraisalsPage() {
         )}
 
         {teamAppraisals.length === 0 && (
-          <div className="rounded-2xl border-2 border-transparent bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-primary hover:border-primary hover:shadow-xl transition-all duration-300">
+          <div className="rounded-lg border border-border px-6 py-12 text-center text-primary hover:bg-accent hover:transition-colors">
             No appraisals available
           </div>
         )}

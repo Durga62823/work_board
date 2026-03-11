@@ -192,16 +192,16 @@ export function TeamPerformanceAnalytics() {
 
       {result && (
         <div className="space-y-4">
-          <Card className="p-6 bg-card border-primary/20">
+          <Card className="p-6 border-primary/20">
             <h3 className="text-xl font-bold mb-4 text-foreground">Performance Analysis Results</h3>
             
             <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-primary/5 p-4 rounded-lg border border-primary/10">
+              <div className="bg-muted/50 p-4 rounded-lg border border-primary/10">
                 <p className="text-sm text-muted-foreground">Overall Score</p>
-                <p className="text-3xl font-bold text-primary">{result.overallScore ?? 'N/A'}/100</p>
+                <p className="text-2xl font-bold tracking-tight text-foreground">{result.overallScore ?? 'N/A'}/100</p>
               </div>
               {result.trends?.productivity && (
-                <div className="bg-primary/5 p-4 rounded-lg border border-primary/10">
+                <div className="bg-muted/50 p-4 rounded-lg border border-primary/10">
                   <p className="text-sm text-muted-foreground">Productivity Trend</p>
                   <div className="flex items-center gap-2 mt-1">
                     {result.trends.productivity === 'increasing' && <TrendingUp className="h-6 w-6 text-primary" />}
@@ -222,8 +222,8 @@ export function TeamPerformanceAnalytics() {
                       <div className="flex justify-between items-start mb-2">
                         <h5 className="font-medium text-foreground">{member.name}</h5>
                         <span className={`px-2 py-1 rounded text-xs font-medium ${
-                          member.performance === 'high' ? 'bg-primary/10 text-primary dark:bg-primary/20' :
-                          member.performance === 'medium' ? 'bg-primary/10 text-primary dark:bg-primary/20' :
+                          member.performance === 'high' ? 'bg-muted text-primary dark:bg-primary/20' :
+                          member.performance === 'medium' ? 'bg-muted text-primary dark:bg-primary/20' :
                           'bg-destructive/10 text-destructive dark:bg-destructive/20'
                         }`}>
                           {member.performance.toUpperCase()}
@@ -268,7 +268,7 @@ export function TeamPerformanceAnalytics() {
                         <span className={`px-2 py-1 rounded text-xs font-medium ${
                           risk.riskLevel === 'high' ? 'bg-destructive text-destructive-foreground' :
                           risk.riskLevel === 'medium' ? 'bg-primary text-primary-foreground' :
-                          'bg-primary/50 text-primary-foreground'
+                          'bg-muted/500 text-primary-foreground'
                         }`}>
                           {risk.riskLevel.toUpperCase()} RISK
                         </span>

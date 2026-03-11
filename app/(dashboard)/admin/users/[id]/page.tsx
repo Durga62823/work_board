@@ -77,7 +77,7 @@ export default async function UserDetailPage({
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
-          <Card className="md:col-span-1 border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="md:col-span-1 border border-border hover:bg-accent hover:shadow-xl transition-colors">
             <CardHeader>
               <CardTitle className="text-xl">Profile</CardTitle>
             </CardHeader>
@@ -149,7 +149,7 @@ export default async function UserDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="md:col-span-2 border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="md:col-span-2 border border-border hover:bg-accent hover:shadow-xl transition-colors">
             <Tabs defaultValue="overview" className="w-full">
               <CardHeader>
                 <TabsList className="bg-muted">
@@ -162,7 +162,7 @@ export default async function UserDetailPage({
               <CardContent>
                 <TabsContent value="overview" className="space-y-4">
                   <div className="grid gap-4 md:grid-cols-2">
-                    <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
+                    <Card className="border-border">
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">
                           Manager
@@ -186,7 +186,7 @@ export default async function UserDetailPage({
                       </CardContent>
                     </Card>
 
-                    <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
+                    <Card className="border-border">
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">
                           Direct Reports
@@ -204,7 +204,7 @@ export default async function UserDetailPage({
                       </CardContent>
                     </Card>
 
-                    <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
+                    <Card className="border-border">
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">
                           Email Verified
@@ -222,7 +222,7 @@ export default async function UserDetailPage({
                       </CardContent>
                     </Card>
 
-                    <Card className="border-primary/30 bg-gradient-to-br from-card to-primary/5">
+                    <Card className="border-border">
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">
                           Last Updated
@@ -241,7 +241,7 @@ export default async function UserDetailPage({
                 </TabsContent>
 
                 <TabsContent value="team">
-                  <Card className="border-primary bg-card/50 backdrop-blur-sm">
+                  <Card className="border-primary/50">
                     <CardHeader>
                       <CardTitle>Direct Reports</CardTitle>
                       <CardDescription>
@@ -290,7 +290,7 @@ export default async function UserDetailPage({
                 </TabsContent>
 
                 <TabsContent value="performance">
-                  <Card className="border-primary bg-card/50 backdrop-blur-sm">
+                  <Card className="border-primary/50">
                     <CardHeader>
                       <CardTitle>Performance Metrics</CardTitle>
                       <CardDescription>Recent performance data</CardDescription>
@@ -334,7 +334,7 @@ export default async function UserDetailPage({
                 </TabsContent>
 
                 <TabsContent value="accounts">
-                  <Card className="border-primary bg-card/50 backdrop-blur-sm">
+                  <Card className="border-primary/50">
                     <CardHeader>
                       <CardTitle>Linked Accounts</CardTitle>
                       <CardDescription>

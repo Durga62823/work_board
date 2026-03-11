@@ -22,7 +22,7 @@ import {
   SidebarRail,
   SidebarFooter,
 } from "@/components/ui/sidebar"
-import { ModeToggle, ColorPicker, UserMenu } from "@/components/common"
+import { ModeToggle, UserMenu } from "@/components/common"
 
 const adminNav = [
   { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
@@ -80,13 +80,7 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Colors">
-              <div className="flex items-center">
-                <ColorPicker />
-              </div>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+
           <SidebarMenuItem>
             <UserMenu />
           </SidebarMenuItem>

@@ -42,14 +42,14 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
             </div>
             <Button 
               onClick={() => setOpenCreateDialog(true)}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground transition-colors"
             >
               + Add Department
             </Button>
           </div>
 
           {initialDepartments.length === 0 ? (
-            <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+            <Card className="border border-border hover:bg-accent transition-colors">
               <CardContent className="flex flex-col items-center justify-center py-12">
                 <span className="text-4xl mb-4"></span>
                 <h3 className="text-lg font-semibold mb-2">No departments yet</h3>
@@ -69,7 +69,7 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
               {initialDepartments.map((dept) => (
                 <Card 
                   key={dept.id}
-                  className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
+                  className="border border-border hover:bg-accent transition-colors"
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -105,20 +105,20 @@ export function DepartmentsClient({ initialDepartments }: DepartmentsClientProps
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Teams:</span>
-                        <Badge variant="secondary" className="bg-primary/10 text-primary">
+                        <Badge variant="secondary" className="bg-muted text-primary">
                           {dept._count.teams}
                         </Badge>
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Members:</span>
-                        <Badge variant="secondary" className="bg-primary/10 text-primary">
+                        <Badge variant="secondary" className="bg-muted text-primary">
                           {dept._count.users}
                         </Badge>
                       </div>
                       <Link href={`/admin/departments/${dept.id}`}>
                         <Button 
                           variant="outline" 
-                          className="w-full mt-2 border-2 border-transparent hover:border-primary hover:shadow-md transition-all duration-300"
+                          className="w-full mt-2 border border-border hover:bg-accent transition-colors"
                         >
                           View Details
                         </Button>

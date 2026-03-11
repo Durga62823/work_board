@@ -95,7 +95,7 @@ export default function AIFeaturesPage() {
             {features.map((feature) => (
               <Card
                 key={feature.id}
-                className="p-6 cursor-pointer border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
+                className="p-6 cursor-pointer border border-border hover:bg-accent hover:transition-colors"
                 onClick={() => setActiveFeature(feature.id)}
               >
                 <div className="flex flex-col items-center text-center">
@@ -122,7 +122,7 @@ export default function AIFeaturesPage() {
             >
               ← Back to Features
             </Button>
-            <Card className="p-6 border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+            <Card className="p-6 border border-border hover:bg-accent hover:transition-colors">
               {renderFeature()}
             </Card>
           </div>

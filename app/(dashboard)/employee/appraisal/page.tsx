@@ -158,7 +158,7 @@ export default function AppraisalPage() {
         <div className="flex items-center gap-3">
           
           <div>
-            <h1 className="text-3xl font-bold text-primary">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">
               Performance Appraisals
             </h1>
             <p className="text-muted-foreground">
@@ -169,48 +169,48 @@ export default function AppraisalPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors p-6">
             <div className="flex items-center gap-3">
              
               <div>
                 <p className="text-sm text-primary font-medium">Total Reviews</p>
-                <p className="text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats.total}
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors p-6">
             <div className="flex items-center gap-3">
           
               <div>
                 <p className="text-sm text-primary font-medium">Pending</p>
-                <p className="text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats.draft + stats.inProgress}
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors p-6">
             <div className="flex items-center gap-3">
           
               <div>
                 <p className="text-sm text-primary font-medium">Completed</p>
-                <p className="text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats.completed}
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6">
+          <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors p-6">
             <div className="flex items-center gap-3">
           
               <div>
                 <p className="text-sm text-primary font-medium">Avg Rating</p>
-                <p className="text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats.avgRating > 0 ? stats.avgRating.toFixed(1) : "N/A"}
                 </p>
               </div>
@@ -220,7 +220,7 @@ export default function AppraisalPage() {
 
         {/* Current Appraisal */}
         {currentAppraisal && (
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
+          <Card className="border-border p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-semibold text-xl text-foreground">
               Current Appraisal - {currentAppraisal.cycle?.name}
@@ -253,7 +253,7 @@ export default function AppraisalPage() {
                 <Label>Overall Self-Rating</Label>
                 <div className="flex items-center gap-4 mt-2">
                   <select
-                    className="p-2 border-2 border-transparent hover:border-primary transition-colors rounded"
+                    className="p-2 border border-border hover:bg-accent transition-colors rounded"
                     value={rating || ""}
                     onChange={(e) =>
                       setRating(
@@ -311,7 +311,7 @@ export default function AppraisalPage() {
               {currentAppraisal.rating && (
                 <div>
                   <h4 className="font-semibold mb-2 text-foreground">Your Self-Rating</h4>
-                  <p className="text-2xl font-bold text-primary">
+                  <p className="text-2xl font-bold tracking-tight text-foreground">
                     {currentAppraisal.rating}/5
                   </p>
                 </div>
@@ -329,7 +329,7 @@ export default function AppraisalPage() {
               {currentAppraisal.finalRating && (
                 <div className="mt-4">
                   <h4 className="font-semibold mb-2 text-foreground">Final Rating</h4>
-                  <p className="text-2xl font-bold text-primary">
+                  <p className="text-2xl font-bold tracking-tight text-foreground">
                     {currentAppraisal.finalRating}/5
                   </p>
                 </div>
@@ -340,7 +340,7 @@ export default function AppraisalPage() {
       )}
 
         {!currentAppraisal && (
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
+          <Card className="border-border p-6">
           <div className="text-center py-12">
             <HiDocumentText className="h-16 w-16 text-primary mx-auto mb-4" />
             <h3 className="font-semibold text-lg mb-2 text-primary">
@@ -355,7 +355,7 @@ export default function AppraisalPage() {
       )}
 
         {/* Past Appraisals */}
-        <Card className="border-border bg-card   backdrop-blur-sm shadow-lg p-6">
+        <Card className="border-border   p-6">
           <h3 className="font-semibold text-lg mb-4 text-primary">Appraisal History</h3>
           {pastAppraisals.length > 0 ? (
             <div className="space-y-3">
@@ -364,7 +364,7 @@ export default function AppraisalPage() {
                 return (
                   <div
                     key={appraisal.id}
-                    className="p-4 border-2 border-transparent hover:border-primary rounded-xl bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    className="p-4 border border-border hover:bg-accent rounded-lg/50 hover:hover:-translate-y-0.5 transition-colors"
                   >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">

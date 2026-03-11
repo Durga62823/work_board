@@ -196,12 +196,12 @@ export function AISprintPlanning() {
 
       {result && (
         <div className="space-y-4 mt-6">
-          <Card className="p-4 bg-primary/10 border-primary/20">
+          <Card className="p-4 bg-muted border-primary/20">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
               <span className="text-lg"></span>
               Sprint Goal
             </h4>
-            <p className="text-sm bg-card p-3 rounded">{result.sprintGoal}</p>
+            <p className="text-sm p-3 rounded">{result.sprintGoal}</p>
           </Card>
 
           <Card className="p-4">
@@ -209,13 +209,13 @@ export function AISprintPlanning() {
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <p className="text-sm text-muted-foreground">Total Capacity</p>
-                <p className="text-2xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {result.capacity?.totalHours}h
                 </p>
               </div>
               <div className="text-center">
                 <p className="text-sm text-muted-foreground">Allocated</p>
-                <p className="text-2xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {result.capacity?.allocatedHours}h
                 </p>
               </div>

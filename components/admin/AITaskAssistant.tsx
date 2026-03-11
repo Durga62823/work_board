@@ -138,7 +138,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
       </div>
 
       {result && activeFeature === "breakdown" && (
-        <Card className="p-4 bg-primary/10 border-primary/20">
+        <Card className="p-4 bg-muted border-primary/20">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
             Subtasks Generated
           </h4>
@@ -155,7 +155,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
                         ? "bg-destructive/10 text-destructive"
                         : subtask.priority === "medium"
                         ? "bg-accent/10 text-accent-foreground"
-                        : "bg-primary/10 text-primary"
+                        : "bg-muted text-primary"
                     }`}
                   >
                     {subtask.priority}
@@ -174,14 +174,14 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
       )}
 
       {result && activeFeature === "timeline" && (
-        <Card className="p-4 bg-primary/10 border-primary/20">
+        <Card className="p-4 bg-muted border-primary/20">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
             Timeline Estimate
           </h4>
           <div className="space-y-3">
             <div className="bg-card p-3 rounded">
               <p className="text-sm text-muted-foreground">Estimated Duration</p>
-              <p className="text-2xl font-bold text-primary">
+              <p className="text-2xl font-bold tracking-tight text-foreground">
                 {result.estimatedDays} days
               </p>
               <p className="text-sm text-muted-foreground mt-1">
@@ -219,7 +219,7 @@ export function AITaskAssistant({ onClose }: AITaskAssistantProps) {
       )}
 
       {result && activeFeature === "testcases" && (
-        <Card className="p-4 bg-primary/10 border-primary/20">
+        <Card className="p-4 bg-muted border-primary/20">
           <h4 className="font-semibold mb-3 flex items-center gap-2">
             Test Cases Generated
           </h4>

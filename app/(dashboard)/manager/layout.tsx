@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { UserMenu, LogoutButton, ModeToggle, ColorPicker } from "@/components/common";
+import { UserMenu, LogoutButton, ModeToggle } from "@/components/common";
 import { MobileMenu } from "@/components/common/MobileMenu";
 import { ManagerSidebar } from "@/components/manager/manager-sidebar";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
@@ -46,16 +46,16 @@ export default function ManagerLayout({
     <SidebarProvider>
       <ManagerSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b bg-card sticky top-0 z-40">
+        <header className="flex h-14 shrink-0 items-center gap-2 border-b border-border bg-background/95 sticky top-0 z-40">
           <div className="flex items-center gap-2 px-4 flex-1">
-            <SidebarTrigger />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <h1 className="text-base sm:text-lg font-bold text-foreground">
-              Workboard
-            </h1>
+            <SidebarTrigger className="-ml-1" />
+            <Separator orientation="vertical" className="mx-2 h-4" />
+            <nav className="flex items-center gap-1.5 text-sm">
+              <span className="font-medium text-muted-foreground">Manager</span>
+            </nav>
           </div>
         </header>
-        <main className="flex-1 p-4">{children}</main>
+        <main className="flex-1 p-4 md:p-6">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

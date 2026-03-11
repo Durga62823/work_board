@@ -4,29 +4,29 @@
 
 @layer base {
   :root {
-    /* Base colors for light mode */
-    --background: 0 0% 99%;
-    --foreground: 0 0% 8%;
+    /* Base colors for light mode - Next.js style */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
+    --card-foreground: 0 0% 7%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover-foreground: 0 0% 7%;
     
     /* Primary colors (will be overridden by ColorThemeContext) */
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
     
     /* Secondary, muted, accent colors */
-    --secondary: 0 0% 95%;
+    --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
-    --accent: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
     --accent-foreground: 0 0% 9%;
     
     /* Border and input */
-    --border: 0 0% 88%;
-    --input: 0 0% 88%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
     --ring: 0 0% 8%;
     
     /* Destructive */
@@ -40,40 +40,40 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --sidebar-background: 0 0% 99%;
-    --sidebar-foreground: 0 0% 15%;
-    --sidebar-primary: 0 0% 10%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 7%;
+    --sidebar-primary: 0 0% 9%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 10%;
-    --sidebar-border: 0 0% 88%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 0 0% 8%;
   }
 
   .dark {
-    /* Dark mode colors - Improved contrast */
-    --background: 0 0% 7%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 98%;
+    /* Dark mode colors - Next.js-style pure black */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 93%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 93%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 93%;
     
     /* Primary colors (will be overridden by ColorThemeContext) */
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    --primary: 0 0% 93%;
+    --primary-foreground: 0 0% 0%;
     
     /* Secondary, muted, accent colors for dark mode */
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 16%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 93%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 93%;
     
     /* Border and input for dark mode */
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
     --ring: 0 0% 83.1%;
     
     /* Destructive for dark mode */
@@ -84,14 +84,14 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 93%;
+    --sidebar-primary: 0 0% 93%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 93%;
+    --sidebar-border: 0 0% 14%;
+    --sidebar-ring: 0 0% 83.1%;
   }
   
   * {
@@ -112,11 +112,6 @@
 
   input::placeholder, textarea::placeholder {
     @apply text-muted-foreground;
-  }
-
-  /* Ensure buttons respect theme when not styled */
-  button:not([class*="bg-"]) {
-    @apply bg-primary text-primary-foreground;
   }
 }
 
@@ -385,13 +380,46 @@
   transform: scale(1.03);
 }
 
+/* Professional card styles */
+.card-professional {
+  @apply relative overflow-hidden border border-border bg-card rounded-lg;
+  transition: all 0.2s ease;
+}
 
+.card-professional:hover {
+  @apply bg-accent;
+}
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+/* Smooth page transitions */
+.page-enter {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Breadcrumb styles */
+.breadcrumb-separator::after {
+  content: "/";
+  @apply mx-2 text-muted-foreground/50;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/30;
+}
+
+/* Focus ring for accessibility */
+.focus-ring {
+  @apply outline-none ring-2 ring-primary/30 ring-offset-2 ring-offset-background;
 }

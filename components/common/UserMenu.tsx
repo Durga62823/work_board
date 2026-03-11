@@ -58,7 +58,7 @@ export function UserMenu() {
       </button>
 
       {isOpen && (
-        <div className="absolute left-12 bottom-0 mb-0 w-64 bg-card rounded-lg shadow-lg border border-border z-50">
+        <div className="absolute left-12 bottom-0 mb-0 w-64 rounded-lg border border-border z-50">
           <div className="p-4 border-b border-border">
             <UserProfile name={name} email={email} image={image} />
           </div>

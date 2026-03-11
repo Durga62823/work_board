@@ -20,7 +20,7 @@ export default async function LeadSprintsPage() {
     return (
       <div className="min-h-screen bg-background">
         <div className="text-center py-12">
-          <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto">
+          <div className="border-border rounded-lg p-8 max-w-md mx-auto">
             <h2 className="text-xl font-semibold text-foreground mb-2">No Team Assigned</h2>
             <p className="text-primary">Please contact your administrator to assign you to a team.</p>
           </div>
@@ -43,17 +43,17 @@ export default async function LeadSprintsPage() {
     <div className="min-h-screen bg-background space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full w-fit mb-3">
             <span className="text-sm font-semibold">Sprint Management</span>
           </div>
-          <h1 className="text-3xl font-bold text-primary">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">
             Sprint Planning
           </h1>
           <p className="text-primary mt-2">Manage sprints and track team velocity</p>
         </div>
         <Link
           href="/lead/sprints/new"
-          className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
+          className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 hover:transition-colors font-medium"
         >
           Create Sprint
         </Link>
@@ -61,7 +61,7 @@ export default async function LeadSprintsPage() {
 
       {/* Active Sprint */}
       {activeSprint && (
-        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl hover:border-primary hover:shadow-xl transition-all duration-300">
+        <div className="border border-border rounded-lg hover:bg-accent hover:transition-colors">
           <div className="p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -69,7 +69,7 @@ export default async function LeadSprintsPage() {
                   <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full shadow-md">
                     ACTIVE
                   </span>
-                  <h2 className="text-2xl font-bold text-primary">
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground">
                     {activeSprint.name}
                   </h2>
                 </div>
@@ -77,33 +77,33 @@ export default async function LeadSprintsPage() {
               </div>
               <Link
                 href={`/lead/sprints/${activeSprint.id}`}
-                className="text-primary hover:text-foreground font-medium hover:scale-105 transition-all"
+                className="text-primary hover:text-foreground font-medium transition-all"
               >
                 View Details 
               </Link>
             </div>
 
             <div className="grid grid-cols-4 gap-4 mt-6">
-              <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
+              <div className="bg-muted rounded-lg p-4 border border-border hover:bg-accent transition-colors">
                 <p className="text-sm text-primary mb-1">Duration</p>
                 <p className="text-lg font-semibold text-foreground">
                   {format(new Date(activeSprint.startDate), "MMM d")} -{" "}
                   {format(new Date(activeSprint.endDate), "MMM d")}
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
+              <div className="bg-muted rounded-lg p-4 border border-border hover:bg-accent transition-colors">
                 <p className="text-sm text-primary mb-1">Story Points</p>
                 <p className="text-lg font-semibold text-foreground">
                   {activeSprint.totalTasks || 0} tasks
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
+              <div className="bg-muted rounded-lg p-4 border border-border hover:bg-accent transition-colors">
                 <p className="text-sm text-primary mb-1">Capacity</p>
                 <p className="text-lg font-semibold text-foreground">
                   {activeSprint.capacityHours}h
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-xl p-4 border-2 border-transparent hover:border-primary transition-all duration-300">
+              <div className="bg-muted rounded-lg p-4 border border-border hover:bg-accent transition-colors">
                 <p className="text-sm text-primary mb-1">Velocity</p>
                 <p className="text-lg font-semibold text-foreground">
                   {activeSprint.velocity || "-"} pts
@@ -113,9 +113,9 @@ export default async function LeadSprintsPage() {
 
             {/* Burndown Chart Placeholder */}
             {burndownData && burndownData.idealBurndown && burndownData.actualBurndown && (
-              <div className="mt-6 p-4 bg-primary/10 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300">
+              <div className="mt-6 p-4 bg-muted rounded-lg border border-border hover:bg-accent transition-colors">
                 <h3 className="text-sm font-semibold text-foreground mb-3">Sprint Burndown</h3>
-                <div className="h-48 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-xl bg-card/50">
+                <div className="h-48 flex items-center justify-center border-2 border-dashed border-primary/30 rounded-lg/50">
                   <div className="text-center text-primary">
                     <p className="text-sm">Ideal: {burndownData.idealBurndown.map(d => d.ideal.toFixed(0)).join(", ")}</p>
                     <p className="text-sm mt-1">Actual: {burndownData.actualBurndown.map(d => d.actual.toFixed(0)).join(", ")}</p>
@@ -130,7 +130,7 @@ export default async function LeadSprintsPage() {
 
       {/* Planning Sprint */}
       {planningSprint && (
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
+        <div className="border-border rounded-lg hover:transition-colors">
           <div className="p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -146,26 +146,26 @@ export default async function LeadSprintsPage() {
               </div>
               <Link
                 href={`/lead/sprints/${planningSprint.id}`}
-                className="text-primary hover:text-foreground font-medium hover:scale-105 transition-all"
+                className="text-primary hover:text-foreground font-medium transition-all"
               >
                 Plan Sprint →
               </Link>
             </div>
 
             <div className="flex gap-4 mt-4">
-              <div className="bg-primary/10 rounded-xl p-3 flex-1 border-2 border-transparent hover:border-primary transition-all duration-300">
+              <div className="bg-muted rounded-lg p-3 flex-1 border border-border hover:bg-accent transition-colors">
                 <p className="text-sm text-primary mb-1">Start Date</p>
                 <p className="font-semibold text-foreground">
                   {format(new Date(planningSprint.startDate), "MMM d, yyyy")}
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-xl p-3 flex-1 border-2 border-transparent hover:border-primary transition-all duration-300">
+              <div className="bg-muted rounded-lg p-3 flex-1 border border-border hover:bg-accent transition-colors">
                 <p className="text-sm text-primary mb-1">End Date</p>
                 <p className="font-semibold text-foreground">
                   {format(new Date(planningSprint.endDate), "MMM d, yyyy")}
                 </p>
               </div>
-              <div className="bg-primary/10 rounded-xl p-3 flex-1 border-2 border-transparent hover:border-primary transition-all duration-300">
+              <div className="bg-muted rounded-lg p-3 flex-1 border border-border hover:bg-accent transition-colors">
                 <p className="text-sm text-primary mb-1">Capacity</p>
                 <p className="font-semibold text-foreground">{planningSprint.capacityHours}h</p>
               </div>
@@ -176,7 +176,7 @@ export default async function LeadSprintsPage() {
 
       {/* Completed Sprints */}
       {completedSprints.length > 0 && (
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
+        <div className="border-border rounded-lg hover:transition-colors">
           <div className="p-6">
             <h2 className="text-xl font-bold text-primary mb-4">
               Recent Sprints
@@ -185,11 +185,11 @@ export default async function LeadSprintsPage() {
               {completedSprints.map((sprint) => (
                 <div
                   key={sprint.id}
-                  className="flex items-center justify-between p-4 bg-primary/10 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 hover:shadow-md hover:scale-[1.01]"
+                  className="flex items-center justify-between p-4 bg-muted rounded-lg border border-border hover:bg-accent transition-colors hover:scale-[1.01]"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full shadow-md">
+                      <span className="px-3 py-1 bg-muted text-primary text-xs font-semibold rounded-full shadow-md">
                         COMPLETED
                       </span>
                       <h3 className="font-semibold text-foreground">{sprint.name}</h3>
@@ -207,7 +207,7 @@ export default async function LeadSprintsPage() {
                     </div>
                     <Link
                       href={`/lead/sprints/${sprint.id}`}
-                      className="text-primary hover:text-foreground font-medium text-sm hover:scale-105 transition-all"
+                      className="text-primary hover:text-foreground font-medium text-sm transition-all"
                     >
                       View →
                     </Link>
@@ -221,9 +221,9 @@ export default async function LeadSprintsPage() {
 
       {/* Empty State */}
       {!activeSprint && !planningSprint && completedSprints.length === 0 && (
-        <div className="border-border bg-card backdrop-blur-sm shadow-lg rounded-xl p-12 text-center hover:shadow-xl transition-all duration-300">
+        <div className="border-border rounded-lg p-12 text-center hover:transition-colors">
           <div className="max-w-md mx-auto">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+            <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
               <svg
                 className="w-8 h-8 text-primary"
                 fill="none"
@@ -238,7 +238,7 @@ export default async function LeadSprintsPage() {
                 />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold text-primary mb-2">
+            <h2 className="text-lg font-semibold text-foreground mb-2">
               No Sprints Yet
             </h2>
             <p className="text-primary mb-6">
@@ -246,7 +246,7 @@ export default async function LeadSprintsPage() {
             </p>
             <Link
               href="/lead/sprints/new"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 hover:transition-colors font-medium"
             >
               Create First Sprint
             </Link>

@@ -52,58 +52,58 @@ export default async function ProjectsPage() {
 
         {/* Project Stats */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Total Projects
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">
+              <div className="text-2xl font-bold tracking-tight text-foreground">
                 {stats.total}
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-transparent bg-primary/10 backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border bg-muted hover:bg-accent hover:transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">On Track</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">
+              <div className="text-2xl font-bold tracking-tight text-foreground">
                 {stats.onTrack}
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">At Risk</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">
+              <div className="text-2xl font-bold tracking-tight text-foreground">
                 {stats.atRisk}
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Delayed</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">
+              <div className="text-2xl font-bold tracking-tight text-foreground">
                 {stats.delayed}
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-transparent bg-primary/10 backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border bg-muted hover:bg-accent hover:transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Completed</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">
+              <div className="text-2xl font-bold tracking-tight text-foreground">
                 {stats.completed}
               </div>
             </CardContent>
@@ -111,7 +111,7 @@ export default async function ProjectsPage() {
         </div>
 
         {/* Projects Table */}
-        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+        <Card className="border border-border hover:bg-accent hover:transition-colors">
           <CardHeader>
             <CardTitle className="text-2xl text-primary">All Projects</CardTitle>
             <CardDescription className="text-base">
@@ -120,10 +120,10 @@ export default async function ProjectsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 overflow-hidden bg-card backdrop-blur-sm">
+            <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden ">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-primary/10 hover:bg-primary/20">
+                  <TableRow className="bg-muted hover:bg-primary/20">
                     <TableHead className="font-semibold">Name</TableHead>
                     <TableHead className="font-semibold">Status</TableHead>
                     <TableHead className="font-semibold">Owner</TableHead>

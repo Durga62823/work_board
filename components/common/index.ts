@@ -3,5 +3,4 @@ export { LogoutButton } from "./LogoutButton";
 export { UserMenu } from "./UserMenu";
 export { Header } from "./Header";
 export { ModeToggle } from "./ModeToggle";
-export { ColorPicker } from "./ColorPicker";
 export { UserAvatar } from "./UserAvatar";

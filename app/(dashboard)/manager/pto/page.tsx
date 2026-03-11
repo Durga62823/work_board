@@ -50,7 +50,7 @@ export default async function ManagerPTOPage() {
         {/* Header */}
         <div className="flex items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-primary">PTO</h1>
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">PTO</h1>
             <p className="mt-1 text-primary">
               Review and manage time-off requests from your team
             </p>
@@ -59,21 +59,21 @@ export default async function ManagerPTOPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">Pending</div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {pending.length}
             </div>
           </div>
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">Approved</div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {approved.length}
             </div>
           </div>
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 hover:shadow-xl">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6 hover:">
             <div className="text-sm font-medium text-primary">Rejected</div>
-            <div className="mt-2 text-3xl font-bold text-primary">
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {rejected.length}
             </div>
           </div>
@@ -81,8 +81,8 @@ export default async function ManagerPTOPage() {
 
         {/* Pending Requests */}
         {pending.length > 0 && (
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-            <div className="border-b border-border bg-primary/10 px-6 py-4">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+            <div className="border-b border-border bg-muted px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Pending Requests ({pending.length})
               </h3>
@@ -97,8 +97,8 @@ export default async function ManagerPTOPage() {
 
         {/* Approved Requests */}
         {approved.length > 0 && (
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-            <div className="border-b border-border bg-primary/10 px-6 py-4">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+            <div className="border-b border-border bg-muted px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Approved Requests ({approved.length})
               </h3>
@@ -123,7 +123,7 @@ export default async function ManagerPTOPage() {
                       </div>
                     </div>
                     <div className="text-sm">
-                      <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary shadow-sm">
+                      <span className="inline-flex rounded-full bg-muted px-3 py-1 text-xs font-semibold text-primary">
                         Approved
                       </span>
                       {request.approver && (
@@ -142,8 +142,8 @@ export default async function ManagerPTOPage() {
 
         {/* Rejected Requests */}
         {rejected.length > 0 && (
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-            <div className="border-b border-border bg-primary/10 px-6 py-4">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+            <div className="border-b border-border bg-muted px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Rejected Requests ({rejected.length})
               </h3>
@@ -172,7 +172,7 @@ export default async function ManagerPTOPage() {
                         </div>
                       )}
                     </div>
-                    <span className="inline-flex rounded-full bg-card px-3 py-1 text-xs font-semibold text-foreground shadow-sm">
+                    <span className="inline-flex rounded-full px-3 py-1 text-xs font-semibold text-foreground">
                       Rejected
                     </span>
                   </div>
@@ -183,7 +183,7 @@ export default async function ManagerPTOPage() {
         )}
 
         {requests.length === 0 && (
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg px-6 py-12 text-center text-primary">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors px-6 py-12 text-center text-primary">
             No PTO requests from your team
           </div>
         )}

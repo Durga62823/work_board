@@ -195,7 +195,7 @@ export function SprintRetrospective() {
           <h3 className="text-xl font-bold">Retrospective Analysis</h3>
 
           {/* Summary */}
-          <div className="p-5 bg-primary/10 border border-primary/30 rounded-lg">
+          <div className="p-5 bg-muted border border-primary/30 rounded-lg">
             <h4 className="font-semibold mb-2">Sprint Summary</h4>
             <p className="text-foreground">{result.summary}</p>
           </div>
@@ -206,7 +206,7 @@ export function SprintRetrospective() {
               <h4 className="font-semibold mb-3">Sprint Metrics</h4>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {result.metrics.map((metric, index) => (
-                  <div key={index} className="p-4 bg-card border rounded-lg">
+                  <div key={index} className="p-4 border rounded-lg">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm text-primary">{metric.name}</p>
                       {metric.trend === "up" && (
@@ -216,7 +216,7 @@ export function SprintRetrospective() {
                         <TrendingDown className="h-4 w-4 text-destructive" />
                       )}
                     </div>
-                    <p className="text-2xl font-bold text-primary">
+                    <p className="text-2xl font-bold tracking-tight text-foreground">
                       {metric.value}
                     </p>
                   </div>
@@ -235,7 +235,7 @@ export function SprintRetrospective() {
               {result.wentWell.map((item, index) => (
                 <div
                   key={index}
-                  className="p-3 bg-primary/10 border border-primary/30 rounded-lg"
+                  className="p-3 bg-muted border border-primary/30 rounded-lg"
                 >
                   <p className="text-sm text-foreground">✓ {item}</p>
                 </div>
@@ -266,7 +266,7 @@ export function SprintRetrospective() {
             <h4 className="font-semibold mb-3">Action Items</h4>
             <div className="space-y-3">
               {result.actionItems.map((item, index) => (
-                <div key={index} className="p-4 bg-card border rounded-lg">
+                <div key={index} className="p-4 border rounded-lg">
                   <div className="flex items-start justify-between mb-2">
                     <p className="font-medium text-sm flex-1">{item.action}</p>
                     <Badge
@@ -297,7 +297,7 @@ export function SprintRetrospective() {
               {result.recommendations.map((rec, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg"
+                  className="flex items-start gap-2 p-3 bg-muted rounded-lg"
                 >
                   <span className="text-primary font-bold mt-0.5">•</span>
                   <span className="text-sm text-foreground">{rec}</span>

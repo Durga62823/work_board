@@ -112,38 +112,38 @@ export default function CalendarPage() {
   function getEventTypeColor(type: string) {
     switch (type) {
       case "task":
-        return "bg-primary/100";
+        return "bg-muted0";
       case "meeting":
-        return "bg-primary/100";
+        return "bg-muted0";
       case "deadline":
-        return "bg-primary/100";
+        return "bg-muted0";
       case "milestone":
-        return "bg-primary/100";
+        return "bg-muted0";
       case "appraisal":
-        return "bg-primary/100";
+        return "bg-muted0";
       case "pto":
-        return "bg-primary/100";
+        return "bg-muted0";
       default:
-        return "bg-primary/100";
+        return "bg-muted0";
     }
   }
 
   function getEventTypeBadge(type: string) {
     switch (type) {
       case "task":
-        return "bg-primary/10 text-primary dark:bg-primary/20";
+        return "bg-muted text-primary dark:bg-primary/20";
       case "meeting":
-        return "bg-primary/10 text-primary dark:bg-primary/20";
+        return "bg-muted text-primary dark:bg-primary/20";
       case "deadline":
         return "bg-destructive/10 text-destructive dark:bg-destructive/20";
       case "milestone":
-        return "bg-primary/10 text-primary dark:bg-primary/20";
+        return "bg-muted text-primary dark:bg-primary/20";
       case "appraisal":
-        return "bg-primary/10 text-primary dark:bg-primary/20";
+        return "bg-muted text-primary dark:bg-primary/20";
       case "pto":
-        return "bg-primary/10 text-primary dark:bg-primary/20";
+        return "bg-muted text-primary dark:bg-primary/20";
       default:
-        return "bg-primary/10 text-foreground";
+        return "bg-muted text-foreground";
     }
   }
 
@@ -198,7 +198,7 @@ export default function CalendarPage() {
       <div className="container mx-auto p-6 space-y-6">
         <div className="flex items-center gap-3">
           <div>
-            <h1 className="text-3xl font-bold text-primary">My Calendar</h1>
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">My Calendar</h1>
             <p className="text-foreground mt-1">
               View your schedule and upcoming events
             </p>
@@ -207,7 +207,7 @@ export default function CalendarPage() {
 
         {/* Upcoming Events */}
         {upcomingEvents.length > 0 && (
-          <Card className="border-primary/50 bg-primary/5 backdrop-blur-sm shadow-lg">
+          <Card className="border-primary/50 bg-muted/50 ">
             <CardHeader>
               <CardTitle className="text-primary">Upcoming Events</CardTitle>
             </CardHeader>
@@ -216,7 +216,7 @@ export default function CalendarPage() {
                 {upcomingEvents.slice(0, 5).map((event) => (
                   <div
                     key={event.id}
-                    className="flex items-center justify-between p-2 bg-card rounded"
+                    className="flex items-center justify-between p-2 rounded"
                   >
                     <div className="flex items-center gap-2">
                       <Badge className={getEventTypeBadge(event.type)}>
@@ -235,7 +235,7 @@ export default function CalendarPage() {
         )}
 
         {/* Calendar Navigation */}
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+        <Card className="border-border ">
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="text-primary">
@@ -249,7 +249,7 @@ export default function CalendarPage() {
                   size="sm"
                   variant="outline"
                   onClick={previousMonth}
-                  className="hover:bg-primary/10 transition-colors"
+                  className="hover:bg-muted transition-colors"
                 >
                   <HiChevronLeft className="h-4 w-4" />
                 </Button>
@@ -257,7 +257,7 @@ export default function CalendarPage() {
                   size="sm"
                   variant="outline"
                   onClick={() => setCurrentDate(new Date())}
-                  className="hover:bg-primary/10 transition-colors text-primary"
+                  className="hover:bg-muted transition-colors text-primary"
                 >
                   Today
                 </Button>
@@ -265,7 +265,7 @@ export default function CalendarPage() {
                   size="sm"
                   variant="outline"
                   onClick={nextMonth}
-                  className="hover:bg-primary/10 transition-colors"
+                  className="hover:bg-muted transition-colors"
                 >
                   <HiChevronRight className="h-4 w-4" />
                 </Button>
@@ -295,13 +295,13 @@ export default function CalendarPage() {
                 return (
                   <div
                     key={index}
-                    className={`min-h-[100px] p-2 border rounded-xl hover:border-primary cursor-pointer transition-all duration-300 ${
+                    className={`min-h-[100px] p-2 border rounded-lg hover:bg-accent cursor-pointer transition-colors ${
                       !day
                         ? "bg-muted/50"
                         : isToday(day)
-                        ? "bg-primary/10 border-primary/50 shadow-md"
-                        : "bg-card/50 hover:bg-card/80 hover:shadow-lg hover:-translate-y-0.5"
-                    } ${isSelected ? "ring-2 ring-primary shadow-xl" : ""}`}
+                        ? "bg-muted border-primary/50 shadow-md"
+                        : "bg-card/50 hover:bg-card/80 hover:hover:-translate-y-0.5"
+                    } ${isSelected ? "ring-2 ring-primary " : ""}`}
                     onClick={() => day && setSelectedDate(day)}
                   >
                     {day && (
@@ -342,7 +342,7 @@ export default function CalendarPage() {
 
         {/* Selected Date Events */}
         {selectedDate && (
-          <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+          <Card className="border-border ">
             <CardHeader>
               <CardTitle>
                 Events on{" "}
@@ -363,7 +363,7 @@ export default function CalendarPage() {
                   {selectedEvents.map((event) => (
                     <div
                       key={event.id}
-                      className="border-2 border-transparent hover:border-primary rounded-xl p-4 bg-card/50 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                      className="border border-border hover:bg-accent rounded-lg p-4/50 hover:hover:-translate-y-0.5 transition-colors"
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex-1">

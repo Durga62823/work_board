@@ -23,7 +23,7 @@ export default async function SettingsPage() {
       <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
         {/* Header with gradient badge */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
+          <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary ">
           </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-primary">
@@ -36,7 +36,7 @@ export default async function SettingsPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 Time & Location
@@ -67,7 +67,7 @@ export default async function SettingsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <span></span>
@@ -96,7 +96,7 @@ export default async function SettingsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <span></span>
@@ -113,7 +113,7 @@ export default async function SettingsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:transition-colors">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <span></span>

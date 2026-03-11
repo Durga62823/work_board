@@ -18,7 +18,7 @@ export default async function ManagerTeamPage() {
         {/* Header */}
         <div className="flex items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-primary">Team</h1>
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">Team</h1>
             <p className="mt-1 text-primary">
               Your direct reports and extended team members
             </p>
@@ -26,8 +26,8 @@ export default async function ManagerTeamPage() {
         </div>
 
         {/* Direct Reports */}
-        <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-          <div className="border-b border-border bg-primary/10 px-6 py-4">
+        <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+          <div className="border-b border-border bg-muted px-6 py-4">
             <h3 className="text-lg font-semibold text-foreground">
               Direct Reports ({directReports.length})
             </h3>
@@ -41,14 +41,14 @@ export default async function ManagerTeamPage() {
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-sm font-semibold text-primary">
                         {member.firstName?.[0]}
                         {member.lastName?.[0]}
                       </div>
                       <div>
                         <Link
                           href={`/manager/team/${member.id}`}
-                          className="font-medium text-foreground hover:text-primary transition-colors"
+                          className="font-medium text-foreground hover:text-foreground transition-colors"
                         >
                           {member.firstName} {member.lastName}
                         </Link>
@@ -87,13 +87,13 @@ export default async function ManagerTeamPage() {
                   <div className="flex gap-2">
                     <Link
                       href={`/manager/team/${member.id}`}
-                      className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted/50 "
+                      className="rounded-lg border border-border hover:bg-accent transition-colors px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted/50 "
                     >
                       View Details
                     </Link>
                     <Link
                       href={`/manager/one-on-ones?userId=${member.id}`}
-                      className="rounded-xl bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all"
+                      className="rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-md hover:transition-all"
                     >
                       Schedule 1:1
                     </Link>
@@ -111,8 +111,8 @@ export default async function ManagerTeamPage() {
 
         {/* Extended Team */}
         {extendedReports.length > 0 && (
-          <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg overflow-hidden">
-            <div className="border-b border-border bg-primary/10 px-6 py-4">
+          <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden">
+            <div className="border-b border-border bg-muted px-6 py-4">
               <h3 className="text-lg font-semibold text-foreground">
                 Extended Team ({extendedReports.length})
               </h3>
@@ -128,7 +128,7 @@ export default async function ManagerTeamPage() {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-sm font-semibold text-primary">
                         {member.firstName?.[0]}
                         {member.lastName?.[0]}
                       </div>

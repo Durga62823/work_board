@@ -104,7 +104,7 @@ export function PTOApprovalCard({ request }: { request: PTORequest }) {
           <button
             onClick={() => setShowRejectDialog(true)}
             disabled={isProcessing}
-            className="rounded-lg border border-destructive/30 bg-card px-4 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50 transition-colors"
+            className="rounded-lg border border-destructive/30 px-4 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50 transition-colors"
           >
             Reject
           </button>
@@ -112,8 +112,8 @@ export function PTOApprovalCard({ request }: { request: PTORequest }) {
       </div>
 
       {showRejectDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 ">
+          <div className="w-full max-w-md rounded-lg border border-border p-6 ">
             <h3 className="text-lg font-semibold text-foreground">
               Reject PTO Request
             </h3>

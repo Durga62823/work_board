@@ -85,7 +85,7 @@ export function ApprovalAssistant() {
             id="requestType"
             value={formData.requestType}
             onChange={(e) => setFormData({ ...formData, requestType: e.target.value as 'timesheet' | 'pto' })}
-            className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded-md"
+            className="w-full p-2 border border-border hover:bg-accent transition-colors rounded-md"
           >
             <option value="timesheet">Timesheet</option>
             <option value="pto">PTO Request</option>
@@ -171,10 +171,10 @@ export function ApprovalAssistant() {
           {/* Decision Badge */}
           <div className={`p-6 rounded-lg border-2 ${
             result.decision === 'approve' 
-              ? 'bg-primary/5 border-primary/20'
+              ? 'bg-muted/50 border-primary/20'
               : result.decision === 'reject'
               ? 'bg-destructive/5 border-destructive/20'
-              : 'bg-primary/5 border-primary/20'
+              : 'bg-muted/50 border-primary/20'
           }`}>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
@@ -194,7 +194,7 @@ export function ApprovalAssistant() {
             <h4 className="font-semibold mb-3 text-foreground">Analysis Reasoning</h4>
             <ul className="space-y-2">
               {result.reasoning.map((reason, index) => (
-                <li key={index} className="flex items-start gap-2 p-3 bg-primary/5 rounded-lg border border-primary/10">
+                <li key={index} className="flex items-start gap-2 p-3 bg-muted/50 rounded-lg border border-primary/10">
                   <span className="text-primary font-bold mt-0.5">{index + 1}.</span>
                   <span className="text-sm text-muted-foreground">{reason}</span>
                 </li>
@@ -237,7 +237,7 @@ export function ApprovalAssistant() {
           )}
 
           {/* Impact Analysis */}
-          <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
+          <div className="p-4 bg-muted border border-primary/20 rounded-lg">
             <h4 className="font-semibold mb-2">Impact Analysis</h4>
             <p className="text-sm text-foreground">{result.impactAnalysis}</p>
           </div>

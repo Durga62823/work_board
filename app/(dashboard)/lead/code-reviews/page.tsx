@@ -20,7 +20,7 @@ export default async function LeadCodeReviewsPage() {
     return (
       <div className="min-h-screen bg-background">
         <div className="text-center py-12">
-          <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-8 max-w-md mx-auto hover:border-primary hover:shadow-xl transition-all duration-300">
+          <div className="border border-border rounded-lg p-8 max-w-md mx-auto hover:bg-accent hover:transition-colors">
             <h2 className="text-xl font-semibold text-foreground mb-2">
               No Team Assigned
             </h2>
@@ -46,13 +46,13 @@ export default async function LeadCodeReviewsPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-primary/10 text-primary";
+        return "bg-muted text-primary";
       case "approved":
-        return "bg-primary/10 text-primary";
+        return "bg-muted text-primary";
       case "changes_requested":
-        return "bg-primary/10 text-primary";
+        return "bg-muted text-primary";
       default:
-        return "bg-primary/10 text-foreground";
+        return "bg-muted text-foreground";
     }
   };
 
@@ -72,10 +72,10 @@ export default async function LeadCodeReviewsPage() {
   return (
     <div className="min-h-screen bg-background space-y-6">
       <div>
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full w-fit mb-3">
           <span className="text-sm font-semibold">Code Quality</span>
         </div>
-        <h1 className="text-3xl font-bold text-primary">Code Reviews</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-foreground">Code Reviews</h1>
         <p className="text-primary mt-2">
           Review and approve pull requests from your team
         </p>
@@ -83,17 +83,17 @@ export default async function LeadCodeReviewsPage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl transition-all duration-300">
+        <div className="border border-border rounded-lg p-6 hover:bg-accent hover:transition-colors">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-primary mb-1">
                 Pending Review
               </p>
-              <p className="text-3xl font-bold text-primary">
+              <p className="text-2xl font-bold tracking-tight text-foreground">
                 {pendingReviews.length}
               </p>
             </div>
-            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shadow-md">
+            <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center shadow-md">
               <svg
                 className="w-6 h-6 text-primary"
                 fill="none"
@@ -111,17 +111,17 @@ export default async function LeadCodeReviewsPage() {
           </div>
         </div>
 
-        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl transition-all duration-300">
+        <div className="border border-border rounded-lg p-6 hover:bg-accent hover:transition-colors">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-primary mb-1">
                 Changes Requested
               </p>
-              <p className="text-3xl font-bold text-primary">
+              <p className="text-2xl font-bold tracking-tight text-foreground">
                 {inProgressReviews.length}
               </p>
             </div>
-            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shadow-md">
+            <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center shadow-md">
               <svg
                 className="w-6 h-6 text-primary"
                 fill="none"
@@ -139,15 +139,15 @@ export default async function LeadCodeReviewsPage() {
           </div>
         </div>
 
-        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl transition-all duration-300">
+        <div className="border border-border rounded-lg p-6 hover:bg-accent hover:transition-colors">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-primary mb-1">Approved</p>
-              <p className="text-3xl font-bold text-primary">
+              <p className="text-2xl font-bold tracking-tight text-foreground">
                 {approvedReviews.length}
               </p>
             </div>
-            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shadow-md">
+            <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center shadow-md">
               <svg
                 className="w-6 h-6 text-primary"
                 fill="none"
@@ -168,7 +168,7 @@ export default async function LeadCodeReviewsPage() {
 
       {/* Pending Reviews */}
       {pendingReviews.length > 0 && (
-        <div className="border-2 border-transparent bg-card rounded-xl hover:border-primary transition-all duration-300">
+        <div className="border border-border rounded-lg hover:bg-accent transition-colors">
           <div className="p-6">
             <h2 className="text-xl font-bold text-primary mb-4">
               Pending Your Review ({pendingReviews.length})
@@ -177,7 +177,7 @@ export default async function LeadCodeReviewsPage() {
               {pendingReviews.map((review) => (
                 <div
                   key={review.id}
-                  className="border-2 border-transparent bg-primary/10 rounded-xl p-4 hover:border-primary hover:shadow-md transition-all duration-300"
+                  className="border border-border bg-muted rounded-lg p-4 hover:bg-accent transition-colors"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -211,7 +211,7 @@ export default async function LeadCodeReviewsPage() {
                       href={review.prUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm font-medium"
+                      className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:transition-colors text-sm font-medium"
                     >
                       Review PR →
                     </a>
@@ -225,7 +225,7 @@ export default async function LeadCodeReviewsPage() {
 
       {/* Changes Requested */}
       {inProgressReviews.length > 0 && (
-        <div className="border-2 border-transparent bg-card rounded-xl hover:border-primary transition-all duration-300">
+        <div className="border border-border rounded-lg hover:bg-accent transition-colors">
           <div className="p-6">
             <h2 className="text-xl font-bold text-primary mb-4">
               Changes Requested ({inProgressReviews.length})
@@ -234,7 +234,7 @@ export default async function LeadCodeReviewsPage() {
               {inProgressReviews.map((review) => (
                 <div
                   key={review.id}
-                  className="border-2 border-transparent bg-primary/10 rounded-xl p-4 hover:border-primary hover:shadow-md transition-all duration-300"
+                  className="border border-border bg-muted rounded-lg p-4 hover:bg-accent transition-colors"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -270,7 +270,7 @@ export default async function LeadCodeReviewsPage() {
                       href={review.prUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm font-medium"
+                      className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:transition-colors text-sm font-medium"
                     >
                       View PR →
                     </a>
@@ -284,7 +284,7 @@ export default async function LeadCodeReviewsPage() {
 
       {/* Recently Approved */}
       {approvedReviews.length > 0 && (
-        <div className="border-2 border-transparent bg-card rounded-xl hover:border-primary transition-all duration-300">
+        <div className="border border-border rounded-lg hover:bg-accent transition-colors">
           <div className="p-6">
             <h2 className="text-xl font-bold text-primary mb-4">
               Recently Approved
@@ -293,7 +293,7 @@ export default async function LeadCodeReviewsPage() {
               {approvedReviews.map((review) => (
                 <div
                   key={review.id}
-                  className="border-2 border-transparent bg-primary/10 rounded-xl p-4 hover:border-primary hover:shadow-md transition-all duration-300"
+                  className="border border-border bg-muted rounded-lg p-4 hover:bg-accent transition-colors"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -329,7 +329,7 @@ export default async function LeadCodeReviewsPage() {
                       href={review.prUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-4 text-primary hover:text-foreground font-medium text-sm hover:scale-105 transition-all"
+                      className="ml-4 text-primary hover:text-foreground font-medium text-sm transition-all"
                     >
                       View PR →
                     </a>
@@ -343,9 +343,9 @@ export default async function LeadCodeReviewsPage() {
 
       {/* Empty State */}
       {codeReviews.length === 0 && (
-        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-12 text-center hover:border-primary hover:shadow-xl transition-all duration-300">
+        <div className="border border-border rounded-lg p-12 text-center hover:bg-accent hover:transition-colors">
           <div className="max-w-md mx-auto">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+            <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
               <svg
                 className="w-8 h-8 text-primary"
                 fill="none"
@@ -360,7 +360,7 @@ export default async function LeadCodeReviewsPage() {
                 />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold text-primary mb-2">
+            <h2 className="text-lg font-semibold text-foreground mb-2">
               No Code Reviews Yet
             </h2>
             <p className="text-primary">

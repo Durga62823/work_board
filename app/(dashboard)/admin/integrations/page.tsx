@@ -40,7 +40,7 @@ export default async function IntegrationsPage() {
       <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
         {/* Header with gradient badge */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
+          <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary ">
           </div>
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-primary">
@@ -57,7 +57,7 @@ export default async function IntegrationsPage() {
             return (
               <Card 
                 key={integration.name}
-                className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
+                className="border border-border hover:bg-accent hover:transition-colors"
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
@@ -75,7 +75,7 @@ export default async function IntegrationsPage() {
                   <Button 
                     variant={integration.enabled ? "outline" : "default"} 
                     className={integration.enabled 
-                      ? "w-full hover:bg-primary/10 transition-all"
+                      ? "w-full hover:bg-muted transition-all"
                       : "w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                     }
                   >

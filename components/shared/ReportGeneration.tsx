@@ -124,7 +124,7 @@ export function ReportGeneration() {
             onChange={(e) =>
               setFormData({ ...formData, reportType: e.target.value })
             }
-            className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded-md"
+            className="w-full p-2 border border-border hover:bg-accent transition-colors rounded-md"
           >
             <option value="project-status">Project Status Report</option>
             <option value="team-performance">Team Performance Report</option>
@@ -234,7 +234,7 @@ export function ReportGeneration() {
           </div>
 
           {/* Report Header */}
-          <div className="bg-primary/10 p-6 rounded-lg">
+          <div className="bg-muted p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-3">{result.title}</h2>
             <p className="text-foreground">{result.summary}</p>
           </div>
@@ -244,9 +244,9 @@ export function ReportGeneration() {
             <h4 className="font-semibold mb-3">Key Metrics</h4>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {result.keyMetrics.map((metric, index) => (
-                <div key={index} className="p-4 bg-card border rounded-lg">
+                <div key={index} className="p-4 border rounded-lg">
                   <p className="text-sm text-muted-foreground mb-1">{metric.name}</p>
-                <p className="text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                     {metric.value}
                   </p>
                 </div>
@@ -271,7 +271,7 @@ export function ReportGeneration() {
               {result.recommendations.map((rec, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg border border-primary/20"
+                  className="flex items-start gap-2 p-3 bg-muted rounded-lg border border-primary/20"
                 >
                   <span className="text-primary font-bold mt-0.5">
                     {index + 1}.

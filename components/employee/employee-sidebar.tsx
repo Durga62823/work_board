@@ -21,7 +21,7 @@ import {
   SidebarRail,
   SidebarFooter,
 } from "@/components/ui/sidebar"
-import { ModeToggle, ColorPicker, UserMenu } from "@/components/common"
+import { ModeToggle, UserMenu } from "@/components/common"
 
 const employeeNav = [
   { title: "Dashboard", url: "/employee", icon: LayoutDashboard },
@@ -78,13 +78,7 @@ export function EmployeeSidebar({ ...props }: React.ComponentProps<typeof Sideba
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Colors">
-              <div className="flex items-center">
-                <ColorPicker />
-              </div>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+
           <SidebarMenuItem>
             <UserMenu />
           </SidebarMenuItem>

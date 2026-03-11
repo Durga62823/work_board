@@ -31,7 +31,7 @@ export function TeamsClient({ initialTeams, departments }: TeamsClientProps) {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary shadow-lg">
+              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary ">
               </div>
               <div>
                 <h2 className="text-3xl font-bold tracking-tight text-foreground">
@@ -44,14 +44,14 @@ export function TeamsClient({ initialTeams, departments }: TeamsClientProps) {
             </div>
             <Button 
               onClick={() => setOpenCreateDialog(true)}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground transition-colors"
             >
               + Add Team
             </Button>
           </div>
 
           {initialTeams.length === 0 ? (
-            <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+            <Card className="border border-border hover:bg-accent transition-colors">
               <CardContent className="flex flex-col items-center justify-center py-12">
                 <span className="text-4xl mb-4"></span>
                 <h3 className="text-lg font-semibold mb-2">No teams yet</h3>
@@ -71,7 +71,7 @@ export function TeamsClient({ initialTeams, departments }: TeamsClientProps) {
               {initialTeams.map((team) => (
                 <Card 
                   key={team.id}
-                  className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300"
+                  className="border border-border hover:bg-accent transition-colors"
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -111,13 +111,13 @@ export function TeamsClient({ initialTeams, departments }: TeamsClientProps) {
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Members:</span>
-                        <Badge variant="secondary" className="bg-primary/10 text-primary">
+                        <Badge variant="secondary" className="bg-muted text-primary">
                           {team._count.users}
                         </Badge>
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Projects:</span>
-                        <Badge variant="secondary" className="bg-primary/10 text-primary">
+                        <Badge variant="secondary" className="bg-muted text-primary">
                           {team._count.projects}
                         </Badge>
                       </div>

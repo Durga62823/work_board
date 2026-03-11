@@ -64,7 +64,7 @@ export default function ManagerAIFeaturesPage() {
         {/* Header */}
         <div className="mb-8 flex items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-primary">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">
               AI Features
             </h1>
             <p className="mt-1 text-primary">
@@ -79,7 +79,7 @@ export default function ManagerAIFeaturesPage() {
               return (
                 <div
                   key={feature.id}
-                  className="group rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6 cursor-pointer hover:shadow-2xl"
+                  className="group rounded-lg border border-border hover:bg-accent transition-colors p-6 cursor-pointer hover:"
                   onClick={() => setActiveFeature(feature.id)}
                 >
                   <div className="flex flex-col">
@@ -89,7 +89,7 @@ export default function ManagerAIFeaturesPage() {
                     <p className="text-sm text-primary mb-4 flex-1">
                       {feature.description}
                     </p>
-                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all">
+                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:transition-all">
                       Open Feature
                     </Button>
                   </div>
@@ -102,11 +102,11 @@ export default function ManagerAIFeaturesPage() {
             <Button
               onClick={() => setActiveFeature(null)}
               variant="outline"
-              className="mb-4 border-border hover:bg-muted hover:border-primary"
+              className="mb-4 border-border hover:bg-muted hover:bg-accent"
             >
               ← Back to Features
             </Button>
-            <div className="rounded-2xl border-2 border-transparent hover:border-primary transition-all duration-300 bg-card backdrop-blur-sm shadow-lg p-6">
+            <div className="rounded-lg border border-border hover:bg-accent transition-colors p-6">
               {renderFeature()}
             </div>
           </div>

@@ -65,19 +65,19 @@ export default function NewSprintPage() {
           <div className="flex items-center gap-3 mb-3">
             <Link
               href="/lead/sprints"
-              className="flex items-center gap-2 text-primary hover:text-primary font-medium transition-colors"
+              className="flex items-center gap-2 text-primary hover:text-foreground font-medium transition-colors"
             >
               Back to Sprints
             </Link>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full shadow-lg w-fit mb-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-full w-fit mb-3">
             <span className="text-sm font-semibold">New Sprint</span>
           </div>
-          <h1 className="text-3xl font-bold text-primary">Create New Sprint</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Create New Sprint</h1>
           <p className="text-primary mt-2">Set up a new sprint for your team</p>
         </div>
 
-        <div className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-6 hover:border-primary hover:shadow-xl transition-all duration-300">
+        <div className="border border-border rounded-lg p-6 hover:bg-accent hover:transition-colors">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Sprint Name */}
             <div className="space-y-2">
@@ -98,7 +98,7 @@ export default function NewSprintPage() {
               <textarea
                 id="goal"
                 rows={3}
-                className="w-full px-3 py-2 border-2 border-transparent hover:border-primary rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                className="w-full px-3 py-2 border border-border hover:bg-accent rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
                 placeholder="e.g., Complete user authentication and dashboard redesign"
                 {...register("goal")}
               />
@@ -156,7 +156,7 @@ export default function NewSprintPage() {
               <Button
                 type="submit"
                 disabled={isPending}
-                className="bg-primary hover:bg-primary/90 hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="bg-primary hover:bg-primary/90 hover:transition-colors"
               >
                 {isPending ? "Creating..." : "Create Sprint"}
               </Button>
@@ -165,7 +165,7 @@ export default function NewSprintPage() {
                 variant="outline"
                 onClick={() => router.push("/lead/sprints")}
                 disabled={isPending}
-                className="border-primary/50 hover:bg-primary/10 transition-all duration-300"
+                className="border-primary/50 hover:bg-muted transition-colors"
               >
                 Cancel
               </Button>
@@ -174,7 +174,7 @@ export default function NewSprintPage() {
         </div>
 
         {/* Tips */}
-        <div className="mt-6 border-2 border-transparent bg-card backdrop-blur-sm shadow-lg rounded-xl p-5 hover:border-primary hover:shadow-xl transition-all duration-300">
+        <div className="mt-6 border border-border rounded-lg p-5 hover:bg-accent hover:transition-colors">
           <div className="flex items-center gap-2 mb-3">
             <h3 className="font-semibold text-foreground">
               Sprint Planning Tips

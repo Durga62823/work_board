@@ -136,7 +136,7 @@ export function SettingsClient({
   return (
     <div className="w-full max-w-2xl space-y-8">
       {/* Preferences Section */}
-      <div className="p-6 bg-card border border-border rounded-lg">
+      <div className="p-6 border border-border rounded-lg">
         <h2 className="text-lg font-semibold text-foreground mb-6">
           Preferences
         </h2>
@@ -210,7 +210,7 @@ export function SettingsClient({
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              className="w-full px-4 py-2 border-2 border-transparent rounded-lg text-sm bg-background text-foreground cursor-pointer hover:border-primary transition-colors"
+              className="w-full px-4 py-2 border border-border rounded-lg text-sm bg-background text-foreground cursor-pointer hover:bg-accent transition-colors"
             >
               <option>English</option>
               <option>Spanish</option>
@@ -227,7 +227,7 @@ export function SettingsClient({
             <select
               value={timezone}
               onChange={(e) => setTimezone(e.target.value)}
-              className="w-full px-4 py-2 border-2 border-transparent rounded-lg text-sm bg-background text-foreground cursor-pointer hover:border-primary transition-colors"
+              className="w-full px-4 py-2 border border-border rounded-lg text-sm bg-background text-foreground cursor-pointer hover:bg-accent transition-colors"
             >
               <option>UTC</option>
               <option>EST (UTC-5)</option>
@@ -256,7 +256,7 @@ export function SettingsClient({
       </div>
 
       {/* Notifications Section */}
-      <div className="p-6 bg-card border border-border rounded-lg">
+      <div className="p-6 border border-border rounded-lg">
         <h2 className="text-lg font-semibold text-foreground mb-6">
           Notification Settings
         </h2>

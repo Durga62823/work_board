@@ -142,19 +142,19 @@ export function AIPerformanceReview() {
 
       {result && (
         <div className="space-y-4 mt-6">
-          <Card className="p-4 bg-primary/10 border-primary/20">
+          <Card className="p-4 bg-muted border-primary/20">
             <div className="flex items-center justify-between mb-4">
               <h4 className="font-semibold text-lg">
                 Performance Review: {formData.name}
               </h4>
               <div className="flex items-center gap-2">
                 <span className="text-xl font-bold text-yellow-500"></span>
-                <span className="text-2xl font-bold text-primary">
+                <span className="text-2xl font-bold tracking-tight text-foreground">
                   {result.overallScore}/10
                 </span>
               </div>
             </div>
-            <p className="text-sm text-foreground bg-card p-3 rounded">
+            <p className="text-sm text-foreground p-3 rounded">
               {result.summary}
             </p>
           </Card>

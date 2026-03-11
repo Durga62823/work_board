@@ -68,12 +68,12 @@ export function AIMeetingSummary() {
 
       {result && (
         <div className="space-y-4 mt-6">
-          <Card className="p-4 bg-primary/10 border-primary/20">
+          <Card className="p-4 bg-muted border-primary/20">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
               <HiClipboardDocumentList className="h-5 w-5 text-teal-600" />
               Meeting Summary
             </h4>
-            <p className="text-sm text-foreground bg-card p-3 rounded">
+            <p className="text-sm text-foreground p-3 rounded">
               {result.summary}
             </p>
           </Card>

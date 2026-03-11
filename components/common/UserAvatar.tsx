@@ -23,7 +23,7 @@ export function UserAvatar({ image, name, email, size = "lg" }: UserAvatarProps)
 
   return (
     <div className="relative">
-      <div className={`${sizeClasses[size]} rounded-full bg-primary-foreground/20 backdrop-blur-sm border-4 border-primary-foreground/30 flex items-center justify-center text-primary-foreground font-bold overflow-hidden shadow-2xl`}>
+      <div className={`${sizeClasses[size]} rounded-full bg-primary-foreground/20 border-4 border-primary-foreground/30 flex items-center justify-center text-primary-foreground font-bold overflow-hidden `}>
         {image && !imageError ? (
           <Image
             src={image}
@@ -38,7 +38,7 @@ export function UserAvatar({ image, name, email, size = "lg" }: UserAvatarProps)
           <span>{initial}</span>
         )}
       </div>
-      <div className="absolute -bottom-2 -right-2 bg-green-500 rounded-full p-2 border-4 border-background shadow-lg">
+      <div className="absolute -bottom-2 -right-2 bg-green-500 rounded-full p-2 border-4 border-background ">
         <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
       </div>
     </div>

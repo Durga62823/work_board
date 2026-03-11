@@ -213,7 +213,7 @@ export function ResourceOptimization() {
           </div>
 
           {formData.teamMembers.map((member, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-lg bg-primary/10 border-primary/20">
+            <div key={index} className="mb-4 p-4 border rounded-lg bg-muted border-primary/20">
               <div className="flex items-center justify-between mb-3">
                 <span className="font-medium">Member {index + 1}</span>
                 {formData.teamMembers.length > 1 && (
@@ -299,7 +299,7 @@ export function ResourceOptimization() {
           <h3 className="text-xl font-bold">Optimization Results</h3>
 
           {/* Efficiency Score */}
-          <div className="bg-primary/10 border border-primary/20 p-6 rounded-lg">
+          <div className="bg-muted border border-primary/20 p-6 rounded-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Resource Efficiency Score</p>
@@ -314,7 +314,7 @@ export function ResourceOptimization() {
             <h4 className="font-semibold mb-3">Recommended Allocation</h4>
             <div className="space-y-3">
               {result.allocation.map((alloc, index) => (
-                <div key={index} className="p-4 border rounded-lg bg-card">
+                <div key={index} className="p-4 border rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <p className="font-medium">{alloc.project}</p>
                     <Badge variant={alloc.capacityUtilization <= 80 ? 'default' : 'destructive'}>
@@ -372,7 +372,7 @@ export function ResourceOptimization() {
               <h4 className="font-semibold mb-3">Hiring Recommendations</h4>
               <ul className="space-y-2">
                 {result.hiringRecommendations.map((rec, index) => (
-                  <li key={index} className="flex items-start gap-2 p-3 bg-primary/5 rounded-lg border border-primary/10">
+                  <li key={index} className="flex items-start gap-2 p-3 bg-muted/50 rounded-lg border border-primary/10">
                     <span className="text-primary font-bold mt-0.5">•</span>
                     <span className="text-sm text-muted-foreground">{rec}</span>
                   </li>

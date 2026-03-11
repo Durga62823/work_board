@@ -148,7 +148,7 @@ export function TaskPrioritization() {
           {formData.tasks.map((task, index) => (
             <div
               key={index}
-              className="mb-4 p-4 border border-border rounded-lg bg-card"
+              className="mb-4 p-4 border border-border rounded-lg"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="font-medium text-foreground">
@@ -260,7 +260,7 @@ export function TaskPrioritization() {
               {result.prioritizedTasks
                 .sort((a, b) => a.recommendedOrder - b.recommendedOrder)
                 .map((task, index) => (
-                  <div key={index} className="p-4 border rounded-lg bg-card">
+                  <div key={index} className="p-4 border rounded-lg">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-3">
                         <Badge variant="default" className="text-lg">
@@ -290,7 +290,7 @@ export function TaskPrioritization() {
 
           {/* Dependencies */}
           {result.dependencies.length > 0 && (
-            <div className="p-4 bg-primary/10 border border-primary/30 rounded-lg">
+            <div className="p-4 bg-muted border border-primary/30 rounded-lg">
               <h4 className="font-semibold mb-2">Key Dependencies</h4>
               <ul className="space-y-1">
                 {result.dependencies.map((dep, index) => (
@@ -318,7 +318,7 @@ export function TaskPrioritization() {
                         ? "bg-destructive/10 border-destructive/30"
                         : risk.severity === "medium"
                         ? "bg-destructive/5 border-destructive/20"
-                        : "bg-primary/5 border-border"
+                        : "bg-muted/50 border-border"
                     }`}
                   >
                     <div className="flex items-start justify-between">
@@ -341,7 +341,7 @@ export function TaskPrioritization() {
           )}
 
           {/* Sprint Recommendation */}
-          <div className="p-5 bg-primary/10 border border-primary/30 rounded-lg">
+          <div className="p-5 bg-muted border border-primary/30 rounded-lg">
             <h4 className="font-semibold mb-2">Sprint Recommendation</h4>
             <p className="text-foreground">{result.sprintRecommendation}</p>
           </div>

@@ -214,9 +214,9 @@ export default function MyWorkPage() {
   const getPriorityBadge = (priority: string) => {
     const priorityConfig: Record<string, { label: string; className: string }> =
       {
-        LOW: { label: "Low", className: "bg-primary/10 text-primary" },
-        MEDIUM: { label: "Medium", className: "bg-primary/10 text-primary" },
-        HIGH: { label: "High", className: "bg-primary/10 text-primary" },
+        LOW: { label: "Low", className: "bg-muted text-primary" },
+        MEDIUM: { label: "Medium", className: "bg-muted text-primary" },
+        HIGH: { label: "High", className: "bg-muted text-primary" },
         URGENT: {
           label: "Urgent",
           className:
@@ -256,7 +256,7 @@ export default function MyWorkPage() {
           <div>
             <div className="flex items-center gap-3 mb-3">
               <div>
-                <h1 className="text-3xl font-bold text-primary">My Tasks</h1>
+                <h1 className="text-2xl font-bold tracking-tight text-foreground">My Tasks</h1>
                 <p className="text-foreground">
                   Manage your assigned tasks and track progress
                 </p>
@@ -265,7 +265,7 @@ export default function MyWorkPage() {
           </div>
           <Button
             onClick={() => setCreateTaskDialog(true)}
-            className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-primary hover:bg-primary/90 hover:transition-colors"
           >
             <HiPlus className="h-4 w-4 mr-2" />
             Create Task
@@ -291,10 +291,10 @@ export default function MyWorkPage() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 border-2 ${
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors border-2 ${
                   filter === f
                     ? "bg-primary text-primary-foreground border-primary"
-                    : "text-muted-foreground hover:text-primary border-border hover:border-primary"
+                    : "text-muted-foreground hover:text-foreground border-border hover:bg-accent"
                 }`}
               >
                 {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -305,44 +305,44 @@ export default function MyWorkPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="rounded-xl border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 p-4">
+          <Card className="rounded-lg border border-border hover:bg-accent hover:transition-colors p-4">
             <div className="flex items-center gap-3">
               <div>
                 <p className="text-sm text-primary font-medium">In Progress</p>
-                <p className="text-2xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats?.inProgress || 0}
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="rounded-xl border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 p-4">
+          <Card className="rounded-lg border border-border hover:bg-accent hover:transition-colors p-4">
             <div className="flex items-center gap-3">
               <div>
                 <p className="text-sm text-primary font-medium">Total Tasks</p>
-                <p className="text-2xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats?.total || 0}
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="rounded-xl border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 p-4">
+          <Card className="rounded-lg border border-border hover:bg-accent hover:transition-colors p-4">
             <div className="flex items-center gap-3">
               <div>
                 <p className="text-sm text-primary font-medium">Overdue</p>
-                <p className="text-2xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats?.overdue || 0}
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="rounded-xl border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 p-4">
+          <Card className="rounded-lg border border-border hover:bg-accent hover:transition-colors p-4">
             <div className="flex items-center gap-3">
               <div>
                 <p className="text-sm text-primary font-medium">Completed</p>
-                <p className="text-2xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {stats?.completed || 0}
                 </p>
               </div>
@@ -351,7 +351,7 @@ export default function MyWorkPage() {
         </div>
 
         {/* Tasks List */}
-        <Card className="border-border bg-card backdrop-blur-sm shadow-lg p-6">
+        <Card className="border-border p-6">
           {loading ? (
             <div className="flex items-center justify-center py-12"></div>
           ) : filteredTasks.length === 0 ? (
@@ -366,7 +366,7 @@ export default function MyWorkPage() {
               {filteredTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="p-4 border-2 border-border rounded-xl bg-card/50 backdrop-blur-sm hover:border-primary hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                  className="p-4 border-2 border-border rounded-lg/50 hover:bg-accent hover:hover:-translate-y-0.5 transition-colors cursor-pointer"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
@@ -421,7 +421,7 @@ export default function MyWorkPage() {
                       Log Time
                     </Button>
                     <select
-                      className="px-3 py-1 border-2 border-transparent hover:border-primary transition-colors rounded text-sm"
+                      className="px-3 py-1 border border-border hover:bg-accent transition-colors rounded text-sm"
                       value={task.status}
                       onChange={(e) =>
                         handleStatusChange(
@@ -446,8 +446,8 @@ export default function MyWorkPage() {
 
         {/* Log Time Dialog */}
         {logTimeDialog.open && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <Card className="w-full max-w-md p-6 border-border bg-card shadow-2xl animate-in fade-in duration-200">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <Card className="w-full max-w-md p-6 border-border animate-in fade-in duration-200">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">Log Time</h3>
                 <Button
@@ -507,8 +507,8 @@ export default function MyWorkPage() {
 
         {/* Create Task Dialog */}
         {createTaskDialog && (
-          <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
-            <Card className="w-full max-w-2xl p-6 max-h-[90vh] overflow-y-auto border-border bg-card shadow-2xl animate-in fade-in duration-200">
+          <div className="fixed inset-0 bg-background/80 flex items-center justify-center z-50">
+            <Card className="w-full max-w-2xl p-6 max-h-[90vh] overflow-y-auto border-border animate-in fade-in duration-200">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">Create New Task</h3>
                 <Button
@@ -561,7 +561,7 @@ export default function MyWorkPage() {
                     <Label htmlFor="task-priority">Priority</Label>
                     <select
                       id="task-priority"
-                      className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded"
+                      className="w-full p-2 border border-border hover:bg-accent transition-colors rounded"
                       value={newTask.priority}
                       onChange={(e) =>
                         setNewTask({
@@ -581,7 +581,7 @@ export default function MyWorkPage() {
                     <Label htmlFor="task-project">Project (Optional)</Label>
                     <select
                       id="task-project"
-                      className="w-full p-2 border-2 border-transparent hover:border-primary transition-colors rounded"
+                      className="w-full p-2 border border-border hover:bg-accent transition-colors rounded"
                       value={newTask.projectId}
                       onChange={(e) =>
                         setNewTask({ ...newTask, projectId: e.target.value })

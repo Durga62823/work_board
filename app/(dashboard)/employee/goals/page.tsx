@@ -168,15 +168,15 @@ export default function MyGoalsPage() {
   function getStatusColor(status: string) {
     switch (status) {
       case "active":
-        return "bg-primary/10 text-primary dark:bg-primary/20";
+        return "bg-muted text-primary dark:bg-primary/20";
       case "completed":
-        return "bg-primary/10 text-primary dark:bg-primary/20";
+        return "bg-muted text-primary dark:bg-primary/20";
       case "on_hold":
-        return "bg-primary/10 text-primary dark:bg-primary/20";
+        return "bg-muted text-primary dark:bg-primary/20";
       case "cancelled":
         return "bg-destructive/10 text-destructive dark:bg-destructive/20";
       default:
-        return "bg-primary/10 text-foreground";
+        return "bg-muted text-foreground";
     }
   }
 
@@ -194,7 +194,7 @@ export default function MyGoalsPage() {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div>
-              <h1 className="text-3xl font-bold text-primary">My Goals</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-foreground">My Goals</h1>
               <p className="text-foreground mt-1">
                 Track and manage your professional goals
               </p>
@@ -202,7 +202,7 @@ export default function MyGoalsPage() {
           </div>
           <Button
             onClick={() => setShowCreateDialog(true)}
-            className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-primary hover:bg-primary/90 hover:transition-colors"
           >
             <HiPlus className="mr-2 h-4 w-4" />
             New Goal
@@ -212,7 +212,7 @@ export default function MyGoalsPage() {
         {/* Stats Overview */}
         {stats && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium text-primary">
                   Total Goals
@@ -222,7 +222,7 @@ export default function MyGoalsPage() {
                 </CardTitle>
               </CardHeader>
             </Card>
-            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium text-primary">
                   Active Goals
@@ -232,7 +232,7 @@ export default function MyGoalsPage() {
                 </CardTitle>
               </CardHeader>
             </Card>
-            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium text-primary">
                   Completed
@@ -242,7 +242,7 @@ export default function MyGoalsPage() {
                 </CardTitle>
               </CardHeader>
             </Card>
-            <Card className="border-2 border-transparent hover:border-primary bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Card className="border border-border hover:bg-accent hover:hover:-translate-y-1 transition-colors">
               <CardHeader className="pb-2">
                 <CardDescription className="font-medium text-primary">
                   Average Progress
@@ -257,7 +257,7 @@ export default function MyGoalsPage() {
 
         {/* Create/Edit Goal Dialog */}
         {(showCreateDialog || editingGoal) && (
-          <Card className="border-2  border-primary/50 bg-primary/5 backdrop-blur-sm shadow-xl">
+          <Card className="border-2  border-primary/50 bg-muted/50 ">
             <CardHeader>
               <CardTitle>
                 {editingGoal ? "Edit Goal" : "Create New Goal"}
@@ -357,7 +357,7 @@ export default function MyGoalsPage() {
         {/* Goals List */}
         <div className="space-y-4">
           {goals.length === 0 ? (
-            <Card className="border-border bg-card backdrop-blur-sm shadow-lg">
+            <Card className="border-border ">
               <CardContent className="flex flex-col items-center justify-center py-12">
                 <HiFlag className="h-12 w-12 text-primary/50 mb-4" />
                 <p className="text-primary text-center">
@@ -369,7 +369,7 @@ export default function MyGoalsPage() {
             goals.map((goal) => (
               <Card
                 key={goal.id}
-                className="border-border hover:border-primary cursor-pointer bg-card backdrop-blur-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="border-border hover:bg-accent cursor-pointer hover:hover:-translate-y-1 transition-colors"
               >
                 <CardHeader>
                   <div className="flex justify-between items-start">

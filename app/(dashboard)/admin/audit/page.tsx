@@ -57,7 +57,7 @@ export default async function AuditLogsPage() {
           </Button>
         </div>
 
-        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+        <Card className="border border-border hover:bg-accent hover:transition-colors">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
@@ -69,10 +69,10 @@ export default async function AuditLogsPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm">
+            <div className="rounded-lg border border-border hover:bg-accent transition-colors overflow-hidden/50 ">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-muted hover:bg-muted/80">
+                  <TableRow className="bg-muted hover:bg-accent">
                     <TableHead className="font-semibold">Timestamp</TableHead>
                     <TableHead className="font-semibold">User</TableHead>
                     <TableHead className="font-semibold">Action</TableHead>

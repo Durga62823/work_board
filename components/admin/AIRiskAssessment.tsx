@@ -56,7 +56,7 @@ export function AIRiskAssessment() {
       case "medium":
         return "text-muted-foreground bg-muted";
       case "low":
-        return "text-primary bg-primary/10";
+        return "text-primary bg-muted";
       default:
         return "text-muted-foreground bg-muted";
     }
@@ -144,7 +144,7 @@ export function AIRiskAssessment() {
 
       {result && (
         <div className="space-y-4 mt-6">
-          <Card className="p-4 bg-primary/10">
+          <Card className="p-4 bg-muted">
             <h4 className="font-semibold mb-3 flex items-center gap-2">
               <HiExclamationTriangle className="h-5 w-5 text-orange-600" />
               Risk Analysis
@@ -152,7 +152,7 @@ export function AIRiskAssessment() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-card p-4 rounded">
                 <p className="text-sm text-muted-foreground mb-1">Risk Score</p>
-                <p className="text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold tracking-tight text-foreground">
                   {result.riskScore}/10
                 </p>
               </div>
@@ -207,7 +207,7 @@ export function AIRiskAssessment() {
                     (suggestion: any, idx: number) => (
                       <div
                         key={idx}
-                        className="bg-primary/10 p-3 rounded border border-primary/20"
+                        className="bg-muted p-3 rounded border border-primary/20"
                       >
                         <div className="flex justify-between items-start mb-1">
                           <h5 className="font-medium text-foreground">

@@ -68,43 +68,43 @@ export default async function DepartmentDetailPage({
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">
-        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+        <Card className="border border-border hover:bg-accent hover:shadow-xl transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Users</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-primary">{department.users.length}</div>
+            <div className="text-2xl font-bold tracking-tight text-foreground">{department.users.length}</div>
             <p className="text-xs text-muted-foreground">
               {department.users.length === 1 ? "member" : "members"}
             </p>
           </CardContent>
         </Card>
 
-        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+        <Card className="border border-border hover:bg-accent hover:shadow-xl transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Teams</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-primary">{department.teams.length}</div>
+            <div className="text-2xl font-bold tracking-tight text-foreground">{department.teams.length}</div>
             <p className="text-xs text-muted-foreground">
               {department.teams.length === 1 ? "team" : "teams"}
             </p>
           </CardContent>
         </Card>
 
-        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+        <Card className="border border-border hover:bg-accent hover:shadow-xl transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Managers</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-primary">
+            <div className="text-2xl font-bold tracking-tight text-foreground">
               {department.users.filter((u: any) => u.role === "MANAGER").length}
             </div>
             <p className="text-xs text-muted-foreground">active managers</p>
           </CardContent>
         </Card>
 
-        <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+        <Card className="border border-border hover:bg-accent hover:shadow-xl transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               Department Head
@@ -123,7 +123,7 @@ export default async function DepartmentDetailPage({
         </TabsList>
 
         <TabsContent value="teams" className="space-y-4">
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:shadow-xl transition-colors">
             <CardHeader>
               <CardTitle className="text-primary">Teams in {department.name}</CardTitle>
               <CardDescription>
@@ -134,7 +134,7 @@ export default async function DepartmentDetailPage({
               {department.teams.length > 0 ? (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {department.teams.map((team: any) => (
-                    <Card key={team.id} className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+                    <Card key={team.id} className="border border-border hover:bg-accent hover:shadow-xl transition-colors">
                       <CardHeader>
                         <CardTitle className="text-lg">{team.name}</CardTitle>
                         <CardDescription>
@@ -153,7 +153,7 @@ export default async function DepartmentDetailPage({
                           </div>
                           <Button
                             variant="outline"
-                            className="w-full mt-2 border-2 border-transparent hover:border-primary hover:shadow-md transition-all duration-300"
+                            className="w-full mt-2 border border-border hover:bg-accent transition-colors"
                             size="sm"
                           >
                             View Team
@@ -173,7 +173,7 @@ export default async function DepartmentDetailPage({
         </TabsContent>
 
         <TabsContent value="members">
-          <Card className="border-2 border-transparent bg-card backdrop-blur-sm shadow-lg hover:border-primary hover:shadow-xl transition-all duration-300">
+          <Card className="border border-border hover:bg-accent hover:shadow-xl transition-colors">
             <CardHeader>
               <CardTitle className="text-primary">Department Members</CardTitle>
               <CardDescription>
