@@ -6,19 +6,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { resetPassword } from "@/app/actions/password";
+import { resetPasswordWithOtp } from "@/app/actions/password";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/components/ui/password-input";
 import { PasswordStrengthIndicator } from "@/components/auth/PasswordStrengthIndicator";
 import { useAuthStore } from "@/lib/stores/auth-store";
-import { resetPasswordSchema, type ResetPasswordInput } from "@/lib/validations/auth";
+import { resetPasswordWithOtpSchema, type ResetPasswordWithOtpInput } from "@/lib/validations/auth";
 
 interface ResetPasswordFormProps {
-  token: string;
+  defaultEmail?: string;
+  defaultOtp?: string;
 }
 
-export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
+export function ResetPasswordForm({ defaultEmail, defaultOtp }: ResetPasswordFormProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const resetAuth = useAuthStore((state) => state.reset);
@@ -27,13 +29,21 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<ResetPasswordInput>({ resolver: zodResolver(resetPasswordSchema) });
+  } = useForm<ResetPasswordWithOtpInput>({
+    resolver: zodResolver(resetPasswordWithOtpSchema),
+    defaultValues: {
+      email: defaultEmail ?? "",
+      otp: defaultOtp ?? "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
 
   const password = watch("password", "");
 
-  const onSubmit = (values: ResetPasswordInput) => {
+  const onSubmit = (values: ResetPasswordWithOtpInput) => {
     startTransition(async () => {
-      const result = await resetPassword(token, values);
+      const result = await resetPasswordWithOtp(values);
       if (!result.success) {
         toast.error(result.error);
         return;
@@ -47,6 +57,16 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
 
   return (
     <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+      <div className="space-y-2">
+        <Label htmlFor="email">Email address</Label>
+        <Input id="email" type="email" autoComplete="email" {...register("email")} />
+        {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="otp">OTP code</Label>
+        <Input id="otp" inputMode="numeric" maxLength={6} placeholder="123456" {...register("otp")} />
+        {errors.otp && <p className="text-sm text-destructive">{errors.otp.message}</p>}
+      </div>
       <div className="space-y-2">
         <Label htmlFor="password">New password</Label>
         <PasswordInput id="password" autoComplete="new-password" {...register("password")} />

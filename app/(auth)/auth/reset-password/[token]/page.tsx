@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-
-import { ResetPasswordForm } from "@/components/auth/ResetPasswordForm";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Reset password | Make It Possible",
@@ -14,20 +11,5 @@ interface ResetPasswordPageProps {
 
 export default async function ResetPasswordPage({ params }: ResetPasswordPageProps) {
   const { token } = await params;
-
-  if (!token) {
-    notFound();
-  }
-
-  return (
-    <>
-      <CardHeader>
-        <CardTitle>Create a new password</CardTitle>
-        <CardDescription>This keeps your projects secure.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ResetPasswordForm token={token} />
-      </CardContent>
-    </>
-  );
+  redirect(`/auth/reset-password?otp=${encodeURIComponent(token)}`);
 }

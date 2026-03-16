@@ -5,7 +5,14 @@ import { render } from "@react-email/render";
 import EmailVerification from "@/emails/EmailVerification";
 import PasswordReset from "@/emails/PasswordReset";
 import WelcomeEmail from "@/emails/Welcome";
-import { getBaseUrl } from "@/lib/utils";
+
+const getFromAddress = () => {
+  if (!process.env.SMTP_USER) {
+    return process.env.SMTP_FROM;
+  }
+
+  return `WorkBoard <${process.env.SMTP_USER}>`;
+};
 
 let transporter: nodemailer.Transporter | null = null;
 
@@ -36,21 +43,20 @@ type EmailParams = {
 };
 
 export async function sendVerificationEmail({ email, token, firstName }: EmailParams) {
-  const verificationUrl = `${getBaseUrl()}/auth/verify-email/${token}`;
   const smtp = getTransporter();
 
   if (!smtp) {
-    console.log(`[DEV] Verification email for ${email}:\n${verificationUrl}`);
+    console.log(`[DEV] Verification OTP for ${email}: ${token}`);
     return;
   }
 
   try {
     const html = render(
-      <EmailVerification firstName={firstName} actionUrl={verificationUrl} />,
+      <EmailVerification firstName={firstName} otpCode={token} />,
     );
 
     const result = await smtp.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      from: getFromAddress(),
       to: email,
       subject: "Verify your WorkBoard account",
       html,
@@ -64,19 +70,18 @@ export async function sendVerificationEmail({ email, token, firstName }: EmailPa
 }
 
 export async function sendPasswordResetEmail({ email, token, firstName }: EmailParams) {
-  const resetUrl = `${getBaseUrl()}/auth/reset-password/${token}`;
   const smtp = getTransporter();
 
   if (!smtp) {
-    console.log(`[DEV] Password reset email for ${email}:\n${resetUrl}`);
+    console.log(`[DEV] Password reset OTP for ${email}: ${token}`);
     return;
   }
 
   try {
-    const html = render(<PasswordReset firstName={firstName} actionUrl={resetUrl} />);
+    const html = render(<PasswordReset firstName={firstName} otpCode={token} />);
 
     const result = await smtp.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      from: getFromAddress(),
       to: email,
       subject: "Reset your WorkBoard password",
       html,
@@ -101,7 +106,7 @@ export async function sendWelcomeEmail(email: string, firstName?: string | null)
     const html = render(<WelcomeEmail firstName={firstName} />);
 
     const result = await smtp.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      from: getFromAddress(),
       to: email,
       subject: "Welcome to WorkBoard",
       html,

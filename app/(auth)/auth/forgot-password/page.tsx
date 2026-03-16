@@ -13,7 +13,7 @@ export default function ForgotPasswordPage() {
     <>
       <CardHeader>
         <CardTitle>Reset your password</CardTitle>
-        <CardDescription>We&apos;ll send a secure link to your inbox.</CardDescription>
+        <CardDescription>We&apos;ll send a 6-digit OTP to your inbox.</CardDescription>
       </CardHeader>
       <CardContent>
         <ForgotPasswordForm />

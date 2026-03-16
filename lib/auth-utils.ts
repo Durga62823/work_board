@@ -17,3 +17,11 @@ export function generateToken(bytes = 32) {
   crypto.getRandomValues(array);
   return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
 }
+
+export function generateOtp(length = 6) {
+  const digits = "0123456789";
+  const array = new Uint8Array(length);
+  crypto.getRandomValues(array);
+
+  return Array.from(array, (value) => digits[value % digits.length]).join("");
+}

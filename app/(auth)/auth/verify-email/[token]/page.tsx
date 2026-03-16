@@ -1,31 +1,10 @@
 import { redirect } from "next/navigation";
 
-import { verifyEmail } from "@/app/actions/auth";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-
 interface VerifyEmailTokenPageProps {
   params: Promise<{ token: string }>;
 }
 
 export default async function VerifyEmailTokenPage({ params }: VerifyEmailTokenPageProps) {
   const { token } = await params;
-  const result = await verifyEmail(token);
-
-  if (!result.success) {
-    return (
-      <>
-        <CardHeader>
-          <CardTitle>Verification issue</CardTitle>
-          <CardDescription>{result.error}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">
-            Need a new link? Go back to the sign-in page and request another verification email.
-          </p>
-        </CardContent>
-      </>
-    );
-  }
-
-  redirect("/auth/login");
+  redirect(`/auth/verify-email?otp=${encodeURIComponent(token)}`);
 }

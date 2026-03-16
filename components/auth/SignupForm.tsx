@@ -41,7 +41,7 @@ export function SignupForm() {
         status: "unauthenticated",
         user: { name: `${values.firstName} ${values.lastName}`.trim(), email: values.email },
       });
-      router.push("/auth/verify-email");
+      router.push(`/auth/verify-email?email=${encodeURIComponent(values.email)}`);
     });
   };
 

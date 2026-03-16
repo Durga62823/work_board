@@ -34,6 +34,9 @@ export function LoginForm() {
     startTransition(async () => {
       const result = await loginUser(values);
       if (!result.success) {
+        if (result.error === "Confirm your email before logging in") {
+          router.push(`/auth/verify-email?email=${encodeURIComponent(values.email)}`);
+        }
         toast.error(result.error);
         return;
       }

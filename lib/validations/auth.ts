@@ -27,8 +27,33 @@ export const forgotPasswordSchema = z.object({
   email: z.string().email("Invalid email").toLowerCase(),
 });
 
+export const verifyEmailOtpSchema = z.object({
+  email: z.string().email("Invalid email").toLowerCase(),
+  otp: z
+    .string()
+    .trim()
+    .regex(/^\d{6}$/, "OTP must be a 6-digit code"),
+});
+
 export const resetPasswordSchema = z
   .object({
+    password: z
+      .string()
+      .regex(passwordRegex, "Password must include upper, lower, number, special character"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
+export const resetPasswordWithOtpSchema = z
+  .object({
+    email: z.string().email("Invalid email").toLowerCase(),
+    otp: z
+      .string()
+      .trim()
+      .regex(/^\d{6}$/, "OTP must be a 6-digit code"),
     password: z
       .string()
       .regex(passwordRegex, "Password must include upper, lower, number, special character"),
@@ -43,3 +68,5 @@ export type SignUpInput = z.infer<typeof signUpSchema>;
 export type SignInInput = z.infer<typeof signInSchema>;
 export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
 export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
+export type VerifyEmailOtpInput = z.infer<typeof verifyEmailOtpSchema>;
+export type ResetPasswordWithOtpInput = z.infer<typeof resetPasswordWithOtpSchema>;

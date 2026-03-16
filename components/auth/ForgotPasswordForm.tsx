@@ -1,6 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -12,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { forgotPasswordSchema, type ForgotPasswordInput } from "@/lib/validations/auth";
 
 export function ForgotPasswordForm() {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const {
     register,
@@ -27,7 +29,8 @@ export function ForgotPasswordForm() {
         return;
       }
 
-      toast.success(result.message ?? "Email sent");
+      toast.success(result.message ?? "OTP sent");
+      router.push(`/auth/reset-password?email=${encodeURIComponent(values.email)}`);
     });
   };
 
@@ -39,7 +42,7 @@ export function ForgotPasswordForm() {
         {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
       </div>
       <Button type="submit" className="w-full" disabled={isPending}>
-        {isPending ? "Sending instructions..." : "Send reset link"}
+        {isPending ? "Sending OTP..." : "Send reset OTP"}
       </Button>
     </form>
   );

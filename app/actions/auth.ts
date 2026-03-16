@@ -8,9 +8,9 @@ import { prisma } from "@/lib/prisma";
 import { logger } from "@/lib/logger";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { signIn } from "@/lib/auth";
-import { signInSchema, signUpSchema } from "@/lib/validations/auth";
+import { signInSchema, signUpSchema, verifyEmailOtpSchema } from "@/lib/validations/auth";
 import { sanitizeInput } from "@/lib/utils";
-import { generateToken, hashPassword } from "@/lib/auth-utils";
+import { generateOtp, hashPassword } from "@/lib/auth-utils";
 
 export type ActionResponse<T = unknown> =
   | { success: true; data?: T; message?: string }
@@ -54,11 +54,11 @@ export async function registerUser(payload: unknown): Promise<ActionResponse> {
     },
   });
 
-  const token = generateToken();
+  const otp = generateOtp();
   await prisma.verificationToken.create({
     data: {
       identifier: sanitizedEmail,
-      token,
+      token: otp,
       expires: addHours(new Date(), 24),
     },
   });
@@ -66,13 +66,13 @@ export async function registerUser(payload: unknown): Promise<ActionResponse> {
   const { sendVerificationEmail } = await import("@/lib/email-smtp");
   await sendVerificationEmail({
     email: sanitizedEmail,
-    token,
+    token: otp,
     firstName: user.firstName,
   });
 
   return {
     success: true,
-    message: "Account created. Check your inbox to verify.",
+    message: "Account created. Check your inbox for your 6-digit OTP.",
   };
 }
 
@@ -106,6 +106,18 @@ export async function loginUser(payload: unknown): Promise<ActionResponse> {
     };
   } catch (error) {
     if (error instanceof AuthError) {
+      const wrappedCauseMessage =
+        (error as { cause?: { err?: { message?: string }; message?: string } }).cause?.err?.message ??
+        (error as { cause?: { err?: { message?: string }; message?: string } }).cause?.message ??
+        "";
+
+      if (wrappedCauseMessage.toLowerCase().includes("email not verified")) {
+        return {
+          success: false,
+          error: "Confirm your email before logging in",
+        };
+      }
+
       switch (error.type) {
         case "CredentialsSignin":
           return { success: false, error: "Invalid credentials" };
@@ -114,6 +126,8 @@ export async function loginUser(payload: unknown): Promise<ActionResponse> {
             success: false,
             error: "Confirm your email before logging in",
           };
+        case "CallbackRouteError":
+          return { success: false, error: "Invalid credentials" };
         default:
           logger.error(error, "Auth error");
           return { success: false, error: "Unable to log in" };
@@ -144,11 +158,11 @@ export async function resendVerificationEmail(
   await prisma.verificationToken.deleteMany({
     where: { identifier: sanitizedEmail },
   });
-  const token = generateToken();
+  const otp = generateOtp();
   await prisma.verificationToken.create({
     data: {
       identifier: sanitizedEmail,
-      token,
+      token: otp,
       expires: addHours(new Date(), 24),
     },
   });
@@ -156,38 +170,45 @@ export async function resendVerificationEmail(
   const { sendVerificationEmail } = await import("@/lib/email-smtp");
   await sendVerificationEmail({
     email: sanitizedEmail,
-    token,
+    token: otp,
     firstName: user.firstName,
   });
-  return { success: true, message: "Verification email sent" };
+  return { success: true, message: "Verification OTP sent" };
 }
 
-export async function verifyEmail(token: string): Promise<ActionResponse> {
-  if (!token) {
-    return { success: false, error: "Missing token" };
+export async function verifyEmailOtp(payload: unknown): Promise<ActionResponse> {
+  const parsed = verifyEmailOtpSchema.safeParse(payload);
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: parsed.error.errors[0]?.message ?? "Invalid input",
+    };
   }
 
+  const email = sanitizeInput(parsed.data.email).toLowerCase();
+  const otp = parsed.data.otp.trim();
+
   const storedToken = await prisma.verificationToken.findUnique({
-    where: { token },
+    where: { token: otp },
   });
-  if (!storedToken) {
-    return { success: false, error: "Invalid or expired token" };
+  if (!storedToken || storedToken.identifier !== email) {
+    return { success: false, error: "Invalid OTP" };
   }
 
   if (storedToken.expires < new Date()) {
-    await prisma.verificationToken.delete({ where: { token } });
-    return { success: false, error: "Token expired" };
+    await prisma.verificationToken.delete({ where: { token: otp } });
+    return { success: false, error: "OTP expired" };
   }
 
   const user = await prisma.user.update({
-    where: { email: storedToken.identifier },
+    where: { email },
     data: { emailVerified: new Date() },
   });
 
   await prisma.verificationToken.deleteMany({
-    where: { identifier: storedToken.identifier },
+    where: { identifier: email },
   });
-  
+
   const { sendWelcomeEmail } = await import("@/lib/email-smtp");
   await sendWelcomeEmail(user.email, user.firstName);
   return { success: true, message: "Email verified" };
