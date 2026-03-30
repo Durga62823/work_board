@@ -2,10 +2,9 @@
 
 import { auth } from "@/lib/auth";
 import { prisma as prismaClient } from "@/lib/prisma";
-import type { PrismaClient } from "@prisma/client";
 
 // Type assertion for prisma
-const prisma = prismaClient as PrismaClient;
+const prisma = prismaClient as any;
 
 /**
  * Get performance metrics for the current user
@@ -140,10 +139,13 @@ export async function getTimeEstimationAccuracy() {
     }
 
     const totalEstimated = tasks.reduce(
-      (sum, t) => sum + (t.estimatedHours || 0),
+      (sum: number, t: { estimatedHours: number | null }) => sum + (t.estimatedHours || 0),
       0
     );
-    const totalActual = tasks.reduce((sum, t) => sum + (t.actualHours || 0), 0);
+    const totalActual = tasks.reduce(
+      (sum: number, t: { actualHours: number | null }) => sum + (t.actualHours || 0),
+      0
+    );
 
     const accuracy =
       totalEstimated > 0
@@ -206,7 +208,7 @@ export async function getMonthlyPerformanceTrend(months: number = 12) {
       { completed: number; total: number; onTime: number }
     > = {};
 
-    tasks.forEach((task) => {
+    tasks.forEach((task: any) => {
       const monthKey = task.createdAt.toISOString().substring(0, 7); // YYYY-MM
 
       if (!monthlyData[monthKey]) {
@@ -338,7 +340,7 @@ export async function getProjectPerformance() {
       }
     > = {};
 
-    tasks.forEach((task) => {
+    tasks.forEach((task: any) => {
       const projectId = task.project?.id || "unassigned";
       const projectName = task.project?.name || "Unassigned";
 

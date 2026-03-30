@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireLead } from "@/lib/guards";
-import { TaskStatus, TaskPriority, SprintStatus } from "@prisma/client";
+import { TaskStatus, TaskPriority, SprintStatus } from "@/lib/db/enums";
 
 /**
  * Create a new task

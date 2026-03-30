@@ -3,11 +3,10 @@
 import { auth } from "@/lib/auth";
 import { prisma as prismaClient } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { AppraisalStatus } from "@prisma/client";
-import type { PrismaClient } from "@prisma/client";
+import { AppraisalStatus } from "@/lib/db/enums";
 
 // Type assertion for prisma
-const prisma = prismaClient as PrismaClient;
+const prisma = prismaClient as any;
 
 /**
  * Get all appraisals for the current user
@@ -264,7 +263,7 @@ export async function getAppraisalStats() {
     const avgRating =
       completedAppraisals.length > 0
         ? completedAppraisals.reduce(
-            (sum: number, a) => sum + (a.finalRating || 0),
+            (sum: number, a: { finalRating: number | null }) => sum + (a.finalRating || 0),
             0
           ) / completedAppraisals.length
         : 0;

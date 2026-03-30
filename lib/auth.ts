@@ -1,15 +1,17 @@
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { eq } from "drizzle-orm";
 import { type NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 
-import { prisma } from "@/lib/prisma";
-import { getRedis } from "@/lib/redis";
+import { db } from "@/lib/db";
+import { accounts, sessions, users, verificationTokens } from "@/lib/db/schema";
 import { logger } from "@/lib/logger";
-import { signInSchema } from "@/lib/validations/auth";
+import { getRedis } from "@/lib/redis";
 import { getRequestIp, getRequestUserAgent } from "@/lib/request";
+import { signInSchema } from "@/lib/validations/auth";
 
 const REMEMBERED_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
 const DEFAULT_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
@@ -18,7 +20,12 @@ const authConfig: NextAuthConfig = {
   trustHost: true,
   secret: process.env.NEXTAUTH_SECRET,
   debug: false,
-  adapter: PrismaAdapter(prisma) as any,
+  adapter: DrizzleAdapter(db, {
+    usersTable: users as any,
+    accountsTable: accounts as any,
+    sessionsTable: sessions as any,
+    verificationTokensTable: verificationTokens as any,
+  }) as any,
   session: {
     strategy: "jwt",
     maxAge: REMEMBERED_MAX_AGE,
@@ -49,7 +56,24 @@ const authConfig: NextAuthConfig = {
           throw new Error("Invalid credentials");
         }
 
-        const user = await prisma.user.findUnique({ where: { email: parsed.data.email } });
+        let user;
+        try {
+          const result = await db
+            .select()
+            .from(users)
+            .where(eq(users.email, parsed.data.email))
+            .limit(1);
+          user = result[0];
+        } catch (error) {
+          logger.error(
+            {
+              provider: "credentials",
+              cause: error instanceof Error ? error.message : String(error),
+            },
+            "Authentication database unavailable"
+          );
+          throw new Error("Authentication service unavailable");
+        }
 
         if (!user || !user.password) {
           throw new Error("Invalid credentials");
@@ -71,7 +95,7 @@ const authConfig: NextAuthConfig = {
           name: user.firstName ?? user.name ?? `${user.firstName ?? ""} ${user.lastName ?? ""}`.trim(),
           image: user.image,
           status: user.status,
-          role: user.role,
+          role: user.role as any,
           rememberMe: parsed.data.rememberMe,
         };
       },
@@ -99,32 +123,30 @@ const authConfig: NextAuthConfig = {
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
-      // For OAuth providers, auto-verify email if not already verified
       if (account && account.provider !== "credentials") {
         const email = user.email || profile?.email;
         if (!email) return false;
 
-        // Check if user exists and needs email verification
-        const existingUser = await prisma.user.findUnique({
-          where: { email },
-        });
+        const existingUserResult = await db.select().from(users).where(eq(users.email, email)).limit(1);
+        const existingUser = existingUserResult[0];
+        const profileImage = (profile as any)?.image ?? (profile as any)?.picture;
+        const profileName = (profile as any)?.name;
 
         if (existingUser) {
-          // Update user with OAuth profile data
-          await prisma.user.update({
-            where: { id: existingUser.id },
-            data: {
+          await db
+            .update(users)
+            .set({
               emailVerified: new Date(),
-              image: user.image || profile?.image || existingUser.image,
-              name: user.name || profile?.name || existingUser.name,
-            },
-          });
+              image: user.image || profileImage || existingUser.image,
+              name: user.name || profileName || existingUser.name,
+            })
+            .where(eq(users.id, existingUser.id));
         }
       }
 
       return true;
     },
-    async jwt({ token, user, account, trigger }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id as string;
         token.status = (user as { status?: string }).status ?? token.status;
@@ -137,14 +159,18 @@ const authConfig: NextAuthConfig = {
 
       if (account) {
         token.provider = account.provider;
-        
-        // For OAuth logins, fetch role from database
+
         if (account.provider !== "credentials" && token.sub) {
-          const dbUser = await prisma.user.findUnique({
-            where: { id: token.sub },
-            select: { role: true, status: true },
-          });
-          
+          const dbUserResult = await db
+            .select({
+              role: users.role,
+              status: users.status,
+            })
+            .from(users)
+            .where(eq(users.id, token.sub))
+            .limit(1);
+          const dbUser = dbUserResult[0];
+
           if (dbUser) {
             token.role = dbUser.role;
             token.status = dbUser.status;
@@ -163,8 +189,8 @@ const authConfig: NextAuthConfig = {
       }
 
       session.rememberMe = Boolean(token.rememberMe);
-      const expiration = (token.sessionExpiresAt as number | undefined) ??
-        Math.floor(Date.now() / 1000) + DEFAULT_MAX_AGE;
+      const expiration =
+        (token.sessionExpiresAt as number | undefined) ?? Math.floor(Date.now() / 1000) + DEFAULT_MAX_AGE;
       session.expires = new Date(expiration * 1000).toISOString() as any;
       return session;
     },
@@ -172,11 +198,9 @@ const authConfig: NextAuthConfig = {
       return !!auth?.user;
     },
     async redirect({ url, baseUrl }) {
-      // Allows relative callback URLs
       if (url.startsWith("/")) {
         return `${baseUrl}${url}`;
       }
-      // Allows callback URLs on the same origin
       if (new URL(url).origin === baseUrl) {
         return url;
       }
@@ -186,17 +210,21 @@ const authConfig: NextAuthConfig = {
   events: {
     async signIn({ user }) {
       try {
+        if (!user.id) {
+          return;
+        }
+
         const ip = await getRequestIp();
         const userAgent = await getRequestUserAgent();
-        
-        await prisma.user.update({
-          where: { id: user.id },
-          data: {
+
+        await db
+          .update(users)
+          .set({
             lastLogin: new Date(),
             lastLoginIp: ip,
             lastLoginUserAgent: userAgent,
-          },
-        });
+          })
+          .where(eq(users.id, user.id));
 
         try {
           const redis = getRedis();
@@ -210,7 +238,7 @@ const authConfig: NextAuthConfig = {
               },
               {
                 ex: REMEMBERED_MAX_AGE,
-              },
+              }
             );
           }
         } catch (redisError) {

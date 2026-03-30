@@ -3,11 +3,10 @@
 import { auth } from "@/lib/auth";
 import { prisma as prismaClient } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { TimesheetStatus } from "@prisma/client";
-import type { PrismaClient } from "@prisma/client";
+import { TimesheetStatus } from "@/lib/db/enums";
 
 // Type assertion for prisma
-const prisma = prismaClient as PrismaClient;
+const prisma = prismaClient as any;
 
 /**
  * Get current week's timesheet for the user

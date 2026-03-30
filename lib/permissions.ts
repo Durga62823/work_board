@@ -1,4 +1,4 @@
-import { UserRole } from "@prisma/client";
+import type { UserRole } from "@/lib/db/enums";
 
 export const PERMISSIONS = {
   // User Management

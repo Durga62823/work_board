@@ -2,10 +2,9 @@
 
 import { auth } from "@/lib/auth";
 import { prisma as prismaClient } from "@/lib/prisma";
-import type { PrismaClient } from "@prisma/client";
 
 // Type assertion for prisma
-const prisma = prismaClient as PrismaClient;
+const prisma = prismaClient as any;
 
 interface CalendarEvent {
   id: string;
