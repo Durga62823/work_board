@@ -1,4 +1,5 @@
-import { pgTable, text, timestamp, primaryKey, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, primaryKey, integer, uuid } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
 
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
@@ -19,7 +20,7 @@ export const users = pgTable("users", {
 });
 
 export const accounts = pgTable("accounts", {
-  id: text("id").primaryKey(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   userId: text("userId").notNull(),
   type: text("type").notNull(),
   provider: text("provider").notNull(),
